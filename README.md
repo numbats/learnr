@@ -1,0 +1,1 @@
+This repository contains materials to build the static website that points to resources to learn R.

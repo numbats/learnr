@@ -1,0 +1,15 @@
+name: "Learn R"
+output_dir: "docs"
+output:
+  html_document:
+    theme: cosmo
+    highlight: textmate
+    css: site/styles.css
+    includes:
+      in_header: site/header.html
+navbar:
+  title: "Learn R"
+  left:
+    - text: "Home"
+      icon: fa-home
+      href: index.html

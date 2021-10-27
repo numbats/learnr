@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Roboto+Mono|Roboto+Slab&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i&display=swap');
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+h2 {
+  color: #006DAE;
+}
+
+thead th {
+  background-color: #006DAE!important;
+  color: white;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+code {
+  font-family: 'Roboto Mono', monospace;
+}
+
+blockquote {
+  font-family: 'Roboto Slab', monospace;
+}
+
+.navbar-default,
+.navbar-toggle,
+.navbar-toggle:focus {
+  background-color: #006DAE;
+}
+
+.navbar-nav > .active > a,
+.navbar-toggle:hover,
+.navbar-nav>li>a:hover {
+  background-color: #006DAE!important;
+}
+
+
+#sticky-footer {
+  background-color: #006DAE;
+  color: white;
+  padding: 10px;
+  position: sticky;
+  bottom: 0;
+}
+
+.flex {
+  display: flex; 
+  flex-wrap: wrap;
+}
+
+.box {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  border: 7px solid #5a5a5a;
+  color: white;
+  text-shadow: 0px 0px 10px black;
+  font-weight: bold;
+  font-size: 28px;
+  overflow: hidden;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.box-image {
+  opacity: 0.6;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 200px;
+}
+
+.box-image img {
+  vertical-align: bottom;
+}
+
+.box:hover .box-image {
+  opacity: 1;
+}
+
+.box p {
+  position: relative;
+  padding: 5px;
+  display: block;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+
+.d-none {
+  display: none!important;
+}
+
+@media print {
+   .navbar {
+        display: block;
+        position: absolute;
+        top:0;
+        border-width:0 !important;
+        min-height: 0!important;
+        border-bottom: 1px solid black!important;
+    }
+    .navbar-toggle {
+        display:none;
+    }
+    /* to remove the href printing */
+    a[href]:after {
+      content: none !important;
+    }
+
+    #sticky-footer {
+      display: none !important;
+    }
+
+    .d-print-block {
+      display: block!important;
+    }
+}

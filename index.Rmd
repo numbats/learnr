@@ -1,0 +1,65 @@
+
+
+:::::::: flex
+
+::: box
+![](images/welcome_to_rstats_twitter.png){.box-image}
+
+Getting started with R and RStudio IDE
+:::
+
+::: box
+![](images/tidyverse_celestial.png){.box-image}
+
+R programming basics
+:::
+
+::: box
+![](images/reprex.png){.box-image}
+
+How to ask for help
+:::
+
+::: box
+![](images/cracked_setwd.png){.box-image}
+
+Project structure
+:::
+
+::: box
+![](images/tidyverse_celestial.png){.box-image}
+
+Importing and exporting data
+:::
+
+::: box
+![](images/tidydata_4.jpg){.box-image}
+
+Data wrangling
+:::
+
+::: box
+![](images/presenting_monster.png){.box-image}
+
+Data visualisation
+:::
+
+::: box
+![](images/purrr_cat.png){.box-image}
+
+Functional programming
+:::
+
+::: box
+![](images/tidyverse_celestial.png){.box-image}
+
+Linear regression
+:::
+
+::: box
+![](images/rmarkdown_wizards.png){.box-image}
+
+R Markdown
+:::
+::::::::
+
