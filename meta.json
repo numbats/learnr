@@ -3,7 +3,7 @@
     "title": "Introduction to R",
     "slogan": "The basics of R and the tidyverse",
     "description": "A website with materials to learn R aimed for beginners",
-    "bio": "This course is brought to you by the team at Monash University, Department of Econometrics and Business Statistics. You can find the full list of contributors to this site <a href='https://github.com/numbats/learnr/graphs/contributors'>here</a>.",
+    "bio": "This course is brought to you by the team at Monash University, Department of Econometrics and Business Statistics. You can find the full list of contributors to this site in the link 'Contributors' at the footer of this site.",
     "siteUrl": "https://numbats.github.io/learnr/",
     "twitter": "numbats_rise_up",
     "fonts": "IBM+Plex+Mono:500|IBM+Plex+Sans:700|Lato:400,400i,700,700i",
@@ -20,6 +20,7 @@
         { "text": "Website", "url": "https://numbat.space" },
         { "text": "Source", "url": "https://github.com/numbats/learnr" },
         { "text": "Built with ♥", "url": "https://github.com/ines/course-starter-r" }
+        { "text": "Contributors", "url": "https://github.com/numbats/learnr/graphs/contributors }
     ],
     "theme": "#006DAE"
 }
