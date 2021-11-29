@@ -57,6 +57,9 @@ the one for the instructions below.
 This is a hint.
 
 </codeblock>
+</exercise>
+
+<exercise id="4" title="Second steps">
 
 <codeblock id="01_04">
 
