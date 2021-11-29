@@ -19,7 +19,7 @@
     "footerLinks": [
         { "text": "Website", "url": "https://numbat.space" },
         { "text": "Source", "url": "https://github.com/numbats/learnr" },
-        { "text": "Built with ♥", "url": "https://github.com/ines/course-starter-r" }
+        { "text": "Built with ♥", "url": "https://github.com/ines/course-starter-r" },
         { "text": "Contributors", "url": "https://github.com/numbats/learnr/graphs/contributors }
     ],
     "theme": "#006DAE"
