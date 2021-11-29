@@ -1,44 +1,13 @@
-# Online course starter: R
+# R for beginners and refreshers
 
-This is a starter repo based on the
-[course framework](https://github.com/ines/spacy-course) I developed for my
+This repo contains the website materials to learn R aimed for beginners. The framework is build on [Ines' framework](https://github.com/ines/spacy-course) developer for her
 [spaCy course](https://course.spacy.io). The front-end is powered by
 [Gatsby](http://gatsbyjs.org/) and [Reveal.js](https://revealjs.com) and the
-back-end code execution uses [Binder](https://mybinder.org) 💖
+back-end code execution uses [Binder](https://mybinder.org).
 
-_This repo could use some better code examples. Also, if you have experience
-with R, feel free to suggest improvements to the
-[test logic and template](#adding-tests). It all works as expected, but there
-might be ways to make it more elegant._
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/ines/courser-starter-r)
 
-[![](https://user-images.githubusercontent.com/13643239/56341448-68fe9380-61b5-11e9-816f-5c71ae71b94f.png)](https://course-starter-r.netlify.com)
 
-## ✅ Quickstart
-
-1. [Import](https://github.com/new/import) this repo, install it and make sure
-   the app is running locally.
-2. Customize the [`meta.json`](meta.json) and
-   [`binder/install.R`](binder/install.R).
-3. Build a [Binder](https://mybinder.org) from the `binder` branch of this repo.
-4. Add content (chapters, exercises and slides) and optionally add separate
-   content license.
-5. Customize the UI theme in [`theme.sass`](theme.sass) and update images in
-   [`static`](static) as needed.
-6. Deploy the app, e.g. to [Netlify](https://netlify.com).
-
-### Running the app
-
-To start the local development server, install [Gatsby](https://gatsbyjs.org)
-and then all other dependencies. This should serve up the app on
-`localhost:8000`.
-
-```bash
-npm install -g gatsby-cli  # Install Gatsby globally
-npm install                # Install dependencies
-npm run dev                # Run the development server
-```
 
 ## 💡Introduction
 
