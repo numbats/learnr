@@ -45,7 +45,7 @@ This is not correct either.
 <exercise id="3" title="First steps">
 
 This is a code exercise. The content can be formatted in simple Markdown – so
-you can have **bold text**, `code` or [links](https://spacy.io) or lists, like
+you can have **bold text**, `code` or [links](https://numbats.github.io/learnr) or lists, like
 the one for the instructions below.
 
 - These are instructions and they can have bullet points.
@@ -53,6 +53,12 @@ the one for the instructions below.
   `test_01_03` in `/exercises`.
 
 <codeblock id="01_03">
+
+This is a hint.
+
+</codeblock>
+
+<codeblock id="01_04">
 
 This is a hint.
 
