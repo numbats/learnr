@@ -8,9 +8,19 @@ output:
   #     slideNumberFormat: '%current%/%total%'
   #     ratio: '16:9'
   revealjs::revealjs_presentation:
+     css: [reveal.css, slide.css]
      transition: slide
+     keep_md: true
+     lib_dir: libs/
+     self_contained: false
+     includes: 
+       before_body: header.html
      #incremental: true
 ---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(fig.path = "images/")
+```
 
 # What is `ggplot2`?
 
@@ -22,11 +32,20 @@ output:
 
 # Loading `ggplot2` 
 
+```r
+library(ggplot2)
+```
+
 * To use `ggplot2`, you first have to install the package (if you haven't installed it yet)
 
 ```{r, eval = FALSE}
 install.packages("ggplot2")
 ```
+
+```{r}
+2 + 3
+```
+
 
 * Once you have installed it, you can load the package:
 

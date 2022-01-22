@@ -1,0 +1,99 @@
+---
+title: Getting started with `ggplot2`
+format: revealjs
+---
+
+## What is `ggplot2`?
+
+```{r setup}
+knitr::opts_chunk$set(fig.path = "images/",
+                      fig.align = "center",
+                      fig.width = 4, 
+                      fig.height = 4,
+                      echo = TRUE)
+```
+
+* `ggplot2` is an R-package that was initially developed by Hadley Wickham as part of his PhD
+* `ggplot2` implements a particular interpretation of the "The Grammar of Graphics" by Leland Wilkinson 
+* It is one of the most popular packages in R for data visualisation and widely used in scientific outputs, reports, and even news articles
+
+---
+
+## Installing and loading `ggplot2` 
+
+
+* To use `ggplot2`, you first have to install the package 
+
+```{r, eval = FALSE}
+install.packages("ggplot2")
+```
+
+* Once you have installed it, you can load the package:
+
+```{r}
+library(ggplot2)
+```
+* `ggplot2` is part of the `tidyverse` family so if you load `tidyverse`, you don't need to load `ggplot2` like above
+
+```{r}
+library(tidyverse)
+```
+
+---
+
+## Motivating data 1 💎 diamonds
+
+* Let's have a look at the `diamonds` data which contains information about different attributes of diamonds
+
+```{r}
+data(diamonds, package = "ggplot2")
+diamonds
+```
+
+
+---
+
+## Initialising the plot
+
+```{r plot1-initial}
+ggplot(data = diamonds) 
+```
+
+---
+
+## Mapping data variables to aesthestics
+
+```{r plot1-map}
+ggplot(data = diamonds,
+       mapping = aes(x = carat, y = price)) 
+```
+
+---
+
+## Adding a layer
+
+* Scatter plot of price vs carat of diamonds
+* Each point correponds to a dimaond
+
+```{r plot1-layer}
+ggplot(data = diamonds,
+       mapping = aes(x = carat, y = price)) +
+  geom_point()
+```
+
+---
+
+## Adding a different layer
+
+* A hexagonal heatmap where the hexagon shows the count of observations within the region
+
+```{r plot1-boxplot}
+ggplot(data = diamonds,
+       mapping = aes(x = carat, y = price)) +
+  geom_hex()
+```
+
+---
+
+
+

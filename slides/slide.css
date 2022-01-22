@@ -1,0 +1,34 @@
+body {
+    font-size: 1.5rem!important;
+    font-family: Lato!important,Roboto!important,Helvetica!important,Arial!important,sans-serif!important,"Apple Color Emoji"!important,"Segoe UI Emoji"!important,"Segoe UI Symbol"!important;
+    text-align: left!important;
+    line-height: 26.4px;
+}
+
+.reveal {
+  font-size: 16.5px!important;
+  text-align: left!important;
+}
+
+html {
+    font-size: 11px!important;
+    text-align: left!important;
+}
+
+h1{
+  font-size: 19.305px!important;
+  font-weight: 700!important;
+  text-align: left!important;
+}
+
+ul,ol,section,div,pre,.sourceCode {
+  text-align: left!important;
+}
+
+.reveal pre {
+  margin: 0;
+}
+
+h1 code {
+  font-size: 19.305px!important;
+}

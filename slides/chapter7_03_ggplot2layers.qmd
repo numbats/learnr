@@ -1,0 +1,72 @@
+---
+title: Layers in `ggplot2`
+format: revealjs
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(fig.path = "images/",
+                      fig.align = "center",
+                      fig.width = 4, 
+                      fig.height = 4,
+                      echo = TRUE)
+library(ggplot2)
+```
+
+## Layer
+
+* A layer is usually added using functions with prefix `geom_` and `stat_`
+* A layer is comprised of:
+   - `data` 
+   - `mapping` 
+   - statistical tranformation (`stat`)
+   - geometric object (`geom`)
+   - position adjustment (`position`)
+* `data` and `mapping` are often inherited from `ggplot`
+
+
+
+## The boxplot layer
+
+```{r plot1-cut}
+ggplot(data = diamonds,
+       mapping = aes(x = cut, y = price)) +
+  geom_boxplot()
+```
+
+---
+
+## You can add more than one layer
+
+```{r plot1-layer2}
+ggplot(data = diamonds,
+       mapping = aes(x = cut, y = price)) +
+  geom_violin() + 
+  geom_boxplot(width = 0.1)
+```
+
+---
+
+## The order of the layer matters
+
+```{r plot1-layer-order}
+ggplot(data = diamonds,
+       mapping = aes(x = cut, y = price)) +
+  geom_boxplot(width = 0.1) +
+  geom_violin()
+```
+
+---
+
+## Inheriting data and mapping
+
+* A layer inherits the data and mapping from the initialised ggplot object by default 
+* You can add layer specific data and mapping
+
+
+```{r plot2-inheritance, fig.width = 8}
+ggplot(data = diamonds) +
+  geom_violin(aes(x = cut, y = price, color = cut)) + 
+  geom_boxplot(aes(x = cut, y = price),
+               width = 0.1)
+```
+
