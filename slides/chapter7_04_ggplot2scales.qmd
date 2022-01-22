@@ -1,0 +1,15 @@
+---
+title: Scales in `ggplot2`
+format: revealjs
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(fig.path = "images/",
+                      fig.align = "center",
+                      fig.width = 4, 
+                      fig.height = 4,
+                      echo = TRUE)
+library(ggplot2)
+```
+
+## Scales

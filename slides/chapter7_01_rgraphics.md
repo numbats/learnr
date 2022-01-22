@@ -13,13 +13,7 @@ type: slides
 ---
 
 
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(fig.path = "images/",
-                      fig.align = "center",
-                      fig.width = 4, 
-                      fig.height = 4,
-                      echo = TRUE)
-```
+
 
 
 ## Why data visualisation?

@@ -2,12 +2,12 @@
 <html lang="en"><head>
   <meta charset="utf-8">
   <meta name="generator" content="quarto-0.3.34">
-  <title>R Graphics</title>
+  <title>Scales in ggplot2</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="chapter7_01_rgraphics_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="chapter7_01_rgraphics_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="chapter7_04_ggplot2scales_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="chapter7_04_ggplot2scales_files/libs/revealjs/dist/reveal.css">
   <style>
     .reveal .sourceCode {  /* see #7635 */
       overflow: visible;
@@ -19,19 +19,19 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
   </style>
-  <link rel="stylesheet" href="chapter7_01_rgraphics_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link rel="stylesheet" href="chapter7_04_ggplot2scales_files/libs/revealjs/dist/theme/quarto.css" id="theme">
 
-  <script src="chapter7_01_rgraphics_files/libs/clipboard/clipboard.min.js"></script>
-  <script src="chapter7_01_rgraphics_files/libs/quarto-html/tabby.min.js"></script>
-  <script src="chapter7_01_rgraphics_files/libs/quarto-html/popper.min.js"></script>
-  <script src="chapter7_01_rgraphics_files/libs/quarto-html/tippy.umd.min.js"></script>
-  <link href="chapter7_01_rgraphics_files/libs/quarto-html/tippy.css" rel="stylesheet">
-  <link href="chapter7_01_rgraphics_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet">
-  <link href="chapter7_01_rgraphics_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
-  <link href="chapter7_01_rgraphics_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="chapter7_01_rgraphics_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="chapter7_01_rgraphics_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="chapter7_01_rgraphics_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <script src="chapter7_04_ggplot2scales_files/libs/clipboard/clipboard.min.js"></script>
+  <script src="chapter7_04_ggplot2scales_files/libs/quarto-html/tabby.min.js"></script>
+  <script src="chapter7_04_ggplot2scales_files/libs/quarto-html/popper.min.js"></script>
+  <script src="chapter7_04_ggplot2scales_files/libs/quarto-html/tippy.umd.min.js"></script>
+  <link href="chapter7_04_ggplot2scales_files/libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="chapter7_04_ggplot2scales_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet">
+  <link href="chapter7_04_ggplot2scales_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <link href="chapter7_04_ggplot2scales_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="chapter7_04_ggplot2scales_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="chapter7_04_ggplot2scales_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="chapter7_04_ggplot2scales_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -329,80 +329,31 @@
     <div class="slides">
 
 <section id="title-slide" class="center">
-  <h1 class="title">R Graphics</h1>
+  <h1 class="title">Scales in <code>ggplot2</code></h1>
 </section>
 
-<section id="why-data-visualisation" class="slide level2">
-<h2>Why data visualisation?</h2>
-<blockquote>
-A picture is worth a thousand words
-</blockquote>
-<ul>
-<li>Data visualisation is a powerful tool to <strong><em>explore</em></strong>, <strong><em>understand</em></strong> and <strong><em>communicate</em></strong> data</li>
-</ul>
-</section>
-<section id="graphics" class="slide level2">
-<h2>Graphics</h2>
-<ul>
-<li>Graphics are commonly stored in a standard image format such as svg, jpg, png, pdf, and so on.</li>
-<li>When you view these graphics electronically, you would be using some graphical device to render the stored image</li>
-<li>R would render these using either <code>windows</code>, <code>X11</code> or <code>quartz</code> graphical devices (depending on the your operating system)</li>
-<li>This rendering is carried out by R’s graphics engine, <code>grDevices</code>, which is one of the core package within the R system</li>
-</ul>
-</section>
-<section id="r-graphics" class="slide level2">
-<h2>R Graphics</h2>
-
-<img data-src="images/r-graphics-system.png" class="r-stretch"></section>
-<section id="graphics-model-in-r" class="slide level2">
-<h2>Graphics model in R</h2>
-<ul>
-<li>There are two main graphics model in R through two core packages:
-<ul>
-<li><code>graphics</code> package, and</li>
-<li><code>grid</code> package.</li>
-</ul></li>
-<li>The <code>graphics</code> package is loaded when you launch R so there is no need to load this.</li>
-<li>Plot using the <code>graphics</code> system is normally refered to as the <strong>base graphics</strong>.</li>
-<li>If the graphics is produced using the <code>grid</code> package, then it is using the <strong><code>grid</code> graphics</strong> model.</li>
-</ul>
-</section>
-<section id="base-graphics" class="slide level2">
-<h2>Base graphics</h2>
-<ul>
-<li>Think of this as a painting on an empty canvas</li>
-<li>The <code>plot()</code> functions usually produces base graphics</li>
-</ul>
-</section>
-<section id="grid-graphics" class="slide level2">
-<h2><code>grid</code> graphics</h2>
-<ul>
-<li>The <code>grid</code> package contains low-level graphics system.</li>
-<li>This system gives a lot of control over the graphics, but requires the user to do a lot of work.</li>
-<li>You won’t be directly interacting with the <code>grid</code> package most of the time.</li>
-<li>Instead you’ll be using the <code>ggplot2</code> package that provides high-level functions for plotting via the <code>grid</code> system</li>
-</ul>
-
+<section id="scales" class="slide level2">
+<h2>Scales</h2>
 <div class="footer footer-default">
 
 </div>
-<img src="images/monash-stacked-blue-rgb-transparent.png" class="slide-logo r-stretch"></section>
+</section>
     </div>
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="chapter7_01_rgraphics_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="chapter7_04_ggplot2scales_files/libs/revealjs/dist/reveal.js"></script>
 
   <!-- reveal.js plugins -->
-  <script src="chapter7_01_rgraphics_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="chapter7_01_rgraphics_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="chapter7_01_rgraphics_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="chapter7_01_rgraphics_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="chapter7_01_rgraphics_files/libs/revealjs/plugin/quarto-support/support.js"></script>
-  <script src="chapter7_01_rgraphics_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="chapter7_01_rgraphics_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="chapter7_01_rgraphics_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="chapter7_01_rgraphics_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="chapter7_04_ggplot2scales_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="chapter7_04_ggplot2scales_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="chapter7_04_ggplot2scales_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="chapter7_04_ggplot2scales_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="chapter7_04_ggplot2scales_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="chapter7_04_ggplot2scales_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="chapter7_04_ggplot2scales_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="chapter7_04_ggplot2scales_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="chapter7_04_ggplot2scales_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
 
@@ -440,7 +391,7 @@ A picture is worth a thousand words
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: 'c/t',
+        slideNumber: false,
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
