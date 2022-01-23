@@ -15,7 +15,6 @@ type: slides
 
 
 
-
 ## Why data visualisation?
 
 <blockquote>
@@ -24,20 +23,23 @@ A picture is worth a thousand words
 
 * Data visualisation is a powerful tool to **_explore_**, **_understand_** and **_communicate_** data
 
+::: {.cell layout-align="center"}
+::: {.cell-output-display}
+![](images/chapter7-01/covid-plot-1.png){fig-align='center' width=960}
+:::
+:::
+
+
 ---
 
 ## Graphics
 
 * Graphics are commonly stored in a standard image format such as svg, jpg, png, pdf, and so on. 
-* When you view these graphics electronically, you would be using some graphical device to render the stored image 
-* R would render these using either `windows`, `X11` or `quartz` graphical devices (depending on the your operating system)
-* This rendering is carried out by R's graphics engine, `grDevices`, which is one of the core package within the R system
+* When you view these graphics electronically, you would be using some graphical device to render the stored image. 
+* R would render these using either `windows`, `X11` or `quartz` graphical devices (depending on the your operating system).
+* This rendering is carried out by R's graphics engine, `grDevices`, which is one of the core package within the R system.
 
----
 
-## R Graphics
-
-![](images/r-graphics-system.png)
 
 ---
 
@@ -54,8 +56,27 @@ A picture is worth a thousand words
 
 ## Base graphics
 
-* Think of this as a painting on an empty canvas
-* The `plot()` functions usually produces base graphics
+* Base graphics are drawn via the `graphics` package.
+
+![](images/base-graphics.png)
+
+---
+
+## Base graphics
+
+* The `plot()` function usually produces base graphics.
+
+::: {.cell layout-align="center" hash='cache/unnamed-chunk-2_f7f6623d067f725e90d478df8aa440b2'}
+
+```{.r .cell-code}
+x <- 1:10
+plot(x, x^2)
+```
+
+::: {.cell-output-display}
+![](images/chapter7-01/unnamed-chunk-2-1.png){fig-align='center' width=384}
+:::
+:::
 
 ---
 
@@ -65,3 +86,118 @@ A picture is worth a thousand words
 * This system gives a lot of control over the graphics, but requires the user to do a lot of work.
 * You won't be directly interacting with the `grid` package most of the time.
 * Instead you'll be using the `ggplot2` package that provides high-level functions for plotting via the `grid` system
+
+---
+
+## `grid` graphics
+
+
+![](images/ggplot-graphics.png)
+
+
+---
+
+## R Graphics
+
+![](images/r-graphics-system.png)
+
+---
+
+## Plotting with R (base version)
+::: {.cell layout-align="center" hash='cache/unnamed-chunk-4_b1f50a5362742a332798a42cb523177e'}
+
+```{.r .cell-code}
+data <- data.frame(duty = c("Teaching", "Research", "Engagement"),
+                   perc = c(40, 40, 20))
+```
+:::
+::: columns
+
+::: {.column width="25%"}
+
+::: {.cell layout-align="center" hash='cache/unnamed-chunk-6_6b52aeb4b15d0c89ad476185744c44b8'}
+
+```{.r .cell-code}
+data
+```
+
+::: {.cell-output-stdout}
+```
+        duty perc
+1   Teaching   40
+2   Research   40
+3 Engagement   20
+```
+:::
+:::
+
+
+:::
+::: {.column width="60%"}
+
+::: {.cell layout-align="center" hash='cache/base-barplot_74510a3b41632127615cf669b3cbb096'}
+
+```{.r .cell-code}
+barplot(perc ~ duty,
+        data = data)
+```
+
+::: {.cell-output-display}
+![](images/chapter7-01/base-barplot-1.png){fig-align='center' width=672}
+:::
+:::
+:::
+
+:::
+
+---
+
+## Plotting with R (ggplot2 version)
+::: {.cell layout-align="center" hash='cache/unnamed-chunk-8_6300ada55e3f7e7d5404cf1cf21281a6'}
+
+```{.r .cell-code}
+data <- data.frame(duty = c("Teaching", "Research", "Engagement"),
+                   perc = c(40, 40, 20))
+```
+:::
+::: columns
+
+::: {.column width="25%"}
+
+::: {.cell layout-align="center" hash='cache/unnamed-chunk-10_1c5ecf1714ea2d830764bd16ce4a46de'}
+
+```{.r .cell-code}
+data
+```
+
+::: {.cell-output-stdout}
+```
+        duty perc
+1   Teaching   40
+2   Research   40
+3 Engagement   20
+```
+:::
+:::
+
+
+:::
+::: {.column width="60%"}
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+library(ggplot2)
+ggplot(data = data, 
+       mapping = aes(x = duty, 
+                     y = perc)) +
+  geom_col()
+```
+
+::: {.cell-output-display}
+![](images/chapter7-01/ggplot-barplot-1.png){fig-align='center' width=672}
+:::
+:::
+:::
+
+:::

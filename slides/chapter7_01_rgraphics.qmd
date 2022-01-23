@@ -12,13 +12,16 @@ format:
 type: slides
 ---
 
-
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(fig.path = "images/",
+knitr::opts_chunk$set(fig.path = "images/chapter7-01/",
                       fig.align = "center",
                       fig.width = 4, 
                       fig.height = 4,
+                      cache.path = "cache/",
+                      cache = TRUE,
                       echo = TRUE)
+library(tidyverse)
+covid <- read_csv("data/tidycovid19-20220123.csv")
 ```
 
 
@@ -30,20 +33,29 @@ A picture is worth a thousand words
 
 * Data visualisation is a powerful tool to **_explore_**, **_understand_** and **_communicate_** data
 
+```{r covid-plot, echo = FALSE, fig.width = 10, cache = FALSE}
+covid %>% 
+  mutate(case = (1 + confirmed - lag(confirmed, 1))) %>% 
+  ggplot(aes(date, case)) +
+  geom_line() + 
+  scale_y_log10(labels = scales::comma) + 
+  labs(x = "Date", y = "Number of cases + 1",
+       title = "COVID-19 cases in Australia") +
+  theme_classic(base_size = 18) +
+  theme(plot.title.position = "plot")
+```
+
+
 ---
 
 ## Graphics
 
 * Graphics are commonly stored in a standard image format such as svg, jpg, png, pdf, and so on. 
-* When you view these graphics electronically, you would be using some graphical device to render the stored image 
-* R would render these using either `windows`, `X11` or `quartz` graphical devices (depending on the your operating system)
-* This rendering is carried out by R's graphics engine, `grDevices`, which is one of the core package within the R system
+* When you view these graphics electronically, you would be using some graphical device to render the stored image. 
+* R would render these using either `windows`, `X11` or `quartz` graphical devices (depending on the your operating system).
+* This rendering is carried out by R's graphics engine, `grDevices`, which is one of the core package within the R system.
 
----
 
-## R Graphics
-
-![](images/r-graphics-system.png)
 
 ---
 
@@ -60,8 +72,20 @@ A picture is worth a thousand words
 
 ## Base graphics
 
-* Think of this as a painting on an empty canvas
-* The `plot()` functions usually produces base graphics
+* Base graphics are drawn via the `graphics` package.
+
+![](images/base-graphics.png)
+
+---
+
+## Base graphics
+
+* The `plot()` function usually produces base graphics.
+
+```{r}
+x <- 1:10
+plot(x, x^2)
+```
 
 ---
 
@@ -71,3 +95,74 @@ A picture is worth a thousand words
 * This system gives a lot of control over the graphics, but requires the user to do a lot of work.
 * You won't be directly interacting with the `grid` package most of the time.
 * Instead you'll be using the `ggplot2` package that provides high-level functions for plotting via the `grid` system
+
+---
+
+## `grid` graphics
+
+
+![](images/ggplot-graphics.png)
+
+
+---
+
+## R Graphics
+
+![](images/r-graphics-system.png)
+
+---
+
+## Plotting with R (base version)
+```{r}
+data <- data.frame(duty = c("Teaching", "Research", "Engagement"),
+                   perc = c(40, 40, 20))
+```
+::: columns
+
+::: {.column width="25%"}
+
+```{r}
+data
+```
+
+
+:::
+::: {.column width="60%"}
+
+```{r base-barplot, fig.width = 7}
+barplot(perc ~ duty,
+        data = data)
+```
+:::
+
+:::
+
+---
+
+## Plotting with R (ggplot2 version)
+```{r}
+data <- data.frame(duty = c("Teaching", "Research", "Engagement"),
+                   perc = c(40, 40, 20))
+```
+::: columns
+
+::: {.column width="25%"}
+
+```{r}
+data
+```
+
+
+:::
+::: {.column width="60%"}
+
+```{r ggplot-barplot, fig.width = 7, cache = FALSE}
+library(ggplot2)
+ggplot(data = data, 
+       mapping = aes(x = duty, 
+                     y = perc)) +
+  geom_col()
+```
+:::
+
+:::
