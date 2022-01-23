@@ -201,3 +201,26 @@ ggplot(data = data,
 :::
 
 :::
+
+---
+
+
+## A data visualisation catalogue
+
+::: {.cell layout-align="center" hash='cache/datavis-catalogue_64a8320c71d8775c03b85214cd8be080'}
+
+:::
+::: {.cell layout-align="center" hash='cache/unnamed-chunk-12_c570cbafb5df51d18995b216d64fc7ad'}
+<style type="text/css">
+.catalogue img {
+  margin-right: 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  width: 18%;
+}
+</style>
+:::
+
+<div class="catalogue">
+<img src="images/chapter7-01/datavis-catalogue-1.png"/><img src="images/chapter7-01/datavis-catalogue-2.png"/><img src="images/chapter7-01/datavis-catalogue-3.png"/><img src="images/chapter7-01/datavis-catalogue-4.png"/><img src="images/chapter7-01/datavis-catalogue-5.png"/><img src="images/chapter7-01/datavis-catalogue-6.png"/><img src="images/chapter7-01/datavis-catalogue-7.png"/><img src="images/chapter7-01/datavis-catalogue-8.png"/><img src="images/chapter7-01/datavis-catalogue-9.png"/><img src="images/chapter7-01/datavis-catalogue-10.png"/><img src="images/chapter7-01/datavis-catalogue-11.png"/><img src="images/chapter7-01/datavis-catalogue-12.png"/><img src="images/chapter7-01/datavis-catalogue-13.png"/><img src="images/chapter7-01/datavis-catalogue-14.png"/><img src="images/chapter7-01/datavis-catalogue-15.png"/>
+</div>

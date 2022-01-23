@@ -397,9 +397,6 @@
 
 <section id="what-is-ggplot2" class="slide level2">
 <h2>What is <code>ggplot2</code>?</h2>
-<div class="cell">
-
-</div>
 <ul>
 <li><code>ggplot2</code> is an R-package that was initially developed by Hadley Wickham as part of his PhD</li>
 <li><code>ggplot2</code> implements a particular interpretation of the “The Grammar of Graphics” by Leland Wilkinson</li>
@@ -411,19 +408,19 @@
 <ul>
 <li>To use <code>ggplot2</code>, you first have to install the package</li>
 </ul>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="center" data-hash="cache/unnamed-chunk-2_f68ac0ad89b2b0deb9d86786573d3dc8">
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Once you have installed it, you can load the package:</li>
 </ul>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="center" data-hash="cache/unnamed-chunk-4_62cdab7f42fd5efd7df0a6c0f5859a3f">
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><code>ggplot2</code> is part of the <code>tidyverse</code> family so if you load <code>tidyverse</code>, you don’t need to load <code>ggplot2</code> like above</li>
 </ul>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="center" data-hash="cache/unnamed-chunk-6_50c1ef4e89e8e871160ea8797212efcf">
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -432,7 +429,7 @@
 <ul>
 <li>Let’s have a look at the <code>diamonds</code> data which contains information about different attributes of diamonds</li>
 </ul>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="center" data-hash="cache/unnamed-chunk-8_e9abdaf6c43542b71d39d21062949372">
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">data</span>(diamonds, <span class="at">package =</span> <span class="st">"ggplot2"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2"></a>diamonds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-stdout">
@@ -455,71 +452,276 @@
 </section>
 <section id="initialising-the-plot" class="slide level2">
 <h2>Initialising the plot</h2>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="center" data-hash="cache/plot-initial_471828803830ba9cc4b2788212a6d8f7">
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="images/plot1-initial-1.png" width="384" class="r-stretch quarto-figure-center"></section>
+<img data-src="images/chapter7-02/plot-initial-1.png" width="384" class="r-stretch quarto-figure-center"><ul>
+<li>When there is no layer, it produces a blank layer like top plot.</li>
+</ul>
+</section>
 <section id="mapping-data-variables-to-aesthestics" class="slide level2">
 <h2>Mapping data variables to aesthestics</h2>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="center" data-hash="cache/plot-mapping_a96b0cdc9db300869469b37a48f356e0">
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds,</span>
 <span id="cb7-2"><a href="#cb7-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="images/plot1-map-1.png" width="384" class="r-stretch quarto-figure-center"></section>
-<section id="adding-a-layer" class="slide level2">
-<h2>Adding a layer</h2>
-<ul>
-<li>Scatter plot of price vs carat of diamonds</li>
-<li>Each point correponds to a dimaond</li>
+<img data-src="images/chapter7-02/plot-mapping-1.png" width="384" class="r-stretch quarto-figure-center"><ul>
+<li>This get the scale ready but no layer is defined so nothing is rendered in the panel.</li>
 </ul>
-<div class="cell" data-layout-align="center">
+</section>
+<section class="slide level2">
+
+</section>
+<section>
+<section id="geom-layers" class="title-slide slide level1 center">
+<h1><code>geom</code> layers</h1>
+
+</section>
+<section id="a-scatterplot-with-geom_point" class="slide level2">
+<h2>A scatterplot with <code>geom_point()</code></h2>
+<div class="cell" data-layout-align="center" data-hash="cache/geom-point_fd8be80a63aebcf69a4464841388bd16">
 <div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds,</span>
 <span id="cb8-2"><a href="#cb8-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="images/plot1-layer-1.png" width="384" class="r-stretch quarto-figure-center"></section>
-<section id="adding-a-different-layer" class="slide level2">
-<h2>Adding a different layer</h2>
-<ul>
-<li>A hexagonal heatmap where the hexagon shows the count of observations within the region</li>
+<img data-src="images/chapter7-02/geom-point-1.png" width="384" class="r-stretch quarto-figure-center"><ul>
+<li>Scatter plot of price vs carat of diamonds</li>
+<li>Each point correponds to a dimaond</li>
 </ul>
-<div class="cell" data-layout-align="center">
+</section>
+<section id="a-hexagonal-2d-heatmap-with-geom_hex" class="slide level2">
+<h2>A hexagonal 2D heatmap with <code>geom_hex()</code></h2>
+<div class="cell" data-layout-align="center" data-hash="cache/geom-hex_81fa7a6fee78edb2f9ca6121bab71ad1">
 <div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds,</span>
 <span id="cb9-2"><a href="#cb9-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
 <span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">geom_hex</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="images/plot1-boxplot-1.png" width="384" class="r-stretch quarto-figure-center"></section>
-<section id="layer" class="slide level2">
-<h2>Layer</h2>
-<ul>
-<li>A layer is usually added using functions with prefix <code>geom_</code> and <code>stat_</code></li>
-<li>A layer is comprised of:
-<ul>
-<li><code>data</code></li>
-<li><code>mapping</code></li>
-<li>statistical tranformation (<code>stat</code>)</li>
-<li>geometric object (<code>geom</code>)</li>
-<li>position adjustment (<code>position</code>)</li>
-</ul></li>
-<li><code>data</code> and <code>mapping</code> are often inherited from <code>ggplot</code></li>
+<img data-src="images/chapter7-02/geom-hex-1.png" width="384" class="r-stretch quarto-figure-center"><ul>
+<li>The hexagon shows the count of observations within the region.</li>
 </ul>
 </section>
-<section id="changing-the-mapping-and-layer" class="slide level2">
-<h2>Changing the mapping and layer</h2>
-<div class="cell" data-layout-align="center">
+<section id="a-2d-heatmap-with-geom_bin_2d" class="slide level2">
+<h2>A 2D heatmap with <code>geom_bin_2d()</code></h2>
+<div class="cell" data-layout-align="center" data-hash="cache/geom-bin2d_224aa0814db305c6d7a83976a8f31332">
 <div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds,</span>
-<span id="cb10-2"><a href="#cb10-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> price)) <span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-2"><a href="#cb10-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">geom_bin_2d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="images/plot1-cut-1.png" width="384" class="r-stretch quarto-figure-center"><div class="footer footer-default">
-
-</div>
+<img data-src="images/chapter7-02/geom-bin2d-1.png" width="384" class="r-stretch quarto-figure-center"><ul>
+<li>Similar to <code>geom_hex()</code> but the shapes are boxes.</li>
+</ul>
 </section>
+<section id="count-of-overlapping-points-with-geom_count" class="slide level2">
+<h2>Count of overlapping points with <code>geom_count()</code></h2>
+<div class="cell" data-layout-align="center" data-hash="cache/geom-count_2cd2244ec818a227afb7bca43f556073">
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds,</span>
+<span id="cb11-2"><a href="#cb11-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">geom_count</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="images/chapter7-02/geom-count-1.png" width="384" class="r-stretch quarto-figure-center"></section>
+<section id="a-boxplot-with-geom_boxplot" class="slide level2">
+<h2>A boxplot with <code>geom_boxplot()</code></h2>
+<div class="cell" data-layout-align="center" data-hash="cache/geom-boxplot_a070ed244cfb4d13d969edcd910a62a9">
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, </span>
+<span id="cb12-2"><a href="#cb12-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="images/chapter7-02/geom-boxplot-1.png" width="384" class="r-stretch quarto-figure-center"></section>
+<section id="a-violin-plot-with-geom_violin" class="slide level2">
+<h2>A violin plot with <code>geom_violin()</code></h2>
+<div class="cell" data-layout-align="center" data-hash="cache/geom-violin_b38388cf3537bf480ff3a133f9ed36e0">
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, </span>
+<span id="cb13-2"><a href="#cb13-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">geom_violin</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="images/chapter7-02/geom-violin-1.png" width="384" class="r-stretch quarto-figure-center"></section>
+<section id="a-dot-plot-with-geom_dotplot" class="slide level2">
+<h2>A dot plot with <code>geom_dotplot()</code></h2>
+<div class="cell" data-layout-align="center" data-hash="cache/geom-dotplot_c29bd538a396dbcf8dced5b737217580">
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, </span>
+<span id="cb14-2"><a href="#cb14-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>  <span class="fu">geom_dotplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="images/chapter7-02/geom-dotplot-1.png" width="384" class="r-stretch quarto-figure-center"></section>
+<section id="a-histogram-with-geom_histogram" class="slide level2">
+<h2>A histogram with <code>geom_histogram()</code></h2>
+<div class="cell" data-layout-align="center" data-hash="cache/geom-histogram_7741201f8d56e786faaa0ffe9606370f">
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, </span>
+<span id="cb15-2"><a href="#cb15-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="images/chapter7-02/geom-histogram-1.png" width="384" class="r-stretch quarto-figure-center"></section>
+<section id="a-frequency-polygon-with-geom_freqpoly" class="slide level2">
+<h2>A frequency polygon with <code>geom_freqpoly()</code></h2>
+<div class="cell" data-layout-align="center" data-hash="cache/geom-freqpoly_77c9830c65b95bc9bfe1f0a9818c45b0">
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, </span>
+<span id="cb16-2"><a href="#cb16-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a>  <span class="fu">geom_freqpoly</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="images/chapter7-02/geom-freqpoly-1.png" width="384" class="r-stretch quarto-figure-center"></section>
+<section id="a-2d-contour-plot-with-geom_contour" class="slide level2">
+<h2>A 2D contour plot with <code>geom_contour()</code></h2>
+<div class="cell" data-layout-align="center" data-hash="cache/unnamed-chunk-10_13c06639c12024a98d5a65f190ba3d3d">
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> faithfuld, </span>
+<span id="cb17-2"><a href="#cb17-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> waiting, <span class="at">y =</span> eruptions, <span class="at">z =</span> density)) <span class="sc">+</span> </span>
+<span id="cb17-3"><a href="#cb17-3"></a>  <span class="fu">geom_contour</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="images/chapter7-02/unnamed-chunk-10-1.png" width="384" class="r-stretch quarto-figure-center"></section>
+<section id="a-2d-contour-plot-with-geom_contour_filled" class="slide level2">
+<h2>A 2D contour plot with <code>geom_contour_filled()</code></h2>
+<div class="cell" data-layout-align="center" data-hash="cache/unnamed-chunk-12_f95e9b7deefff90dd895a481ddfc6420">
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> faithfuld, </span>
+<span id="cb18-2"><a href="#cb18-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> waiting, <span class="at">y =</span> eruptions, <span class="at">z =</span> density)) <span class="sc">+</span> </span>
+<span id="cb18-3"><a href="#cb18-3"></a>  <span class="fu">geom_contour_filled</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="images/chapter7-02/unnamed-chunk-12-1.png" width="384" class="r-stretch quarto-figure-center"></section>
+<section id="a-2d-contour-plot-with-geom_density_2d" class="slide level2">
+<h2>A 2D contour plot with <code>geom_density_2d()</code></h2>
+<div class="cell" data-layout-align="center" data-hash="cache/unnamed-chunk-14_a08e002cd34f588c80a7fe8c3512a33f">
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> faithful, </span>
+<span id="cb19-2"><a href="#cb19-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> eruptions, <span class="at">y =</span> waiting)) <span class="sc">+</span> </span>
+<span id="cb19-3"><a href="#cb19-3"></a>  <span class="fu">geom_density_2d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="images/chapter7-02/unnamed-chunk-14-1.png" width="384" class="r-stretch quarto-figure-center"></section>
+<section id="a-2d-contour-plot-with-geom_density_2d_filled" class="slide level2">
+<h2>A 2D contour plot with <code>geom_density_2d_filled()</code></h2>
+<div class="cell" data-layout-align="center" data-hash="cache/unnamed-chunk-16_20e0638695e3200e8fbbdfd3986bd27e">
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">ggplot</span>(faithful, <span class="fu">aes</span>(<span class="at">x =</span> eruptions, <span class="at">y =</span> waiting)) <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a> <span class="fu">geom_density_2d_filled</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="images/chapter7-02/unnamed-chunk-16-1.png" width="384" class="r-stretch quarto-figure-center"></section>
+<section id="density-plot-with-geom_density" class="slide level2">
+<h2>Density plot with <code>geom_density()</code></h2>
+<div class="cell" data-layout-align="center" data-hash="cache/unnamed-chunk-18_c3d1e2f4d9f56faf51c62ad8d32434fe">
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, </span>
+<span id="cb21-2"><a href="#cb21-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat)) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="images/chapter7-02/unnamed-chunk-18-1.png" width="384" class="r-stretch quarto-figure-center"></section>
+<section id="geom_line" class="slide level2">
+<h2><code>geom_line</code></h2>
+<div class="cell" data-layout-align="center" data-hash="cache/unnamed-chunk-20_392f2cc5cc61541bf05a028a58ad6134">
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">ggplot</span>(economics, <span class="fu">aes</span>(date, unemploy)) <span class="sc">+</span> </span>
+<span id="cb22-2"><a href="#cb22-2"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="images/chapter7-02/unnamed-chunk-20-1.png" width="384" class="r-stretch quarto-figure-center"></section>
+<section class="slide level2">
+
+<div class="cell" data-layout-align="center" data-hash="cache/unnamed-chunk-22_63f796e1072c6f1059fced9247151c83">
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">ggplot</span>(economics, <span class="fu">aes</span>(unemploy<span class="sc">/</span>pop, psavert)) <span class="sc">+</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">geom_path</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="images/chapter7-02/unnamed-chunk-22-1.png" width="384" class="r-stretch quarto-figure-center"></section>
+<section class="slide level2">
+
+<div class="cell" data-layout-align="center" data-hash="cache/unnamed-chunk-24_dc4fed2f40a5c3ebd66fd26bd5303793">
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">ggplot</span>(economics, <span class="fu">aes</span>(unemploy<span class="sc">/</span>pop, psavert)) <span class="sc">+</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">geom_step</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="images/chapter7-02/unnamed-chunk-24-1.png" width="384" class="r-stretch quarto-figure-center"></section>
+<section class="slide level2">
+
+<div class="cell" data-layout-align="center" data-hash="cache/unnamed-chunk-26_e939c26b9a30fc3127491f862b6d6512">
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>world <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"world"</span>)</span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="fu">ggplot</span>(world, <span class="fu">aes</span>(long, lat, <span class="at">group =</span> group)) <span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3"></a>  <span class="fu">geom_polygon</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="images/chapter7-02/unnamed-chunk-26-1.png" width="384" class="r-stretch quarto-figure-center"></section>
+<section class="slide level2">
+
+<div class="cell" data-layout-align="center" data-hash="cache/unnamed-chunk-28_f2fa983323fca84ee781f1a70264272d">
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(displ, hwy)) <span class="sc">+</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb26-3"><a href="#cb26-3"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="images/chapter7-02/unnamed-chunk-28-1.png" width="384" class="r-stretch quarto-figure-center"></section>
+<section class="slide level2">
+
+<div class="cell" data-layout-align="center" data-hash="cache/unnamed-chunk-30_418b1f360ca69ed4228346e9416c88de">
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(wt, mpg, <span class="at">label =</span> <span class="fu">rownames</span>(mtcars))) <span class="sc">+</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">geom_text</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="images/chapter7-02/unnamed-chunk-30-1.png" width="384" class="r-stretch quarto-figure-center"></section>
+<section class="slide level2">
+
+<div class="cell" data-layout-align="center" data-hash="cache/unnamed-chunk-32_55a12bbc1be77605eec0018d194f1480">
+<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(wt, mpg, <span class="at">label =</span> <span class="fu">rownames</span>(mtcars))) <span class="sc">+</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a>  <span class="fu">geom_label</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="images/chapter7-02/unnamed-chunk-32-1.png" width="384" class="r-stretch quarto-figure-center"></section>
+<section class="slide level2">
+
+<div class="cell" data-layout-align="center" data-hash="cache/unnamed-chunk-34_e26c2082965690d79087231374726e8a">
+<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">ggplot</span>(faithfuld, <span class="fu">aes</span>(waiting, eruptions)) <span class="sc">+</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a> <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">fill =</span> density))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="images/chapter7-02/unnamed-chunk-34-1.png" width="384" class="r-stretch quarto-figure-center"></section>
+<section class="slide level2">
+
+<div class="cell" data-layout-align="center" data-hash="cache/unnamed-chunk-36_fc5221c44b00a3c6a28e8dd3d784feee">
+<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb30-2"><a href="#cb30-2"></a>  <span class="at">x =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">12</span>), <span class="dv">2</span>),</span>
+<span id="cb30-3"><a href="#cb30-3"></a>  <span class="at">y =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb30-4"><a href="#cb30-4"></a>  <span class="at">z =</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">each =</span> <span class="dv">2</span>)),</span>
+<span id="cb30-5"><a href="#cb30-5"></a>  <span class="at">w =</span> <span class="fu">rep</span>(<span class="fu">diff</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">14</span>)), <span class="dv">2</span>)</span>
+<span id="cb30-6"><a href="#cb30-6"></a>)</span>
+<span id="cb30-7"><a href="#cb30-7"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb30-8"><a href="#cb30-8"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> z), <span class="at">colour =</span> <span class="st">"grey50"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/chapter7-02/unnamed-chunk-36-1.png" width="384"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(x, y, <span class="at">width =</span> w)) <span class="sc">+</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> z), <span class="at">colour =</span> <span class="st">"grey50"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/chapter7-02/unnamed-chunk-36-2.png" width="384"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">xmin =</span> x <span class="sc">-</span> w <span class="sc">/</span> <span class="dv">2</span>, <span class="at">xmax =</span> x <span class="sc">+</span> w <span class="sc">/</span> <span class="dv">2</span>, <span class="at">ymin =</span> y, <span class="at">ymax =</span> y <span class="sc">+</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>  <span class="fu">geom_rect</span>(<span class="fu">aes</span>(<span class="at">fill =</span> z), <span class="at">colour =</span> <span class="st">"grey50"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/chapter7-02/unnamed-chunk-36-3.png" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><img src="images/monash-stacked-blue-rgb-transparent.png" class="slide-logo"></p>
+<div class="footer footer-default">
+
+</div>
+</section></section>
     </div>
   </div>
 
@@ -573,7 +775,7 @@
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',

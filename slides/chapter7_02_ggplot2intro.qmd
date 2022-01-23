@@ -1,17 +1,30 @@
 ---
 title: Getting started with `ggplot2`
-format: revealjs
+execute:
+  keep-md: true
+format: 
+  revealjs:
+    logo: images/monash-stacked-blue-rgb-transparent.png
+    slide-number: true
+    show-slide-number: all
+    # below doesn't seem to be working
+    #width: wide
+type: slides
 ---
 
-## What is `ggplot2`?
-
-```{r setup}
-knitr::opts_chunk$set(fig.path = "images/",
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(fig.path = "images/chapter7-02/",
                       fig.align = "center",
                       fig.width = 4, 
                       fig.height = 4,
+                      cache.path = "cache/",
+                      cache = TRUE,
                       echo = TRUE)
 ```
+
+## What is `ggplot2`?
+
+
 
 * `ggplot2` is an R-package that was initially developed by Hadley Wickham as part of his PhD
 * `ggplot2` implements a particular interpretation of the "The Grammar of Graphics" by Leland Wilkinson 
@@ -55,45 +68,256 @@ diamonds
 
 ## Initialising the plot
 
-```{r plot1-initial}
+
+```{r plot-initial}
 ggplot(data = diamonds) 
 ```
+
+* When there is no layer, it produces a blank layer like top plot.
 
 ---
 
 ## Mapping data variables to aesthestics
 
-```{r plot1-map}
+```{r plot-mapping}
 ggplot(data = diamonds,
        mapping = aes(x = carat, y = price)) 
 ```
 
+* This get the scale ready but no layer is defined so nothing is rendered in the panel.
+
 ---
 
-## Adding a layer
+# `geom` layers
 
-* Scatter plot of price vs carat of diamonds
-* Each point correponds to a dimaond
 
-```{r plot1-layer}
+
+---
+
+## A scatterplot with `geom_point()`
+
+```{r geom-point}
 ggplot(data = diamonds,
        mapping = aes(x = carat, y = price)) +
   geom_point()
 ```
 
+* Scatter plot of price vs carat of diamonds
+* Each point correponds to a dimaond
+
 ---
 
-## Adding a different layer
+## A hexagonal 2D heatmap with `geom_hex()`
 
-* A hexagonal heatmap where the hexagon shows the count of observations within the region
-
-```{r plot1-boxplot}
+```{r geom-hex}
 ggplot(data = diamonds,
        mapping = aes(x = carat, y = price)) +
   geom_hex()
 ```
 
+* The hexagon shows the count of observations within the region.
+
 ---
 
+## A 2D heatmap with `geom_bin_2d()`
 
+```{r geom-bin2d}
+ggplot(data = diamonds,
+       mapping = aes(x = carat, y = price)) +
+  geom_bin_2d()
+```
+
+* Similar to `geom_hex()` but the shapes are boxes.
+
+---
+
+## Count of overlapping points with `geom_count()`
+
+```{r geom-count}
+ggplot(data = diamonds,
+       mapping = aes(x = carat, y = price)) +
+  geom_count()
+```
+
+
+---
+
+## A boxplot with `geom_boxplot()`
+
+```{r geom-boxplot}
+ggplot(data = diamonds, 
+       mapping = aes(x = cut, y = price)) +
+  geom_boxplot()
+```
+
+
+---
+
+## A violin plot with `geom_violin()`
+
+```{r geom-violin}
+ggplot(data = diamonds, 
+       mapping = aes(x = cut, y = price)) +
+  geom_violin()
+```
+
+---
+
+## A dot plot with `geom_dotplot()`
+
+```{r geom-dotplot}
+ggplot(data = mtcars, 
+       mapping = aes(x = mpg)) +
+  geom_dotplot()
+```
+
+---
+
+## A histogram with `geom_histogram()`
+
+```{r geom-histogram}
+ggplot(data = mtcars, 
+       mapping = aes(x = mpg)) +
+  geom_histogram()
+```
+
+---
+
+## A frequency polygon with `geom_freqpoly()`
+
+```{r geom-freqpoly}
+ggplot(data = mtcars, 
+       mapping = aes(x = mpg)) +
+  geom_freqpoly()
+```
+
+
+
+---
+
+## A 2D contour plot with `geom_contour()`
+
+```{r}
+ggplot(data = faithfuld, 
+       mapping = aes(x = waiting, y = eruptions, z = density)) + 
+  geom_contour()
+```
+
+---
+
+## A 2D contour plot with `geom_contour_filled()`
+
+```{r}
+ggplot(data = faithfuld, 
+       mapping = aes(x = waiting, y = eruptions, z = density)) + 
+  geom_contour_filled()
+```
+
+---
+
+## A 2D contour plot with `geom_density_2d()`
+
+```{r}
+ggplot(data = faithful, 
+       mapping = aes(x = eruptions, y = waiting)) + 
+  geom_density_2d()
+```
+
+---
+
+## A 2D contour plot with `geom_density_2d_filled()`
+
+```{r}
+ggplot(faithful, aes(x = eruptions, y = waiting)) +
+ geom_density_2d_filled()
+```
+
+---
+
+## Density plot with `geom_density()`
+
+```{r}
+ggplot(data = diamonds, 
+       mapping = aes(x = carat)) +
+  geom_density()
+```
+
+---
+
+## `geom_line`
+
+```{r}
+ggplot(economics, aes(date, unemploy)) + 
+  geom_line()
+```
+
+---
+
+```{r}
+ggplot(economics, aes(unemploy/pop, psavert)) +
+  geom_path()
+```
+
+---
+
+```{r}
+ggplot(economics, aes(unemploy/pop, psavert)) +
+  geom_step()
+```
+
+
+---
+
+```{r}
+world <- map_data("world")
+ggplot(world, aes(long, lat, group = group)) +
+  geom_polygon()
+```
+
+---
+
+```{r}
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point() +
+  geom_smooth(method = lm, se = FALSE)
+```
+
+
+---
+
+```{r}
+ggplot(mtcars, aes(wt, mpg, label = rownames(mtcars))) +
+  geom_text()
+```
+
+---
+
+```{r}
+ggplot(mtcars, aes(wt, mpg, label = rownames(mtcars))) +
+  geom_label()
+```
+
+---
+
+```{r}
+ggplot(faithfuld, aes(waiting, eruptions)) +
+ geom_raster(aes(fill = density))
+```
+
+---
+
+```{r}
+df <- data.frame(
+  x = rep(c(2, 5, 7, 9, 12), 2),
+  y = rep(c(1, 2), each = 5),
+  z = factor(rep(1:5, each = 2)),
+  w = rep(diff(c(0, 4, 6, 8, 10, 14)), 2)
+)
+ggplot(df, aes(x, y)) +
+  geom_tile(aes(fill = z), colour = "grey50")
+ggplot(df, aes(x, y, width = w)) +
+  geom_tile(aes(fill = z), colour = "grey50")
+ggplot(df, aes(xmin = x - w / 2, xmax = x + w / 2, ymin = y, ymax = y + 1)) +
+  geom_rect(aes(fill = z), colour = "grey50")
+```
 

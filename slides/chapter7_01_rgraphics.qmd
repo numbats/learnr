@@ -21,7 +21,9 @@ knitr::opts_chunk$set(fig.path = "images/chapter7-01/",
                       cache = TRUE,
                       echo = TRUE)
 library(tidyverse)
+library(ozmaps)
 covid <- read_csv("data/tidycovid19-20220123.csv")
+oz_sf <- ozmap_data("states")
 ```
 
 
@@ -166,3 +168,189 @@ ggplot(data = data,
 :::
 
 :::
+
+---
+
+
+## A data visualisation catalogue
+
+```{r datavis-catalogue, fig.width = 1.8, fig.height = 1.8, echo = FALSE, fig.show='hide'}
+set.seed(1)
+n1 <- 200
+df1 <- tibble(x = runif(n1, 0, 10),
+              y =  3 * x + rnorm(n1, 0, 10),
+              z = rnorm(n1, 0, 2),
+              g1 = sample(letters[1:4], size = n1, replace = TRUE),
+              g2 = sample(letters[1:4], size = n1, replace = TRUE)) %>% 
+  mutate(g1 = fct_reorder(g1, y, sum))
+df2 <- diamonds %>% 
+  sample_n(80)
+df3 <- ToothGrowth %>% 
+  mutate(dosef = factor(dose)) %>% 
+  group_by(dosef, supp) %>% 
+  summarise(mlen = factor(mean(len)))
+sumdf1 <- df1 %>% 
+  group_by(g1) %>% 
+  summarise(y = sum(y))
+sumdf2 <- df1 %>% 
+  group_by(g1, g2) %>% 
+  summarise(y = sum(y))
+# generate 5 from colorspace and discard the tails which are too white
+reds <- c("#7F000D", "#A9565A", "#CA9496", "#E2CBCB")
+yellows <- c("#6A3F00", "#97742F", "#BAA588", "#D4CCC3")
+green <- "#006400"
+purples <- c("#312271", "#4F4293", "#6D60BB", "#8B80D1", "#A79FE1", "#C2BCF0", 
+"#DAD6FA", "#EDEBFF", "#F9F9F9")
+
+theme_base <- list(theme_void(base_size = 18) + 
+  theme(plot.margin = margin(10, 10, 10, 10),
+        plot.title.position = "plot",
+        plot.title = element_text(margin = margin(t = -4, b = 10),
+                                  size = 14, face = "bold")),
+  guides(fill = "none"))
+
+theme_rank <- c(theme_base,
+                list(theme(plot.background = element_rect(fill = "#DCBFC9", 
+                                       color = NA)),
+                     scale_fill_manual(values = reds)))
+
+theme_corr <- c(theme_base,
+                list(theme(plot.background = element_rect(fill = "#EDDBB6", 
+                                       color = NA))))
+
+theme_dist <- c(theme_base,
+                list(theme(plot.background = element_rect(fill = "#D7FBCD", 
+                                       color = NA))))
+
+theme_other <- c(theme_base,
+                list(theme(plot.background = element_rect(fill = "#FFE5FF", 
+                                       color = NA)),
+                     scale_fill_manual(values = purples)))
+
+
+
+
+theme_yaxis <- theme(axis.line.y = element_line(color = "black", size = 1),
+                     axis.ticks.y = element_line(color = "black", 
+                                                 linetype = "solid", 
+                                                 size = 1, 
+                                                 lineend = NULL),
+                     axis.ticks.length.y = unit(0.3, "lines"))
+
+
+theme_xaxis <- theme(axis.line.x = element_line(color = "black", size = 1),
+                     axis.ticks.x = element_line(color = "black", 
+                                                 linetype = "solid", 
+                                                 size = 1, 
+                                                 lineend = NULL),
+                     axis.ticks.length.x = unit(0.3, "lines"))
+
+ggplot(sumdf1, aes(g1, y)) +
+  geom_col(fill = reds[1]) +
+  theme_rank +
+  theme_yaxis +
+  ggtitle("BARPLOT") 
+
+ggplot(sumdf1, aes("", y, fill = g1)) +
+  geom_col(position = "fill") +
+  theme_rank +
+  ggtitle("PIE CHART") + 
+  coord_polar("y") +
+  theme(plot.margin = margin(t=20, b=20, l=17, r=17),
+        plot.title = element_text(margin = margin(t = -13, l = -20))) 
+
+ggplot(sumdf2, aes(g1, y, fill = g2)) +
+  geom_col() +
+  theme_rank +
+  theme_yaxis +
+  ggtitle("STACKED\nBARPLOT") 
+
+ggplot(sumdf2, aes(g1, y, fill = g2)) +
+  geom_col(position = "dodge") +
+  theme_rank +
+  theme_yaxis + 
+  ggtitle("GROUPED\nBARPLOT") 
+
+ggplot(sumdf2, aes(g1, y, fill = g2)) +
+  geom_col(position = "fill") +
+  theme_rank +
+  theme_yaxis +
+  ggtitle("STACKED\nPERCENTAGE\nBARPLOT")
+
+ggplot(faithful, aes(eruptions)) +
+  geom_histogram(fill = green, bins = 10, color = "white") + 
+  theme_dist +
+  theme_xaxis + 
+  theme_yaxis +
+  ggtitle("HISTOGRAM") 
+
+ggplot(faithful, aes(eruptions)) +
+  geom_density(fill = green, color = NA) + 
+  theme_dist +
+  theme_xaxis + 
+  theme_yaxis +
+  ggtitle("DENSITY PLOT") 
+
+ggplot(faithful, aes(eruptions, "")) +
+  geom_boxplot(fill = "white", color = green, width = 0.3) + 
+  theme_dist +
+  theme_xaxis + 
+  ggtitle("BOXPLOT") 
+
+ggplot(faithful, aes(eruptions, "")) +
+  geom_violin(fill = green) + 
+  theme_dist +
+  theme_xaxis + 
+  ggtitle("VIOLIN PLOT") 
+
+ggplot(faithful, aes(eruptions)) +
+  geom_dotplot(fill = green) + 
+  theme_dist +
+  theme_xaxis + 
+  ggtitle("DOT PLOT") 
+
+ggplot(df2, aes(carat, price)) +
+  geom_point(color = yellows[1]) +
+  theme_corr +
+  theme_yaxis +
+  theme_xaxis +
+  ggtitle("SCATTER PLOT")
+
+ggplot(df2, aes(carat, price, size = depth)) +
+  geom_point(color = yellows[1], alpha = 0.3) +
+  theme_corr +
+  theme_yaxis +
+  theme_xaxis +
+  ggtitle("BUBBLE CHART") + guides(size = "none")
+
+ggplot(economics, aes(date, uempmed)) +
+  geom_line(color = yellows[1]) +
+  theme_corr +
+  theme_yaxis +
+  theme_xaxis +
+  ggtitle("LINE PLOT") 
+
+ggplot(df3, aes(dosef, supp, fill = mlen)) +
+  geom_tile(color = "black", size = 1.2) +
+  theme_other + 
+  ggtitle("HEATMAP") 
+
+oz_sf %>% 
+  mutate(value = factor(rnorm(n()))) %>% 
+  ggplot(aes(fill = value)) + 
+  geom_sf() + 
+  theme_other + 
+  ggtitle("CHOROPLETH\nMAP") 
+```
+```{css, echo = FALSE}
+.catalogue img {
+  margin-right: 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  width: 18%;
+}
+```
+
+<div class="catalogue">
+`r x<-1:15;paste(glue::glue('<img src="images/chapter7-01/datavis-catalogue-{x}.png"/>'), collapse = "")`
+</div>
