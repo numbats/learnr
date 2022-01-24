@@ -1,0 +1,1051 @@
+---
+title: 'Chapter 2: R Programming Basics'
+description:
+  'In R Programming Basics, you will master the basic operations of this popular open source language. You will also learn to perform simple algebraic operations on vectors and matrices, as well as other data structures such as factors, lists, and data frames. You will also learn about conditional statements, loops, and functions to power your R code, making your work more efficient and elegant.'
+prev: null
+next: /chapter3
+type: chapter
+id: 2
+---
+
+<exercise id="1" title="Arithmetic and Variable Assignment">
+
+## Arithmetic Operations
+
+One of the simplest thing that you can do with R is to use it as a
+calculator. Here are some common arithmetic operations:
+
+-   Addition: `+`
+-   Subtraction: `-`
+-   Multiplication: `*`
+-   Division: `/`
+-   Exponentiation: `^`
+-   Modulo: `%%`
+
+The `^` operator raises the number to its left to the power of the
+number to its right. For example, if you enter `2^3`, you will get the
+answer of 2 to the power 3, which is 8.
+
+The `%%` operator gives the remainder of the division of the number to
+the left by the number on its right. For example, if you enter `7 %% 3`,
+you will get the answer of 7 modulo 3 (7 = 3\*2 + 1), which is 1.
+
+Note that you can add comment to your code using the `#` symbol. This is
+helpful when you want to take notes as you go, so that you can follow
+your R code when you come back to revise in a few weeks time!
+
+## Variable Assignment
+
+A basic concept in programming is called a variable. A variable allows
+you to store a value (e.g. 8) or an object (e.g. a piece of string) in
+R. You can then later use this variable's name to easily access the
+value or the object that is stored within this variable.
+
+We can **assign** the result of our arithmetic operations (which is a
+value), for instance, `2^3` to a variable named `my_result` using the
+following command: `my_result <- 2^3`
+
+Now when you evaluate the value of the variable `my_reuslt`, you will
+get the value of 8.
+
+Now it's your turn to try variable assignment and some simple arithmetic operations in R!
+
+```{teachr substitute}
+# Assign the sum of 1,3,5,7,9 to the variable x
+x <- <<1+3+5+7+9>>
+
+# Assign the product of x and 3 to the variable y
+y <- <<x*3>>
+
+---
+  
+Hint: Let's say you would like to assign the result of summing from
+1 to 5 to a variable named `sum_to_five`. You can do: `sum_to_five <- 1+2+3+4+5`
+
+Now if you would like to divide `sum_to_five` by 5 and assign the result
+to `average`, you can do: `average <- sum_to_five/5`
+
+
+???
+
+test <- function() {
+    if (x != 25) {
+        stop("Are you using the correct numbers and symbols? Have you try the hint?")
+    }
+    if (y != 75) {
+      stop("Are you using the correct numbers and symbols? Have you try the hint?")
+    }
+    # This function is defined in the testTemplate
+    success("Well done!")
+}
+test()
+```
+</exercise>
+
+
+<exercise id='2' title='Basic Data Types in R'>
+
+## Basic Data Types in R
+
+There are numerous data types in R. Here are some of the basic ones:
+
+-   **numerics**: decimal values like `5.217`.
+-   **integers**: whole numbers like `7`. Note that integers are also
+    numerics
+-   **logical**: boolean values (`TRUE` or `FALSE`)
+-   **characters**: String (a piece of text) like 'some text' or "some
+    text". Note that we use quotation marks to indicate if a value is a
+    string.
+
+### Checking the data types
+
+You can check the data type of a variable with the `class()` function.
+This is a useful function since often you need matching data types when
+you perform operations in R. For example, you will get an error message
+if you try to evaluate `5 + "6"`.
+
+Now, it's your turn to play around with different variable types!
+
+```{}
+# Change weather to be "sunny"
+weather <- "rainy"
+
+# Change brolly_needed to be "FALSE"
+brolly_needed <- TRUE
+
+# Change temperature to be 27
+temperature <- 13
+---
+Hint: Replace the values in the R code with values that are provided
+in the instructions (the line with the comment `#`). For example, `weather <- "sunny"` assigns the string "sunny" to the variable `weather`.
+
+???
+
+test <- function() {
+    if (weather != "sunny") {
+        stop("Have you spelt the string correctly? Have you try the hint?")
+    }
+    if (brolly_needed != FALSE) {
+      stop("Have you spelt the logical value correctly? Note that logical values should be all capital letter (i.e. `TRUE` not `true`).")
+    }
+    if (temperature != 27) {
+      stop("Have you assign the numeric correctly?")
+    }
+    # This function is defined in the testTemplate
+    success("Well done!")
+}
+
+test()
+```
+
+</exercise>
+
+
+<exercise id='3' title='Vectors'>
+
+Vectors (and matrices) are used a lot in equations, models, mathematical
+optimization problems. Learning how to read and use them allows you to
+(i) understand complex operations and (ii) express operations that you
+want to perform in a compact and elegant way.
+
+## Vectors
+
+A **vector** is an ordered finite list of numbers. You may have seen
+them before, for example, a (column) vector x can be written as follow:
+
+$$ x = (4,7,6,3,2) = \begin{bmatrix}4\\7\\6\\3\\2 \end{bmatrix} $$
+
+Note that a row vector (say, `y`) can be written as
+$y = (3\;4\;7\;4\;2)$ or $y = \begin{bmatrix} 3&4&7&4&2\end{bmatrix}$.
+
+In R, vectors are one-dimension arrays that can hold numeric data,
+character data or logical data. You can create a vector in R with the
+combine function `c()`, where each element in the vector is separated by
+a comma `,`. You can express the vector `x` above with the following R
+code:
+
+```
+x <- c(4,7,6,3,2)
+```
+
+### Vector Operations
+
+**Vector addition and subtraction** 
+
+If `a` and `b` are vectors of the same size, `a+b` and `a-b` give their sum and difference, respectively.
+
+```
+a <- c(1,2,3)
+b <- c(100,200,300)
+a+b
+a-b
+```
+
+You will yield the following output:
+```
+> a+b
+[1] 101 202 303
+> a-b
+[1]  -99 -198 -297
+```
+
+**Scalar-vector multiplication and division** 
+
+If `c` is a number and `a` is a vector (from above), you can express the scalar-vector product either as `c*a` or `a*c`. For example, `3*a` gives you the following output:
+
+```
+> 3*a
+[1] 3 6 9
+> a*3
+[1] 3 6 9
+```
+
+**Scalar-vector addition** 
+
+In R, you can add a scalar `c` and a vector `a` using c+a. This means that the scalar is added to each element of the vector. For example, `3+a` yields the following output:
+```
+[1] 4 5 6
+```
+This is, however, **NOT** a standard mathematical notation. (In mathematical notations, we should use this as, e.g. $a + c \mathbf{1}$, where $a$ is a vector and $c$ is a scalar.)
+
+
+**Check your understanding** 
+
+Given the following vector `y` in R,
+```
+y = c(2,4,6,8,1,3,5,7)
+```
+which of the following is the output of `y-2`?
+
+<choice> <opt text="`0  4  6  8  1  3  5  7`">
+
+This is not the correct answer.
+
+</opt>
+
+<opt text="`0  2  4  6 -1  1  3  5`" correct="true">
+
+Good job!
+
+</opt>
+
+<opt text="`2  4  6  8  1  3  5  7 -2`">
+
+This is not the correct answer.
+
+</opt> 
+
+<opt text="`-4  -8 -12 -16  -2  -6 -10 -14`">
+
+This is not the correct answer.
+
+</opt> 
+</choice>
+
+
+### Indexing and Slicing
+
+**Indexing** 
+
+To select elements of a vector (and later matrices, data frames, ...), you can use square brackets `[ ]`. Between the square brackets, you indicate what elements to select. For example, consider a vector $x$, a specific element $x_i$ is selected with the expression `x[i]` where `i` is the index (which runs from 1 to $n$, for a vector with $n$ elements). Say, we would like to obtain the 5th entry from the following vector $x$:
+```
+x = c(5,6,3,4,5,8,23,4,6,4,3,23,7,5,4,23,7,90)
+x[5]
+```
+The output returns:
+```
+[1] 5
+```
+
+**Slicing** 
+
+Sometimes it is of interest to extract a slice of a vector (a sub-vector) using an index range as the argument. $x_{r:s}$ denotes the slice of the vector from index $r$ to $s$. In the code below, `x[1:4]` selects the element from index 1 to 4.
+```
+> x[1:4]
+[1] 5 6 3 4
+```
+
+
+**Check your understanding**
+
+Given the following vector `y` in R,
+```
+y = c(2,4,6,8,1,3,5,7)
+```
+which of the following is the output of `y[4:7]`?
+
+<choice> 
+<opt text="`8 1 3 5`" correct="true">
+
+Good job!
+
+</opt>
+
+<opt text="`8 1 3`">
+
+This is not correct either.
+
+</opt>
+
+
+<opt text="`6 8 1 3`">
+
+This is not correct either.
+
+</opt>
+
+<opt text="`1 3 5`">
+
+This is not correct either.
+
+</opt>
+</choice>
+</exercise>
+
+<exercise id='4' title='Matrices'>
+
+## Matrices
+
+A **matrix** is a rectangular array of numbers written between
+rectangular brackets (or large parentheses). For example, matrix `A` is
+a $5 \times 3$ matrix (pronounced as `5 by 3`, indicating there are 5
+rows and 3 columns in the matrix) is defined as follow:
+
+$$ A = \begin{bmatrix}4&3&2\\7&4&2\\6&3&4\\3&0&0\\2&-2&-3 \end{bmatrix} $$
+
+In R, a matrix is a collection of elements of the same data type
+(numeric, character, or logical) arranged into a fixed number of rows
+and columns. You can construct a matrix in R using the `matrix()`
+function. You can express the matrix `A` above with the following R
+code:
+
+`A <- matrix(c(4,3,2,7,4,2,6,3,4,3,0,0,2,-2,-3), byrow=TRUE, nrow=5)`
+
+-   Here the first argument is the collection of elements that R will
+    arrange into the rows and columns of the matrix.
+-   The second argument `byrow` indicates the arrangement of elements is
+    done by filling the matrix by the rows. If you would like to fill
+    the matrix by columns, you can use `byrow=FALSE`.
+-   The third argument `nrow` indicates that the number of rows in the
+    matrix.
+
+### Matrix Operations
+
+Similar to what you have learned with vectors, the standard operators like `+`, `-`, `/`, `*`, etc. work in an element-wise way on matrices in R. For example, `2 * A` multiplies each element of `A` by two.
+
+```
+> A <- matrix(c(4,3,2,7,4,2,6,3,4,3,0,0,2,-2,-3), byrow=TRUE, nrow=5)
+> A*2
+     [,1] [,2] [,3]
+[1,]    8    6    4
+[2,]   14    8    4
+[3,]   12    6    8
+[4,]    6    0    0
+[5,]    4   -4   -6
+```
+
+Consider another matrix `B` defined as `B <- matrix(c(1,1,1,2,2,2,0,0,0,-1,-1,-1,0,0,0), byrow=TRUE, nrow=5)`
+
+`A*B` creates a matrix where each element is the product of the corresponding elements in matrix `A` and matrix `B`.
+
+Those who are familiar with matrices should note that this is **not** the standard matrix multiplication for which you should use `%*%` in R.
+ 
+### Add rows or columns to a matrix
+
+Sometimes we may want to add new data or information to a matrix with more rows or more columns.
+You can add a column or multiple columns to a matrix with the `cbind()` function, which merges matrices and/or vectors together by column. For example, `cbind(A,B)` yields a bigger matrix by merging matrix A and B. The resulting matrix has 5 rows and 6 columns.
+
+```
+> big_matrix <- cbind(A, B)
+> big_matrix
+     [,1] [,2] [,3] [,4] [,5] [,6]
+[1,]    4    3    2    1    1    1
+[2,]    7    4    2    2    2    2
+[3,]    6    3    4    0    0    0
+[4,]    3    0    0   -1   -1   -1
+[5,]    2   -2   -3    0    0    0
+```
+
+Similarly, you can add a row or multiple rows to a matrix with the `rbind()` function. For example, `big_matrix2 <- rbind(A,B)` returns a bigger matrix by putting matrix A on top of matrix B. The resulting matrix has 10 rows and 3 columns.
+
+```
+> big_matrix2 <- rbind(A,B)
+> big_matrix2
+      [,1] [,2] [,3]
+ [1,]    4    3    2
+ [2,]    7    4    2
+ [3,]    6    3    4
+ [4,]    3    0    0
+ [5,]    2   -2   -3
+ [6,]    1    1    1
+ [7,]    2    2    2
+ [8,]    0    0    0
+ [9,]   -1   -1   -1
+[10,]    0    0    0
+```
+
+### Indexing
+
+Similar to vectors, you can use the square brackets `[ ]` to select one or multiple elements from a matrix. Whereas vectors have one dimension, matrices have two dimensions. You should therefore use a comma to separate the rows you want to select from the columns. For example, 
+`A[1:4,3:5]` returns a matrix with the data on the rows 1, 2, 3, 4 and columns 3, 4, 5.
+
+If you want to select all elements of a row or a column, you can do the following:
+
+- `A[,1]` selects all elements of the first column of matrix A.
+- `A[1,]` selects all elements of the first row of matrix A.
+
+**Check your understanding** 
+
+Consider the following matrices $S$ and $T$:
+
+$$S = \begin{bmatrix}1&0\\0&1\end{bmatrix},\;\; T = \begin{bmatrix}2&2\\4&3\end{bmatrix}$$
+
+- Construct a matrix $M$ by stacking $S$ on top of $T$, i.e. $M = \begin{bmatrix}S\\T\end{bmatrix}$. Assign your result to the variable `M`.
+- Select a sub-matrix of $M$ with the data on the rows 1, 2, 3 and columns 2. Assign the result to the variable `part_of_M`.
+
+```{}
+S = matrix(c(1,0,0,1), byrow=TRUE, nrow=2)
+T = matrix(c(2,2,4,3), byrow=TRUE, nrow=2)
+# Construct a matrix M by stacking S on top of T
+M <- <<rbind(S,T)>>
+
+# Select a sub-matrix of M with the data on the rows 1, 2, 3 and columns 2.
+part_of_M <- <<M[1:3,2]>>
+
+---
+
+Hint 1: To stack one matrix on top of another, we can use the `rbind()` command.
+Hint 2: For example, B[1,2] selects the element at the first row and second column of matrix B. B[1:3,2:4] results in a matrix with the data on the rows 1, 2, 3 and columns 2, 3, 4.
+
+???
+
+test <- function() {
+    S = matrix(c(1,0,0,1), byrow=TRUE, nrow=2)
+    T = matrix(c(2,2,4,3), byrow=TRUE, nrow=2)
+    if (M != rbind(S,T)) {
+        stop("This is incorrect. Are you using the function that we have introduced? Try the Hint!")
+    }
+    if (part_of_M != M[1:3,2]) {
+      stop("Have you got the indexing right? Try the Hint!")
+    }
+    # This function is defined in the testTemplate
+    success("Well done! You have mastered the basics of operating on matrices using R.")
+}
+test()
+
+```
+
+</exercise> 
+
+<exercise id='5' title='Data Frames'>
+
+## Data Frames
+
+A data frame has the variables of a dataset as columns and the observations as rows.
+
+Let's look at an example. Just run the code and you will see what a data frame looks like in R.
+
+```{}
+data("iris")
+
+```
+
+The iris data set gives the measurements in centimeters of the variables sepal length, sepal width, petal length and petal width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.
+
+### Quick Look at the Data Frame
+
+Often it is useful to show only a small part of the entire dataset, especially when we are working with very big data set where showing the entire dataset is not easy. Here are a few useful commands that helps you understand the data frame very quickly.
+  - `head()` shows the first few observations of a data frame.
+  - `tail()` shows the last few observations of a data frame.
+  - `str()` shows the structure of the dataset.
+
+Investigate the structure of the example dataframe. Have a look at the first and last few observations!
+```{}
+data("ToothGrowth")
+
+```
+
+**Answer the following questions**
+What is the data type of the variable 'dose'?
+
+<choice> <opt text="numeric" correct="true">
+
+Good job!
+
+</opt>
+
+<opt text="string">
+
+This is not a correct answer.
+
+</opt>
+
+<opt text="data frame">
+
+This is not a correct answer.
+
+</opt> 
+
+<opt text="matrix">
+
+This is not a correct answer.
+
+</opt>
+
+</choice>
+
+### Creating Data Frame
+You can construct your own data frame using data that you have with the `data.frame()` function.
+You can include different vectors as argument in the function and they will become different columns of your data frame. Note that you should make sure the vectors that you pass have same length (i.e. same number of observations for each column).
+
+**Let's practice!**
+
+Create a data frame using vectors `symbol`, `element`, `chemical_group` and `atomic_no`, following that order.
+Assign the result data frame to `first_ten_elements`.
+
+```{}
+symbol <- c('N','O','H','He','B','C','F','Ne','Li','Be')
+element <- c('Nitrogen','Oxygen','Hydrogen','Helium','Boron','Carbon','Fluorine','Neon','Lithium','Beryllium')
+chemical_group <- c('Nonmetal','Nonmetal','Nonmetal','Noble Gas','Metalloid','Nonmetal','Halogen','Noble Gas','Alkali Metal','Alkaline Earth Metal')
+atomic_no <- c(7,8,1,2,5,6,9,10,3,4)
+
+first_ten_elements <- <<<data.frame(symbol, element, chemical_group, atomic_no)>>>
+
+___
+Hint: Use the `data.frame()` function on the vectors. 
+
+
+???
+
+test <- function() {
+    symbol <- c('N','O','H','He','B','C','F','Ne','Li','Be')
+    element <- c('Nitrogen','Oxygen','Hydrogen','Helium','Boron','Carbon','Fluorine','Neon','Lithium','Beryllium')
+    chemical_group <- c('Nonmetal','Nonmetal','Nonmetal','Noble Gas','Metalloid','Nonmetal','Halogen','Noble Gas','Alkali Metal','Alkaline Earth Metal')
+    atomic_no <- c(7,8,1,2,5,6,9,10,3,4)
+    if first_ten_elements != data.frame(symbol, element, chemical_group, atomic_no){
+      stop("Did you follow the order of columns as stated in the instruction?" Try again.)
+    }
+    success("Well done!")
+}
+
+test()
+
+```
+
+### Indexing, Selecting Columns and Subset
+Similar to vectors and matrices, you select elements from a data frame using square brackets `[ ]`.
+
+- For example, if you would like to select row 2 to 4 and column 3 to 5 from a data frame called `my_df`, you can do `my_df[2:4, 3:5]`.
+- When you want to select the entire first row of a data frame, you can use `my_df[1, ]
+- When you want to select the entire first column of a data frame, you can use `my_df[,1]`
+
+Alternatively, if you would like to select a certain variable from the data frame, you can use the column name in the square bracket directly or use `$` instead: `my_df[ , "column_name"]` or `my_df$column_name`.
+
+### Sorting
+Sometimes we may want to sort the data according to a certain variable in the dataset. In R, we can use the `order()` function which gives the ranked position of each element when it is applied on a variable. For example, 
+
+```
+x <- c(100, -200,300)
+> order(x)
+[1] 2 1 3
+```
+The output above is the ranked positions and we can use that to sort the vector `x`.
+```
+x[order(x)]
+[1] -200  100  300
+```
+The above R code gives an ordered version of `x`.
+
+Now that we know how to use the `order()`, let's sort the first_ten_element data frame in ascending order of `atomic_no`, assign the sorted dataframe to `sorted_df`.
+
+```{}
+symbol <- c('N','O','H','He','B','C','F','Ne','Li','Be')
+element <- c('Nitrogen','Oxygen','Hydrogen','Helium','Boron','Carbon','Fluorine','Neon','Lithium','Beryllium')
+chemical_group <- c('Nonmetal','Nonmetal','Nonmetal','Noble Gas','Metalloid','Nonmetal','Halogen','Noble Gas','Alkali Metal','Alkaline Earth Metal')
+atomic_no <- c(7,8,1,2,5,6,9,10,3,4)
+
+first_ten_elements <- data.frame(symbol, element, chemical_group, atomic_no)
+
+# Use order() to create positions
+positions <- <<order(first_ten_elements$atomic_no)>>
+
+# Use positions to create a sort the first_ten_elements
+sorted_df <- <<first_ten_elements[positions, ]>>
+
+___
+Hint: 
+- Use order(first_ten_elements$atomic_no) to create positions.
+- Then,use `positions` with square brackets: first_ten_elements[...]; can you fill in the ...? Don't forget that `positions` indicates the order of the rows in the data frame.
+
+???
+test <- function() {
+
+    symbol <- c('N','O','H','He','B','C','F','Ne','Li','Be')
+    element <- c('Nitrogen','Oxygen','Hydrogen','Helium','Boron','Carbon','Fluorine','Neon','Lithium','Beryllium')
+    chemical_group <- c('Nonmetal','Nonmetal','Nonmetal','Noble Gas','Metalloid','Nonmetal','Halogen','Noble Gas','Alkali Metal','Alkaline Earth Metal')
+    atomic_no <- c(7,8,1,2,5,6,9,10,3,4)
+    first_ten_elements <- data.frame(symbol, element, chemical_group, atomic_no)
+    if sorted_df != first_ten_elements[order(first_ten_elements$atomic_no), ]{
+      stop("Did you follow the order of columns as stated in the instruction?" Try again.)
+    }
+    success("Well done!")
+}
+
+
+```
+
+</exercise>
+
+<exercise id='6' title='Conditional Statements'>
+
+## Relational operators
+
+Relational operators, or comparators, are operators which help us see how one R object relates to another. The relational operators in R are:
+
+- `<` for less than
+- `>` for greater than
+- `<=` for less than or equal to
+- `>=` for greater than or equal to
+- `==` for equal to each other
+- `!=` not equal to each other
+
+You can use these command on scalar. For example, `8 > 1` return `TRUE` since 8 is larger than 1.
+`8 == 1` return 'FALSE' since 8 is not equal to 1. This command also extends to vectors. It tests for every element of the vector if the condition stated by the comparison operator is TRUE or FALSE. For example, 
+
+```
+c(0,5,100) == 5
+[1] FALSE  TRUE FALSE
+```
+
+You can see that both the first and the last entry evaluates to `FALSE` and only the second entry returns `TRUE` since the second entry is equal to 5.
+
+Now if instead we do
+```
+c(0,5,100) >= 5
+[1] FALSE  TRUE  TRUE
+```
+You can see the output changed since 100 is also greater than or equal to 5.
+
+If we change our code into
+
+```
+c(0,5,100) < 5
+[1]  TRUE FALSE FALSE
+```
+You can see the output changed where the second entry is also `FALSE` since 5 is not strictly less than 5. 
+
+
+Note that R also support element-wise comparison if we put a relational operator between two vectors:
+```
+c(2,4,6) < c(3,5,7)
+[1] TRUE TRUE TRUE
+``` 
+
+## Logical opeators
+You know how to use relational operators in R. Next, what if you want to change or combine the results of these comparisons? In R, you can do this using the AND (`&`), the OR (`|`), and the NOT (`!`) operator.
+
+**the AND (`&`) operator**
+
+The AND operator typically takes two logical values and returns TRUE only if both the logical values are TRUE themselves. For example, if we check the entries of the following vector x is greater than 2 AND less than 6, we expect `TRUE` for the three entries in the middle.
+```
+x = c(1,2,3,4,5,6,7)
+(x>2)&(x<6)
+[1] FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE
+```
+
+**the OR (`|`) operator**
+
+The OR operator (|) works similarly, but the difference is that only at least one of the logical values it uses should be equal to TRUE for the entire OR operation to evaluate to TRUE.
+For example,
+```
+x = c(1,2,3,4,5,6,7)
+(x>4)|(x<2)
+[1]  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE
+```
+
+**the NOT (`!`) operator**
+
+The NOT operator negates the logical value it's used on. For example, the built-in R function, is `is.numeric()` checks if an R object is a numeric. 
+
+Say we want to check if an object `a` is a numeric, where `a` is actually a string `rain`, we expect the output to be `FALSE`. Consider also object `b` is a number, then the expected output is `TRUE`.
+
+```
+a <- "rain"
+is.numeric(a)
+[1] FALSE
+
+is.numeric(100)
+[1] TRUE
+```
+
+If we, instead, use `!is.numeric(a)` to check if `a` is, the output is now `TRUE`.
+```
+!is.numeric(a)
+[1] TRUE
+
+```
+And when we run `!is.numeric(100)` in R, the output would be `FALSE`.
+
+## Conditional statements
+
+Now we are ready to learn about conditional statements: if, else, else if.
+These conditional statements are very useful in data analysis since often we want to treat the data differently depending on certain conditions.
+
+**if statement**
+
+The syntax of an if statement looks like this:
+```
+if (condition) {
+  do_this
+}
+```
+So if the `condition` is evaluated to be `TRUE`, the code included in the curly bracket (`do_this`) will be executed.
+
+
+For example, `customer_rating` contains a rating (out of 5) from a customer dined in a restaurant. We consider a customer to be happy if the rating is greater than or equal to 4.
+```
+customer_rating = 4
+if (customer_rating >= 4){
+  print("Customer is happy!")
+}
+```
+
+
+**else statement**
+
+You can only use an else statement together with an if statement. The else statement does not require a condition. The code that comes under the else statement is executed if all of the if statements evaluated to be `FALSE`.
+
+```
+if (condition) {
+  do_this
+} else {
+  do_this_instead
+}
+```
+So if the `condition` is evaluated to be `TRUE`, the code included in the first curly bracket (`do_this`) will be executed. Otherwise, the code included in the second curly bracket (`do_this_instead`) will be executed.
+
+It's important that the syntax `else` is on the **same line** as the closing bracket of the if part!
+
+For example, we would like to be alerted if a customer is not happy.
+```
+customer_rating = 2
+if (customer_rating >= 4){
+  print("Customer is happy!")
+} else { 
+  print("Attention - unhappy customer!")
+}
+
+```
+
+**else if statement**
+
+The else if statement allows you to further customize your control structure. You can add as many else if statements as you like such that you can customize the action of your code depending on the conditions.
+
+```
+if (condition1) {
+  action1
+} else if (condition2) {
+  action2
+} else if (condition3) {
+  action3
+} else {
+  action4
+}
+```
+
+For example, we would like to distinguish between happy customer (with rating 4 or above), neutral customer (rating to be less than 4 but higher than 2) and unhappy customer (rating not more than 2). Then we can do:
+```
+customer_rating = 3
+if (customer_rating >= 4){
+  print("Customer is happy!")
+} else if (customer_rating <= 2){ 
+  print("Attention - unhappy customer!")
+} else {
+  print("Neutral customer.")
+}
+```
+
+**Test your understanding**
+
+Consider the following syntax:
+```
+if (x < 50) {
+  if (x < 20) {
+    result <- "Low to None"
+  } else {
+    result <- "Low"
+  }
+} else if (x == 100) {
+  result <- "Full"
+} else {
+  result <- "High"
+}
+print(result)
+```
+
+Take a look at the following statements:
+
+(1) If `x` is set to 75, "High" gets printed to the console.
+(2) If `x` is set to 18, "Low" gets printed to the console.
+(3) If `x` is set to 100, R prints out "Full"
+(4) If `x` is set to 21, "Low" gets printed to the console.
+
+Select the option that lists **all** the true statements.
+
+<choice> <opt text="(1), (3), (4)" correct="true">
+
+Good job!
+
+</opt>
+
+<opt text="(1) and (2)">
+
+This is not a correct answer.
+
+</opt>
+
+<opt text="(1) and (3)">
+
+This is not a correct answer.
+
+</opt> 
+
+<opt text="(2) and (4)">
+
+This is not a correct answer.
+
+</opt>
+
+</choice>
+
+</exercise>
+
+<exercise id='7' title='Loops'>
+
+In data analytics, often we need to perform the same operation repeatedly on the data and **loops** can come in handy on these occasions. There are 2 types of loops:
+- The 'for loop' is designed to iterate over all elements in a sequence
+- The 'while loop' is designed to repeat the operations until certain condition is satisfied
+
+## For loops
+A simple for loop in R looks like this:
+
+```
+sequence <- c(1,3,5)
+for (i in sequence) {
+  print(i)
+}
+```
+Here, we first defined a vector called `sequence`, then **for** every $i$ in sequence, we print the value of $i$. When we execute the above R code, here is the output:
+```
+[1] 1
+[1] 3
+[1] 5
+```
+You can see from the output that each element `i` in the sequence was printed in each iteration.
+
+The same loop can be written in another way:
+```
+sequence <- c(1,3,5)
+for (i in 1:length(sequence)) {
+  print(sequence[i])
+}
+```
+In the R code above, we use the `length()` function to measure the length/size of `sequence`, i.e. 3. Then we construct a for loop where $i$ iterates from 1 to 3, inside the for loop `i` represents the index of the sequence and putting the index inside the square brackets allows us to select the $i$th element from `sequence`.
+
+**Write your first loop!** 
+
+```{}
+
+countries <- c('US', 'China','Japan', 'Germany','India')
+nominalGDP_trilion_2017 <- c(19.485, 12.238, 4.872, 3.693, 2.651)
+population_million_2017 <- c(325, 1421, 127, 82, 1338)
+
+
+# Write a for loop that prints one country in each iteration
+<<>>
+___
+
+Hint: 
+
+???
+
+```
+
+We can do a lot more than when we use for loop together with the control flow statements (if, else if, else) we learnt before. For example, 
+```
+customer_rating <- c(2,3,1,5,5,5)
+
+for (rating in customer_rating) {
+  if (rating >= 4) {
+  print('Happy Customer!')
+  } else if (rating <= 2) {
+  print('Angry Customer!')
+  } else {
+  print('Neutral Customer!')
+  }
+}
+```
+The R code above prints different messages depending on the values in customer_rating.
+
+**Now it's your turn!** 
+
+In this exercise, add code in the for loop so that it will do the following:
+
+- when `score` is above 79, print('Superb!')
+- when `score` is between 50 and 79, print('Well done!')
+- when `score` is below 50, print("Try again!")
+
+```{}
+___
+???
+```
+## While loops
+A while loop in R has the following structure:
+
+```
+while (condition) {
+  do_something
+}
+```
+
+In the while loop, R will keep running the code between the brackets `{ }` repeated until the condition become `FALSE` at some point during the execution. If the condition is never changed, the while loop will go on indefinitely.
+
+For example, we create a while loop that will go on subtracting 28.5 (as weekly_spending) to the variable `bank_balance` until `bank_balance` is less than `weekly_spending`. If you execute the R code, you will notice the loop stopped at the 7th iteration.
+```
+bank_balance = 200
+weekly_spending = 28.5
+while (bank_balance >= weekly_spending) {
+  bank_balance = bank_balance - weekly_spending
+  print(bank_balance)
+}
+```
+
+## Break statement
+There are occasions where breaking the loop during execution is a good idea. The break statement can be used in for loops and while loops.
+
+For example, if we are to set up a early warning system when `bank_balance` is less than or equal to 4 times `weekly spending`, we can do the following:
+```
+bank_balance = 200
+weekly_spending = 28.5
+while (bank_balance>= weekly_spending) {
+  bank_balance = bank_balance - weekly_spending
+  print(bank_balance)
+  if (bank_balance <= 4*weekly_spending){
+  print("Find a job and cut weekly spending!")
+  break
+  }
+}
+```
+
+
+```{}
+___
+???
+```
+
+
+</exercise>
+
+<exercise id='8' title='Functions'>
+Functions are an extremely important concept in almost every programming language, including R! You can think of functions as a black box: you give some values as an input, the function processes this input and generates an output. In R, the function arguments are matched by position or by name. You can set a default value for some function arguments, and you can overwrite the default value when you need to.
+
+Here is a simple skeleton of a function in R:
+```
+my_fun_name <- function(arg1, arg2) {
+  body
+}
+```
+The keyword `function` tells R you are defining a function. The arguments in the parentheses `( )` are the input of your function, the inputs can be data and parameters. The operations that you want to perform  (the `body`) should be written inside the curly brackets `{ }`.
+
+Finally, you assign the function defining statement and body to the variable `my_fun_name`, which is the name of your function. To call (use) the function, you will need to enter `my_fun_name(arg1, arg2)` in your code after you defined the function.
+
+**Write your own function**
+
+Create a function `power_three()`: it takes one argument and returns that number cubed (that number times itself and times itself again). Call this newly defined function with 12 as input.
+
+```{}
+# Create a function power_three()
+power_three <- <<function(arg){
+  arg*arg*arg
+}
+>>
+# Use the function
+
+
+
+___
+Hint: Start with the following:
+`power_three <- function(arg){
+...
+}
+`
+Fill in the `...`.
+
+???
+
+test <- function() {
+    if power_three(20) != 20^3{
+      stop("Did you correctly define the function power_three()? Check the function body. Are you taking the input argument to the power three?")
+    }
+    success("Well done!")
+}
+
+test()
+```
+
+It is also possible to run a function without an input argument.
+
+In the following example, the function will print the statement "Hello World!" when the function is called without any inputs.
+
+```
+hello_world <- function(){
+print('Hello World!')
+}
+```
+This can also be useful sometimes when we would like to have random outcomes from the function. The `sample()` function comes in handy when we would like to draw a number from a particular range of values.
+
+For example:
+
+```
+flip_a_coin <- function(){
+  outcome <- sample(1:2, size = 1)
+  if (outcome == 1) {
+    print("Head")} else {
+      print("Tail") }
+}
+```
+You will get a different outcome ("Head" or "Tail") every time when you call the function `flip_a_coin`.
+
+**Write your code to roll a die!**
+
+Write a function that takes no input argument and return a random outcome choosing from 1 to 6, just like rolling a die in R. Name that function `roll_a_die`.
+
+```{}
+# Write some code to roll a die
+
+roll_a_die <- <<function(){
+  sample(1:6, size = 1)
+}>>
+
+---
+Hint: You can obtain a random integer from 1 to 6 using `sample(1:6, size = 1)`. Have you try putting that in the function body?
+
+???
+test <- function() {
+    if ((class(roll_a_die()) != "integer")|(roll_a_die()> 6)|(roll_a_die()<1)) {
+      stop("Is your function returning integers from 1 to 6 ? Check the body of the function.")
+    }
+    success("Well done!")
+}
+
+test()
+
+```
+
+**Function Scoping**
+
+Note that variables that are defined inside a function are not accessible outside that function. Variables we use inside a function are considered as local variables, which are different from variables that are designed outside of the function (global variables).
+
+
+**Congratulations! This is the end of R Programming Basics!**
+</exercise>
