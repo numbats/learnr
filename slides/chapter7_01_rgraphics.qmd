@@ -4,6 +4,7 @@ execute:
   keep-md: true
 format: 
   revealjs:
+    #self-contained: true
     logo: images/monash-stacked-blue-rgb-transparent.png
     slide-number: true
     show-slide-number: all
@@ -18,7 +19,7 @@ knitr::opts_chunk$set(fig.path = "images/chapter7-01/",
                       fig.width = 4, 
                       fig.height = 4,
                       cache.path = "cache/",
-                      cache = TRUE,
+                      cache = FALSE,
                       echo = TRUE)
 library(tidyverse)
 library(ozmaps)
@@ -46,128 +47,6 @@ covid %>%
   theme_classic(base_size = 18) +
   theme(plot.title.position = "plot")
 ```
-
-
----
-
-## Graphics
-
-* Graphics are commonly stored in a standard image format such as svg, jpg, png, pdf, and so on. 
-* When you view these graphics electronically, you would be using some graphical device to render the stored image. 
-* R would render these using either `windows`, `X11` or `quartz` graphical devices (depending on the your operating system).
-* This rendering is carried out by R's graphics engine, `grDevices`, which is one of the core package within the R system.
-
-
-
----
-
-## Graphics model in R 
-
-* There are two main graphics model in R through two core packages: 
-    * `graphics` package, and
-    * `grid` package.
-* The `graphics` package is loaded when you launch R so there is no need to load this.
-* Plot using the `graphics` system is normally refered to as the **base graphics**.
-* If the graphics is produced using the `grid` package, then it is using the **`grid` graphics** model.
-
----
-
-## Base graphics
-
-* Base graphics are drawn via the `graphics` package.
-
-![](images/base-graphics.png)
-
----
-
-## Base graphics
-
-* The `plot()` function usually produces base graphics.
-
-```{r}
-x <- 1:10
-plot(x, x^2)
-```
-
----
-
-## `grid` graphics
-
-* The `grid` package contains low-level graphics system.
-* This system gives a lot of control over the graphics, but requires the user to do a lot of work.
-* You won't be directly interacting with the `grid` package most of the time.
-* Instead you'll be using the `ggplot2` package that provides high-level functions for plotting via the `grid` system
-
----
-
-## `grid` graphics
-
-
-![](images/ggplot-graphics.png)
-
-
----
-
-## R Graphics
-
-![](images/r-graphics-system.png)
-
----
-
-## Plotting with R (base version)
-```{r}
-data <- data.frame(duty = c("Teaching", "Research", "Engagement"),
-                   perc = c(40, 40, 20))
-```
-::: columns
-
-::: {.column width="25%"}
-
-```{r}
-data
-```
-
-
-:::
-::: {.column width="60%"}
-
-```{r base-barplot, fig.width = 7}
-barplot(perc ~ duty,
-        data = data)
-```
-:::
-
-:::
-
----
-
-## Plotting with R (ggplot2 version)
-```{r}
-data <- data.frame(duty = c("Teaching", "Research", "Engagement"),
-                   perc = c(40, 40, 20))
-```
-::: columns
-
-::: {.column width="25%"}
-
-```{r}
-data
-```
-
-
-:::
-::: {.column width="60%"}
-
-```{r ggplot-barplot, fig.width = 7, cache = FALSE}
-library(ggplot2)
-ggplot(data = data, 
-       mapping = aes(x = duty, 
-                     y = perc)) +
-  geom_col()
-```
-:::
-
-:::
 
 ---
 
@@ -354,3 +233,139 @@ oz_sf %>%
 <div class="catalogue">
 `r x<-1:15;paste(glue::glue('<img src="images/chapter7-01/datavis-catalogue-{x}.png"/>'), collapse = "")`
 </div>
+
+
+---
+
+## Graphics
+
+* Graphics are commonly stored in a standard image format such as svg, jpg, png, pdf, and so on. 
+* When you view these graphics electronically, you would be using some graphical device to render the stored image. 
+* R would render these using either `windows`, `X11` or `quartz` graphical devices (depending on the your operating system).
+* This rendering is carried out by R's graphics engine, `grDevices`, which is one of the core package within the R system.
+
+
+
+---
+
+## Graphics model in R 
+
+* There are two main graphics model in R through two core packages: 
+    * `graphics` package, and
+    * `grid` package.
+* The `graphics` package is loaded when you launch R so there is no need to load this.
+* Plot using the `graphics` system is normally refered to as the **base graphics**.
+* If the graphics is produced using the `grid` package, then it is using the **`grid` graphics** model.
+
+---
+
+## Base graphics
+
+* Base graphics are drawn via the `graphics` package.
+
+![](images/base-graphics.png)
+
+---
+
+## Base graphics
+
+* Base functions generally draw a complete plot.
+
+```{r simple-base-plot}
+x <- 1:10
+plot(x, x^2)
+```
+---
+
+## `grid` graphics
+
+* The `grid` package contains low-level graphics system.
+* This system gives a lot of control over the graphics, but requires the user to do a lot of work.
+* You won't be directly interacting with the `grid` package.
+* Instead you'll be using the **`ggplot2` package** that provides high-level functions for plotting via the `grid` system.
+
+---
+
+## Other graphics system
+
+* All other graphics system are provided via contributed packages (i.e. you need to install it once to use it).
+* The two most well known systems are the `lattice` and `ggplot2` graphics that make use of the `grid` package.
+
+---
+
+## `grid` graphics
+
+
+![](images/ggplot-graphics.png)
+
+
+---
+
+## R Graphics
+
+![](images/r-graphics-system.png)
+
+---
+
+## Plotting with R (base version)
+```{r}
+data <- data.frame(duty = c("Teaching", "Research", "Engagement"),
+                   perc = c(40, 40, 20))
+```
+::: columns
+
+::: {.column width="25%"}
+
+```{r}
+data
+```
+
+
+:::
+::: {.column width="60%"}
+
+```{r base-barplot, fig.width = 7}
+barplot(perc ~ duty,
+        data = data)
+```
+:::
+
+:::
+
+---
+
+## Plotting with R (ggplot2 version)
+```{r}
+data <- data.frame(duty = c("Teaching", "Research", "Engagement"),
+                   perc = c(40, 40, 20))
+```
+::: columns
+
+::: {.column width="25%"}
+
+```{r}
+data
+```
+
+
+:::
+::: {.column width="60%"}
+
+```{r ggplot-barplot, fig.width = 7, cache = FALSE}
+library(ggplot2)
+ggplot(data = data, 
+       mapping = aes(x = duty, 
+                     y = perc)) +
+  geom_col()
+```
+:::
+
+:::
+
+
+---
+
+## `ggplot2` graphics
+
+* In the following lessons we'll focus only on learning to plot with the `ggplot2` package.
+* It is one of the most popular packages in R for data visualisation and widely used in scientific outputs, reports, and even news articles.

@@ -405,6 +405,25 @@ A picture is worth a thousand words
 </ul>
 
 <img data-src="images/chapter7-01/covid-plot-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="a-data-visualisation-catalogue" class="slide level2">
+<h2>A data visualisation catalogue</h2>
+<div class="cell" data-layout-align="center">
+
+</div>
+<div class="cell" data-layout-align="center">
+<style type="text/css">
+.catalogue img {
+  margin-right: 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  width: 18%;
+}
+</style>
+</div>
+<div class="catalogue">
+<p><img src="images/chapter7-01/datavis-catalogue-1.png"><img src="images/chapter7-01/datavis-catalogue-2.png"><img src="images/chapter7-01/datavis-catalogue-3.png"><img src="images/chapter7-01/datavis-catalogue-4.png"><img src="images/chapter7-01/datavis-catalogue-5.png"><img src="images/chapter7-01/datavis-catalogue-6.png"><img src="images/chapter7-01/datavis-catalogue-7.png"><img src="images/chapter7-01/datavis-catalogue-8.png"><img src="images/chapter7-01/datavis-catalogue-9.png"><img src="images/chapter7-01/datavis-catalogue-10.png"><img src="images/chapter7-01/datavis-catalogue-11.png"><img src="images/chapter7-01/datavis-catalogue-12.png"><img src="images/chapter7-01/datavis-catalogue-13.png"><img src="images/chapter7-01/datavis-catalogue-14.png"><img src="images/chapter7-01/datavis-catalogue-15.png"></p>
+</div>
+</section>
 <section id="graphics" class="slide level2">
 <h2>Graphics</h2>
 <ul>
@@ -437,21 +456,28 @@ A picture is worth a thousand words
 <section id="base-graphics-1" class="slide level2">
 <h2>Base graphics</h2>
 <ul>
-<li>The <code>plot()</code> function usually produces base graphics.</li>
+<li>Base functions generally draw a complete plot.</li>
 </ul>
-<div class="cell" data-layout-align="center" data-hash="cache/unnamed-chunk-2_f7f6623d067f725e90d478df8aa440b2">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">plot</span>(x, x<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="images/chapter7-01/unnamed-chunk-2-1.png" width="384" class="r-stretch quarto-figure-center"></section>
+<img data-src="images/chapter7-01/simple-base-plot-1.png" width="384" class="r-stretch quarto-figure-center"></section>
 <section id="grid-graphics" class="slide level2">
 <h2><code>grid</code> graphics</h2>
 <ul>
 <li>The <code>grid</code> package contains low-level graphics system.</li>
 <li>This system gives a lot of control over the graphics, but requires the user to do a lot of work.</li>
-<li>You won’t be directly interacting with the <code>grid</code> package most of the time.</li>
-<li>Instead you’ll be using the <code>ggplot2</code> package that provides high-level functions for plotting via the <code>grid</code> system</li>
+<li>You won’t be directly interacting with the <code>grid</code> package.</li>
+<li>Instead you’ll be using the <strong><code>ggplot2</code> package</strong> that provides high-level functions for plotting via the <code>grid</code> system.</li>
+</ul>
+</section>
+<section id="other-graphics-system" class="slide level2">
+<h2>Other graphics system</h2>
+<ul>
+<li>All other graphics system are provided via contributed packages (i.e.&nbsp;you need to install it once to use it).</li>
+<li>The two most well known systems are the <code>lattice</code> and <code>ggplot2</code> graphics that make use of the <code>grid</code> package.</li>
 </ul>
 </section>
 <section id="grid-graphics-1" class="slide level2">
@@ -464,13 +490,13 @@ A picture is worth a thousand words
 <img data-src="images/r-graphics-system.png" class="r-stretch"></section>
 <section id="plotting-with-r-base-version" class="slide level2">
 <h2>Plotting with R (base version)</h2>
-<div class="cell" data-layout-align="center" data-hash="cache/unnamed-chunk-4_b1f50a5362742a332798a42cb523177e">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">duty =</span> <span class="fu">c</span>(<span class="st">"Teaching"</span>, <span class="st">"Research"</span>, <span class="st">"Engagement"</span>),</span>
 <span id="cb2-2"><a href="#cb2-2"></a>                   <span class="at">perc =</span> <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">40</span>, <span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="columns">
 <div class="column" style="width:25%;">
-<div class="cell" data-layout-align="center" data-hash="cache/unnamed-chunk-6_6b52aeb4b15d0c89ad476185744c44b8">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-stdout">
 <pre><code>        duty perc
@@ -480,7 +506,7 @@ A picture is worth a thousand words
 </div>
 </div>
 </div><div class="column" style="width:60%;">
-<div class="cell" data-layout-align="center" data-hash="cache/base-barplot_74510a3b41632127615cf669b3cbb096">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">barplot</span>(perc <span class="sc">~</span> duty,</span>
 <span id="cb5-2"><a href="#cb5-2"></a>        <span class="at">data =</span> data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -496,13 +522,13 @@ A picture is worth a thousand words
 </section>
 <section id="plotting-with-r-ggplot2-version" class="slide level2">
 <h2>Plotting with R (ggplot2 version)</h2>
-<div class="cell" data-layout-align="center" data-hash="cache/unnamed-chunk-8_6300ada55e3f7e7d5404cf1cf21281a6">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">duty =</span> <span class="fu">c</span>(<span class="st">"Teaching"</span>, <span class="st">"Research"</span>, <span class="st">"Engagement"</span>),</span>
 <span id="cb6-2"><a href="#cb6-2"></a>                   <span class="at">perc =</span> <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">40</span>, <span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="columns">
 <div class="column" style="width:25%;">
-<div class="cell" data-layout-align="center" data-hash="cache/unnamed-chunk-10_1c5ecf1714ea2d830764bd16ce4a46de">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-stdout">
 <pre><code>        duty perc
@@ -529,29 +555,17 @@ A picture is worth a thousand words
 </div>
 </div>
 </section>
-<section id="a-data-visualisation-catalogue" class="slide level2">
-<h2>A data visualisation catalogue</h2>
-<div class="cell" data-layout-align="center" data-hash="cache/datavis-catalogue_64a8320c71d8775c03b85214cd8be080">
+<section id="ggplot2-graphics" class="slide level2">
+<h2><code>ggplot2</code> graphics</h2>
+<ul>
+<li>In the following lessons we’ll focus only on learning to plot with the <code>ggplot2</code> package.</li>
+<li>It is one of the most popular packages in R for data visualisation and widely used in scientific outputs, reports, and even news articles.</li>
+</ul>
 
-</div>
-<div class="cell" data-layout-align="center" data-hash="cache/unnamed-chunk-12_c570cbafb5df51d18995b216d64fc7ad">
-<style type="text/css">
-.catalogue img {
-  margin-right: 20px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  width: 18%;
-}
-</style>
-</div>
-<div class="catalogue">
-<p><img src="images/chapter7-01/datavis-catalogue-1.png"><img src="images/chapter7-01/datavis-catalogue-2.png"><img src="images/chapter7-01/datavis-catalogue-3.png"><img src="images/chapter7-01/datavis-catalogue-4.png"><img src="images/chapter7-01/datavis-catalogue-5.png"><img src="images/chapter7-01/datavis-catalogue-6.png"><img src="images/chapter7-01/datavis-catalogue-7.png"><img src="images/chapter7-01/datavis-catalogue-8.png"><img src="images/chapter7-01/datavis-catalogue-9.png"><img src="images/chapter7-01/datavis-catalogue-10.png"><img src="images/chapter7-01/datavis-catalogue-11.png"><img src="images/chapter7-01/datavis-catalogue-12.png"><img src="images/chapter7-01/datavis-catalogue-13.png"><img src="images/chapter7-01/datavis-catalogue-14.png"><img src="images/chapter7-01/datavis-catalogue-15.png"></p>
-</div>
-<p><img src="images/monash-stacked-blue-rgb-transparent.png" class="slide-logo"></p>
 <div class="footer footer-default">
 
 </div>
-</section>
+<img src="images/monash-stacked-blue-rgb-transparent.png" class="slide-logo r-stretch"></section>
     </div>
   </div>
 
