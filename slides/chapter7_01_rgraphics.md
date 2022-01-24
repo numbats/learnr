@@ -4,6 +4,7 @@ execute:
   keep-md: true
 format: 
   revealjs:
+    #self-contained: true
     logo: images/monash-stacked-blue-rgb-transparent.png
     slide-number: true
     show-slide-number: all
@@ -28,6 +29,29 @@ A picture is worth a thousand words
 ![](images/chapter7-01/covid-plot-1.png){fig-align='center' width=960}
 :::
 :::
+
+---
+
+
+## A data visualisation catalogue
+
+::: {.cell layout-align="center"}
+
+:::
+::: {.cell layout-align="center"}
+<style type="text/css">
+.catalogue img {
+  margin-right: 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  width: 18%;
+}
+</style>
+:::
+
+<div class="catalogue">
+<img src="images/chapter7-01/datavis-catalogue-1.png"/><img src="images/chapter7-01/datavis-catalogue-2.png"/><img src="images/chapter7-01/datavis-catalogue-3.png"/><img src="images/chapter7-01/datavis-catalogue-4.png"/><img src="images/chapter7-01/datavis-catalogue-5.png"/><img src="images/chapter7-01/datavis-catalogue-6.png"/><img src="images/chapter7-01/datavis-catalogue-7.png"/><img src="images/chapter7-01/datavis-catalogue-8.png"/><img src="images/chapter7-01/datavis-catalogue-9.png"/><img src="images/chapter7-01/datavis-catalogue-10.png"/><img src="images/chapter7-01/datavis-catalogue-11.png"/><img src="images/chapter7-01/datavis-catalogue-12.png"/><img src="images/chapter7-01/datavis-catalogue-13.png"/><img src="images/chapter7-01/datavis-catalogue-14.png"/><img src="images/chapter7-01/datavis-catalogue-15.png"/>
+</div>
 
 
 ---
@@ -64,9 +88,9 @@ A picture is worth a thousand words
 
 ## Base graphics
 
-* The `plot()` function usually produces base graphics.
+* Base functions generally draw a complete plot.
 
-::: {.cell layout-align="center" hash='cache/unnamed-chunk-2_f7f6623d067f725e90d478df8aa440b2'}
+::: {.cell layout-align="center"}
 
 ```{.r .cell-code}
 x <- 1:10
@@ -74,18 +98,24 @@ plot(x, x^2)
 ```
 
 ::: {.cell-output-display}
-![](images/chapter7-01/unnamed-chunk-2-1.png){fig-align='center' width=384}
+![](images/chapter7-01/simple-base-plot-1.png){fig-align='center' width=384}
 :::
 :::
-
 ---
 
 ## `grid` graphics
 
 * The `grid` package contains low-level graphics system.
 * This system gives a lot of control over the graphics, but requires the user to do a lot of work.
-* You won't be directly interacting with the `grid` package most of the time.
-* Instead you'll be using the `ggplot2` package that provides high-level functions for plotting via the `grid` system
+* You won't be directly interacting with the `grid` package.
+* Instead you'll be using the **`ggplot2` package** that provides high-level functions for plotting via the `grid` system.
+
+---
+
+## Other graphics system
+
+* All other graphics system are provided via contributed packages (i.e. you need to install it once to use it).
+* The two most well known systems are the `lattice` and `ggplot2` graphics that make use of the `grid` package.
 
 ---
 
@@ -104,7 +134,7 @@ plot(x, x^2)
 ---
 
 ## Plotting with R (base version)
-::: {.cell layout-align="center" hash='cache/unnamed-chunk-4_b1f50a5362742a332798a42cb523177e'}
+::: {.cell layout-align="center"}
 
 ```{.r .cell-code}
 data <- data.frame(duty = c("Teaching", "Research", "Engagement"),
@@ -115,7 +145,7 @@ data <- data.frame(duty = c("Teaching", "Research", "Engagement"),
 
 ::: {.column width="25%"}
 
-::: {.cell layout-align="center" hash='cache/unnamed-chunk-6_6b52aeb4b15d0c89ad476185744c44b8'}
+::: {.cell layout-align="center"}
 
 ```{.r .cell-code}
 data
@@ -135,7 +165,7 @@ data
 :::
 ::: {.column width="60%"}
 
-::: {.cell layout-align="center" hash='cache/base-barplot_74510a3b41632127615cf669b3cbb096'}
+::: {.cell layout-align="center"}
 
 ```{.r .cell-code}
 barplot(perc ~ duty,
@@ -153,7 +183,7 @@ barplot(perc ~ duty,
 ---
 
 ## Plotting with R (ggplot2 version)
-::: {.cell layout-align="center" hash='cache/unnamed-chunk-8_6300ada55e3f7e7d5404cf1cf21281a6'}
+::: {.cell layout-align="center"}
 
 ```{.r .cell-code}
 data <- data.frame(duty = c("Teaching", "Research", "Engagement"),
@@ -164,7 +194,7 @@ data <- data.frame(duty = c("Teaching", "Research", "Engagement"),
 
 ::: {.column width="25%"}
 
-::: {.cell layout-align="center" hash='cache/unnamed-chunk-10_1c5ecf1714ea2d830764bd16ce4a46de'}
+::: {.cell layout-align="center"}
 
 ```{.r .cell-code}
 data
@@ -202,25 +232,10 @@ ggplot(data = data,
 
 :::
 
+
 ---
 
+## `ggplot2` graphics
 
-## A data visualisation catalogue
-
-::: {.cell layout-align="center" hash='cache/datavis-catalogue_64a8320c71d8775c03b85214cd8be080'}
-
-:::
-::: {.cell layout-align="center" hash='cache/unnamed-chunk-12_c570cbafb5df51d18995b216d64fc7ad'}
-<style type="text/css">
-.catalogue img {
-  margin-right: 20px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  width: 18%;
-}
-</style>
-:::
-
-<div class="catalogue">
-<img src="images/chapter7-01/datavis-catalogue-1.png"/><img src="images/chapter7-01/datavis-catalogue-2.png"/><img src="images/chapter7-01/datavis-catalogue-3.png"/><img src="images/chapter7-01/datavis-catalogue-4.png"/><img src="images/chapter7-01/datavis-catalogue-5.png"/><img src="images/chapter7-01/datavis-catalogue-6.png"/><img src="images/chapter7-01/datavis-catalogue-7.png"/><img src="images/chapter7-01/datavis-catalogue-8.png"/><img src="images/chapter7-01/datavis-catalogue-9.png"/><img src="images/chapter7-01/datavis-catalogue-10.png"/><img src="images/chapter7-01/datavis-catalogue-11.png"/><img src="images/chapter7-01/datavis-catalogue-12.png"/><img src="images/chapter7-01/datavis-catalogue-13.png"/><img src="images/chapter7-01/datavis-catalogue-14.png"/><img src="images/chapter7-01/datavis-catalogue-15.png"/>
-</div>
+* In the following lessons we'll focus only on learning to plot with the `ggplot2` package.
+* It is one of the most popular packages in R for data visualisation and widely used in scientific outputs, reports, and even news articles.

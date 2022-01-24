@@ -1,0 +1,73 @@
+---
+title: 'Chapter 7: Data Visualisation with R'
+description:
+  'Learn how to draw plots'
+prev: /chapter6
+next: /chapter8
+type: chapter
+id: 7
+output:
+  html_document:
+    self_contained: false
+  #md_document
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(fig.path = "../static/ch7/",
+                      fig.retina = 2,
+                      cache = FALSE,
+                      cache.path = "cache/")
+
+slides <- function(name) {
+  if(knitr::is_html_output(excludes = c("markdown"))) {
+    glue::glue("<iframe src='../slides/{name}.html' width='800' height='500'></iframe>")
+  } else {
+    glue::glue('<slides source="{name}">\n</slides>')
+  }
+}
+
+#' @param ... a name-value pair where name shows the text, value shows the message
+#' @param correct The number of the option that is correct.
+opts <- function(..., correct = NULL) {
+  messages <- list(...)
+  text <- names(messages)
+  if(knitr::is_html_output(excludes = c("markdown"))) {
+    out <- '<div>'
+    for(i in seq_along(messages)) {
+      answer <- ifelse(i==correct, '<span style="color:red">CORRECT</span>', '') 
+      out <- c(out, glue::glue('<input type="radio"> {text[i]} | {answer} {messages[i]}'))
+    }
+    out <- c(out, "</div>")
+  } else {
+    out <- '<choice>'
+    for(i in seq_along(messages)) {
+      answer <- ifelse(i==correct, 'correct="true"', '') 
+      out <- c(out, glue::glue('<opt text="{text[i]}" {answer}>'), messages[i], '</opt>')
+    }
+    out <- c(out, "</choice>")
+  }
+  paste(out, collapse = "\n\n")
+}
+```
+
+
+<exercise id="1" title="R Graphics" type="slides">
+
+`r slides("chapter7_01_rgraphics")`
+
+</exercise>
+
+<exercise id="2" title="R Graphics">
+
+Let's ask some questions about the slides. Whats the correct answer?
+
+```{r, echo = FALSE, results = "asis"}
+cat(opts("Answer one" = "This is not the correct answer.",
+         "Answer two" = "Good job!",
+         "Answer three" = "This is not correct either.",
+         correct = 2))
+```
+
+
+
+</exercise>
