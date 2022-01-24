@@ -234,7 +234,7 @@ test()</code></pre>
 <h3>Checking the data types</h3>
 <p>You can check the data type of a variable with the <code>class()</code> function. This is a useful function since often you need matching data types when you perform operations in R. For example, you will get an error message if you try to evaluate <code>5 + &quot;6&quot;</code>.</p>
 <p>Now, it’s your turn to play around with different variable types!</p>
-<pre><code># Change weather to be &quot;sunny&quot;
+<pre class="teachr"><code># Change weather to be &quot;sunny&quot;
 weather &lt;- &quot;rainy&quot;
 
 # Change brolly_needed to be &quot;FALSE&quot;
@@ -279,24 +279,22 @@ test()</code></pre>
 <h3>Vector Operations</h3>
 <p><strong>Vector addition and subtraction</strong></p>
 <p>If <code>a</code> and <code>b</code> are vectors of the same size, <code>a+b</code> and <code>a-b</code> give their sum and difference, respectively.</p>
-<pre><code>a &lt;- c(1,2,3)
+<pre class="r"><code>a &lt;- c(1,2,3)
 b &lt;- c(100,200,300)
-a+b
-a-b</code></pre>
-<p>You will yield the following output:</p>
-<pre><code>&gt; a+b
-[1] 101 202 303
-&gt; a-b
-[1]  -99 -198 -297</code></pre>
+a+b</code></pre>
+<pre><code>## [1] 101 202 303</code></pre>
+<pre class="r"><code>a-b</code></pre>
+<pre><code>## [1]  -99 -198 -297</code></pre>
 <p><strong>Scalar-vector multiplication and division</strong></p>
-<p>If <code>c</code> is a number and <code>a</code> is a vector (from above), you can express the scalar-vector product either as <code>c*a</code> or <code>a*c</code>. For example, <code>3*a</code> gives you the following output:</p>
-<pre><code>&gt; 3*a
-[1] 3 6 9
-&gt; a*3
-[1] 3 6 9</code></pre>
+<p>If <code>c</code> is a number and <code>a</code> is a vector (from above), you can express the scalar-vector product either as <code>c*a</code> or <code>a*c</code>. For example, if you do <code>3*a</code> and <code>a*3</code>:</p>
+<pre class="r"><code>3*a</code></pre>
+<pre><code>## [1] 3 6 9</code></pre>
+<pre class="r"><code>a*3</code></pre>
+<pre><code>## [1] 3 6 9</code></pre>
 <p><strong>Scalar-vector addition</strong></p>
-<p>In R, you can add a scalar <code>c</code> and a vector <code>a</code> using c+a. This means that the scalar is added to each element of the vector. For example, <code>3+a</code> yields the following output:</p>
-<pre><code>[1] 4 5 6</code></pre>
+<p>In R, you can add a scalar <code>c</code> and a vector <code>a</code> using c+a. This means that the scalar is added to each element of the vector. For example, if you do <code>3+a</code>:</p>
+<pre class="r"><code>3+a</code></pre>
+<pre><code>## [1] 4 5 6</code></pre>
 <p>This is, however, <strong>NOT</strong> a standard mathematical notation. (In mathematical notations, we should use this as, e.g. <span class="math inline">\(a + c \mathbf{1}\)</span>, where <span class="math inline">\(a\)</span> is a vector and <span class="math inline">\(c\)</span> is a scalar.)</p>
 <p><strong>Check your understanding</strong></p>
 <p>Given the following vector <code>y</code> in R,</p>
@@ -319,14 +317,13 @@ a-b</code></pre>
 <h3>Indexing and Slicing</h3>
 <p><strong>Indexing</strong></p>
 <p>To select elements of a vector (and later matrices, data frames, …), you can use square brackets <code>[ ]</code>. Between the square brackets, you indicate what elements to select. For example, consider a vector <span class="math inline">\(x\)</span>, a specific element <span class="math inline">\(x_i\)</span> is selected with the expression <code>x[i]</code> where <code>i</code> is the index (which runs from 1 to <span class="math inline">\(n\)</span>, for a vector with <span class="math inline">\(n\)</span> elements). Say, we would like to obtain the 5th entry from the following vector <span class="math inline">\(x\)</span>:</p>
-<pre><code>x = c(5,6,3,4,5,8,23,4,6,4,3,23,7,5,4,23,7,90)
+<pre class="r"><code>x = c(5,6,3,4,5,8,23,4,6,4,3,23,7,5,4,23,7,90)
 x[5]</code></pre>
-<p>The output returns:</p>
-<pre><code>[1] 5</code></pre>
+<pre><code>## [1] 5</code></pre>
 <p><strong>Slicing</strong></p>
-<p>Sometimes it is of interest to extract a slice of a vector (a subvector) using an index range as the argument. <span class="math inline">\(x_{r:s}\)</span> denotes the slice of the vector from index <span class="math inline">\(r\)</span> to <span class="math inline">\(s\)</span>. In the code below, <code>x[1:4]</code> selects the element from index 1 to 4.</p>
-<pre><code>&gt; x[1:4]
-[1] 5 6 3 4</code></pre>
+<p>Sometimes it is of interest to extract a slice of a vector (a sub-vector) using an index range as the argument. <span class="math inline">\(x_{r:s}\)</span> denotes the slice of the vector from index <span class="math inline">\(r\)</span> to <span class="math inline">\(s\)</span>. In the code below, <code>x[1:4]</code> selects the element from index 1 to 4.</p>
+<pre class="r"><code>x[1:4]</code></pre>
+<pre><code>## [1] 5 6 3 4</code></pre>
 <p><strong>Check your understanding</strong></p>
 <p>Given the following vector <code>y</code> in R,</p>
 <pre><code>y = c(2,4,6,8,1,3,5,7)</code></pre>
@@ -360,14 +357,9 @@ x[5]</code></pre>
 <div id="matrix-operations" class="section level3">
 <h3>Matrix Operations</h3>
 <p>Similar to what you have learned with vectors, the standard operators like <code>+</code>, <code>-</code>, <code>/</code>, <code>*</code>, etc. work in an element-wise way on matrices in R. For example, <code>2 * A</code> multiplies each element of <code>A</code> by two.</p>
-<pre><code>&gt; A &lt;- matrix(c(4,3,2,7,4,2,6,3,4,3,0,0,2,-2,-3), byrow=TRUE, nrow=5)
-&gt; A*2
-     [,1] [,2] [,3]
-[1,]    8    6    4
-[2,]   14    8    4
-[3,]   12    6    8
-[4,]    6    0    0
-[5,]    4   -4   -6</code></pre>
+<pre><code>A &lt;- matrix(c(4,3,2,7,4,2,6,3,4,3,0,0,2,-2,-3), byrow=TRUE, nrow=5)
+2*A
+</code></pre>
 <p>Consider another matrix <code>B</code> defined as <code>B &lt;- matrix(c(1,1,1,2,2,2,0,0,0,-1,-1,-1,0,0,0), byrow=TRUE, nrow=5)</code></p>
 <p><code>A*B</code> creates a matrix where each element is the product of the corresponding elements in matrix <code>A</code> and matrix <code>B</code>.</p>
 <p>Those who are familiar with matrices should note that this is <strong>not</strong> the standard matrix multiplication for which you should use <code>%*%</code> in R.</p>
@@ -375,28 +367,30 @@ x[5]</code></pre>
 <div id="add-rows-or-columns-to-a-matrix" class="section level3">
 <h3>Add rows or columns to a matrix</h3>
 <p>Sometimes we may want to add new data or information to a matrix with more rows or more columns. You can add a column or multiple columns to a matrix with the <code>cbind()</code> function, which merges matrices and/or vectors together by column. For example, <code>cbind(A,B)</code> yields a bigger matrix by merging matrix A and B. The resulting matrix has 5 rows and 6 columns.</p>
-<pre><code>&gt; big_matrix &lt;- cbind(A, B)
-&gt; big_matrix
-     [,1] [,2] [,3] [,4] [,5] [,6]
-[1,]    4    3    2    1    1    1
-[2,]    7    4    2    2    2    2
-[3,]    6    3    4    0    0    0
-[4,]    3    0    0   -1   -1   -1
-[5,]    2   -2   -3    0    0    0</code></pre>
+<pre class="r"><code>A &lt;- matrix(c(4,3,2,7,4,2,6,3,4,3,0,0,2,-2,-3), byrow=TRUE, nrow=5)
+B &lt;- matrix(c(1,1,1,2,2,2,0,0,0,-1,-1,-1,0,0,0), byrow=TRUE, nrow=5)
+big_matrix &lt;- cbind(A, B)
+big_matrix</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6]
+## [1,]    4    3    2    1    1    1
+## [2,]    7    4    2    2    2    2
+## [3,]    6    3    4    0    0    0
+## [4,]    3    0    0   -1   -1   -1
+## [5,]    2   -2   -3    0    0    0</code></pre>
 <p>Similarly, you can add a row or multiple rows to a matrix with the <code>rbind()</code> function. For example, <code>big_matrix2 &lt;- rbind(A,B)</code> returns a bigger matrix by putting matrix A on top of matrix B. The resulting matrix has 10 rows and 3 columns.</p>
-<pre><code>&gt; big_matrix2 &lt;- rbind(A,B)
-&gt; big_matrix2
-      [,1] [,2] [,3]
- [1,]    4    3    2
- [2,]    7    4    2
- [3,]    6    3    4
- [4,]    3    0    0
- [5,]    2   -2   -3
- [6,]    1    1    1
- [7,]    2    2    2
- [8,]    0    0    0
- [9,]   -1   -1   -1
-[10,]    0    0    0</code></pre>
+<pre class="r"><code>big_matrix2 &lt;- rbind(A,B)
+big_matrix2</code></pre>
+<pre><code>##       [,1] [,2] [,3]
+##  [1,]    4    3    2
+##  [2,]    7    4    2
+##  [3,]    6    3    4
+##  [4,]    3    0    0
+##  [5,]    2   -2   -3
+##  [6,]    1    1    1
+##  [7,]    2    2    2
+##  [8,]    0    0    0
+##  [9,]   -1   -1   -1
+## [10,]    0    0    0</code></pre>
 </div>
 <div id="indexing" class="section level3">
 <h3>Indexing</h3>
@@ -413,7 +407,7 @@ x[5]</code></pre>
 <li>Construct a matrix <span class="math inline">\(M\)</span> by stacking <span class="math inline">\(S\)</span> on top of <span class="math inline">\(T\)</span>, i.e. <span class="math inline">\(M = \begin{bmatrix}S\\T\end{bmatrix}\)</span>. Assign your result to the variable <code>M</code>.</li>
 <li>Select a sub-matrix of <span class="math inline">\(M\)</span> with the data on the rows 1, 2, 3 and columns 2. Assign the result to the variable <code>part_of_M</code>.</li>
 </ul>
-<pre><code>S = matrix(c(1,0,0,1), byrow=TRUE, nrow=2)
+<pre class="teachr"><code>S = matrix(c(1,0,0,1), byrow=TRUE, nrow=2)
 T = matrix(c(2,2,4,3), byrow=TRUE, nrow=2)
 # Construct a matrix M by stacking S on top of T
 M &lt;- &lt;&lt;rbind(S,T)&gt;&gt;
@@ -450,16 +444,15 @@ test()
 <h2>Data Frames</h2>
 <p>A data frame has the variables of a dataset as columns and the observations as rows.</p>
 <p>Let’s look at an example. Just run the code and you will see what a data frame looks like in R.</p>
-<pre><code>data(&quot;iris&quot;)
-</code></pre>
+<pre class="r"><code>data(&quot;iris&quot;)</code></pre>
 <p>The iris data set gives the measurements in centimeters of the variables sepal length, sepal width, petal length and petal width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.</p>
 <div id="quick-look-at-the-data-frame" class="section level3">
 <h3>Quick Look at the Data Frame</h3>
 <p>Often it is useful to show only a small part of the entire dataset, especially when we are working with very big data set where showing the entire dataset is not easy. Here are a few useful commands that helps you understand the data frame very quickly. - <code>head()</code> shows the first few observations of a data frame. - <code>tail()</code> shows the last few observations of a data frame. - <code>str()</code> shows the structure of the dataset.</p>
 <p>Investigate the structure of the example dataframe. Have a look at the first and last few observations!</p>
-<pre><code>data(&quot;ToothGrowth&quot;)
-</code></pre>
-<p><strong>Answer the following questions</strong> What is the data type of the variable ‘dose’?</p>
+<pre class="r"><code>df = data(&quot;ToothGrowth&quot;)</code></pre>
+<p><strong>Answer the following questions</strong></p>
+<p>What is the data type of the variable ‘dose’?</p>
 <p><choice> <opt text="numeric" correct="true"></p>
 <p>Good job!</p>
 <p></opt></p>
@@ -479,7 +472,7 @@ test()
 <p>You can construct your own data frame using data that you have with the <code>data.frame()</code> function. You can include different vectors as argument in the function and they will become different columns of your data frame. Note that you should make sure the vectors that you pass have same length (i.e. same number of observations for each column).</p>
 <p><strong>Let’s practice!</strong></p>
 <p>Create a data frame using vectors <code>symbol</code>, <code>element</code>, <code>chemical_group</code> and <code>atomic_no</code>, following that order. Assign the result data frame to <code>first_ten_elements</code>.</p>
-<pre><code>symbol &lt;- c(&#39;N&#39;,&#39;O&#39;,&#39;H&#39;,&#39;He&#39;,&#39;B&#39;,&#39;C&#39;,&#39;F&#39;,&#39;Ne&#39;,&#39;Li&#39;,&#39;Be&#39;)
+<pre class="teachr"><code>symbol &lt;- c(&#39;N&#39;,&#39;O&#39;,&#39;H&#39;,&#39;He&#39;,&#39;B&#39;,&#39;C&#39;,&#39;F&#39;,&#39;Ne&#39;,&#39;Li&#39;,&#39;Be&#39;)
 element &lt;- c(&#39;Nitrogen&#39;,&#39;Oxygen&#39;,&#39;Hydrogen&#39;,&#39;Helium&#39;,&#39;Boron&#39;,&#39;Carbon&#39;,&#39;Fluorine&#39;,&#39;Neon&#39;,&#39;Lithium&#39;,&#39;Beryllium&#39;)
 chemical_group &lt;- c(&#39;Nonmetal&#39;,&#39;Nonmetal&#39;,&#39;Nonmetal&#39;,&#39;Noble Gas&#39;,&#39;Metalloid&#39;,&#39;Nonmetal&#39;,&#39;Halogen&#39;,&#39;Noble Gas&#39;,&#39;Alkali Metal&#39;,&#39;Alkaline Earth Metal&#39;)
 atomic_no &lt;- c(7,8,1,2,5,6,9,10,3,4)
@@ -519,15 +512,16 @@ test()
 <div id="sorting" class="section level3">
 <h3>Sorting</h3>
 <p>Sometimes we may want to sort the data according to a certain variable in the dataset. In R, we can use the <code>order()</code> function which gives the ranked position of each element when it is applied on a variable. For example,</p>
-<pre><code>x &lt;- c(100, -200,300)
-&gt; order(x)
-[1] 2 1 3</code></pre>
+<pre class="r"><code>x &lt;- c(100, -200,300)
+order(x)</code></pre>
+<pre><code>## [1] 2 1 3</code></pre>
 <p>The output above is the ranked positions and we can use that to sort the vector <code>x</code>.</p>
-<pre><code>x[order(x)]
-[1] -200  100  300</code></pre>
+<pre class="r"><code>x[order(x)]</code></pre>
+<pre><code>## [1] -200  100  300</code></pre>
 <p>The above R code gives an ordered version of <code>x</code>.</p>
 <p>Now that we know how to use the <code>order()</code>, let’s sort the first_ten_element data frame in ascending order of <code>atomic_no</code>, assign the sorted dataframe to <code>sorted_df</code>.</p>
-<pre><code>symbol &lt;- c(&#39;N&#39;,&#39;O&#39;,&#39;H&#39;,&#39;He&#39;,&#39;B&#39;,&#39;C&#39;,&#39;F&#39;,&#39;Ne&#39;,&#39;Li&#39;,&#39;Be&#39;)
+<pre class="teachr"><code>
+symbol &lt;- c(&#39;N&#39;,&#39;O&#39;,&#39;H&#39;,&#39;He&#39;,&#39;B&#39;,&#39;C&#39;,&#39;F&#39;,&#39;Ne&#39;,&#39;Li&#39;,&#39;Be&#39;)
 element &lt;- c(&#39;Nitrogen&#39;,&#39;Oxygen&#39;,&#39;Hydrogen&#39;,&#39;Helium&#39;,&#39;Boron&#39;,&#39;Carbon&#39;,&#39;Fluorine&#39;,&#39;Neon&#39;,&#39;Lithium&#39;,&#39;Beryllium&#39;)
 chemical_group &lt;- c(&#39;Nonmetal&#39;,&#39;Nonmetal&#39;,&#39;Nonmetal&#39;,&#39;Noble Gas&#39;,&#39;Metalloid&#39;,&#39;Nonmetal&#39;,&#39;Halogen&#39;,&#39;Noble Gas&#39;,&#39;Alkali Metal&#39;,&#39;Alkaline Earth Metal&#39;)
 atomic_no &lt;- c(7,8,1,2,5,6,9,10,3,4)
@@ -543,7 +537,7 @@ sorted_df &lt;- &lt;&lt;first_ten_elements[positions, ]&gt;&gt;
 ___
 Hint: 
 - Use order(first_ten_elements$atomic_no) to create positions.
-- Then,use `positions` with square brackets: first_ten_elements[...]; can you fill in the ...? Don&#39;t forget that `positions` indicates the order of the rows in the data frame.
+- Then, use &#39;positions&#39; with square brackets: first_ten_elements[...]; can you fill in the ...? Don not forget that &#39;positions&#39; indicates the order of the rows in the data frame.
 
 ???
 test &lt;- function() {
@@ -558,7 +552,6 @@ test &lt;- function() {
     }
     success(&quot;Well done!&quot;)
 }
-
 </code></pre>
 <p></exercise></p>
 <p><exercise id="6" title="Conditional Statements"></p>
@@ -576,60 +569,64 @@ test &lt;- function() {
 <li><code>!=</code> not equal to each other</li>
 </ul>
 <p>You can use these command on scalar. For example, <code>8 &gt; 1</code> return <code>TRUE</code> since 8 is larger than 1. <code>8 == 1</code> return ‘FALSE’ since 8 is not equal to 1. This command also extends to vectors. It tests for every element of the vector if the condition stated by the comparison operator is TRUE or FALSE. For example,</p>
-<pre><code>c(0,5,100) == 5
-[1] FALSE  TRUE FALSE</code></pre>
+<pre class="r"><code>c(0,5,100) == 5</code></pre>
+<pre><code>## [1] FALSE  TRUE FALSE</code></pre>
 <p>You can see that both the first and the last entry evaluates to <code>FALSE</code> and only the second entry returns <code>TRUE</code> since the second entry is equal to 5.</p>
 <p>Now if instead we do</p>
-<pre><code>c(0,5,100) &gt;= 5
-[1] FALSE  TRUE  TRUE</code></pre>
+<pre class="r"><code>c(0,5,100) &gt;= 5</code></pre>
+<pre><code>## [1] FALSE  TRUE  TRUE</code></pre>
 <p>You can see the output changed since 100 is also greater than or equal to 5.</p>
 <p>If we change our code into</p>
-<pre><code>c(0,5,100) &lt; 5
-[1]  TRUE FALSE FALSE</code></pre>
+<pre class="r"><code>c(0,5,100) &lt; 5</code></pre>
+<pre><code>## [1]  TRUE FALSE FALSE</code></pre>
 <p>You can see the output changed where the second entry is also <code>FALSE</code> since 5 is not strictly less than 5.</p>
-<p>Note that R also support elementwise comparison if we put a relational operator between two vectors:</p>
-<pre><code>c(2,4,6) &lt; c(3,5,7)
-[1] TRUE TRUE TRUE</code></pre>
+<p>Note that R also support element-wise comparison if we put a relational operator between two vectors:</p>
+<pre class="r"><code>c(2,4,6) &lt; c(3,5,7)</code></pre>
+<pre><code>## [1] TRUE TRUE TRUE</code></pre>
 </div>
 <div id="logical-opeators" class="section level2">
 <h2>Logical opeators</h2>
 <p>You know how to use relational operators in R. Next, what if you want to change or combine the results of these comparisons? In R, you can do this using the AND (<code>&amp;</code>), the OR (<code>|</code>), and the NOT (<code>!</code>) operator.</p>
-<p><strong>the AND (<code>&amp;</code>) operator</strong> The AND operator typically takes two logical values and returns TRUE only if both the logical values are TRUE themselves. For example, if we check the entries of the following vector x is greater than 2 AND less than 6, we expect <code>TRUE</code> for the three entries in the middle.</p>
-<pre><code>x = c(1,2,3,4,5,6,7)
-(x&gt;2)&amp;(x&lt;6)
-[1] FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE</code></pre>
-<p><strong>the OR (<code>|</code>) operator</strong> The OR operator (|) works similarly, but the difference is that only at least one of the logical values it uses should be equal to TRUE for the entire OR operation to evaluate to TRUE. For example,</p>
-<pre><code>x = c(1,2,3,4,5,6,7)
-(x&gt;4)|(x&lt;2)
-[1]  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE</code></pre>
-<p><strong>the NOT (<code>!</code>) operator</strong> The NOT operator negates the logical value it’s used on. For example, the built-in R function, is <code>is.numeric()</code> checks if an R object is a numeric.</p>
+<p><strong>the AND (<code>&amp;</code>) operator</strong></p>
+<p>The AND operator typically takes two logical values and returns TRUE only if both the logical values are TRUE themselves. For example, if we check the entries of the following vector x is greater than 2 AND less than 6, we expect <code>TRUE</code> for the three entries in the middle.</p>
+<pre class="r"><code>x = c(1,2,3,4,5,6,7)
+(x&gt;2)&amp;(x&lt;6)</code></pre>
+<pre><code>## [1] FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE</code></pre>
+<p><strong>the OR (<code>|</code>) operator</strong></p>
+<p>The OR operator (|) works similarly, but the difference is that only at least one of the logical values it uses should be equal to TRUE for the entire OR operation to evaluate to TRUE. For example,</p>
+<pre class="r"><code>x = c(1,2,3,4,5,6,7)
+(x&gt;4)|(x&lt;2)</code></pre>
+<pre><code>## [1]  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE</code></pre>
+<p><strong>the NOT (<code>!</code>) operator</strong></p>
+<p>The NOT operator negates the logical value it’s used on. For example, the built-in R function, is <code>is.numeric()</code> checks if an R object is a numeric.</p>
 <p>Say we want to check if an object <code>a</code> is a numeric, where <code>a</code> is actually a string <code>rain</code>, we expect the output to be <code>FALSE</code>. Consider also object <code>b</code> is a number, then the expected output is <code>TRUE</code>.</p>
-<pre><code>a &lt;- &quot;rain&quot;
-is.numeric(a)
-[1] FALSE
-
-is.numeric(100)
-[1] TRUE</code></pre>
+<pre class="r"><code>a &lt;- &quot;rain&quot;
+is.numeric(a)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<pre class="r"><code>is.numeric(100)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 <p>If we, instead, use <code>!is.numeric(a)</code> to check if <code>a</code> is, the output is now <code>TRUE</code>.</p>
-<pre><code>!is.numeric(a)
-[1] TRUE
-</code></pre>
+<pre class="r"><code>!is.numeric(a)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 <p>And when we run <code>!is.numeric(100)</code> in R, the output would be <code>FALSE</code>.</p>
 </div>
 <div id="conditional-statements" class="section level2">
 <h2>Conditional statements</h2>
 <p>Now we are ready to learn about conditional statements: if, else, else if. These conditional statements are very useful in data analysis since often we want to treat the data differently depending on certain conditions.</p>
-<p><strong>if statement</strong> The syntax of an if statement looks like this:</p>
+<p><strong>if statement</strong></p>
+<p>The syntax of an if statement looks like this:</p>
 <pre><code>if (condition) {
   do_this
 }</code></pre>
 <p>So if the <code>condition</code> is evaluated to be <code>TRUE</code>, the code included in the curly bracket (<code>do_this</code>) will be executed.</p>
 <p>For example, <code>customer_rating</code> contains a rating (out of 5) from a customer dined in a restaurant. We consider a customer to be happy if the rating is greater than or equal to 4.</p>
-<pre><code>customer_rating = 4
+<pre class="r"><code>customer_rating = 4
 if (customer_rating &gt;= 4){
   print(&quot;Customer is happy!&quot;)
 }</code></pre>
-<p><strong>else statement</strong> You can only use an else statement together with an if statement. The else statement does not require a condition. The code that comes under the else statement is executed if all of the if statements evaluated to be <code>FALSE</code>.</p>
+<pre><code>## [1] &quot;Customer is happy!&quot;</code></pre>
+<p><strong>else statement</strong></p>
+<p>You can only use an else statement together with an if statement. The else statement does not require a condition. The code that comes under the else statement is executed if all of the if statements evaluated to be <code>FALSE</code>.</p>
 <pre><code>if (condition) {
   do_this
 } else {
@@ -638,15 +635,15 @@ if (customer_rating &gt;= 4){
 <p>So if the <code>condition</code> is evaluated to be <code>TRUE</code>, the code included in the first curly bracket (<code>do_this</code>) will be executed. Otherwise, the code included in the second curly bracket (<code>do_this_instead</code>) will be executed.</p>
 <p>It’s important that the syntax <code>else</code> is on the <strong>same line</strong> as the closing bracket of the if part!</p>
 <p>For example, we would like to be alerted if a customer is not happy.</p>
-<pre><code>customer_rating = 2
+<pre class="r"><code>customer_rating = 2
 if (customer_rating &gt;= 4){
   print(&quot;Customer is happy!&quot;)
 } else { 
   print(&quot;Attention - unhappy customer!&quot;)
-}
-</code></pre>
+}</code></pre>
+<pre><code>## [1] &quot;Attention - unhappy customer!&quot;</code></pre>
 <p><strong>else if statement</strong></p>
-<p>The else if statement allows you to further customize your control structure. You can add as many else if statements as you like such that you can customise the action of your code depending on the conditions.</p>
+<p>The else if statement allows you to further customize your control structure. You can add as many else if statements as you like such that you can customize the action of your code depending on the conditions.</p>
 <pre><code>if (condition1) {
   action1
 } else if (condition2) {
@@ -657,7 +654,7 @@ if (customer_rating &gt;= 4){
   action4
 }</code></pre>
 <p>For example, we would like to distinguish between happy customer (with rating 4 or above), neutral customer (rating to be less than 4 but higher than 2) and unhappy customer (rating not more than 2). Then we can do:</p>
-<pre><code>customer_rating = 3
+<pre class="r"><code>customer_rating = 3
 if (customer_rating &gt;= 4){
   print(&quot;Customer is happy!&quot;)
 } else if (customer_rating &lt;= 2){ 
@@ -665,6 +662,7 @@ if (customer_rating &gt;= 4){
 } else {
   print(&quot;Neutral customer.&quot;)
 }</code></pre>
+<pre><code>## [1] &quot;Neutral customer.&quot;</code></pre>
 <p><strong>Test your understanding</strong></p>
 <p>Consider the following syntax:</p>
 <pre><code>if (x &lt; 50) {
@@ -707,30 +705,33 @@ print(result)</code></pre>
 <div id="for-loops" class="section level2">
 <h2>For loops</h2>
 <p>A simple for loop in R looks like this:</p>
-<pre><code>sequence &lt;- c(1,3,5)
+<pre class="r"><code>sequence &lt;- c(1,3,5)
 for (i in sequence) {
   print(i)
 }</code></pre>
-<p>Here, we first defined a vector called <code>sequence</code>, then <strong>for</strong> every <span class="math inline">\(i\)</span> in sequence, we print the value of <span class="math inline">\(i\)</span>. When we execute the above R code, here is the output:</p>
-<pre><code>[1] 1
-[1] 3
-[1] 5</code></pre>
-<p>You can see from the output that each element <code>i</code> in the sequence was printed in each iteration.</p>
+<pre><code>## [1] 1
+## [1] 3
+## [1] 5</code></pre>
+<p>Here, we first defined a vector called <code>sequence</code>, then <strong>for</strong> every <span class="math inline">\(i\)</span> in sequence, we print the value of <span class="math inline">\(i\)</span>. From the output, you can see from the output that each element <code>i</code> in the sequence was printed in each iteration.</p>
 <p>The same loop can be written in another way:</p>
-<pre><code>sequence &lt;- c(1,3,5)
+<pre class="r"><code>sequence &lt;- c(1,3,5)
 for (i in 1:length(sequence)) {
   print(sequence[i])
 }</code></pre>
+<pre><code>## [1] 1
+## [1] 3
+## [1] 5</code></pre>
 <p>In the R code above, we use the <code>length()</code> function to measure the length/size of <code>sequence</code>, i.e. 3. Then we construct a for loop where <span class="math inline">\(i\)</span> iterates from 1 to 3, inside the for loop <code>i</code> represents the index of the sequence and putting the index inside the square brackets allows us to select the <span class="math inline">\(i\)</span>th element from <code>sequence</code>.</p>
 <p><strong>Write your first loop!</strong></p>
-<pre><code>
+<pre class="teachr"><code>
 countries &lt;- c(&#39;US&#39;, &#39;China&#39;,&#39;Japan&#39;, &#39;Germany&#39;,&#39;India&#39;)
 nominalGDP_trilion_2017 &lt;- c(19.485, 12.238, 4.872, 3.693, 2.651)
 population_million_2017 &lt;- c(325, 1421, 127, 82, 1338)
 
 
 # Write a for loop that prints one country in each iteration
-&lt;&lt;&gt;&gt;
+
+
 ___
 
 Hint: 
@@ -738,7 +739,7 @@ Hint:
 ???
 </code></pre>
 <p>We can do a lot more than when we use for loop together with the control flow statements (if, else if, else) we learnt before. For example,</p>
-<pre><code>customer_rating &lt;- c(2,3,1,5,5,5)
+<pre class="r"><code>customer_rating &lt;- c(2,3,1,5,5,5)
 
 for (rating in customer_rating) {
   if (rating &gt;= 4) {
@@ -749,6 +750,12 @@ for (rating in customer_rating) {
   print(&#39;Neutral Customer!&#39;)
   }
 }</code></pre>
+<pre><code>## [1] &quot;Angry Customer!&quot;
+## [1] &quot;Neutral Customer!&quot;
+## [1] &quot;Angry Customer!&quot;
+## [1] &quot;Happy Customer!&quot;
+## [1] &quot;Happy Customer!&quot;
+## [1] &quot;Happy Customer!&quot;</code></pre>
 <p>The R code above prints different messages depending on the values in customer_rating.</p>
 <p><strong>Now it’s your turn!</strong></p>
 <p>In this exercise, add code in the for loop so that it will do the following:</p>
@@ -757,7 +764,7 @@ for (rating in customer_rating) {
 <li>when <code>score</code> is between 50 and 79, print(‘Well done!’)</li>
 <li>when <code>score</code> is below 50, print(“Try again!”)</li>
 </ul>
-<pre><code>___
+<pre class="teachr"><code>___
 ???</code></pre>
 </div>
 <div id="while-loops" class="section level2">
@@ -768,18 +775,25 @@ for (rating in customer_rating) {
 }</code></pre>
 <p>In the while loop, R will keep running the code between the brackets <code>{ }</code> repeated until the condition become <code>FALSE</code> at some point during the execution. If the condition is never changed, the while loop will go on indefinitely.</p>
 <p>For example, we create a while loop that will go on subtracting 28.5 (as weekly_spending) to the variable <code>bank_balance</code> until <code>bank_balance</code> is less than <code>weekly_spending</code>. If you execute the R code, you will notice the loop stopped at the 7th iteration.</p>
-<pre><code>bank_balance = 200
+<pre class="r"><code>bank_balance = 200
 weekly_spending = 28.5
 while (bank_balance &gt;= weekly_spending) {
   bank_balance = bank_balance - weekly_spending
   print(bank_balance)
 }</code></pre>
+<pre><code>## [1] 171.5
+## [1] 143
+## [1] 114.5
+## [1] 86
+## [1] 57.5
+## [1] 29
+## [1] 0.5</code></pre>
 </div>
 <div id="break-statement" class="section level2">
 <h2>Break statement</h2>
 <p>There are occasions where breaking the loop during execution is a good idea. The break statement can be used in for loops and while loops.</p>
 <p>For example, if we are to set up a early warning system when <code>bank_balance</code> is less than or equal to 4 times <code>weekly spending</code>, we can do the following:</p>
-<pre><code>bank_balance = 200
+<pre class="r"><code>bank_balance = 200
 weekly_spending = 28.5
 while (bank_balance&gt;= weekly_spending) {
   bank_balance = bank_balance - weekly_spending
@@ -789,7 +803,14 @@ while (bank_balance&gt;= weekly_spending) {
   break
   }
 }</code></pre>
-<pre><code>___
+<pre><code>## [1] 171.5
+## [1] 143
+## [1] 114.5
+## [1] 86
+## [1] &quot;Find a job and cut weekly spending!&quot;</code></pre>
+<pre class="teachr"><code>
+___
+
 ???</code></pre>
 <p></exercise></p>
 <p><exercise id="8" title="Functions"> Functions are an extremely important concept in almost every programming language, including R! You can think of functions as a black box: you give some values as an input, the function processes this input and generates an output. In R, the function arguments are matched by position or by name. You can set a default value for some function arguments, and you can overwrite the default value when you need to.</p>
@@ -800,8 +821,8 @@ while (bank_balance&gt;= weekly_spending) {
 <p>The keyword <code>function</code> tells R you are defining a function. The arguments in the parentheses <code>( )</code> are the input of your function, the inputs can be data and parameters. The operations that you want to perform (the <code>body</code>) should be written inside the curly brackets <code>{ }</code>.</p>
 <p>Finally, you assign the function defining statement and body to the variable <code>my_fun_name</code>, which is the name of your function. To call (use) the function, you will need to enter <code>my_fun_name(arg1, arg2)</code> in your code after you defined the function.</p>
 <p><strong>Write your own function</strong></p>
-<p>Create a function <code>power_three()</code>: it takes one argument and returns that number cubed (that number times itself and times iteself again). Call this newly defined function with 12 as input.</p>
-<pre><code># Create a function power_three()
+<p>Create a function <code>power_three()</code>: it takes one argument and returns that number cubed (that number times itself and times itself again). Call this newly defined function with 12 as input.</p>
+<pre class="teachr"><code># Create a function power_three()
 power_three &lt;- &lt;&lt;function(arg){
   arg*arg*arg
 }
@@ -830,21 +851,31 @@ test &lt;- function() {
 test()</code></pre>
 <p>It is also possible to run a function without an input argument.</p>
 <p>In the following example, the function will print the statement “Hello World!” when the function is called without any inputs.</p>
-<pre><code>hello_world &lt;- function(){
+<pre class="r"><code>hello_world &lt;- function(){
 print(&#39;Hello World!&#39;)
 }</code></pre>
 <p>This can also be useful sometimes when we would like to have random outcomes from the function. The <code>sample()</code> function comes in handy when we would like to draw a number from a particular range of values.</p>
 <p>For example:</p>
-<pre><code>flip_a_coin &lt;- function(){
+<pre class="r"><code>flip_a_coin &lt;- function(){
   outcome &lt;- sample(1:2, size = 1)
   if (outcome == 1) {
     print(&quot;Head&quot;)} else {
       print(&quot;Tail&quot;) }
-}</code></pre>
-<p>You will get a different outcome (“Head” or “Tail”) everytime when you call the function <code>flip_a_coin</code>.</p>
+}
+
+#Flip the coin the first time
+flip_a_coin()</code></pre>
+<pre><code>## [1] &quot;Head&quot;</code></pre>
+<pre class="r"><code>#Flip the coin second time
+flip_a_coin()</code></pre>
+<pre><code>## [1] &quot;Head&quot;</code></pre>
+<pre class="r"><code>#Flip the coin once again
+flip_a_coin()</code></pre>
+<pre><code>## [1] &quot;Head&quot;</code></pre>
+<p>You will get a different outcome (“Head” or “Tail”) every time when you call the function <code>flip_a_coin</code>.</p>
 <p><strong>Write your code to roll a die!</strong></p>
 <p>Write a function that takes no input argument and return a random outcome choosing from 1 to 6, just like rolling a die in R. Name that function <code>roll_a_die</code>.</p>
-<pre><code># Write some code to roll a die
+<pre class="teachr"><code># Write some code to roll a die
 
 roll_a_die &lt;- &lt;&lt;function(){
   sample(1:6, size = 1)
@@ -865,7 +896,8 @@ test()
 </code></pre>
 <p><strong>Function Scoping</strong></p>
 <p>Note that variables that are defined inside a function are not accessible outside that function. Variables we use inside a function are considered as local variables, which are different from variables that are designed outside of the function (global variables).</p>
-<p><strong>Congratulations! This is the end of R Programming Basics!</strong> </exercise></p>
+<p><strong>Congratulations! This is the end of R Programming Basics!</strong></p>
+<p></exercise></p>
 </div>
 
 
