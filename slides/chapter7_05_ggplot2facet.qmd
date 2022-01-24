@@ -1,0 +1,25 @@
+---
+title: Facet in `ggplot2`
+execute:
+  keep-md: true
+format: 
+  revealjs:
+    #self-contained: true
+    logo: images/monash-stacked-blue-rgb-transparent.png
+    slide-number: true
+    show-slide-number: all
+    # below doesn't seem to be working
+    #width: wide
+type: slides
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(fig.path = "images/chapter7-05/",
+                      fig.align = "center",
+                      fig.width = 4, 
+                      fig.height = 4,
+                      cache.path = "cache/",
+                      cache = FALSE,
+                      echo = TRUE)
+```
+

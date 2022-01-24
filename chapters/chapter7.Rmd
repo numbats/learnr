@@ -14,8 +14,11 @@ output:
 
 ```{r setup, include = FALSE}
 library(teachr)
-knitr::opts_chunk$set(fig.path = "../static/ch7/",
+knitr::opts_chunk$set(fig.path = "ch7/",
                       fig.retina = 2,
+                      fig.width = 4, 
+                      fig.height = 4,
+                      fig.align = "center",
                       cache = FALSE,
                       cache.path = "cache/")
 # `slides` and `opts` (now called `mc_opts` functions now live in the `teachr` package
@@ -74,8 +77,19 @@ cat(mc_opts("base" = "No, that's incorrect.",
 
 <exercise id="4" title="Make basic plots with `ggplot2`">
 
+```{r cars-plot, code = readLines("../exercises/solution_07_04.R"), echo = FALSE}
+```
+```{r}
+str(cars)
+```
+
+
 ```{teachr 07_04, outdir = "../exercises"}
 library(ggplot2)
+ggplot(data = <<cars>>, 
+       mapping = aes(x = <<speed>>, 
+                     y = <<dist>>)) +
+  geom_<<point>>()
 ```
 
 
