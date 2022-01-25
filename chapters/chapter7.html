@@ -172,16 +172,63 @@ pre code {
 <iframe src="../slides/chapter7_01_rgraphics.html" width="800" height="500">
 </iframe>
 <p></exercise></p>
-<p><exercise id="2" title="R Graphics"></p>
-<p>Let’s ask some questions about the slides. Whats the correct
-answer?</p>
+<p><exercise id="2" title="Test your knowledge of R Graphics"></p>
+<p>Which of the following is a contributed R package?</p>
 <div>
-<p><input type="radio"> Answer one | This is not the correct answer.</p>
-<p><input type="radio"> Answer two | <span
-style="color:red">CORRECT</span> Good job!</p>
-<p><input type="radio"> Answer three | This is not correct either.</p>
+<p><input type="radio"> ggplot2 | <span style="color:red">CORRECT</span>
+That’s correct! ggplot2 was developed by Hadley Wickham as part of his
+PhD.</p>
+<p><input type="radio"> grid | No, this is a core package so it’s
+already installed.</p>
+<p><input type="radio"> graphics | No, this a core package and loads
+automatically when you launch R.</p>
+<p><input type="radio"> grDevices | No, this a core package and loads
+automatically when you launch R.</p>
+</div>
+<p>Which R package actually renders the graphics in R?</p>
+<div>
+<p><input type="radio"> ggplot2 | No, that’s incorrect.</p>
+<p><input type="radio"> grid | No, that’s incorrect.</p>
+<p><input type="radio"> graphics | No, that’s incorrect.</p>
+<p><input type="radio"> grDevices | <span
+style="color:red">CORRECT</span> Yes, that’s right!</p>
+</div>
+<p>Remember that there are two primary graphic models in R: the base and
+grid graphics. Which one is <code>ggplot2</code> using?</p>
+<div>
+<p><input type="radio"> base | No, that’s incorrect.</p>
+<p><input type="radio"> grid | <span style="color:red">CORRECT</span>
+Yes that’s right! Well done!</p>
 </div>
 <p></exercise></p>
+<p><exercise id="3" title="Getting started with `ggplot2`" type="slides"></p>
+<iframe src="../slides/chapter7_02_ggplot2intro.html" width="800" height="500">
+</iframe>
+<p></exercise></p>
+<p><exercise id="4" title="Make basic plots with `ggplot2`"></p>
+<p><img src="ch7/cars-plot-1.png" width="384" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>str(cars)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    50 obs. of  2 variables:
+##  $ speed: num  4 4 7 7 8 9 10 10 10 11 ...
+##  $ dist : num  2 10 4 22 16 10 18 26 34 17 ...</code></pre>
+<p><codeblock id="07_04"></p>
+<p></codeblock></p>
+<p><codeblock id="07_04"></p>
+<p>This is a hint.</p>
+<p></codeblock></p>
+<p></exercise></p>
+<p><exercise id="5" title="Multiple layers in `ggplot2`">
+<iframe src='../slides/chapter7_03_ggplot2layers.html' width='800' height='500'></iframe>
+</exercise></p>
+<p><exercise id="7" title="Scales and guides in `ggplot2`">
+<iframe src='../slides/chapter7_04_ggplot2scales.html' width='800' height='500'></iframe>
+</exercise></p>
+<p><exercise id="9" title="Multiple plots in one figure">
+<iframe src='../slides/chapter7_05_ggplot2facet.html' width='800' height='500'></iframe>
+</exercise></p>
+<p><exercise id="11" title="Customise the look with themes in `ggplot2`">
+<iframe src='../slides/chapter7_06_ggplot2theme.html' width='800' height='500'></iframe>
+</exercise></p>
 
 
 

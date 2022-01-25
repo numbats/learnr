@@ -1,7 +1,7 @@
 ---
 title: 'Chapter 7: Data Visualisation with R'
 description:
-  'Learn how to draw plots'
+  'This chapter will give you an introduction to the R graphics system and teach you how to get started with using the `ggplot2` package for drawing all kind of plots.'
 prev: /chapter6
 next: /chapter8
 type: chapter
@@ -13,41 +13,17 @@ output:
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(fig.path = "../static/ch7/",
+library(teachr)
+knitr::opts_chunk$set(fig.path = "ch7/",
                       fig.retina = 2,
+                      fig.width = 4, 
+                      fig.height = 4,
+                      fig.align = "center",
                       cache = FALSE,
                       cache.path = "cache/")
+# `slides` and `opts` (now called `mc_opts` functions now live in the `teachr` package
+# install latest at https://github.com/numbats/teachr
 
-slides <- function(name) {
-  if(knitr::is_html_output(excludes = c("markdown"))) {
-    glue::glue("<iframe src='../slides/{name}.html' width='800' height='500'></iframe>")
-  } else {
-    glue::glue('<slides source="{name}">\n</slides>')
-  }
-}
-
-#' @param ... a name-value pair where name shows the text, value shows the message
-#' @param correct The number of the option that is correct.
-opts <- function(..., correct = NULL) {
-  messages <- list(...)
-  text <- names(messages)
-  if(knitr::is_html_output(excludes = c("markdown"))) {
-    out <- '<div>'
-    for(i in seq_along(messages)) {
-      answer <- ifelse(i==correct, '<span style="color:red">CORRECT</span>', '') 
-      out <- c(out, glue::glue('<input type="radio"> {text[i]} | {answer} {messages[i]}'))
-    }
-    out <- c(out, "</div>")
-  } else {
-    out <- '<choice>'
-    for(i in seq_along(messages)) {
-      answer <- ifelse(i==correct, 'correct="true"', '') 
-      out <- c(out, glue::glue('<opt text="{text[i]}" {answer}>'), messages[i], '</opt>')
-    }
-    out <- c(out, "</choice>")
-  }
-  paste(out, collapse = "\n\n")
-}
 ```
 
 
@@ -57,17 +33,89 @@ opts <- function(..., correct = NULL) {
 
 </exercise>
 
-<exercise id="2" title="R Graphics">
+<exercise id="2" title="Test your knowledge of R Graphics">
 
-Let's ask some questions about the slides. Whats the correct answer?
+Which of the following is a contributed R package?
 
 ```{r, echo = FALSE, results = "asis"}
-cat(opts("Answer one" = "This is not the correct answer.",
-         "Answer two" = "Good job!",
-         "Answer three" = "This is not correct either.",
+cat(mc_opts("ggplot2" = "That's correct! ggplot2 was developed by Hadley Wickham as part of his PhD.",
+         "grid" = "No, this is a core package so it's already installed.",
+         "graphics" = "No, this a core package and loads automatically when you launch R.",
+         "grDevices" = "No, this a core package and loads automatically when you launch R.",
+         correct = 1))
+```
+
+Which R package actually renders the graphics in R?
+
+```{r, echo = FALSE, results = "asis"}
+cat(mc_opts("ggplot2" = "No, that's incorrect.",
+         "grid" = "No, that's incorrect.",
+         "graphics" = "No, that's incorrect.",
+         "grDevices" = "Yes, that's right!",
+         correct = 4))
+```
+
+Remember that there are two primary graphic models in R: the base and grid graphics. Which one is `ggplot2` using?
+
+```{r, echo = FALSE, results = "asis"}
+cat(mc_opts("base" = "No, that's incorrect.",
+         "grid" = "Yes that's right! Well done!",
          correct = 2))
 ```
 
 
+</exercise>
 
+
+
+<exercise id="3" title="Getting started with `ggplot2`" type="slides">
+
+`r slides("chapter7_02_ggplot2intro")`
+
+</exercise>
+
+
+<exercise id="4" title="Make basic plots with `ggplot2`">
+
+```{r cars-plot, code = readLines("../exercises/solution_07_04.R"), echo = FALSE}
+```
+```{r}
+str(cars)
+```
+
+
+```{teachr 07_04, outdir = "../exercises"}
+library(ggplot2)
+ggplot(data = <<cars>>, 
+       mapping = aes(x = <<speed>>, 
+                     y = <<dist>>)) +
+  geom_<<point>>()
+```
+
+
+<codeblock id="07_04">
+
+This is a hint.
+
+</codeblock>
+
+
+</exercise>
+
+
+<exercise id="5" title="Multiple layers in `ggplot2`">
+`r slides("chapter7_03_ggplot2layers")`
+</exercise>
+
+
+<exercise id="7" title="Scales and guides in `ggplot2`">
+`r slides("chapter7_04_ggplot2scales")`
+</exercise>
+
+<exercise id="9" title="Multiple plots in one figure">
+`r slides("chapter7_05_ggplot2facet")`
+</exercise>
+
+<exercise id="11" title="Customise the look with themes in `ggplot2`">
+`r slides("chapter7_06_ggplot2theme")`
 </exercise>
