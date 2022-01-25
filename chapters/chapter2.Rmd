@@ -1031,5 +1031,7 @@ Note that variables that are defined inside a function are not accessible outsid
 
 
 **Congratulations! This is the end of R Programming Basics!**
+Here is a useful cheat sheet from the Institute for Quantitative Social Science at Harvard Univeristy that summarize introductoary R commands nicely: https://iqss.github.io/dss-workshops/R/Rintro/base-r-cheat-sheet.pdf
+
 
 </exercise>
