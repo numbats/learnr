@@ -168,6 +168,25 @@ pre code {
 </div>
 
 
+<style>
+.target {
+  border: 3px solid black;
+  padding: 10px;
+  padding-top: 35px;
+  margin-bottom: 10px;
+}
+.target:before {
+  position: absolute;
+  content: "🎯 your target plot";
+  padding: 5px;
+  margin-left: -13px;
+  margin-top: -38px;
+  background-color: #003366;
+  font-size: 12pt;
+  border: 3px solid black;
+  color: white;
+}
+</style>
 <p><exercise id="1" title="R Graphics" type="slides"></p>
 <iframe src="../slides/chapter7_01_rgraphics.html" width="800" height="500">
 </iframe>
@@ -206,29 +225,362 @@ Yes that’s right! Well done!</p>
 </iframe>
 <p></exercise></p>
 <p><exercise id="4" title="Make basic plots with `ggplot2`"></p>
-<p><img src="ch7/cars-plot-1.png" width="384" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>str(cars)</code></pre>
-<pre><code>## &#39;data.frame&#39;:    50 obs. of  2 variables:
-##  $ speed: num  4 4 7 7 8 9 10 10 10 11 ...
-##  $ dist : num  2 10 4 22 16 10 18 26 34 17 ...</code></pre>
-<p><codeblock id="07_04"></p>
+<p>For the following questions we are going to use
+<code>BudgetFood</code> data from the <code>Ecdat</code> package which
+contains the budget share of food for Spanish households. You can load
+the dataset and see the structure of the data below.</p>
+<pre class="r"><code>library(Ecdat)
+str(BudgetFood)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    23972 obs. of  6 variables:
+##  $ wfood : num  0.468 0.313 0.376 0.44 0.404 ...
+##  $ totexp: num  1290941 1277978 845852 527698 1103220 ...
+##  $ age   : num  43 40 28 60 37 35 40 68 43 51 ...
+##  $ size  : num  5 3 3 1 5 4 4 2 9 7 ...
+##  $ town  : num  2 2 2 2 2 2 2 2 2 2 ...
+##  $ sex   : Factor w/ 2 levels &quot;man&quot;,&quot;woman&quot;: 1 1 1 2 1 1 1 2 1 1 ...</code></pre>
+<p>The meaning of the variables are described below:</p>
+<ul>
+<li><code>wfood</code>: percentage of total expenditure which the
+household has spent on food</li>
+<li><code>totexp</code>: total expenditure of the household</li>
+<li><code>age</code>: age of reference person in the household</li>
+<li><code>size</code>: size of the household</li>
+<li><code>town</code>: size of the town where the household is placed
+categorized into 5 groups: 1 for small towns, 5 for big ones</li>
+<li><code>sex</code>: sex of reference person (man,woman)</li>
+</ul>
+<p>Try to recreate the scatter plot below. Is there anything that
+unusual that you notice about the plot?</p>
+<div class="target">
+<img src="ch7/plot4A-1.png" width="576" style="display: block; margin: auto;" />
+</div>
+<p><codeblock id="07_04A"></p>
 <p></codeblock></p>
-<p><codeblock id="07_04"></p>
-<p>This is a hint.</p>
+<pre class="r">
+<code> library(ggplot2) </code>
+<code> library(Ecdat) </code>
+<code> ggplot(data = _____,  </code>
+<code>        mapping = aes(x = _____,  </code>
+<code>                      y = _____)) + </code>
+<code>   geom______() </code>
+</pre>
+<details open>
+<summary>
+Hint
+</summary>
+The scatter plots are created using <code>geom_point</code>.
+</details>
+<div class="target">
+<img src="ch7/plot4B-1.png" width="576" style="display: block; margin: auto;" />
+</div>
+<p><codeblock id="07_04B"></p>
 <p></codeblock></p>
+<pre class="r">
+<code> library(ggplot2) </code>
+<code> library(Ecdat) </code>
+<code> ggplot(data = _____,  </code>
+<code>        mapping = aes(x = _____,  </code>
+<code>                      y = _____)) + </code>
+<code>   geom______() </code>
+</pre>
+<details open>
+<summary>
+Hint
+</summary>
+The hex plots are created using <code>geom_hex</code>.
+</details>
+<div class="target">
+<img src="ch7/plot4C-1.png" width="576" style="display: block; margin: auto;" />
+</div>
+<p><codeblock id="07_04C"></p>
+<p></codeblock></p>
+<pre class="r">
+<code> library(ggplot2) </code>
+<code> library(Ecdat) </code>
+<code> ggplot(data = _____,  </code>
+<code>        mapping = aes(x = _____,  </code>
+<code>                      y = _____)) + </code>
+<code>   geom______() </code>
+</pre>
+<details open>
+<summary>
+Hint
+</summary>
+This is a hint.
+</details>
+<div class="target">
+<img src="ch7/plot4D-1.png" width="576" style="display: block; margin: auto;" />
+</div>
+<p><codeblock id="07_04D"></p>
+</codeblock>
+<pre class="r">
+<code> library(ggplot2) </code>
+<code> library(Ecdat) </code>
+<code> ggplot(data = _____,  </code>
+<code>        mapping = aes(x = _____,  </code>
+<code>                      y = _____)) + </code>
+<code>   geom______() </code>
+</pre>
+<details open>
+<summary>
+Hint
+</summary>
+This is a hint.
+</details>
+<div class="target">
+<img src="ch7/plot4E-1.png" width="576" style="display: block; margin: auto;" />
+</div>
+<p><codeblock id="07_04E"></p>
+</codeblock>
+<pre class="r">
+<code> library(ggplot2) </code>
+<code> library(Ecdat) </code>
+<code> ggplot(data = _____,  </code>
+<code>        mapping = aes(x = _____)) + </code>
+<code>   geom______(binwidth = 0.001) </code>
+</pre>
+<details open>
+<summary>
+Hint
+</summary>
+This is a hint.
+</details>
+<div class="target">
+<img src="ch7/plot4F-1.png" width="576" style="display: block; margin: auto;" />
+</div>
+<p><codeblock id="07_04F"></p>
+</codeblock>
+<pre class="r">
+<code> library(ggplot2) </code>
+<code> library(Ecdat) </code>
+<code> ggplot(data = _____,  </code>
+<code>        mapping = aes(x = _____)) + </code>
+<code>   geom______() </code>
+</pre>
+<details open>
+<summary>
+Hint
+</summary>
+This is a hint.
+</details>
 <p></exercise></p>
 <p><exercise id="5" title="Multiple layers in `ggplot2`">
 <iframe src='../slides/chapter7_03_ggplot2layers.html' width='800' height='500'></iframe>
 </exercise></p>
+<p><exercise id="6" title="Practice creating multiple layers"></p>
+<p>We are again going to use the <code>BudgetFood</code> data from the
+<code>Ecdat</code> package to make the plots.</p>
+<p>Try to recreate the scatter plot below. Is there anything that
+unusual that you notice about the plot?</p>
+<div class="target">
+<img src="ch7/plot6A-1.png" width="576" style="display: block; margin: auto;" />
+</div>
+<p><codeblock id="07_06A"></p>
+</codeblock>
+<pre class="r">
+<code> library(ggplot2) </code>
+<code> library(Ecdat) </code>
+<code> ggplot(data = _____,  </code>
+<code>        mapping = aes(x = _____)) + </code>
+<code>   geom______(aes(y = stat(density))) + </code>
+<code>   geom______(color = "red") </code>
+</pre>
+<details open>
+<summary>
+Hint
+</summary>
+<ol start="20" style="list-style-type: upper-roman">
+<li></li>
+</ol>
+</details>
+<div class="target">
+<img src="ch7/plot6B-1.png" width="576" style="display: block; margin: auto;" />
+</div>
+<p><codeblock id="07_06B"></p>
+</codeblock>
+<pre class="r">
+<code> library(ggplot2) </code>
+<code> library(Ecdat) </code>
+<code> ggplot(data = _____,  </code>
+<code>        mapping = aes(x = _____, </code>
+<code>                      y = _____)) + </code>
+<code>   geom______(_____) + </code>
+<code>   geom______(_____ = 0.1)  </code>
+</pre>
+<details open>
+<summary>
+Hint
+</summary>
+<ol start="20" style="list-style-type: upper-roman">
+<li></li>
+</ol>
+</details>
+<div class="target">
+<img src="ch7/plot6C-1.png" width="576" style="display: block; margin: auto;" />
+</div>
+<p><codeblock id="07_06C"></p>
+</codeblock>
+<pre class="r">
+<code> library(ggplot2) </code>
+<code> library(Ecdat) </code>
+<code> ggplot(data = _____,  </code>
+<code>        mapping = aes(x = _____, </code>
+<code>                      y = _____)) + </code>
+<code>   geom______() + </code>
+<code>   geom______(color = "red", </code>
+<code>                   method = loess, </code>
+<code>                   formula = y ~ x) </code>
+</pre>
+<details open>
+<summary>
+Hint
+</summary>
+<ol start="20" style="list-style-type: upper-roman">
+<li></li>
+</ol>
+</details>
+<div class="target">
+<img src="ch7/plot6D-1.png" width="576" style="display: block; margin: auto;" />
+</div>
+<p><codeblock id="07_06D"></p>
+</codeblock>
+<pre class="r">
+<code> library(ggplot2) </code>
+<code> library(Ecdat) </code>
+<code> ggplot(data = _____,  </code>
+<code>        mapping = aes(x = _____)) + </code>
+<code>   geom______() + </code>
+<code>   geom______(aes(label = _____), </code>
+<code>                  vjust = -0.3, </code>
+<code>                  stat = _____) </code>
+</pre>
+<details open>
+<summary>
+Hint
+</summary>
+<ol start="20" style="list-style-type: upper-roman">
+<li></li>
+</ol>
+</details>
+<div class="target">
+<img src="ch7/plot6E-1.png" width="576" style="display: block; margin: auto;" />
+</div>
+<p><codeblock id="07_06E"></p>
+</codeblock>
+<pre class="r">
+<code> library(tidyverse) </code>
+<code> library(Ecdat) </code>
+<code> dat <- BudgetFood %>%  </code>
+<code>   filter(!is.na(sex)) %>%  </code>
+<code>   group_by(town, sex) %>%  </code>
+<code>   summarise(totexp = mean(totexp)) </code>
+<code>  </code>
+<code> _____ + </code>
+<code>   geom______(data = subset(dat, sex=="woman"), </code>
+<code>                aes(x = _____, </code>
+<code>                    y = _____, </code>
+<code>                   _____)) + </code>
+<code>   geom______(data = subset(dat, sex=="man"), </code>
+<code>                aes(x = _____, </code>
+<code>                    y = _____, </code>
+<code>                   _____)) </code>
+</pre>
+<details open>
+<summary>
+Hint
+</summary>
+<ol start="20" style="list-style-type: upper-roman">
+<li></li>
+</ol>
+</details>
+<p></exercise></p>
 <p><exercise id="7" title="Scales and guides in `ggplot2`">
 <iframe src='../slides/chapter7_04_ggplot2scales.html' width='800' height='500'></iframe>
 </exercise></p>
+<p><exercise id="8" title="Practice changing scales and guides."></p>
+<p></exercise></p>
 <p><exercise id="9" title="Multiple plots in one figure">
 <iframe src='../slides/chapter7_05_ggplot2facet.html' width='800' height='500'></iframe>
 </exercise></p>
+<exercise id="10" title="Practice combining multiple plots.">
+<div class="target">
+<img src="ch7/plot7A-1.png" width="576" style="display: block; margin: auto;" />
+</div>
+<p><codeblock id="07_10A"></p>
+</codeblock>
+<pre class="r">
+<code> ggplot(BudgetFood, aes(x = _____)) +  </code>
+<code>   geom_histogram(data = _____, </code>
+<code>                  fill = "grey", binwidth = 1, </code>
+<code>                  aes(y = after_stat(density))) + </code>
+<code>   geom_histogram(aes(y = after_stat(density)), </code>
+<code>                  binwidth = 1) + </code>
+<code>   geom_density(color = "red") + </code>
+<code>   facet______ </code>
+</pre>
+<details open>
+<summary>
+Hint
+</summary>
+<ol start="20" style="list-style-type: upper-roman">
+<li></li>
+</ol>
+</details>
+<div class="target">
+<img src="ch7/plot7B-1.png" width="576" style="display: block; margin: auto;" />
+</div>
+<p><codeblock id="07_10B"></p>
+</codeblock>
+<pre class="r">
+<code> ggplot(subset(BudgetFood, !is.na(sex)), aes(age)) + </code>
+<code>   geom_histogram(aes(y = _____)) + </code>
+<code>   geom_text(x = 35, y = 0.035,  </code>
+<code>             data = function(.data) .data %>%  </code>
+<code>               group_by(sex, town) %>%  </code>
+<code>               count(), </code>
+<code>             aes(label = n)) + </code>
+<code>   facet______ </code>
+</pre>
+<details open>
+<summary>
+Hint
+</summary>
+<ol start="20" style="list-style-type: upper-roman">
+<li></li>
+</ol>
+</details>
+<div class="target">
+<img src="ch7/plot7C-1.png" width="576" style="display: block; margin: auto;" />
+</div>
+<p><codeblock id="07_10C"></p>
+</codeblock>
+<pre class="r">
+<code> library(patchwork) </code>
+<code> g1 <- ggplot(BudgetFood,  </code>
+<code>              aes(factor(size), wfood, color = sex)) + </code>
+<code>   geom_boxplot()  </code>
+<code>  </code>
+<code> g2 <- ggplot(BudgetFood,  </code>
+<code>              aes(factor(size), totexp, color = sex)) + </code>
+<code>   geom_boxplot() +  </code>
+<code>   scale_y_log10() </code>
+<code>  </code>
+<code> g1 / g2 + plot_layout(guides = "collect") </code>
+</pre>
+<details open>
+<summary>
+Hint
+</summary>
+<ol start="20" style="list-style-type: upper-roman">
+<li></li>
+</ol>
+</details>
+<p></exercise></p>
 <p><exercise id="11" title="Customise the look with themes in `ggplot2`">
 <iframe src='../slides/chapter7_06_ggplot2theme.html' width='800' height='500'></iframe>
 </exercise></p>
+<p><exercise id="12" title="Make publication ready plots."></p>
+<p></exercise></p>
 
 
 

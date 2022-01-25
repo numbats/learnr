@@ -14,17 +14,67 @@ output:
 
 ```{r setup, include = FALSE}
 library(teachr)
+knitr::knit_hooks$set(class = function(before, options, envir) {
+  if(before) {
+    sprintf("<div class='%s'>", options$class)
+  } else {
+    "</div>"
+  }
+})
 knitr::opts_chunk$set(fig.path = "ch7/",
                       fig.retina = 2,
-                      fig.width = 4, 
+                      fig.width = 6, 
                       fig.height = 4,
                       fig.align = "center",
-                      cache = FALSE,
-                      cache.path = "cache/")
+                      cache = TRUE,
+                      cache.path = "cache/",
+                      message = FALSE,
+                      warning = FALSE)
 # `slides` and `opts` (now called `mc_opts` functions now live in the `teachr` package
 # install latest at https://github.com/numbats/teachr
 
+codeblock <- function(id, hint) {
+  if(knitr::is_html_output(excludes = c("markdown"))) {
+    out <- c('<pre class="r">',
+             paste("<code>",
+                   readLines(sprintf("../exercises/exc_%s.R", id)),
+                   "</code>"),
+             '</pre>',
+             '<details open><summary>Hint</summary>',
+             hint,
+             '</details>')
+  } else {
+    out <- c(glue::glue('<codeblock id="{id}">'),
+             hint,
+             "</codeblock>")
+  }
+  paste(out, collapse = "\n")
+}
 ```
+
+
+
+
+
+<style>
+.target {
+  border: 3px solid black;
+  padding: 10px;
+  padding-top: 35px;
+  margin-bottom: 10px;
+}
+.target:before {
+  position: absolute;
+  content: "🎯 your target plot";
+  padding: 5px;
+  margin-left: -13px;
+  margin-top: -38px;
+  background-color: #003366;
+  font-size: 12pt;
+  border: 3px solid black;
+  color: white;
+}
+</style>
 
 
 <exercise id="1" title="R Graphics" type="slides">
@@ -77,27 +127,114 @@ cat(mc_opts("base" = "No, that's incorrect.",
 
 <exercise id="4" title="Make basic plots with `ggplot2`">
 
-```{r cars-plot, code = readLines("../exercises/solution_07_04.R"), echo = FALSE}
+For the following questions we are going to use `BudgetFood` data from the `Ecdat` package which contains the budget share of food for Spanish households. You can load the dataset and see the structure of the data below.
+
+```{r, message = FALSE, warning = FALSE}
+library(Ecdat)
+str(BudgetFood)
 ```
-```{r}
-str(cars)
+The meaning of the variables are described below:
+
+* `wfood`: percentage of total expenditure which the household has spent on food
+* `totexp`: total expenditure of the household
+* `age`: age of reference person in the household
+* `size`: size of the household
+* `town`: size of the town where the household is placed categorized into 5 groups: 1 for small towns, 5 for big ones
+* `sex`: sex of reference person (man,woman)
+
+Try to recreate the scatter plot below. Is there anything that unusual that you notice about the plot?
+
+```{r plot4A, code = readLines("../exercises/solution_07_04A.R"), echo = FALSE, class = "target"}
 ```
 
-
-```{teachr 07_04, outdir = "../exercises"}
+```{teachr 07_04A, outdir = "../exercises"}
 library(ggplot2)
-ggplot(data = <<cars>>, 
-       mapping = aes(x = <<speed>>, 
-                     y = <<dist>>)) +
+library(Ecdat)
+ggplot(data = <<BudgetFood>>, 
+       mapping = aes(x = <<size>>, 
+                     y = <<totexp>>)) +
   geom_<<point>>()
 ```
 
+```{r, echo = FALSE, results = "asis"}
+cat(codeblock("07_04A", "The scatter plots are created using `geom_point`."))
+```
 
-<codeblock id="07_04">
+```{r plot4B, code = readLines("../exercises/solution_07_04B.R"), echo = FALSE, class = "target"}
+```
 
-This is a hint.
+```{teachr 07_04B, outdir = "../exercises"}
+library(ggplot2)
+library(Ecdat)
+ggplot(data = <<BudgetFood>>, 
+       mapping = aes(x = <<size>>, 
+                     y = <<totexp>>)) +
+  geom_<<hex>>()
+```
 
-</codeblock>
+```{r, echo = FALSE, results = "asis"}
+cat(codeblock("07_04B", "The hex plots are created using `geom_hex`."))
+```
+
+
+```{r plot4C, code = readLines("../exercises/solution_07_04C.R"), echo = FALSE, class = "target"}
+```
+
+```{teachr 07_04C, outdir = "../exercises"}
+library(ggplot2)
+library(Ecdat)
+ggplot(data = <<BudgetFood>>, 
+       mapping = aes(x = <<sex>>, 
+                     y = <<age>>)) +
+  geom_<<boxplot>>()
+```
+
+```{r, echo = FALSE, results = "asis"}
+cat(codeblock("07_04C", "This is a hint."))
+```
+
+
+```{r plot4D, code = readLines("../exercises/solution_07_04D.R"), echo = FALSE, class = "target"}
+```
+
+```{teachr 07_04D, outdir = "../exercises"}
+library(ggplot2)
+library(Ecdat)
+ggplot(data = <<BudgetFood>>, 
+       mapping = aes(x = <<factor(town)>>, 
+                     y = <<totexp>>)) +
+  geom_<<violin>>()
+```
+```{r, echo = FALSE, results = "asis"}
+cat(codeblock("07_04D", "This is a hint."))
+```
+
+```{r plot4E, code = readLines("../exercises/solution_07_04E.R"), echo = FALSE, class = "target"}
+```
+```{teachr 07_04E, outdir = "../exercises"}
+library(ggplot2)
+library(Ecdat)
+ggplot(data = <<BudgetFood>>, 
+       mapping = aes(x = <<wfood>>)) +
+  geom_<<histogram>>(binwidth = 0.001)
+```
+```{r, echo = FALSE, results = "asis"}
+cat(codeblock("07_04E", "This is a hint."))
+```
+
+
+```{r plot4F, code = readLines("../exercises/solution_07_04F.R"), echo = FALSE, class = "target"}
+```
+```{teachr 07_04F, outdir = "../exercises"}
+library(ggplot2)
+library(Ecdat)
+ggplot(data = <<BudgetFood>>, 
+       mapping = aes(x = <<wfood>>)) +
+  geom_<<density>>()
+```
+```{r, echo = FALSE, results = "asis"}
+cat(codeblock("07_04F", "This is a hint."))
+```
 
 
 </exercise>
@@ -108,14 +245,170 @@ This is a hint.
 </exercise>
 
 
+<exercise id="6" title="Practice creating multiple layers">
+
+We are again going to use the `BudgetFood` data from the `Ecdat` package to make the plots.
+
+
+Try to recreate the scatter plot below. Is there anything that unusual that you notice about the plot?
+
+```{r plot6A, code = readLines("../exercises/solution_07_06A.R"), echo = FALSE, class = "target"}
+```
+```{teachr 07_06A, outdir = "../exercises"}
+library(ggplot2)
+library(Ecdat)
+ggplot(data = <<BudgetFood>>, 
+       mapping = aes(x = <<totexp>>)) +
+  geom_<<histogram>>(aes(y = after_stat(density))) +
+  geom_<<density>>(color = "red")
+```
+```{r, echo = FALSE, results = "asis"}
+cat(codeblock("07_06A", "XX."))
+```
+
+```{r plot6B, code = readLines("../exercises/solution_07_06B.R"), echo = FALSE, class = "target"}
+```
+```{teachr 07_06B, outdir = "../exercises"}
+library(ggplot2)
+library(Ecdat)
+ggplot(data = <<subset(BudgetFood, !is.na(sex))>>, 
+       mapping = aes(x = <<sex>>,
+                     y = <<age>>)) +
+  geom_<<violin>>(<<aes(fill = sex)>>) +
+  geom_<<boxplot>>(<<width>> = 0.1) 
+```
+```{r, echo = FALSE, results = "asis"}
+cat(codeblock("07_06B", "XX."))
+```
+
+```{r plot6C, code = readLines("../exercises/solution_07_06C.R"), echo = FALSE, class = "target"}
+```
+```{teachr 07_06C, outdir = "../exercises"}
+library(ggplot2)
+library(Ecdat)
+ggplot(data = <<subset(BudgetFood, size < 30)>>, 
+       mapping = aes(x = <<size>>,
+                     y = <<totexp>>)) +
+  geom_<<point>>() +
+  geom_<<smooth>>(color = "red",
+                  method = loess,
+                  formula = y ~ x)
+```
+```{r, echo = FALSE, results = "asis"}
+cat(codeblock("07_06C", "XX."))
+```
+
+```{r plot6D, code = readLines("../exercises/solution_07_06D.R"), echo = FALSE, class = "target", cache = FALSE}
+```
+```{teachr 07_06D, outdir = "../exercises"}
+library(ggplot2)
+library(Ecdat)
+ggplot(data = <<subset(BudgetFood, !is.na(sex))>>, 
+       mapping = aes(x = <<sex>>)) +
+  geom_<<bar>>() +
+  geom_<<text>>(aes(label = <<after_stat(count)>>),
+                 vjust = -0.3,
+                 stat = <<"count">>)
+```
+```{r, echo = FALSE, results = "asis", cache = FALSE}
+cat(codeblock("07_06D", "XX."))
+```
+
+```{r plot6E, code = readLines("../exercises/solution_07_06E.R"), echo = FALSE, class = "target", cache = FALSE}
+```
+```{teachr 07_06E, outdir = "../exercises"}
+library(tidyverse)
+library(Ecdat)
+dat <- BudgetFood %>% 
+  filter(!is.na(sex)) %>% 
+  group_by(town, sex) %>% 
+  summarise(totexp = mean(totexp))
+
+<<ggplot()>> +
+  geom_<<col>>(data = subset(dat, sex=="woman"),
+               aes(x = <<factor(town)>>,
+                   y = <<totexp>>,
+                  <<fill = "woman">>)) +
+  geom_<<col>>(data = subset(dat, sex=="man"),
+               aes(x = <<factor(town)>>,
+                   y = <<-totexp>>,
+                  <<fill = "man">>))
+```
+```{r, echo = FALSE, results = "asis", cache = FALSE}
+cat(codeblock("07_06E", "XX."))
+```
+
+</exercise>
+
 <exercise id="7" title="Scales and guides in `ggplot2`">
 `r slides("chapter7_04_ggplot2scales")`
+</exercise>
+
+<exercise id="8" title="Practice changing scales and guides.">
+
+
 </exercise>
 
 <exercise id="9" title="Multiple plots in one figure">
 `r slides("chapter7_05_ggplot2facet")`
 </exercise>
 
+<exercise id="10" title="Practice combining multiple plots.">
+```{r plot7A, code = readLines("../exercises/solution_07_10A.R"), echo = FALSE, class = "target", cache = FALSE}
+```
+```{teachr 07_10A, outdir = "../exercises"}
+ggplot(BudgetFood, aes(x = <<age>>)) + 
+  geom_histogram(data = <<select(BudgetFood, -town)>>,
+                 fill = "grey", binwidth = 1,
+                 aes(y = after_stat(density))) +
+  geom_histogram(aes(y = after_stat(density)),
+                 binwidth = 1) +
+  geom_density(color = "red") +
+  facet_<<wrap(~town)>>
+```
+```{r, echo = FALSE, results = "asis", cache = FALSE}
+cat(codeblock("07_10A", "XX."))
+```
+
+```{r plot7B, code = readLines("../exercises/solution_07_10B.R"), echo = FALSE, class = "target", cache = FALSE}
+```
+```{teachr 07_10B, outdir = "../exercises"}
+ggplot(subset(BudgetFood, !is.na(sex)), aes(age)) +
+  geom_histogram(aes(y = <<after_stat(density)>>)) +
+  geom_text(x = 35, y = 0.035, 
+            data = function(.data) .data %>% 
+              group_by(sex, town) %>% 
+              count(),
+            aes(label = n)) +
+  facet_<<grid(sex ~ town)>>
+```
+```{r, echo = FALSE, results = "asis", cache = FALSE}
+cat(codeblock("07_10B", "XX."))
+```
+```{r plot7C, code = readLines("../exercises/solution_07_10C.R"), echo = FALSE, class = "target", cache = FALSE}
+```
+```{teachr 07_10C, outdir = "../exercises"}
+library(patchwork)
+g1 <- ggplot(BudgetFood, 
+             aes(factor(size), wfood, color = sex)) +
+  geom_boxplot() 
+
+g2 <- ggplot(BudgetFood, 
+             aes(factor(size), totexp, color = sex)) +
+  geom_boxplot() + 
+  scale_y_log10()
+
+g1 / g2 + plot_layout(guides = "collect")
+```
+```{r, echo = FALSE, results = "asis", cache = FALSE}
+cat(codeblock("07_10C", "XX."))
+```
+</exercise>
+
 <exercise id="11" title="Customise the look with themes in `ggplot2`">
 `r slides("chapter7_06_ggplot2theme")`
+</exercise>
+
+<exercise id="12" title="Make publication ready plots.">
+
 </exercise>
