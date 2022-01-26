@@ -2,7 +2,7 @@
 <html lang="en"><head>
   <meta charset="utf-8">
   <meta name="generator" content="quarto-0.3.34">
-  <title>Layers in ggplot2</title>
+  <title>Multiple layers in ggplot2</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -392,7 +392,7 @@
     <div class="slides">
 
 <section id="title-slide" class="center">
-  <h1 class="title">Layers in <code>ggplot2</code></h1>
+  <h1 class="title">Multiple layers in <code>ggplot2</code></h1>
 </section>
 
 <section id="layer" class="slide level2">
@@ -443,8 +443,18 @@
 <h2>Inheriting data and mapping</h2>
 <ul>
 <li>A layer inherits the data and mapping from the initialised ggplot object by default</li>
-<li>You can add layer specific data and mapping</li>
 </ul>
+
+<img data-src="images/ggplot-multiple-layers.png" class="r-stretch"></section>
+<section id="layer-specific-data-and-aesthetic-mapping" class="slide level2">
+<h2>Layer-specific data and aesthetic mapping</h2>
+
+<ul>
+<li>For each layer, aesthetic and/or data can be overwritten</li>
+</ul>
+<img data-src="images/ggplot-multiple-layers-data-mapping.png" class="r-stretch"></section>
+<section class="slide level2">
+
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds) <span class="sc">+</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> price, <span class="at">color =</span> cut)) <span class="sc">+</span> </span>
@@ -452,7 +462,50 @@
 <span id="cb4-4"><a href="#cb4-4"></a>               <span class="at">width =</span> <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="images/plot2-inheritance-1.png" width="768" class="r-stretch quarto-figure-center"><div class="footer footer-default">
+<img data-src="images/plot2-inheritance-1.png" width="768" class="r-stretch quarto-figure-center"></section>
+<section id="aesthetic-or-attribute" class="slide level2">
+<h2>Aesthetic or Attribute?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Not what you want:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(carat, price)) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"blue"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/aes-map-1.png" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p>What you want:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(carat, price)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/attr-map-1.png" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="bonus-tip" class="slide level2">
+<h2>Bonus tip</h2>
+<ul>
+<li>Use <code>I()</code> operator to mean “as-is” in aesthetic mapping.</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(carat, price)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">I</span>(<span class="st">"blue"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="images/I-map-1.png" width="384" class="r-stretch quarto-figure-center"><div class="footer footer-default">
 
 </div>
 </section>

@@ -17,7 +17,6 @@ type: slides
 ## What is `ggplot2`?
 
 
-
 * `ggplot2` is an R-package that was initially developed by Hadley Wickham as part of his PhD
 * `ggplot2` implements a particular interpretation of the "The Grammar of Graphics" by Leland Wilkinson 
 * It is one of the most popular packages in R for data visualisation and widely used in scientific outputs, reports, and even news articles
@@ -29,7 +28,7 @@ type: slides
 
 * To use `ggplot2`, you first have to install the package 
 
-::: {.cell layout-align="center" hash='cache/unnamed-chunk-2_f68ac0ad89b2b0deb9d86786573d3dc8'}
+::: {.cell layout-align="center" hash='cache/unnamed-chunk-2_f976565e8cd956a52ccc069d9fffb904'}
 
 ```{.r .cell-code}
 install.packages("ggplot2")
@@ -38,7 +37,7 @@ install.packages("ggplot2")
 
 * Once you have installed it, you can load the package:
 
-::: {.cell layout-align="center" hash='cache/unnamed-chunk-4_62cdab7f42fd5efd7df0a6c0f5859a3f'}
+::: {.cell layout-align="center" hash='cache/unnamed-chunk-4_9c1f6f893e1bc48e52fd0dfc92d129a9'}
 
 ```{.r .cell-code}
 library(ggplot2)
@@ -46,7 +45,7 @@ library(ggplot2)
 :::
 * `ggplot2` is part of the `tidyverse` family so if you load `tidyverse`, you don't need to load `ggplot2` like above
 
-::: {.cell layout-align="center" hash='cache/unnamed-chunk-6_50c1ef4e89e8e871160ea8797212efcf'}
+::: {.cell layout-align="center" hash='cache/unnamed-chunk-6_ef2a23a1103c79dbd60b56ac29f12102'}
 
 ```{.r .cell-code}
 library(tidyverse)
@@ -55,11 +54,270 @@ library(tidyverse)
 
 ---
 
-## Motivating data 1 💎 diamonds
+## Basic structure of `ggplot`
+
+![](images/ggplot-basic-str.png)
+
+1. **data** as `data.frame`
+2. a set of **aesthetic** mappings between variables in the data and visual properties
+3. at least one **layer** which describes how to render each observation
+
+
+---
+
+## Initialising the plot
+
+
+::: {.cell layout-align="center" hash='cache/plot-initial_12fa5c0fcc3f1c526d8a58a1105410a6'}
+
+```{.r .cell-code}
+ggplot(data = diamonds) 
+```
+
+::: {.cell-output-display}
+![](images/chapter7-02/plot-initial-1.png){fig-align='center' width=576}
+:::
+:::
+
+* When there is no layer, it produces a blank layer (`geom_blank()`) like the above plot.
+
+---
+
+## Mapping data variables to aesthetics
+
+::: {.cell layout-align="center" hash='cache/plot-mapping_b880aa5c32f9d84b869648433cae9643'}
+
+```{.r .cell-code}
+ggplot(data = diamonds,
+       mapping = aes(x = carat, y = price)) 
+```
+
+::: {.cell-output-display}
+![](images/chapter7-02/plot-mapping-1.png){fig-align='center' width=576}
+:::
+:::
+
+* This get the scale ready but no layer is defined so nothing is rendered in the panel.
+
+---
+
+# `geom` layers
+
+
+---
+
+
+
+## Distribution of a single variable
+
+::: {.cell layout-align="center" hash='cache/catalogue-single_02d16fc0f3b6d8e9a37f180ab32d147f'}
+
+:::
+
+::: {.cell layout-align="center" hash='cache/unnamed-chunk-8_fabd5431e08f124705960da638b27eda'}
+<style type="text/css">
+.catalogue img {
+  margin-right: 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  width: 20%;
+}
+</style>
+:::
+
+<div class="catalogue">
+<img src="images/chapter7-02/catalogue-single-1.png"/><img src="images/chapter7-02/catalogue-single-2.png"/><img src="images/chapter7-02/catalogue-single-3.png"/><img src="images/chapter7-02/catalogue-single-4.png"/><img src="images/chapter7-02/catalogue-single-5.png"/><img src="images/chapter7-02/catalogue-single-6.png"/>
+</div>
+
+---
+
+## Motivating data 💰 Wages
+
+* A survey of average hourly earnings in United States
+* Each observation is an individual
+
+::: {.cell layout-align="center" hash='cache/unnamed-chunk-10_1a4b7bd6c634097cfd6164815b80ca26'}
+
+```{.r .cell-code}
+data(CPSch3, package = "Ecdat")
+str(CPSch3)
+```
+
+::: {.cell-output-stdout}
+```
+'data.frame':	11130 obs. of  3 variables:
+ $ year: int  1992 1992 1992 1992 1992 1992 1992 1992 1992 1992 ...
+ $ ahe : num  13 11.6 17.4 10.1 16.8 ...
+ $ sex : Factor w/ 2 levels "male","female": 1 1 1 2 1 2 2 1 1 1 ...
+```
+:::
+:::
+
+* `year` is the survey year
+* `ahe` is the average hourly earnings
+* `sex` is the sex (male or female)
+
+---
+
+## A histogram with `geom_histogram()`
+
+::: {.cell layout-align="center" hash='cache/geom-histogram_d2a7be73b5edf83c45cbe57a0dfa706f'}
+
+```{.r .cell-code}
+ggplot(data = CPSch3, 
+       mapping = aes(x = ahe)) +
+  geom_histogram() +
+  labs(x = "Average hourly earnings (US$)")
+```
+
+::: {.cell-output-display}
+![](images/chapter7-02/geom-histogram-1.png){fig-align='center' width=576}
+:::
+:::
+
+---
+
+## A density plot with `geom_density()`
+
+::: {.cell layout-align="center" hash='cache/geom-density_6cfd76d81ea71e76c87198b152d62f4e'}
+
+```{.r .cell-code}
+ggplot(data = CPSch3, 
+       mapping = aes(x = ahe)) +
+  geom_density() +
+  labs(x = "Average hourly earnings (US$)")
+```
+
+::: {.cell-output-display}
+![](images/chapter7-02/geom-density-1.png){fig-align='center' width=576}
+:::
+:::
+
+---
+
+## A frequency polygon with `geom_freqpoly()`
+
+::: {.cell layout-align="center" hash='cache/geom-freqpoly_5ad60d2040a5be4249c2400774162a39'}
+
+```{.r .cell-code}
+ggplot(data = CPSch3, 
+       mapping = aes(x = ahe)) +
+  geom_freqpoly() +
+  labs(x = "Average hourly earnings (US$)")
+```
+
+::: {.cell-output-display}
+![](images/chapter7-02/geom-freqpoly-1.png){fig-align='center' width=576}
+:::
+:::
+
+---
+
+## A boxplot with `geom_boxplot()`
+
+::: {.cell layout-align="center" hash='cache/geom-boxplot_7d6931a2e5e57314342ff0927d0d3e65'}
+
+```{.r .cell-code}
+ggplot(data = CPSch3, 
+       mapping = aes(x = ahe)) +
+  geom_boxplot() +
+  labs(x = "Average hourly earnings (US$)")
+```
+
+::: {.cell-output-display}
+![](images/chapter7-02/geom-boxplot-1.png){fig-align='center' width=576}
+:::
+:::
+
+---
+
+## A boxplot with `geom_violin()`
+
+::: {.cell layout-align="center" hash='cache/geom-violin_06503d56b66bef3435eba5fe8aaf37c1'}
+
+```{.r .cell-code}
+ggplot(data = CPSch3, 
+       mapping = aes(x = ahe, y = "")) +
+  geom_violin() +
+  labs(x = "Average hourly earnings (US$)")
+```
+
+::: {.cell-output-display}
+![](images/chapter7-02/geom-violin-1.png){fig-align='center' width=576}
+:::
+:::
+
+* Note: a dummy is required for `y` here!
+
+---
+
+## A dotplot with `geom_dotplot()`
+
+::: {.cell layout-align="center" hash='cache/geom-dotplot_2f7355fe3cca53a2c268998b206b27ec'}
+
+```{.r .cell-code}
+ggplot(data = dplyr::sample_n(CPSch3, 200), 
+       mapping = aes(x = ahe)) +
+  geom_dotplot() +
+  labs(x = "Average hourly earnings (US$)")
+```
+
+::: {.cell-output-display}
+![](images/chapter7-02/geom-dotplot-1.png){fig-align='center' width=576}
+:::
+:::
+
+* A dotplot works best for small number of observations so above plot is based on 200 random samples of the data
+
+
+---
+
+## A barplot with `geom_bar()`
+
+::: {.cell layout-align="center" hash='cache/unnamed-chunk-12_5225806a553b9111ea9dc5e1ead5da05'}
+
+```{.r .cell-code}
+ggplot(data = CPSch3, 
+       mapping = aes(x = sex)) +
+  geom_bar()
+```
+
+::: {.cell-output-display}
+![](images/chapter7-02/unnamed-chunk-12-1.png){fig-align='center' width=576}
+:::
+:::
+
+
+---
+
+## Modifying the layer parameters
+
+* Layers often have default parameter values.
+* E.g. in histogram, the default is to have `bins = 30`.
+* It's important to modify the parameters values appropriately
+* More **details about the parameters of a layer is in the documentation** of the corresponding function, e.g. `?geom_histogram` to see the help file on the histogram layer.
+
+---
+
+## Examining two or more variables
+
+::: {.cell layout-align="center" hash='cache/catalogue-two_2a5ad9ed21ff3e571c0b29e44e9b8de4'}
+
+:::
+
+
+<div class="catalogue">
+<img src="images/chapter7-02/catalogue-two-1.png"/><img src="images/chapter7-02/catalogue-two-2.png"/><img src="images/chapter7-02/catalogue-two-3.png"/><img src="images/chapter7-02/catalogue-two-4.png"/><img src="images/chapter7-02/catalogue-two-5.png"/><img src="images/chapter7-02/catalogue-two-6.png"/>
+</div>
+
+
+---
+
+## Motivating data 💎 diamonds
 
 * Let's have a look at the `diamonds` data which contains information about different attributes of diamonds
 
-::: {.cell layout-align="center" hash='cache/unnamed-chunk-8_e9abdaf6c43542b71d39d21062949372'}
+::: {.cell layout-align="center" hash='cache/unnamed-chunk-14_35d8000a738b844cd71701ce4d3a7d95'}
 
 ```{.r .cell-code}
 data(diamonds, package = "ggplot2")
@@ -83,452 +341,5 @@ diamonds
 10  0.23 Very Good H     VS1      59.4    61   338  4     4.05  2.39
 # … with 53,930 more rows
 ```
-:::
-:::
-
-
----
-
-## Initialising the plot
-
-
-::: {.cell layout-align="center" hash='cache/plot-initial_471828803830ba9cc4b2788212a6d8f7'}
-
-```{.r .cell-code}
-ggplot(data = diamonds) 
-```
-
-::: {.cell-output-display}
-![](images/chapter7-02/plot-initial-1.png){fig-align='center' width=384}
-:::
-:::
-
-* When there is no layer, it produces a blank layer like top plot.
-
----
-
-## Mapping data variables to aesthestics
-
-::: {.cell layout-align="center" hash='cache/plot-mapping_a96b0cdc9db300869469b37a48f356e0'}
-
-```{.r .cell-code}
-ggplot(data = diamonds,
-       mapping = aes(x = carat, y = price)) 
-```
-
-::: {.cell-output-display}
-![](images/chapter7-02/plot-mapping-1.png){fig-align='center' width=384}
-:::
-:::
-
-* This get the scale ready but no layer is defined so nothing is rendered in the panel.
-
----
-
-# `geom` layers
-
-
-
----
-
-## A scatterplot with `geom_point()`
-
-::: {.cell layout-align="center" hash='cache/geom-point_fd8be80a63aebcf69a4464841388bd16'}
-
-```{.r .cell-code}
-ggplot(data = diamonds,
-       mapping = aes(x = carat, y = price)) +
-  geom_point()
-```
-
-::: {.cell-output-display}
-![](images/chapter7-02/geom-point-1.png){fig-align='center' width=384}
-:::
-:::
-
-* Scatter plot of price vs carat of diamonds
-* Each point correponds to a dimaond
-
----
-
-## A hexagonal 2D heatmap with `geom_hex()`
-
-::: {.cell layout-align="center" hash='cache/geom-hex_81fa7a6fee78edb2f9ca6121bab71ad1'}
-
-```{.r .cell-code}
-ggplot(data = diamonds,
-       mapping = aes(x = carat, y = price)) +
-  geom_hex()
-```
-
-::: {.cell-output-display}
-![](images/chapter7-02/geom-hex-1.png){fig-align='center' width=384}
-:::
-:::
-
-* The hexagon shows the count of observations within the region.
-
----
-
-## A 2D heatmap with `geom_bin_2d()`
-
-::: {.cell layout-align="center" hash='cache/geom-bin2d_224aa0814db305c6d7a83976a8f31332'}
-
-```{.r .cell-code}
-ggplot(data = diamonds,
-       mapping = aes(x = carat, y = price)) +
-  geom_bin_2d()
-```
-
-::: {.cell-output-display}
-![](images/chapter7-02/geom-bin2d-1.png){fig-align='center' width=384}
-:::
-:::
-
-* Similar to `geom_hex()` but the shapes are boxes.
-
----
-
-## Count of overlapping points with `geom_count()`
-
-::: {.cell layout-align="center" hash='cache/geom-count_2cd2244ec818a227afb7bca43f556073'}
-
-```{.r .cell-code}
-ggplot(data = diamonds,
-       mapping = aes(x = carat, y = price)) +
-  geom_count()
-```
-
-::: {.cell-output-display}
-![](images/chapter7-02/geom-count-1.png){fig-align='center' width=384}
-:::
-:::
-
-
----
-
-## A boxplot with `geom_boxplot()`
-
-::: {.cell layout-align="center" hash='cache/geom-boxplot_a070ed244cfb4d13d969edcd910a62a9'}
-
-```{.r .cell-code}
-ggplot(data = diamonds, 
-       mapping = aes(x = cut, y = price)) +
-  geom_boxplot()
-```
-
-::: {.cell-output-display}
-![](images/chapter7-02/geom-boxplot-1.png){fig-align='center' width=384}
-:::
-:::
-
-
----
-
-## A violin plot with `geom_violin()`
-
-::: {.cell layout-align="center" hash='cache/geom-violin_b38388cf3537bf480ff3a133f9ed36e0'}
-
-```{.r .cell-code}
-ggplot(data = diamonds, 
-       mapping = aes(x = cut, y = price)) +
-  geom_violin()
-```
-
-::: {.cell-output-display}
-![](images/chapter7-02/geom-violin-1.png){fig-align='center' width=384}
-:::
-:::
-
----
-
-## A dot plot with `geom_dotplot()`
-
-::: {.cell layout-align="center" hash='cache/geom-dotplot_c29bd538a396dbcf8dced5b737217580'}
-
-```{.r .cell-code}
-ggplot(data = mtcars, 
-       mapping = aes(x = mpg)) +
-  geom_dotplot()
-```
-
-::: {.cell-output-display}
-![](images/chapter7-02/geom-dotplot-1.png){fig-align='center' width=384}
-:::
-:::
-
----
-
-## A histogram with `geom_histogram()`
-
-::: {.cell layout-align="center" hash='cache/geom-histogram_7741201f8d56e786faaa0ffe9606370f'}
-
-```{.r .cell-code}
-ggplot(data = mtcars, 
-       mapping = aes(x = mpg)) +
-  geom_histogram()
-```
-
-::: {.cell-output-display}
-![](images/chapter7-02/geom-histogram-1.png){fig-align='center' width=384}
-:::
-:::
-
----
-
-## A frequency polygon with `geom_freqpoly()`
-
-::: {.cell layout-align="center" hash='cache/geom-freqpoly_77c9830c65b95bc9bfe1f0a9818c45b0'}
-
-```{.r .cell-code}
-ggplot(data = mtcars, 
-       mapping = aes(x = mpg)) +
-  geom_freqpoly()
-```
-
-::: {.cell-output-display}
-![](images/chapter7-02/geom-freqpoly-1.png){fig-align='center' width=384}
-:::
-:::
-
-
-
----
-
-## A 2D contour plot with `geom_contour()`
-
-::: {.cell layout-align="center" hash='cache/unnamed-chunk-10_13c06639c12024a98d5a65f190ba3d3d'}
-
-```{.r .cell-code}
-ggplot(data = faithfuld, 
-       mapping = aes(x = waiting, y = eruptions, z = density)) + 
-  geom_contour()
-```
-
-::: {.cell-output-display}
-![](images/chapter7-02/unnamed-chunk-10-1.png){fig-align='center' width=384}
-:::
-:::
-
----
-
-## A 2D contour plot with `geom_contour_filled()`
-
-::: {.cell layout-align="center" hash='cache/unnamed-chunk-12_f95e9b7deefff90dd895a481ddfc6420'}
-
-```{.r .cell-code}
-ggplot(data = faithfuld, 
-       mapping = aes(x = waiting, y = eruptions, z = density)) + 
-  geom_contour_filled()
-```
-
-::: {.cell-output-display}
-![](images/chapter7-02/unnamed-chunk-12-1.png){fig-align='center' width=384}
-:::
-:::
-
----
-
-## A 2D contour plot with `geom_density_2d()`
-
-::: {.cell layout-align="center" hash='cache/unnamed-chunk-14_a08e002cd34f588c80a7fe8c3512a33f'}
-
-```{.r .cell-code}
-ggplot(data = faithful, 
-       mapping = aes(x = eruptions, y = waiting)) + 
-  geom_density_2d()
-```
-
-::: {.cell-output-display}
-![](images/chapter7-02/unnamed-chunk-14-1.png){fig-align='center' width=384}
-:::
-:::
-
----
-
-## A 2D contour plot with `geom_density_2d_filled()`
-
-::: {.cell layout-align="center" hash='cache/unnamed-chunk-16_20e0638695e3200e8fbbdfd3986bd27e'}
-
-```{.r .cell-code}
-ggplot(faithful, aes(x = eruptions, y = waiting)) +
- geom_density_2d_filled()
-```
-
-::: {.cell-output-display}
-![](images/chapter7-02/unnamed-chunk-16-1.png){fig-align='center' width=384}
-:::
-:::
-
----
-
-## Density plot with `geom_density()`
-
-::: {.cell layout-align="center" hash='cache/unnamed-chunk-18_c3d1e2f4d9f56faf51c62ad8d32434fe'}
-
-```{.r .cell-code}
-ggplot(data = diamonds, 
-       mapping = aes(x = carat)) +
-  geom_density()
-```
-
-::: {.cell-output-display}
-![](images/chapter7-02/unnamed-chunk-18-1.png){fig-align='center' width=384}
-:::
-:::
-
----
-
-## `geom_line`
-
-::: {.cell layout-align="center" hash='cache/unnamed-chunk-20_392f2cc5cc61541bf05a028a58ad6134'}
-
-```{.r .cell-code}
-ggplot(economics, aes(date, unemploy)) + 
-  geom_line()
-```
-
-::: {.cell-output-display}
-![](images/chapter7-02/unnamed-chunk-20-1.png){fig-align='center' width=384}
-:::
-:::
-
----
-
-::: {.cell layout-align="center" hash='cache/unnamed-chunk-22_63f796e1072c6f1059fced9247151c83'}
-
-```{.r .cell-code}
-ggplot(economics, aes(unemploy/pop, psavert)) +
-  geom_path()
-```
-
-::: {.cell-output-display}
-![](images/chapter7-02/unnamed-chunk-22-1.png){fig-align='center' width=384}
-:::
-:::
-
----
-
-::: {.cell layout-align="center" hash='cache/unnamed-chunk-24_dc4fed2f40a5c3ebd66fd26bd5303793'}
-
-```{.r .cell-code}
-ggplot(economics, aes(unemploy/pop, psavert)) +
-  geom_step()
-```
-
-::: {.cell-output-display}
-![](images/chapter7-02/unnamed-chunk-24-1.png){fig-align='center' width=384}
-:::
-:::
-
-
----
-
-::: {.cell layout-align="center" hash='cache/unnamed-chunk-26_e939c26b9a30fc3127491f862b6d6512'}
-
-```{.r .cell-code}
-world <- map_data("world")
-ggplot(world, aes(long, lat, group = group)) +
-  geom_polygon()
-```
-
-::: {.cell-output-display}
-![](images/chapter7-02/unnamed-chunk-26-1.png){fig-align='center' width=384}
-:::
-:::
-
----
-
-::: {.cell layout-align="center" hash='cache/unnamed-chunk-28_f2fa983323fca84ee781f1a70264272d'}
-
-```{.r .cell-code}
-ggplot(mpg, aes(displ, hwy)) +
-  geom_point() +
-  geom_smooth(method = lm, se = FALSE)
-```
-
-::: {.cell-output-display}
-![](images/chapter7-02/unnamed-chunk-28-1.png){fig-align='center' width=384}
-:::
-:::
-
-
----
-
-::: {.cell layout-align="center" hash='cache/unnamed-chunk-30_418b1f360ca69ed4228346e9416c88de'}
-
-```{.r .cell-code}
-ggplot(mtcars, aes(wt, mpg, label = rownames(mtcars))) +
-  geom_text()
-```
-
-::: {.cell-output-display}
-![](images/chapter7-02/unnamed-chunk-30-1.png){fig-align='center' width=384}
-:::
-:::
-
----
-
-::: {.cell layout-align="center" hash='cache/unnamed-chunk-32_55a12bbc1be77605eec0018d194f1480'}
-
-```{.r .cell-code}
-ggplot(mtcars, aes(wt, mpg, label = rownames(mtcars))) +
-  geom_label()
-```
-
-::: {.cell-output-display}
-![](images/chapter7-02/unnamed-chunk-32-1.png){fig-align='center' width=384}
-:::
-:::
-
----
-
-::: {.cell layout-align="center" hash='cache/unnamed-chunk-34_e26c2082965690d79087231374726e8a'}
-
-```{.r .cell-code}
-ggplot(faithfuld, aes(waiting, eruptions)) +
- geom_raster(aes(fill = density))
-```
-
-::: {.cell-output-display}
-![](images/chapter7-02/unnamed-chunk-34-1.png){fig-align='center' width=384}
-:::
-:::
-
----
-
-::: {.cell layout-align="center" hash='cache/unnamed-chunk-36_fc5221c44b00a3c6a28e8dd3d784feee'}
-
-```{.r .cell-code}
-df <- data.frame(
-  x = rep(c(2, 5, 7, 9, 12), 2),
-  y = rep(c(1, 2), each = 5),
-  z = factor(rep(1:5, each = 2)),
-  w = rep(diff(c(0, 4, 6, 8, 10, 14)), 2)
-)
-ggplot(df, aes(x, y)) +
-  geom_tile(aes(fill = z), colour = "grey50")
-```
-
-::: {.cell-output-display}
-![](images/chapter7-02/unnamed-chunk-36-1.png){fig-align='center' width=384}
-:::
-
-```{.r .cell-code}
-ggplot(df, aes(x, y, width = w)) +
-  geom_tile(aes(fill = z), colour = "grey50")
-```
-
-::: {.cell-output-display}
-![](images/chapter7-02/unnamed-chunk-36-2.png){fig-align='center' width=384}
-:::
-
-```{.r .cell-code}
-ggplot(df, aes(xmin = x - w / 2, xmax = x + w / 2, ymin = y, ymax = y + 1)) +
-  geom_rect(aes(fill = z), colour = "grey50")
-```
-
-::: {.cell-output-display}
-![](images/chapter7-02/unnamed-chunk-36-3.png){fig-align='center' width=384}
 :::
 :::

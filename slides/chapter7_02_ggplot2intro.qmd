@@ -15,7 +15,7 @@ type: slides
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(fig.path = "images/chapter7-02/",
                       fig.align = "center",
-                      fig.width = 4, 
+                      fig.width = 6, 
                       fig.height = 4,
                       cache.path = "cache/",
                       cache = TRUE,
@@ -23,7 +23,6 @@ knitr::opts_chunk$set(fig.path = "images/chapter7-02/",
 ```
 
 ## What is `ggplot2`?
-
 
 
 * `ggplot2` is an R-package that was initially developed by Hadley Wickham as part of his PhD
@@ -54,14 +53,13 @@ library(tidyverse)
 
 ---
 
-## Motivating data 1 💎 diamonds
+## Basic structure of `ggplot`
 
-* Let's have a look at the `diamonds` data which contains information about different attributes of diamonds
+![](images/ggplot-basic-str.png)
 
-```{r}
-data(diamonds, package = "ggplot2")
-diamonds
-```
+1. **data** as `data.frame`
+2. a set of **aesthetic** mappings between variables in the data and visual properties
+3. at least one **layer** which describes how to render each observation
 
 
 ---
@@ -73,11 +71,11 @@ diamonds
 ggplot(data = diamonds) 
 ```
 
-* When there is no layer, it produces a blank layer like top plot.
+* When there is no layer, it produces a blank layer (`geom_blank()`) like the above plot.
 
 ---
 
-## Mapping data variables to aesthestics
+## Mapping data variables to aesthetics
 
 ```{r plot-mapping}
 ggplot(data = diamonds,
@@ -91,94 +89,172 @@ ggplot(data = diamonds,
 # `geom` layers
 
 
+---
+
+```{r catalogue-setup, include = FALSE}
+set.seed(1)
+n1 <- 200
+df1 <- tibble(x = runif(n1, 0, 10),
+              y =  3 * x + rnorm(n1, 0, 10),
+              z = rnorm(n1, 0, 2),
+              g1 = sample(letters[1:4], size = n1, replace = TRUE),
+              g2 = sample(letters[1:4], size = n1, replace = TRUE)) %>% 
+  mutate(g1 = fct_reorder(g1, y, sum))
+df2 <- diamonds %>% 
+  sample_n(80)
+df3 <- ToothGrowth %>% 
+  mutate(dosef = factor(dose)) %>% 
+  group_by(dosef, supp) %>% 
+  summarise(mlen = factor(mean(len)))
+sumdf1 <- df1 %>% 
+  group_by(g1) %>% 
+  summarise(y = sum(y))
+sumdf2 <- df1 %>% 
+  group_by(g1, g2) %>% 
+  summarise(y = sum(y))
+# generate 5 from colorspace and discard the tails which are too white
+reds <- c("#7F000D", "#A9565A", "#CA9496", "#E2CBCB")
+yellows <- c("#6A3F00", "#97742F", "#BAA588", "#D4CCC3")
+green <- "#006400"
+purples <- c("#312271", "#4F4293", "#6D60BB", "#8B80D1", "#A79FE1", "#C2BCF0", 
+"#DAD6FA", "#EDEBFF", "#F9F9F9")
+
+theme_base <- list(theme_void(base_size = 18) + 
+  theme(plot.margin = margin(10, 10, 10, 10),
+        plot.title.position = "plot",
+        plot.title = element_text(margin = margin(t = -4, b = 10),
+                                  size = 14, face = "bold")),
+  guides(fill = "none"))
+
+theme_rank <- c(theme_base,
+                list(theme(plot.background = element_rect(fill = "#DCBFC9", 
+                                       color = NA)),
+                     scale_fill_manual(values = reds)))
+
+theme_corr <- c(theme_base,
+                list(theme(plot.background = element_rect(fill = "#EDDBB6", 
+                                       color = NA))))
+
+theme_dist <- c(theme_base,
+                list(theme(plot.background = element_rect(fill = "#D7FBCD", 
+                                       color = NA))))
+
+theme_other <- c(theme_base,
+                list(theme(plot.background = element_rect(fill = "#FFE5FF", 
+                                       color = NA)),
+                     scale_fill_manual(values = purples)))
+
+
+
+
+theme_yaxis <- theme(axis.line.y = element_line(color = "black", size = 1),
+                     axis.ticks.y = element_line(color = "black", 
+                                                 linetype = "solid", 
+                                                 size = 1, 
+                                                 lineend = NULL),
+                     axis.ticks.length.y = unit(0.3, "lines"))
+
+
+theme_xaxis <- theme(axis.line.x = element_line(color = "black", size = 1),
+                     axis.ticks.x = element_line(color = "black", 
+                                                 linetype = "solid", 
+                                                 size = 1, 
+                                                 lineend = NULL),
+                     axis.ticks.length.x = unit(0.3, "lines"))
+```
+
+## Distribution of a single variable
+
+```{r catalogue-single, fig.width = 3, fig.height = 3, echo = FALSE, fig.show='hide'}
+ggplot(faithful, aes(eruptions)) +
+  geom_histogram(fill = green, bins = 10, color = "white") +
+  theme_dist +
+  theme_xaxis +
+  theme_yaxis +
+  ggtitle("HISTOGRAM")
+
+ggplot(faithful, aes(eruptions)) +
+  geom_density(fill = green, color = NA) +
+  theme_dist +
+  theme_xaxis +
+  theme_yaxis +
+  ggtitle("DENSITY/FREQUENCY PLOT")
+
+ggplot(faithful, aes(eruptions, "")) +
+  geom_boxplot(fill = "white", color = green, width = 0.3) +
+  theme_dist +
+  theme_xaxis +
+  ggtitle("BOXPLOT")
+
+ggplot(faithful, aes(eruptions, "")) +
+  geom_violin(fill = green) +
+  theme_dist +
+  theme_xaxis +
+  ggtitle("VIOLIN PLOT")
+
+ggplot(faithful, aes(eruptions)) +
+  geom_dotplot(fill = green) +
+  theme_dist +
+  theme_xaxis +
+  ggtitle("DOT PLOT")
+
+ggplot(sumdf1, aes(g1, y)) +
+  geom_col(fill = reds[1]) +
+  theme_rank +
+  theme_yaxis +
+  ggtitle("BARPLOT") 
+
+```
+
+```{css, echo = FALSE}
+.catalogue img {
+  margin-right: 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  width: 20%;
+}
+```
+
+<div class="catalogue">
+`r x<-1:6;paste(glue::glue('<img src="images/chapter7-02/catalogue-single-{x}.png"/>'), collapse = "")`
+</div>
 
 ---
 
-## A scatterplot with `geom_point()`
+## Motivating data 💰 Wages
 
-```{r geom-point}
-ggplot(data = diamonds,
-       mapping = aes(x = carat, y = price)) +
-  geom_point()
+* A survey of average hourly earnings in United States
+* Each observation is an individual
+
+```{r}
+data(CPSch3, package = "Ecdat")
+str(CPSch3)
 ```
 
-* Scatter plot of price vs carat of diamonds
-* Each point correponds to a dimaond
-
----
-
-## A hexagonal 2D heatmap with `geom_hex()`
-
-```{r geom-hex}
-ggplot(data = diamonds,
-       mapping = aes(x = carat, y = price)) +
-  geom_hex()
-```
-
-* The hexagon shows the count of observations within the region.
-
----
-
-## A 2D heatmap with `geom_bin_2d()`
-
-```{r geom-bin2d}
-ggplot(data = diamonds,
-       mapping = aes(x = carat, y = price)) +
-  geom_bin_2d()
-```
-
-* Similar to `geom_hex()` but the shapes are boxes.
-
----
-
-## Count of overlapping points with `geom_count()`
-
-```{r geom-count}
-ggplot(data = diamonds,
-       mapping = aes(x = carat, y = price)) +
-  geom_count()
-```
-
-
----
-
-## A boxplot with `geom_boxplot()`
-
-```{r geom-boxplot}
-ggplot(data = diamonds, 
-       mapping = aes(x = cut, y = price)) +
-  geom_boxplot()
-```
-
-
----
-
-## A violin plot with `geom_violin()`
-
-```{r geom-violin}
-ggplot(data = diamonds, 
-       mapping = aes(x = cut, y = price)) +
-  geom_violin()
-```
-
----
-
-## A dot plot with `geom_dotplot()`
-
-```{r geom-dotplot}
-ggplot(data = mtcars, 
-       mapping = aes(x = mpg)) +
-  geom_dotplot()
-```
+* `year` is the survey year
+* `ahe` is the average hourly earnings
+* `sex` is the sex (male or female)
 
 ---
 
 ## A histogram with `geom_histogram()`
 
 ```{r geom-histogram}
-ggplot(data = mtcars, 
-       mapping = aes(x = mpg)) +
-  geom_histogram()
+ggplot(data = CPSch3, 
+       mapping = aes(x = ahe)) +
+  geom_histogram() +
+  labs(x = "Average hourly earnings (US$)")
+```
+
+---
+
+## A density plot with `geom_density()`
+
+```{r geom-density}
+ggplot(data = CPSch3, 
+       mapping = aes(x = ahe)) +
+  geom_density() +
+  labs(x = "Average hourly earnings (US$)")
 ```
 
 ---
@@ -186,138 +262,145 @@ ggplot(data = mtcars,
 ## A frequency polygon with `geom_freqpoly()`
 
 ```{r geom-freqpoly}
-ggplot(data = mtcars, 
-       mapping = aes(x = mpg)) +
-  geom_freqpoly()
-```
-
-
-
----
-
-## A 2D contour plot with `geom_contour()`
-
-```{r}
-ggplot(data = faithfuld, 
-       mapping = aes(x = waiting, y = eruptions, z = density)) + 
-  geom_contour()
+ggplot(data = CPSch3, 
+       mapping = aes(x = ahe)) +
+  geom_freqpoly() +
+  labs(x = "Average hourly earnings (US$)")
 ```
 
 ---
 
-## A 2D contour plot with `geom_contour_filled()`
+## A boxplot with `geom_boxplot()`
 
-```{r}
-ggplot(data = faithfuld, 
-       mapping = aes(x = waiting, y = eruptions, z = density)) + 
-  geom_contour_filled()
+```{r geom-boxplot}
+ggplot(data = CPSch3, 
+       mapping = aes(x = ahe)) +
+  geom_boxplot() +
+  labs(x = "Average hourly earnings (US$)")
 ```
 
 ---
 
-## A 2D contour plot with `geom_density_2d()`
+## A boxplot with `geom_violin()`
 
-```{r}
-ggplot(data = faithful, 
-       mapping = aes(x = eruptions, y = waiting)) + 
-  geom_density_2d()
+```{r geom-violin}
+ggplot(data = CPSch3, 
+       mapping = aes(x = ahe, y = "")) +
+  geom_violin() +
+  labs(x = "Average hourly earnings (US$)")
 ```
+
+* Note: a dummy is required for `y` here!
 
 ---
 
-## A 2D contour plot with `geom_density_2d_filled()`
+## A dotplot with `geom_dotplot()`
 
-```{r}
-ggplot(faithful, aes(x = eruptions, y = waiting)) +
- geom_density_2d_filled()
+```{r geom-dotplot}
+ggplot(data = dplyr::sample_n(CPSch3, 200), 
+       mapping = aes(x = ahe)) +
+  geom_dotplot() +
+  labs(x = "Average hourly earnings (US$)")
 ```
+
+* A dotplot works best for small number of observations so above plot is based on 200 random samples of the data
+
 
 ---
 
-## Density plot with `geom_density()`
+## A barplot with `geom_bar()`
 
 ```{r}
-ggplot(data = diamonds, 
-       mapping = aes(x = carat)) +
-  geom_density()
-```
-
----
-
-## `geom_line`
-
-```{r}
-ggplot(economics, aes(date, unemploy)) + 
-  geom_line()
-```
-
----
-
-```{r}
-ggplot(economics, aes(unemploy/pop, psavert)) +
-  geom_path()
-```
-
----
-
-```{r}
-ggplot(economics, aes(unemploy/pop, psavert)) +
-  geom_step()
+ggplot(data = CPSch3, 
+       mapping = aes(x = sex)) +
+  geom_bar()
 ```
 
 
 ---
 
-```{r}
-world <- map_data("world")
-ggplot(world, aes(long, lat, group = group)) +
-  geom_polygon()
-```
+## Modifying the layer parameters
+
+* Layers often have default parameter values.
+* E.g. in histogram, the default is to have `bins = 30`.
+* It's important to modify the parameters values appropriately
+* More **details about the parameters of a layer is in the documentation** of the corresponding function, e.g. `?geom_histogram` to see the help file on the histogram layer.
 
 ---
 
-```{r}
-ggplot(mpg, aes(displ, hwy)) +
-  geom_point() +
-  geom_smooth(method = lm, se = FALSE)
+## Examining two or more variables
+
+```{r catalogue-two, fig.width = 3, fig.height = 3, echo = FALSE, fig.show='hide'}
+ggplot(df2, aes(carat, price)) +
+  geom_point(color = yellows[1]) +
+  theme_corr +
+  theme_yaxis +
+  theme_xaxis +
+  ggtitle("SCATTER PLOT")
+
+ggplot(economics, aes(date, uempmed)) +
+  geom_line(color = yellows[1]) +
+  theme_corr +
+  theme_yaxis +
+  theme_xaxis +
+  ggtitle("LINE PLOT")
+
+ggplot(df2, aes(carat, price, size = depth)) +
+  geom_point(color = yellows[1], alpha = 0.3) +
+  theme_corr +
+  theme_yaxis +
+  theme_xaxis +
+  ggtitle("BUBBLE CHART") + guides(size = "none")
+
+ggplot(sumdf2, aes(g1, y, fill = g2)) +
+  geom_col() +
+  theme_rank +
+  theme_yaxis +
+  ggtitle("STACKED\nBARPLOT")
+
+ggplot(sumdf2, aes(g1, y, fill = g2)) +
+  geom_col(position = "dodge") +
+  theme_rank +
+  theme_yaxis +
+  ggtitle("GROUPED\nBARPLOT")
+
+ggplot(sumdf2, aes(g1, y, fill = g2)) +
+  geom_col(position = "fill") +
+  theme_rank +
+  theme_yaxis +
+  ggtitle("STACKED\nPERCENTAGE\nBARPLOT")
+
+
+ggplot(df3, aes(dosef, supp, fill = mlen)) +
+  geom_tile(color = "black", size = 1.2) +
+  theme_other +
+  ggtitle("HEATMAP")
+
+
+library(ozmaps)
+oz_sf <- ozmap_data("states")
+oz_sf %>%
+  mutate(value = factor(rnorm(n()))) %>%
+  ggplot(aes(fill = value)) +
+  geom_sf() +
+  theme_other +
+  ggtitle("CHOROPLETH\nMAP")
 ```
+
+
+<div class="catalogue">
+`r x<-1:6;paste(glue::glue('<img src="images/chapter7-02/catalogue-two-{x}.png"/>'), collapse = "")`
+</div>
 
 
 ---
 
-```{r}
-ggplot(mtcars, aes(wt, mpg, label = rownames(mtcars))) +
-  geom_text()
-```
+## Motivating data 💎 diamonds
 
----
+* Let's have a look at the `diamonds` data which contains information about different attributes of diamonds
 
 ```{r}
-ggplot(mtcars, aes(wt, mpg, label = rownames(mtcars))) +
-  geom_label()
-```
-
----
-
-```{r}
-ggplot(faithfuld, aes(waiting, eruptions)) +
- geom_raster(aes(fill = density))
-```
-
----
-
-```{r}
-df <- data.frame(
-  x = rep(c(2, 5, 7, 9, 12), 2),
-  y = rep(c(1, 2), each = 5),
-  z = factor(rep(1:5, each = 2)),
-  w = rep(diff(c(0, 4, 6, 8, 10, 14)), 2)
-)
-ggplot(df, aes(x, y)) +
-  geom_tile(aes(fill = z), colour = "grey50")
-ggplot(df, aes(x, y, width = w)) +
-  geom_tile(aes(fill = z), colour = "grey50")
-ggplot(df, aes(xmin = x - w / 2, xmax = x + w / 2, ymin = y, ymax = y + 1)) +
-  geom_rect(aes(fill = z), colour = "grey50")
+data(diamonds, package = "ggplot2")
+diamonds
 ```
 

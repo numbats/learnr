@@ -1,5 +1,5 @@
 ---
-title: Layers in `ggplot2`
+title: Multiple layers in `ggplot2`
 format: revealjs
 ---
 
@@ -11,6 +11,7 @@ knitr::opts_chunk$set(fig.path = "images/",
                       echo = TRUE)
 library(ggplot2)
 ```
+
 
 ## Layer
 
@@ -60,7 +61,19 @@ ggplot(data = diamonds,
 ## Inheriting data and mapping
 
 * A layer inherits the data and mapping from the initialised ggplot object by default 
-* You can add layer specific data and mapping
+
+![](images/ggplot-multiple-layers.png)
+
+---
+
+## Layer-specific data and aesthetic mapping
+
+![](images/ggplot-multiple-layers-data-mapping.png)
+
+* For each layer, aesthetic and/or data can be overwritten
+
+---
+
 
 
 ```{r plot2-inheritance, fig.width = 8}
@@ -68,5 +81,50 @@ ggplot(data = diamonds) +
   geom_violin(aes(x = cut, y = price, color = cut)) + 
   geom_boxplot(aes(x = cut, y = price),
                width = 0.1)
+```
+
+---
+
+## Aesthetic or Attribute?
+
+::: columns
+
+::: {.column width="50%"}
+
+Not what you want:
+
+```{r aes-map}
+ggplot(diamonds, aes(carat, price)) +
+  geom_point(aes(color = "blue"))
+```
+
+
+:::
+
+::: {.column width="50%"}
+
+What you want:
+
+```{r attr-map}
+ggplot(diamonds, aes(carat, price)) +
+  geom_point(color = "blue")
+```
+
+
+
+:::
+
+
+:::
+
+---
+
+## Bonus tip
+
+* Use `I()` operator to mean "as-is" in aesthetic mapping.
+
+```{r I-map}
+ggplot(diamonds, aes(carat, price)) +
+  geom_point(aes(color = I("blue")))
 ```
 
