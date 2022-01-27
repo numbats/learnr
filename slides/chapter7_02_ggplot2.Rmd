@@ -13,8 +13,8 @@ output:
      keep_md: true
      lib_dir: libs/
      self_contained: false
-     includes: 
-       before_body: header.html
+     #includes: 
+     #   before_body: header.html
      #incremental: true
 ---
 
