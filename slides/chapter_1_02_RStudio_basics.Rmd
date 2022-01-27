@@ -1,0 +1,22 @@
+---
+title: "RStudio basic"
+output:
+  html_document:
+    df_print: paged
+  revealjs::revealjs_presentation:
+    css:
+    - reveal.css
+    - slide.css
+    transition: slide
+    keep_md: yes
+    lib_dir: libs/
+    self_contained: no
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(fig.path = "images/")
+```
+
+# What does RStudo looks like and what does each session do? 
+
+

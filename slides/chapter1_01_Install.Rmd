@@ -1,17 +1,18 @@
 ---
 title: Getting started with R and RStudio IDE
-execute:
-  keep-md: true
-format: 
-  revealjs:
-    #self-contained: true
-    logo: images/monash-stacked-blue-rgb-transparent.png
-    slide-number: true
-    show-slide-number: all
-    # below doesn't seem to be working
-    #width: wide
-type: slides
+output:
+  html_document:
+    df_print: paged
+  revealjs::revealjs_presentation:
+    css:
+    - reveal.css
+    - slide.css
+    transition: slide
+    keep_md: yes
+    lib_dir: libs/
+    self_contained: no
 ---
+
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(fig.path = "images/chapter1-01/",
                       fig.align = "center",
