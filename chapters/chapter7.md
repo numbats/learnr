@@ -146,18 +146,17 @@ For the following questions we are going to use `BudgetFood` data from the `Ecda
 
 ```r
 library(Ecdat)
-```
-
-```
-## Error in library(Ecdat): there is no package called 'Ecdat'
-```
-
-```r
 str(BudgetFood)
 ```
 
 ```
-## Error in str(BudgetFood): object 'BudgetFood' not found
+## 'data.frame':	23972 obs. of  6 variables:
+##  $ wfood : num  0.468 0.313 0.376 0.44 0.404 ...
+##  $ totexp: num  1290941 1277978 845852 527698 1103220 ...
+##  $ age   : num  43 40 28 60 37 35 40 68 43 51 ...
+##  $ size  : num  5 3 3 1 5 4 4 2 9 7 ...
+##  $ town  : num  2 2 2 2 2 2 2 2 2 2 ...
+##  $ sex   : Factor w/ 2 levels "man","woman": 1 1 1 2 1 1 1 2 1 1 ...
 ```
 The meaning of the variables are described below:
 
@@ -170,17 +169,7 @@ The meaning of the variables are described below:
 
 Try to recreate the scatter plot below. Is there anything that unusual that you notice about the plot?
 
-<div class='target'>
-
-```
-## Error in library(Ecdat): there is no package called 'Ecdat'
-```
-
-```
-## Error in ggplot(data = BudgetFood, mapping = aes(x = size, y = totexp)): object 'BudgetFood' not found
-```
-
-</div>
+<div class='target'><img src="ch7/plot4A-1.png" title="plot of chunk plot4A" alt="plot of chunk plot4A" width="432" style="display: block; margin: auto;" /></div>
 
 <codeblock id="07_04A">
 
@@ -190,17 +179,7 @@ Try to recreate the scatter plot below. Is there anything that unusual that you 
 The scatter plots are created using `geom_point`.
 </codeblock>
 
-<div class='target'>
-
-```
-## Error in library(Ecdat): there is no package called 'Ecdat'
-```
-
-```
-## Error in ggplot(data = BudgetFood, mapping = aes(x = size, y = totexp)): object 'BudgetFood' not found
-```
-
-</div>
+<div class='target'><img src="ch7/plot4B-1.png" title="plot of chunk plot4B" alt="plot of chunk plot4B" width="432" style="display: block; margin: auto;" /></div>
 
 <codeblock id="07_04B">
 
@@ -211,17 +190,7 @@ The hex plots are created using `geom_hex`.
 </codeblock>
 
 
-<div class='target'>
-
-```
-## Error in library(Ecdat): there is no package called 'Ecdat'
-```
-
-```
-## Error in ggplot(data = BudgetFood, mapping = aes(x = sex, y = age)): object 'BudgetFood' not found
-```
-
-</div>
+<div class='target'><img src="ch7/plot4C-1.png" title="plot of chunk plot4C" alt="plot of chunk plot4C" width="432" style="display: block; margin: auto;" /></div>
 
 <codeblock id="07_04C">
 
@@ -232,17 +201,7 @@ This is a hint.
 </codeblock>
 
 
-<div class='target'>
-
-```
-## Error in library(Ecdat): there is no package called 'Ecdat'
-```
-
-```
-## Error in ggplot(data = BudgetFood, mapping = aes(x = factor(town), y = totexp)): object 'BudgetFood' not found
-```
-
-</div>
+<div class='target'><img src="ch7/plot4D-1.png" title="plot of chunk plot4D" alt="plot of chunk plot4D" width="432" style="display: block; margin: auto;" /></div>
 
 <codeblock id="07_04D">
 
@@ -251,17 +210,7 @@ This is a hint.
 This is a hint.
 </codeblock>
 
-<div class='target'>
-
-```
-## Error in library(Ecdat): there is no package called 'Ecdat'
-```
-
-```
-## Error in ggplot(data = BudgetFood, mapping = aes(x = wfood)): object 'BudgetFood' not found
-```
-
-</div>
+<div class='target'><img src="ch7/plot4E-1.png" title="plot of chunk plot4E" alt="plot of chunk plot4E" width="432" style="display: block; margin: auto;" /></div>
 <codeblock id="07_04E">
 
 </codeblock>
@@ -270,17 +219,7 @@ This is a hint.
 </codeblock>
 
 
-<div class='target'>
-
-```
-## Error in library(Ecdat): there is no package called 'Ecdat'
-```
-
-```
-## Error in ggplot(data = BudgetFood, mapping = aes(x = wfood)): object 'BudgetFood' not found
-```
-
-</div>
+<div class='target'><img src="ch7/plot4F-1.png" title="plot of chunk plot4F" alt="plot of chunk plot4F" width="432" style="display: block; margin: auto;" /></div>
 <codeblock id="07_04F">
 
 </codeblock>
@@ -305,17 +244,7 @@ We are again going to use the `BudgetFood` data from the `Ecdat` package to make
 
 Try to recreate the scatter plot below. Is there anything that unusual that you notice about the plot?
 
-<div class='target'>
-
-```
-## Error in library(Ecdat): there is no package called 'Ecdat'
-```
-
-```
-## Error in ggplot(data = BudgetFood, mapping = aes(x = totexp)): object 'BudgetFood' not found
-```
-
-</div>
+<div class='target'><img src="ch7/plot6A-1.png" title="plot of chunk plot6A" alt="plot of chunk plot6A" width="432" style="display: block; margin: auto;" /></div>
 <codeblock id="07_06A">
 
 </codeblock>
@@ -323,17 +252,7 @@ Try to recreate the scatter plot below. Is there anything that unusual that you 
 XX.
 </codeblock>
 
-<div class='target'>
-
-```
-## Error in library(Ecdat): there is no package called 'Ecdat'
-```
-
-```
-## Error in subset(BudgetFood, !is.na(sex)): object 'BudgetFood' not found
-```
-
-</div>
+<div class='target'><img src="ch7/plot6B-1.png" title="plot of chunk plot6B" alt="plot of chunk plot6B" width="432" style="display: block; margin: auto;" /></div>
 <codeblock id="07_06B">
 
 </codeblock>
@@ -341,17 +260,7 @@ XX.
 XX.
 </codeblock>
 
-<div class='target'>
-
-```
-## Error in library(Ecdat): there is no package called 'Ecdat'
-```
-
-```
-## Error in subset(BudgetFood, size < 30): object 'BudgetFood' not found
-```
-
-</div>
+<div class='target'><img src="ch7/plot6C-1.png" title="plot of chunk plot6C" alt="plot of chunk plot6C" width="432" style="display: block; margin: auto;" /></div>
 <codeblock id="07_06C">
 
 </codeblock>
@@ -359,17 +268,7 @@ XX.
 XX.
 </codeblock>
 
-<div class='target'>
-
-```
-## Error in library(Ecdat): there is no package called 'Ecdat'
-```
-
-```
-## Error in subset(BudgetFood, !is.na(sex)): object 'BudgetFood' not found
-```
-
-</div>
+<div class='target'><img src="ch7/plot6D-1.png" title="plot of chunk plot6D" alt="plot of chunk plot6D" width="432" style="display: block; margin: auto;" /></div>
 <codeblock id="07_06D">
 
 </codeblock>
@@ -377,21 +276,7 @@ XX.
 XX.
 </codeblock>
 
-<div class='target'>
-
-```
-## Error in library(Ecdat): there is no package called 'Ecdat'
-```
-
-```
-## Error in filter(., !is.na(sex)): object 'BudgetFood' not found
-```
-
-```
-## Error in subset(dat, sex == "woman"): object 'dat' not found
-```
-
-</div>
+<div class='target'><img src="ch7/plot6E-1.png" title="plot of chunk plot6E" alt="plot of chunk plot6E" width="432" style="display: block; margin: auto;" /></div>
 <codeblock id="07_06E">
 
 </codeblock>
@@ -417,13 +302,7 @@ XX.
 </exercise>
 
 <exercise id="10" title="Practice combining multiple plots.">
-<div class='target'>
-
-```
-## Error in ggplot(BudgetFood, aes(x = age)): object 'BudgetFood' not found
-```
-
-</div>
+<div class='target'><img src="ch7/plot7A-1.png" title="plot of chunk plot7A" alt="plot of chunk plot7A" width="432" style="display: block; margin: auto;" /></div>
 <codeblock id="07_10A">
 
 </codeblock>
@@ -431,34 +310,14 @@ XX.
 XX.
 </codeblock>
 
-<div class='target'>
-
-```
-## Error in subset(BudgetFood, !is.na(sex)): object 'BudgetFood' not found
-```
-
-</div>
+<div class='target'><img src="ch7/plot7B-1.png" title="plot of chunk plot7B" alt="plot of chunk plot7B" width="432" style="display: block; margin: auto;" /></div>
 <codeblock id="07_10B">
 
 </codeblock>
 <codeblock id="07_10B">
 XX.
 </codeblock>
-<div class='target'>
-
-```
-## Error in ggplot(BudgetFood, aes(factor(size), wfood, color = sex)): object 'BudgetFood' not found
-```
-
-```
-## Error in ggplot(BudgetFood, aes(factor(size), totexp, color = sex)): object 'BudgetFood' not found
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'g1' not found
-```
-
-</div>
+<div class='target'><img src="ch7/plot7C-1.png" title="plot of chunk plot7C" alt="plot of chunk plot7C" width="432" style="display: block; margin: auto;" /></div>
 <codeblock id="07_10C">
 
 </codeblock>
