@@ -1,3 +1,13 @@
+---
+title: 'Chapter 7: Data Visualisation with R'
+description:
+  'This chapter will give you an introduction to the R graphics system and teach you how to get started with using the `ggplot2` package for drawing all kind of plots.'
+prev: /chapter6
+next: /chapter8
+type: chapter
+id: 7
+---
+
 <exercise id="1" title="R Graphics" type="slides">
 
 <slides source="chapter7_01_rgraphics"> </slides>
