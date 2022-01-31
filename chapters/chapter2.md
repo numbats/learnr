@@ -14,6 +14,7 @@ output:
 
 
 
+
 <exercise id="1" title="Arithmetic and Variable Assignment">
 
 ## Arithmetic Operations
@@ -280,8 +281,7 @@ Now that we know how to use the `order()`, let's sort the first_ten_element data
 
 
 Hint: 
-- Use order(first_ten_elements$atomic_no) to create positions.
-- Then, use 'positions' with square brackets: first_ten_elements[...]; can you fill in the ...? Don not forget that 'positions' indicates the order of the rows in the data frame.
+Use `order(first_ten_elements$atomic_no)` to create positions. Then, use 'positions' with square brackets: `first_ten_elements[...]`; can you fill in the ...? Do not forget that 'positions' indicates the order of the rows in the data frame.
 
 </codeblock>
 
@@ -568,7 +568,7 @@ flip_a_coin()
 ```
 
 ```
-## [1] "Head"
+## [1] "Tail"
 ```
 
 ```r

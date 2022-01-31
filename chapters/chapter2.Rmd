@@ -17,6 +17,7 @@ library(teachr)
 library(testthat)
 ```
 
+
 <exercise id="1" title="Arithmetic and Variable Assignment">
 
 ## Arithmetic Operations
@@ -167,10 +168,10 @@ y = c(2,4,6,8,1,3,5,7)
 which of the following is the output of `y-2`?
 
 ```{r, echo = FALSE, results = "asis"}
-cat(mc_opts("`0  4  6  8  1  3  5  7`"="Try again! Check your calculation in R!",
+cat(mc_opts("`0  4  6  8  1  3  5  7`" = "Try again! Check your calculation in R!",
          "`0  2  4  6 -1  1  3  5`" = "That's correct!",
-         "`2  4  6  8  1  3  5  7 -2`"="Try again! Check your calculation in R!",
-         "`-4  -8 -12 -16  -2  -6 -10 -14`"="Try again! Check your calculation in R!",
+         "`2  4  6  8  1  3  5  7 -2`" = "Try again! Check your calculation in R!",
+         "`-4  -8 -12 -16  -2  -6 -10 -14`" = "Try again! Check your calculation in R!",
          correct = 2))
 ```
 
@@ -183,10 +184,10 @@ y = c(2,4,6,8,1,3,5,7)
 which of the following is the output of `y[4:7]`?
 
 ```{r, echo = FALSE, results = "asis"}
-cat(mc_opts("`8 1 3 5`"="That's correct!",
-         "`8 1 3`"="Try again! Check your calculation in R!",
-         "`6 8 1 3`"="Try again! Check your calculation in R!",
-         "`1 3 5`"="Try again! Check your calculation in R!",
+cat(mc_opts("`8 1 3 5`" = "That's correct!",
+         "`8 1 3`" = "Try again! Check your calculation in R!",
+         "`6 8 1 3`" = "Try again! Check your calculation in R!",
+         "`1 3 5`" = "Try again! Check your calculation in R!",
          correct = 1))
 ```
 
@@ -279,10 +280,10 @@ What is the data type of the variable 'dose'?
 
 
 ```{r, echo = FALSE, results = "asis"}
-cat(mc_opts("numeric"= "That's correct!",
-         "string"="Try again! Take a quick look at your data in R!",
-         "data frame"="Try again! Data frame is a type of data structure, not a data type.",
-         "matrix"="Try again! Matrix is a type of data structure, not a data type.",
+cat(mc_opts("numeric" = "That's correct!",
+         "string" = "Try again! Take a quick look at your data in R!",
+         "data frame" = "Try again! Data frame is a type of data structure, not a data type.",
+         "matrix" = "Try again! Matrix is a type of data structure, not a data type.",
          correct = 1))
 ```
 
@@ -373,8 +374,7 @@ sorted_df <- <<first_ten_elements[positions, ]>>
 
 
 Hint: 
-- Use order(first_ten_elements$atomic_no) to create positions.
-- Then, use 'positions' with square brackets: first_ten_elements[...]; can you fill in the ...? Don not forget that 'positions' indicates the order of the rows in the data frame.
+Use `order(first_ten_elements$atomic_no)` to create positions. Then, use 'positions' with square brackets: `first_ten_elements[...]`; can you fill in the ...? Do not forget that 'positions' indicates the order of the rows in the data frame.
 
 ???
   
@@ -433,9 +433,9 @@ Take a look at the following statements:
 Select the option that lists **all** the true statements.
 
 ```{r, echo = FALSE, results = "asis"}
-cat(mc_opts("(1) and (2)"="Try again! Copy the code and try it with some numbers in R!",
-         "(1) and (3)"="Try again! Copy the code and try it with some numbers in R!",
-         "(2) and (4)"="Try again! Copy the code and try it with some numbers in R!",
+cat(mc_opts("(1) and (2)" = "Try again! Copy the code and try it with some numbers in R!",
+         "(1) and (3)" = "Try again! Copy the code and try it with some numbers in R!",
+         "(2) and (4)" = "Try again! Copy the code and try it with some numbers in R!",
          "(1), (3), (4)" = "That's correct!",
          correct = 4))
 ```
