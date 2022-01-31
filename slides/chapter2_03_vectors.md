@@ -10,6 +10,7 @@ output:
      #includes: 
      #   before_body: header.html
      #incremental: true
+type: slides
 ---
 
 
