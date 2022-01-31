@@ -213,7 +213,7 @@ pre code {
 <p></codeblock></p>
 <p></exercise></p>
 <p><exercise id='3' title='Vectors' type="slides"></p>
-<iframe src="../slides//slides/chapter2_03_vectors.html" width="800" height="500">
+<iframe src="../slides/chapter2_03_vectors.html" width="800" height="500">
 </iframe>
 <p></exercise></p>
 <p><exercise id='4' title='Check Your Understanding on Vectors'></p>
@@ -221,37 +221,16 @@ pre code {
 <p>Given the following vector <code>y</code> in R,</p>
 <pre><code>y = c(2,4,6,8,1,3,5,7)</code></pre>
 <p>which of the following is the output of <code>y-2</code>?</p>
-<p><choice> <opt text="`0  4  6  8  1  3  5  7`"></p>
-<p>This is not the correct answer.</p>
-<p></opt></p>
-<p><opt text="`0  2  4  6 -1  1  3  5`" correct="true"></p>
-<p>Good job!</p>
-<p></opt></p>
-<p><opt text="`2  4  6  8  1  3  5  7 -2`"></p>
-<p>This is not the correct answer.</p>
-<p></opt></p>
-<p><opt text="`-4  -8 -12 -16  -2  -6 -10 -14`"></p>
-<p>This is not the correct answer.</p>
-<p></opt></p>
-<p></choice></p>
+<div>
+
+</div>
 <p><strong>Problem 2</strong></p>
 <p>Given the following vector <code>y</code> in R,</p>
 <pre><code>y = c(2,4,6,8,1,3,5,7)</code></pre>
 <p>which of the following is the output of <code>y[4:7]</code>?</p>
-<p><choice></p>
-<p><opt text="`8 1 3 5`" correct="true"></p>
-<p>Good job!</p>
-<p></opt></p>
-<p><opt text="`8 1 3`"></p>
-<p>This is not correct either.</p>
-<p></opt></p>
-<p><opt text="`6 8 1 3`"></p>
-<p>This is not correct either.</p>
-<p></opt></p>
-<p><opt text="`1 3 5`"></p>
-<p>This is not correct either.</p>
-<p></opt></p>
-<p></choice></p>
+<div>
+
+</div>
 <p></exercise></p>
 <p><exercise id='5' title='Matrices' type = "slides"></p>
 <iframe src="../slides/chapter2_05_matrices.html" width="800" height="500">
@@ -284,19 +263,9 @@ pre code {
 <pre class="r"><code>df = data(&quot;ToothGrowth&quot;)</code></pre>
 <p><strong>Answer the following questions</strong></p>
 <p>What is the data type of the variable ‘dose’?</p>
-<p><choice> <opt text="numeric" correct="true"></p>
-<p>Good job!</p>
-<p></opt></p>
-<p><opt text="string"></p>
-<p>This is not a correct answer.</p>
-<p></opt></p>
-<p><opt text="data frame"></p>
-<p>This is not a correct answer.</p>
-<p></opt></p>
-<p><opt text="matrix"></p>
-<p>This is not a correct answer.</p>
-<p></opt></p>
-<p></choice></p>
+<div>
+
+</div>
 </div>
 <div id="creating-data-frame" class="section level3">
 <h3>Creating Data Frame</h3>
@@ -356,19 +325,9 @@ print(result)</code></pre>
 <li>If <code>x</code> is set to 21, “Low” gets printed to the console.</li>
 </ol>
 <p>Select the option that lists <strong>all</strong> the true statements.</p>
-<p><choice> <opt text="(1), (3), (4)" correct="true"></p>
-<p>Good job!</p>
-<p></opt></p>
-<p><opt text="(1) and (2)"></p>
-<p>This is not a correct answer.</p>
-<p></opt></p>
-<p><opt text="(1) and (3)"></p>
-<p>This is not a correct answer.</p>
-<p></opt></p>
-<p><opt text="(2) and (4)"></p>
-<p>This is not a correct answer.</p>
-<p></opt></p>
-<p></choice></p>
+<div>
+
+</div>
 <p></exercise></p>
 <p><exercise id='10' title='Loops'></p>
 <p>In data analytics, often we need to perform the same operation repeatedly on the data and <strong>loops</strong> can come in handy on these occasions. There are 2 types of loops: - The ‘for loop’ is designed to iterate over all elements in a sequence - The ‘while loop’ is designed to repeat the operations until certain condition is satisfied</p>
@@ -431,19 +390,9 @@ for (rating in customer_rating) {
 }</code></pre>
 <p>Here is the output from the above syntax after we have defined a vector variable <code>student_result</code>.</p>
 <p>Based on the output from the for-loop, which of the following is <code>student_result</code>?</p>
-<p><choice> <opt text="student_result <- c(97,77,35,99,67,85)" correct="true"></p>
-<p>Good job!</p>
-<p></opt></p>
-<p><opt text="student_result <- c(99,77,35,97,67,85)"></p>
-<p>This is not a correct answer.</p>
-<p></opt></p>
-<p><opt text="student_result <- c(77,99,35,97,67,85)"></p>
-<p>This is not a correct answer.</p>
-<p></opt></p>
-<p><opt text="student_result <- c(100,77,35,99,67,85)"></p>
-<p>This is not a correct answer.</p>
-<p></opt></p>
-<p></choice></p>
+<div>
+
+</div>
 </div>
 <div id="while-loops" class="section level2">
 <h2>While loops</h2>
@@ -521,7 +470,7 @@ flip_a_coin()</code></pre>
 <pre><code>## [1] &quot;Head&quot;</code></pre>
 <pre class="r"><code>#Flip the coin once again
 flip_a_coin()</code></pre>
-<pre><code>## [1] &quot;Tail&quot;</code></pre>
+<pre><code>## [1] &quot;Head&quot;</code></pre>
 <p>You will get a different outcome (“Head” or “Tail”) every time when you call the function <code>flip_a_coin</code>.</p>
 <p><strong>Write your code to roll a die!</strong></p>
 <p>Write a function that takes no input argument and return a random outcome choosing from 1 to 6, just like rolling a die in R. Name that function <code>roll_a_die</code>.</p>

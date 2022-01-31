@@ -103,7 +103,7 @@ in the instructions (the line with the comment `#`). For example, `weather <- "s
 
 <exercise id='3' title='Vectors' type="slides">
 
-<iframe src='../slides//slides/chapter2_03_vectors.html' width='800' height='500'></iframe>
+<iframe src='../slides/chapter2_03_vectors.html' width='800' height='500'></iframe>
 
 </exercise>
 
@@ -117,31 +117,9 @@ y = c(2,4,6,8,1,3,5,7)
 ```
 which of the following is the output of `y-2`?
 
-<choice> <opt text="`0  4  6  8  1  3  5  7`">
+<div>
 
-This is not the correct answer.
-
-</opt>
-
-<opt text="`0  2  4  6 -1  1  3  5`" correct="true">
-
-Good job!
-
-</opt>
-
-<opt text="`2  4  6  8  1  3  5  7 -2`">
-
-This is not the correct answer.
-
-</opt> 
-
-<opt text="`-4  -8 -12 -16  -2  -6 -10 -14`">
-
-This is not the correct answer.
-
-</opt> 
-
-</choice>
+</div>
 
 **Problem 2** 
 
@@ -151,34 +129,10 @@ y = c(2,4,6,8,1,3,5,7)
 ```
 which of the following is the output of `y[4:7]`?
 
-<choice> 
+<div>
 
-<opt text="`8 1 3 5`" correct="true">
+</div>
 
-Good job!
-
-</opt>
-
-<opt text="`8 1 3`">
-
-This is not correct either.
-
-</opt>
-
-
-<opt text="`6 8 1 3`">
-
-This is not correct either.
-
-</opt>
-
-<opt text="`1 3 5`">
-
-This is not correct either.
-
-</opt>
-
-</choice>
 
 </exercise>
 
@@ -240,31 +194,10 @@ df = data("ToothGrowth")
 
 What is the data type of the variable 'dose'?
 
-<choice> <opt text="numeric" correct="true">
 
-Good job!
+<div>
 
-</opt>
-
-<opt text="string">
-
-This is not a correct answer.
-
-</opt>
-
-<opt text="data frame">
-
-This is not a correct answer.
-
-</opt> 
-
-<opt text="matrix">
-
-This is not a correct answer.
-
-</opt>
-
-</choice>
+</div>
 
 ### Creating Data Frame
 
@@ -355,31 +288,10 @@ Take a look at the following statements:
 
 Select the option that lists **all** the true statements.
 
-<choice> <opt text="(1), (3), (4)" correct="true">
+<div>
 
-Good job!
+</div>
 
-</opt>
-
-<opt text="(1) and (2)">
-
-This is not a correct answer.
-
-</opt>
-
-<opt text="(1) and (3)">
-
-This is not a correct answer.
-
-</opt> 
-
-<opt text="(2) and (4)">
-
-This is not a correct answer.
-
-</opt>
-
-</choice>
 
 </exercise>
 
@@ -406,10 +318,12 @@ for (i in sequence) {
 ## [1] 3
 ## [1] 5
 ```
+
 Here, we first defined a vector called `sequence`, then **for** every $i$ in sequence, we print the value of $i$. 
 From the output, you can see from the output that each element `i` in the sequence was printed in each iteration.
 
 The same loop can be written in another way:
+
 
 ```r
 sequence <- c(1,3,5)
@@ -423,6 +337,7 @@ for (i in 1:length(sequence)) {
 ## [1] 3
 ## [1] 5
 ```
+
 In the R code above, we use the `length()` function to measure the length/size of `sequence`, i.e. 3. Then we construct a for loop where $i$ iterates from 1 to 3, inside the for loop `i` represents the index of the sequence and putting the index inside the square brackets allows us to select the $i$th element from `sequence`.
 
 **Write your first loop!** 
@@ -477,33 +392,9 @@ Here is the output from the above syntax after we have defined a vector variable
 
 Based on the output from the for-loop, which of the following is `student_result`?
 
-<choice> <opt text="student_result <- c(97,77,35,99,67,85)" correct="true">
+<div>
 
-Good job!
-
-</opt>
-
-<opt text="student_result <- c(99,77,35,97,67,85)">
-
-This is not a correct answer.
-
-</opt>
-
-<opt text="student_result <- c(77,99,35,97,67,85)">
-
-This is not a correct answer.
-
-</opt> 
-
-<opt text="student_result <- c(100,77,35,99,67,85)">
-
-This is not a correct answer.
-
-</opt>
-
-</choice>
-
-
+</div>
 
 
 ## While loops
@@ -638,7 +529,7 @@ flip_a_coin()
 ```
 
 ```
-## [1] "Tail"
+## [1] "Head"
 ```
 You will get a different outcome ("Head" or "Tail") every time when you call the function `flip_a_coin`.
 
