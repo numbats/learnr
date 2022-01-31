@@ -1,5 +1,7 @@
 ---
 title: Vectors
+execute:
+  keep-md: true
 output:
   revealjs::revealjs_presentation:
      css: [reveal.css, slide.css]
@@ -12,6 +14,7 @@ output:
      #incremental: true
 type: slides
 ---
+
 
 
 ## Vectors
@@ -38,6 +41,7 @@ code:
 ```
 x <- c(4,7,6,3,2)
 ```
+
 ---
 
 ## Vector Operations

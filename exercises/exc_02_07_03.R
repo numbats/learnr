@@ -5,7 +5,3 @@ atomic_no <- c(7,8,1,2,5,6,9,10,3,4)
 
 first_ten_elements <- _____
 
-___
-Hint: Use the `data.frame()` function on the vectors. 
-
-

@@ -210,6 +210,9 @@ Create a data frame using vectors `symbol`, `element`, `chemical_group` and `ato
 Assign the result data frame to `first_ten_elements`.
 
 <codeblock id="02_07_03">
+  
+Hint: Use the `data.frame()` function on the vectors. 
+
 
 </codeblock>
 
@@ -250,6 +253,11 @@ The above R code gives an ordered version of `x`.
 Now that we know how to use the `order()`, let's sort the first_ten_element data frame in ascending order of `atomic_no`, assign the sorted dataframe to `sorted_df`.
 
 <codeblock id="02_07_04">
+
+
+Hint: 
+- Use order(first_ten_elements$atomic_no) to create positions.
+- Then, use 'positions' with square brackets: first_ten_elements[...]; can you fill in the ...? Don not forget that 'positions' indicates the order of the rows in the data frame.
 
 </codeblock>
 
@@ -529,7 +537,7 @@ flip_a_coin()
 ```
 
 ```
-## [1] "Tail"
+## [1] "Head"
 ```
 
 ```r
