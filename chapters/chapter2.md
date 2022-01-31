@@ -12,9 +12,7 @@ output:
     keep_md: true
 ---
 
-```{r setup, include = FALSE}
-library(teachr)
-```
+
 
 <exercise id="1" title="Arithmetic and Variable Assignment">
 
@@ -58,14 +56,7 @@ get the value of 8.
 
 Now it's your turn to try variable assignment and some simple arithmetic operations in R!
 
-```{teachr 02_01}
-# Assign the sum of 1,3,5,7,9 to the variable x
-x <- <<1+3+5+7+9>>
-
-# Assign the product of x and 3 to the variable y
-y <- <<x*3>>
-
----
+<codeblock id="02_01">
   
 Hint: Let's say you would like to assign the result of summing from
 1 to 5 to a variable named `sum_to_five`. You can do: `sum_to_five <- 1+2+3+4+5`
@@ -74,20 +65,7 @@ Now if you would like to divide `sum_to_five` by 5 and assign the result
 to `average`, you can do: `average <- sum_to_five/5`
 
 
-???
-
-test <- function() {
-    if (x != 25) {
-        stop("Are you using the correct numbers and symbols? Have you try the hint?")
-    }
-    if (y != 75) {
-      stop("Are you using the correct numbers and symbols? Have you try the hint?")
-    }
-    # This function is defined in the testTemplate
-    success("Well done!")
-}
-test()
-```
+</codeblock>
 </exercise>
 
 
@@ -114,43 +92,17 @@ if you try to evaluate `5 + "6"`.
 
 Now, it's your turn to play around with different variable types!
 
-```{teachr 02_02}
-# Change weather to be "sunny"
-weather <- "rainy"
-
-# Change brolly_needed to be "FALSE"
-brolly_needed <- TRUE
-
-# Change temperature to be 27
-temperature <- 13
----
+<codeblock id="02_02">
 Hint: Replace the values in the R code with values that are provided
 in the instructions (the line with the comment `#`). For example, `weather <- "sunny"` assigns the string "sunny" to the variable `weather`.
 
-???
-
-test <- function() {
-    if (weather != "sunny") {
-        stop("Have you spelt the string correctly? Have you try the hint?")
-    }
-    if (brolly_needed != FALSE) {
-      stop("Have you spelt the logical value correctly? Note that logical values should be all capital letter (i.e. `TRUE` not `true`).")
-    }
-    if (temperature != 27) {
-      stop("Have you assign the numeric correctly?")
-    }
-    # This function is defined in the testTemplate
-    success("Well done!")
-}
-
-test()
-```
+</codeblock>
 
 </exercise>
 
 
 <exercise id='3' title='Vectors' type="slides">
-`r slides("chapter2_03_vectors")`
+<iframe src='../slides/chapter2_03_vectors.html' width='800' height='500'></iframe>
 </exercise>
 
 <exercise id='4' title='Check Your Understanding on Vectors'>
@@ -225,7 +177,7 @@ This is not correct either.
 </exercise>
 
 <exercise id='5' title='Matrices' type = "slides">
-`r slides("chapter2_05_matrices")`
+<iframe src='../slides/chapter2_05_matrices.html' width='800' height='500'></iframe>
 </exercise>
 
 <exercise id='6' title='Check Your Understanding on Matrices'>
@@ -237,37 +189,12 @@ $$S = \begin{bmatrix}1&0\\0&1\end{bmatrix},\;\; T = \begin{bmatrix}2&2\\4&3\end{
 - Construct a matrix $M$ by stacking $S$ on top of $T$, i.e. $M = \begin{bmatrix}S\\T\end{bmatrix}$. Assign your result to the variable `M`.
 - Select a sub-matrix of $M$ with the data on the rows 1, 2, 3 and columns 2. Assign the result to the variable `part_of_M`.
 
-```{teachr 02_06}
-S = matrix(c(1,0,0,1), byrow=TRUE, nrow=2)
-T = matrix(c(2,2,4,3), byrow=TRUE, nrow=2)
-# Construct a matrix M by stacking S on top of T
-M <- <<rbind(S,T)>>
-
-# Select a sub-matrix of M with the data on the rows 1, 2, 3 and columns 2.
-part_of_M <- <<M[1:3,2]>>
-
----
+<codeblock id="02_06">
 
 Hint 1: To stack one matrix on top of another, we can use the `rbind()` command.
 Hint 2: For example, B[1,2] selects the element at the first row and second column of matrix B. B[1:3,2:4] results in a matrix with the data on the rows 1, 2, 3 and columns 2, 3, 4.
 
-???
-
-test <- function() {
-    S = matrix(c(1,0,0,1), byrow=TRUE, nrow=2)
-    T = matrix(c(2,2,4,3), byrow=TRUE, nrow=2)
-    if (M != rbind(S,T)) {
-        stop("This is incorrect. Are you using the function that we have introduced? Try the Hint!")
-    }
-    if (part_of_M != M[1:3,2]) {
-      stop("Have you got the indexing right? Try the Hint!")
-    }
-    # This function is defined in the testTemplate
-    success("Well done! You have mastered the basics of operating on matrices using R.")
-}
-test()
-
-```
+</codeblock>
 
 </exercise> 
 
@@ -280,9 +207,9 @@ A data frame has the variables of a dataset as columns and the observations as r
 
 Let's look at an example. Just run the code and you will see what a data frame looks like in R.
 
-```{r 02_07_01}
+
+```r
 data("iris")
-<< >>
 ```
 
 The iris data set gives the measurements in centimeters of the variables sepal length, sepal width, petal length and petal width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.
@@ -295,10 +222,9 @@ Often it is useful to show only a small part of the entire dataset, especially w
   - `str()` shows the structure of the dataset.
 
 Investigate the structure of the example dataframe. Have a look at the first and last few observations!
-```{r 02_07_02}
-df = data("ToothGrowth")
-<<head(df)>>
 
+```r
+df = data("ToothGrowth")
 ```
 
 **Answer the following questions**
@@ -341,34 +267,9 @@ You can include different vectors as argument in the function and they will beco
 Create a data frame using vectors `symbol`, `element`, `chemical_group` and `atomic_no`, following that order.
 Assign the result data frame to `first_ten_elements`.
 
-```{teachr 02_07_03}
-symbol <- c('N','O','H','He','B','C','F','Ne','Li','Be')
-element <- c('Nitrogen','Oxygen','Hydrogen','Helium','Boron','Carbon','Fluorine','Neon','Lithium','Beryllium')
-chemical_group <- c('Nonmetal','Nonmetal','Nonmetal','Noble Gas','Metalloid','Nonmetal','Halogen','Noble Gas','Alkali Metal','Alkaline Earth Metal')
-atomic_no <- c(7,8,1,2,5,6,9,10,3,4)
+<codeblock id="02_07_03">
 
-first_ten_elements <- <<<data.frame(symbol, element, chemical_group, atomic_no)>>>
-
-___
-Hint: Use the `data.frame()` function on the vectors. 
-
-
-???
-
-test <- function() {
-    symbol <- c('N','O','H','He','B','C','F','Ne','Li','Be')
-    element <- c('Nitrogen','Oxygen','Hydrogen','Helium','Boron','Carbon','Fluorine','Neon','Lithium','Beryllium')
-    chemical_group <- c('Nonmetal','Nonmetal','Nonmetal','Noble Gas','Metalloid','Nonmetal','Halogen','Noble Gas','Alkali Metal','Alkaline Earth Metal')
-    atomic_no <- c(7,8,1,2,5,6,9,10,3,4)
-    if first_ten_elements != data.frame(symbol, element, chemical_group, atomic_no){
-      stop("Did you follow the order of columns as stated in the instruction?" Try again.)
-    }
-    success("Well done!")
-}
-
-test()
-
-```
+</codeblock>
 
 ### Indexing, Selecting Columns and Subset
 
@@ -384,61 +285,36 @@ Alternatively, if you would like to select a certain variable from the data fram
 
 Sometimes we may want to sort the data according to a certain variable in the dataset. In R, we can use the `order()` function which gives the ranked position of each element when it is applied on a variable. For example, 
 
-```{r}
+
+```r
 x <- c(100, -200,300)
 order(x)
+```
 
 ```
+## [1] 2 1 3
+```
 The output above is the ranked positions and we can use that to sort the vector `x`.
-```{r}
-x[order(x)]
 
+```r
+x[order(x)]
+```
+
+```
+## [1] -200  100  300
 ```
 The above R code gives an ordered version of `x`.
 
 Now that we know how to use the `order()`, let's sort the first_ten_element data frame in ascending order of `atomic_no`, assign the sorted dataframe to `sorted_df`.
 
-```{teachr 02_07_04}
+<codeblock id="02_07_04">
 
-symbol <- c('N','O','H','He','B','C','F','Ne','Li','Be')
-element <- c('Nitrogen','Oxygen','Hydrogen','Helium','Boron','Carbon','Fluorine','Neon','Lithium','Beryllium')
-chemical_group <- c('Nonmetal','Nonmetal','Nonmetal','Noble Gas','Metalloid','Nonmetal','Halogen','Noble Gas','Alkali Metal','Alkaline Earth Metal')
-atomic_no <- c(7,8,1,2,5,6,9,10,3,4)
-
-first_ten_elements <- data.frame(symbol, element, chemical_group, atomic_no)
-
-# Use order() to create positions
-positions <- <<order(first_ten_elements$atomic_no)>>
-
-# Use positions to create a sort the first_ten_elements
-sorted_df <- <<first_ten_elements[positions, ]>>
-
-___
-Hint: 
-- Use order(first_ten_elements$atomic_no) to create positions.
-- Then, use 'positions' with square brackets: first_ten_elements[...]; can you fill in the ...? Don not forget that 'positions' indicates the order of the rows in the data frame.
-
-???
-test <- function() {
-
-    symbol <- c('N','O','H','He','B','C','F','Ne','Li','Be')
-    element <- c('Nitrogen','Oxygen','Hydrogen','Helium','Boron','Carbon','Fluorine','Neon','Lithium','Beryllium')
-    chemical_group <- c('Nonmetal','Nonmetal','Nonmetal','Noble Gas','Metalloid','Nonmetal','Halogen','Noble Gas','Alkali Metal','Alkaline Earth Metal')
-    atomic_no <- c(7,8,1,2,5,6,9,10,3,4)
-    first_ten_elements <- data.frame(symbol, element, chemical_group, atomic_no)
-    if sorted_df != first_ten_elements[order(first_ten_elements$atomic_no), ]{
-      stop("Did you follow the order of columns as stated in the instruction?" Try again.)
-    }
-    success("Well done!")
-}
-
-
-```
+</codeblock>
 
 </exercise>
 
 <exercise id='8' title='Conditional Statements' type="slides">
-`r slides("chapter2_08_conditionalstatements")`
+<iframe src='../slides/chapter2_08_conditionalstatements.html' width='800' height='500'></iframe>
 
 </exercise>
 
@@ -507,58 +383,47 @@ In data analytics, often we need to perform the same operation repeatedly on the
 
 A simple for loop in R looks like this:
 
-```{r}
+
+```r
 sequence <- c(1,3,5)
 for (i in sequence) {
   print(i)
 }
 ```
+
+```
+## [1] 1
+## [1] 3
+## [1] 5
+```
 Here, we first defined a vector called `sequence`, then **for** every $i$ in sequence, we print the value of $i$. 
 From the output, you can see from the output that each element `i` in the sequence was printed in each iteration.
 
 The same loop can be written in another way:
-```{r}
+
+```r
 sequence <- c(1,3,5)
 for (i in 1:length(sequence)) {
   print(sequence[i])
 }
 ```
+
+```
+## [1] 1
+## [1] 3
+## [1] 5
+```
 In the R code above, we use the `length()` function to measure the length/size of `sequence`, i.e. 3. Then we construct a for loop where $i$ iterates from 1 to 3, inside the for loop `i` represents the index of the sequence and putting the index inside the square brackets allows us to select the $i$th element from `sequence`.
 
 **Write your first loop!** 
 
-```{teachr 02_10_01}
+<codeblock id="02_10_01">
 
-countries <- c('US', 'China','Japan', 'Germany','India')
-nominalGDP_trilion_2017 <- c(19.485, 12.238, 4.872, 3.693, 2.651)
-population_million_2017 <- c(325, 1421, 127, 82, 1338)
-
-
-# Write a for loop that takes the nominal GDP (in trillion) for each country in 2017 and divided it by the population (in million) in the same year
-# Assign the result to the variable my_result
-my_result <- c(0,0,0,0)
-for (i in 1:length(countries)) {
-  my_result[i] <- <<nominalGDP_trilion_2017[i]/population_million_2017[i]>>
-}
-
-___
-
-Hint: To extract the i-th element of `nominalGDP_trilion_2017`, you can use `nominalGDP_trilion_2017[i]`. You can extract the i-th element of `population_million_2017` using square bracket as well.
-
-???
-  
-test <- function() {
-  if my_result[5] != 0.00198{
-    stop("Try again.")
-  }
-  success("Well done!")
-}
-
-
-```
+</codeblock>
 
 We can do a lot more than when we use for loop together with the control flow statements (if, else if, else) we learnt before. For example, 
-```{r}
+
+```r
 customer_rating <- c(2,3,1,5,5,5)
 
 for (rating in customer_rating) {
@@ -570,6 +435,15 @@ for (rating in customer_rating) {
   print('Neutral Customer!')
   }
 }
+```
+
+```
+## [1] "Angry Customer!"
+## [1] "Neutral Customer!"
+## [1] "Angry Customer!"
+## [1] "Happy Customer!"
+## [1] "Happy Customer!"
+## [1] "Happy Customer!"
 ```
 The R code above prints different messages depending on the values in customer_rating.
 
@@ -635,7 +509,8 @@ while (condition) {
 In the while loop, R will keep running the code between the brackets `{ }` repeated until the condition become `FALSE` at some point during the execution. If the condition is never changed, the while loop will go on indefinitely.
 
 For example, we create a while loop that will go on subtracting 28.5 (as weekly_spending) to the variable `bank_balance` until `bank_balance` is less than `weekly_spending`. If you execute the R code, you will notice the loop stopped at the 7th iteration.
-```{r}
+
+```r
 bank_balance = 200
 weekly_spending = 28.5
 while (bank_balance >= weekly_spending) {
@@ -644,12 +519,23 @@ while (bank_balance >= weekly_spending) {
 }
 ```
 
+```
+## [1] 171.5
+## [1] 143
+## [1] 114.5
+## [1] 86
+## [1] 57.5
+## [1] 29
+## [1] 0.5
+```
+
 ## Break statement
 
 There are occasions where breaking the loop during execution is a good idea. The break statement can be used in for loops and while loops.
 
 For example, if we are to set up a early warning system when `bank_balance` is less than or equal to 4 times `weekly spending`, we can do the following:
-```{r}
+
+```r
 bank_balance = 200
 weekly_spending = 28.5
 while (bank_balance>= weekly_spending) {
@@ -660,6 +546,14 @@ while (bank_balance>= weekly_spending) {
   break
   }
 }
+```
+
+```
+## [1] 171.5
+## [1] 143
+## [1] 114.5
+## [1] 86
+## [1] "Find a job and cut weekly spending!"
 ```
 
 
@@ -682,41 +576,16 @@ Finally, you assign the function defining statement and body to the variable `my
 
 Create a function `power_three()`: it takes one argument and returns that number cubed (that number times itself and times itself again). Call this newly defined function with 12 as input.
 
-```{teachr 02_11_01}
-# Create a function power_three()
-power_three <- <<function(arg){
-  arg*arg*arg
-}
->>
-# Use the function
+<codeblock id="02_11_01">
 
-
-
-___
-Hint: Start with the following:
-`power_three <- function(arg){
-...
-}
-`
-Fill in the `...`.
-
-???
-
-test <- function() {
-    if power_three(20) != 20^3{
-      stop("Did you correctly define the function power_three()? Check the function body. Are you taking the input argument to the power three?")
-    }
-    success("Well done!")
-}
-
-test()
-```
+</codeblock>
 
 It is also possible to run a function without an input argument.
 
 In the following example, the function will print the statement "Hello World!" when the function is called without any inputs.
 
-```{r}
+
+```r
 hello_world <- function(){
 print('Hello World!')
 }
@@ -725,7 +594,8 @@ This can also be useful sometimes when we would like to have random outcomes fro
 
 For example:
 
-```{r}
+
+```r
 flip_a_coin <- function(){
   outcome <- sample(1:2, size = 1)
   if (outcome == 1) {
@@ -735,10 +605,28 @@ flip_a_coin <- function(){
 
 #Flip the coin the first time
 flip_a_coin()
+```
+
+```
+## [1] "Head"
+```
+
+```r
 #Flip the coin second time
 flip_a_coin()
+```
+
+```
+## [1] "Head"
+```
+
+```r
 #Flip the coin once again
 flip_a_coin()
+```
+
+```
+## [1] "Tail"
 ```
 You will get a different outcome ("Head" or "Tail") every time when you call the function `flip_a_coin`.
 
@@ -746,27 +634,10 @@ You will get a different outcome ("Head" or "Tail") every time when you call the
 
 Write a function that takes no input argument and return a random outcome choosing from 1 to 6, just like rolling a die in R. Name that function `roll_a_die`.
 
-```{teachr 02_11_02}
-# Write some code to roll a die
-
-roll_a_die <- <<function(){
-  sample(1:6, size = 1)
-}>>
-
----
+<codeblock id="02_11_02">
 Hint: You can obtain a random integer from 1 to 6 using `sample(1:6, size = 1)`. Have you try putting that in the function body?
 
-???
-test <- function() {
-    if ((class(roll_a_die()) != "integer")|(roll_a_die()> 6)|(roll_a_die()<1)) {
-      stop("Is your function returning integers from 1 to 6 ? Check the body of the function.")
-    }
-    success("Well done!")
-}
-
-test()
-
-```
+</codeblock>
 
 **Function Scoping**
 
