@@ -12,15 +12,7 @@ format:
 type: slides
 ---
 
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(fig.path = "images/chapter7-04/",
-                      fig.align = "center",
-                      fig.width = 4, 
-                      fig.height = 4,
-                      echo = TRUE)
-library(ggplot2)
-library(patchwork)
-```
+
 
 ## Scales
 
@@ -31,11 +23,18 @@ library(patchwork)
 ![](images/ggplot-scale.png)
 </center>
 
-```{r scale-demo}
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
 ggplot(diamonds, aes(carat, price)) +
   geom_point() + 
   scale_y_log10()
 ```
+
+::: {.cell-output-display}
+![](images/chapter7-04/scale-demo-1.png){fig-align='center' width=384}
+:::
+:::
 
 ---
 
@@ -53,16 +52,25 @@ ggplot(diamonds, aes(carat, price)) +
 
 ## Example plot
 
-```{r example, fig.width = 6, fig.height = 4}
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
 g <- ggplot(diamonds, aes(carat, price)) + geom_hex()
 g
 ```
+
+::: {.cell-output-display}
+![](images/chapter7-04/example-1.png){fig-align='center' width=576}
+:::
+:::
 
 ---
 
 ## Modifying axis
 
-```{r modify-axis, fig.width = 6, fig.height = 4}
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
 g + 
   scale_y_continuous(name = "Price", 
                      breaks = c(0, 10000),
@@ -70,23 +78,37 @@ g +
   geom_hline(yintercept = 10000, color = "red", size = 2)
 ```
 
+::: {.cell-output-display}
+![](images/chapter7-04/modify-axis-1.png){fig-align='center' width=576}
+:::
+:::
+
 ---
 
 ## Modifying labels
 
 
-```{r modify-labels, fig.width = 6, fig.height = 4}
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
 g + 
   scale_y_continuous(
     label = scales::dollar_format()
   )
 ```
 
+::: {.cell-output-display}
+![](images/chapter7-04/modify-labels-1.png){fig-align='center' width=576}
+:::
+:::
+
 ---
 
 ## Modifying legend scale
 
-```{r modify-legend}
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
 g + 
   scale_fill_continuous(
     breaks = c(0, 10, 100, 1000, 4000),
@@ -94,16 +116,28 @@ g +
   )
 ```
 
+::: {.cell-output-display}
+![](images/chapter7-04/modify-legend-1.png){fig-align='center' width=384}
+:::
+:::
+
 ---
 
 ## Removing legend
 
-```{r remove-legend}
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
 g + 
   scale_fill_continuous(
     guide = "none"
   )
 ```
+
+::: {.cell-output-display}
+![](images/chapter7-04/remove-legend-1.png){fig-align='center' width=384}
+:::
+:::
 
 ---
 
@@ -112,15 +146,29 @@ g +
 * There are generally other ways of modifying the scales
 * Each user has a different mental mode, so you can use what suits you (and others in your team)
 
-```{r change-labels}
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
 g + 
   ylab("Price") + # Changes the y axis label
   labs(x = "Carat", # Changes the x axis label
        fill = "Count") # Changes the legend name
 ```
-```{r remove-legend-alt}
+
+::: {.cell-output-display}
+![](images/chapter7-04/change-labels-1.png){fig-align='center' width=384}
+:::
+:::
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
 g + guides(fill = "none") # remove the legend
 ```
+
+::: {.cell-output-display}
+![](images/chapter7-04/remove-legend-alt-1.png){fig-align='center' width=384}
+:::
+:::
 
 ---
 
@@ -128,21 +176,8 @@ g + guides(fill = "none") # remove the legend
 
 * When using color in your plots, it's good to keep in mind that color can be viewed differently by people 
 
-```{r, echo = FALSE, warning = FALSE, fig.width = 10, fig.height = 5}
-cols <- c("dodgerblue3", "grey93", "darkorange4", "green3", "red3")
-g1 <- ggplot(diamonds, aes(carat, fill = cut)) +
-  geom_density(alpha = 0.5) + 
-  scale_x_log10() + 
-  scale_fill_manual(values = cols) +
-  ggtitle("Original")
-
-g2 <- g1 + scale_fill_manual(values = colorspace::protan(cols)) +
-  ggtitle("Protan")
-g3 <- g1 + scale_fill_manual(values = colorspace::deutan(cols)) +
-  ggtitle("Deutan")
-g4 <- g1 + scale_fill_manual(values = colorspace::tritan(cols)) +
-  ggtitle("Tritan")
-
-(g1 + g2) / (g3 + g4)
-```
-
+::: {.cell layout-align="center"}
+::: {.cell-output-display}
+![](images/chapter7-04/unnamed-chunk-2-1.png){fig-align='center' width=960}
+:::
+:::
