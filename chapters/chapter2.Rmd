@@ -166,8 +166,8 @@ y = c(2,4,6,8,1,3,5,7)
 ```
 which of the following is the output of `y-2`?
 
-```{r, echo = FALSE, results = "asis"}
-cat(teachr::mc_opts("`0  4  6  8  1  3  5  7`",
+```{teacher, echo = FALSE, results = "asis"}
+cat(mc_opts("`0  4  6  8  1  3  5  7`",
          "`0  2  4  6 -1  1  3  5`",
          "`2  4  6  8  1  3  5  7 -2`",
          "`-4  -8 -12 -16  -2  -6 -10 -14`",
@@ -182,8 +182,8 @@ y = c(2,4,6,8,1,3,5,7)
 ```
 which of the following is the output of `y[4:7]`?
 
-```{r, echo = FALSE, results = "asis"}
-cat(teachr::mc_opts("`8 1 3 5`",
+```{teachr, echo = FALSE, results = "asis"}
+cat(mc_opts("`8 1 3 5`",
          "`8 1 3`",
          "`6 8 1 3`",
          "`1 3 5`",
