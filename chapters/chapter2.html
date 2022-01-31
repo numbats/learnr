@@ -222,14 +222,20 @@ pre code {
 <pre><code>y = c(2,4,6,8,1,3,5,7)</code></pre>
 <p>which of the following is the output of <code>y-2</code>?</p>
 <div>
-
+<p><input type="radio"> <code>0  4  6  8  1  3  5  7</code> | Try again! Check your calculation in R!</p>
+<p><input type="radio"> <code>0  2  4  6 -1  1  3  5</code> | <span style="color:red">CORRECT</span> That’s correct!</p>
+<p><input type="radio"> <code>2  4  6  8  1  3  5  7 -2</code> | Try again! Check your calculation in R!</p>
+<p><input type="radio"> <code>-4  -8 -12 -16  -2  -6 -10 -14</code> | Try again! Check your calculation in R!</p>
 </div>
 <p><strong>Problem 2</strong></p>
 <p>Given the following vector <code>y</code> in R,</p>
 <pre><code>y = c(2,4,6,8,1,3,5,7)</code></pre>
 <p>which of the following is the output of <code>y[4:7]</code>?</p>
 <div>
-
+<p><input type="radio"> <code>8 1 3 5</code> | <span style="color:red">CORRECT</span> That’s correct!</p>
+<p><input type="radio"> <code>8 1 3</code> | Try again! Check your calculation in R!</p>
+<p><input type="radio"> <code>6 8 1 3</code> | Try again! Check your calculation in R!</p>
+<p><input type="radio"> <code>1 3 5</code> | Try again! Check your calculation in R!</p>
 </div>
 <p></exercise></p>
 <p><exercise id='5' title='Matrices' type = "slides"></p>
@@ -264,7 +270,10 @@ pre code {
 <p><strong>Answer the following questions</strong></p>
 <p>What is the data type of the variable ‘dose’?</p>
 <div>
-
+<p><input type="radio"> numeric | <span style="color:red">CORRECT</span> That’s correct!</p>
+<p><input type="radio"> string | Try again! Take a quick look at your data in R!</p>
+<p><input type="radio"> data frame | Try again! Data frame is a type of data structure, not a data type.</p>
+<p><input type="radio"> matrix | Try again! Matrix is a type of data structure, not a data type.</p>
 </div>
 </div>
 <div id="creating-data-frame" class="section level3">
@@ -328,7 +337,10 @@ print(result)</code></pre>
 </ol>
 <p>Select the option that lists <strong>all</strong> the true statements.</p>
 <div>
-
+<p><input type="radio"> (1) and (2) | Try again! Copy the code and try it with some numbers in R!</p>
+<p><input type="radio"> (1) and (3) | Try again! Copy the code and try it with some numbers in R!</p>
+<p><input type="radio"> (2) and (4) | Try again! Copy the code and try it with some numbers in R!</p>
+<p><input type="radio"> (1), (3), (4) | <span style="color:red">CORRECT</span> That’s correct!</p>
 </div>
 <p></exercise></p>
 <p><exercise id='10' title='Loops'></p>
@@ -394,7 +406,10 @@ for (rating in customer_rating) {
 <p>Here is the output from the above syntax after we have defined a vector variable <code>student_result</code>.</p>
 <p>Based on the output from the for-loop, which of the following is <code>student_result</code>?</p>
 <div>
-
+<p><input type="radio"> student_result &lt;- c(99,77,35,97,67,85) | Try again! Copy the code and try it with some numbers in R!</p>
+<p><input type="radio"> student_result &lt;- c(77,99,35,97,67,85) | Try again! Copy the code and try it with some numbers in R!</p>
+<p><input type="radio"> student_result &lt;- c(97,77,35,99,67,85) | <span style="color:red">CORRECT</span> That’s correct!</p>
+<p><input type="radio"> student_result &lt;- c(100,77,35,99,67,85) | Try again! Copy the code and try it with some numbers in R!</p>
 </div>
 </div>
 <div id="while-loops" class="section level2">
@@ -474,7 +489,7 @@ flip_a_coin()</code></pre>
 <pre><code>## [1] &quot;Head&quot;</code></pre>
 <pre class="r"><code>#Flip the coin once again
 flip_a_coin()</code></pre>
-<pre><code>## [1] &quot;Tail&quot;</code></pre>
+<pre><code>## [1] &quot;Head&quot;</code></pre>
 <p>You will get a different outcome (“Head” or “Tail”) every time when you call the function <code>flip_a_coin</code>.</p>
 <p><strong>Write your code to roll a die!</strong></p>
 <p>Write a function that takes no input argument and return a random outcome choosing from 1 to 6, just like rolling a die in R. Name that function <code>roll_a_die</code>.</p>

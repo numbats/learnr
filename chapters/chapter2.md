@@ -119,6 +119,14 @@ which of the following is the output of `y-2`?
 
 <div>
 
+<input type="radio"> `0  4  6  8  1  3  5  7` |  Try again! Check your calculation in R!
+
+<input type="radio"> `0  2  4  6 -1  1  3  5` | <span style="color:red">CORRECT</span> That's correct!
+
+<input type="radio"> `2  4  6  8  1  3  5  7 -2` |  Try again! Check your calculation in R!
+
+<input type="radio"> `-4  -8 -12 -16  -2  -6 -10 -14` |  Try again! Check your calculation in R!
+
 </div>
 
 **Problem 2** 
@@ -130,6 +138,14 @@ y = c(2,4,6,8,1,3,5,7)
 which of the following is the output of `y[4:7]`?
 
 <div>
+
+<input type="radio"> `8 1 3 5` | <span style="color:red">CORRECT</span> That's correct!
+
+<input type="radio"> `8 1 3` |  Try again! Check your calculation in R!
+
+<input type="radio"> `6 8 1 3` |  Try again! Check your calculation in R!
+
+<input type="radio"> `1 3 5` |  Try again! Check your calculation in R!
 
 </div>
 
@@ -196,6 +212,14 @@ What is the data type of the variable 'dose'?
 
 
 <div>
+
+<input type="radio"> numeric | <span style="color:red">CORRECT</span> That's correct!
+
+<input type="radio"> string |  Try again! Take a quick look at your data in R!
+
+<input type="radio"> data frame |  Try again! Data frame is a type of data structure, not a data type.
+
+<input type="radio"> matrix |  Try again! Matrix is a type of data structure, not a data type.
 
 </div>
 
@@ -300,6 +324,14 @@ Take a look at the following statements:
 Select the option that lists **all** the true statements.
 
 <div>
+
+<input type="radio"> (1) and (2) |  Try again! Copy the code and try it with some numbers in R!
+
+<input type="radio"> (1) and (3) |  Try again! Copy the code and try it with some numbers in R!
+
+<input type="radio"> (2) and (4) |  Try again! Copy the code and try it with some numbers in R!
+
+<input type="radio"> (1), (3), (4) | <span style="color:red">CORRECT</span> That's correct!
 
 </div>
 
@@ -406,6 +438,14 @@ Here is the output from the above syntax after we have defined a vector variable
 Based on the output from the for-loop, which of the following is `student_result`?
 
 <div>
+
+<input type="radio"> student_result <- c(99,77,35,97,67,85) |  Try again! Copy the code and try it with some numbers in R!
+
+<input type="radio"> student_result <- c(77,99,35,97,67,85) |  Try again! Copy the code and try it with some numbers in R!
+
+<input type="radio"> student_result <- c(97,77,35,99,67,85) | <span style="color:red">CORRECT</span> That's correct!
+
+<input type="radio"> student_result <- c(100,77,35,99,67,85) |  Try again! Copy the code and try it with some numbers in R!
 
 </div>
 
@@ -546,7 +586,7 @@ flip_a_coin()
 ```
 
 ```
-## [1] "Tail"
+## [1] "Head"
 ```
 You will get a different outcome ("Head" or "Tail") every time when you call the function `flip_a_coin`.
 
