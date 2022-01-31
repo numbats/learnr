@@ -1,7 +1,7 @@
 ---
 title: 'Chapter 2: R Programming Basics'
 description:
-  'In R Programming Basics, you will master the basic operations of this popular open source language. You will also learn to perform simple algebraic operations on vectors and matrices, as well as other data structures such as factors, lists, and data frames. You will also learn about conditional statements, loops, and functions to power your R code, making your work more efficient and elegant.'
+  'In R Programming Basics, you will master the basic operations of this popular open source language. You will also learn to perform simple algebraic operations on vectors and matrices. You will also learn about data frames, conditional statements, loops, and functions to power your R code, making your work more efficient and elegant.'
 prev: /chapter1
 next: /chapter3
 type: chapter
@@ -14,6 +14,7 @@ output:
 
 ```{r setup, include = FALSE}
 library(teachr)
+library(testthat)
 ```
 
 <exercise id="1" title="Arithmetic and Variable Assignment">
@@ -150,7 +151,9 @@ test()
 
 
 <exercise id='3' title='Vectors' type="slides">
+
 `r slides("chapter2_03_vectors")`
+
 </exercise>
 
 <exercise id='4' title='Check Your Understanding on Vectors'>
@@ -221,11 +224,15 @@ This is not correct either.
 This is not correct either.
 
 </opt>
+
 </choice>
+
 </exercise>
 
 <exercise id='5' title='Matrices' type = "slides">
+
 `r slides("chapter2_05_matrices")`
+
 </exercise>
 
 <exercise id='6' title='Check Your Understanding on Matrices'>
@@ -635,6 +642,7 @@ while (condition) {
 In the while loop, R will keep running the code between the brackets `{ }` repeated until the condition become `FALSE` at some point during the execution. If the condition is never changed, the while loop will go on indefinitely.
 
 For example, we create a while loop that will go on subtracting 28.5 (as weekly_spending) to the variable `bank_balance` until `bank_balance` is less than `weekly_spending`. If you execute the R code, you will notice the loop stopped at the 7th iteration.
+
 ```{r}
 bank_balance = 200
 weekly_spending = 28.5
@@ -693,6 +701,7 @@ power_three <- <<function(arg){
 
 
 ___
+
 Hint: Start with the following:
 `power_three <- function(arg){
 ...
@@ -750,13 +759,14 @@ Write a function that takes no input argument and return a random outcome choosi
 # Write some code to roll a die
 
 roll_a_die <- <<function(){
-  sample(1:6, size = 1)
-}>>
+  sample(1:6, size = 1)}>>
 
 ---
+  
 Hint: You can obtain a random integer from 1 to 6 using `sample(1:6, size = 1)`. Have you try putting that in the function body?
 
 ???
+  
 test <- function() {
     if ((class(roll_a_die()) != "integer")|(roll_a_die()> 6)|(roll_a_die()<1)) {
       stop("Is your function returning integers from 1 to 6 ? Check the body of the function.")
