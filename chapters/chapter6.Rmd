@@ -2,11 +2,20 @@
 title: 'Chapter 6: Data Wrangling'
 description:
   'In this chapter, you will learn to use tidyr and dplyr from the tidyverse in R.'
-prev: null
+prev: /chapter5
 next: /chapter7
 type: chapter
 id: 6
+output:
+  html_document:
+    self_contained: false
 ---
+
+```{r setup, include = FALSE}
+library(teachr)
+```
+
+
 
 <exercise id="1" title="Introduction to tidyverse">
 

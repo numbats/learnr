@@ -2,11 +2,19 @@
 title: 'Chapter 2: R Programming Basics'
 description:
   'In R Programming Basics, you will master the basic operations of this popular open source language. You will also learn to perform simple algebraic operations on vectors and matrices, as well as other data structures such as factors, lists, and data frames. You will also learn about conditional statements, loops, and functions to power your R code, making your work more efficient and elegant.'
-prev: null
+prev: /chapter1
 next: /chapter3
 type: chapter
 id: 2
+output:
+  html_document:
+    self_contained: false
+  
 ---
+
+```{r setup, include = FALSE}
+library(teachr)
+```
 
 <exercise id="1" title="Arithmetic and Variable Assignment">
 
@@ -141,67 +149,13 @@ test()
 </exercise>
 
 
-<exercise id='3' title='Vectors'>
+<exercise id='3' title='Vectors' type="slides">
+`r slides("chapter2_03_vectors")`
+</exercise>
 
-Vectors (and matrices) are used a lot in equations, models, mathematical
-optimization problems. Learning how to read and use them allows you to
-(i) understand complex operations and (ii) express operations that you
-want to perform in a compact and elegant way.
+<exercise id='4' title='Check Your Understanding on Vectors'>
 
-## Vectors
-
-A **vector** is an ordered finite list of numbers. You may have seen
-them before, for example, a (column) vector x can be written as follow:
-
-$$ x = (4,7,6,3,2) = \begin{bmatrix}4\\7\\6\\3\\2 \end{bmatrix} $$
-
-Note that a row vector (say, `y`) can be written as
-$y = (3\;4\;7\;4\;2)$ or $y = \begin{bmatrix} 3&4&7&4&2\end{bmatrix}$.
-
-In R, vectors are one-dimension arrays that can hold numeric data,
-character data or logical data. You can create a vector in R with the
-combine function `c()`, where each element in the vector is separated by
-a comma `,`. You can express the vector `x` above with the following R
-code:
-
-```
-x <- c(4,7,6,3,2)
-```
-
-### Vector Operations
-
-**Vector addition and subtraction** 
-
-If `a` and `b` are vectors of the same size, `a+b` and `a-b` give their sum and difference, respectively.
-
-```{r}
-a <- c(1,2,3)
-b <- c(100,200,300)
-a+b
-a-b
-```
-
-
-**Scalar-vector multiplication and division** 
-
-If `c` is a number and `a` is a vector (from above), you can express the scalar-vector product either as `c*a` or `a*c`. For example, if you do `3*a` and `a*3`:
-
-```{r}
-3*a
-a*3
-```
-
-**Scalar-vector addition** 
-
-In R, you can add a scalar `c` and a vector `a` using c+a. This means that the scalar is added to each element of the vector. For example, if you do `3+a`:
-
-```{r}
-3+a
-```
-This is, however, **NOT** a standard mathematical notation. (In mathematical notations, we should use this as, e.g. $a + c \mathbf{1}$, where $a$ is a vector and $c$ is a scalar.)
-
-
-**Check your understanding** 
+**Problem 1** 
 
 Given the following vector `y` in R,
 ```
@@ -234,27 +188,7 @@ This is not the correct answer.
 </opt> 
 </choice>
 
-
-### Indexing and Slicing
-
-**Indexing** 
-
-To select elements of a vector (and later matrices, data frames, ...), you can use square brackets `[ ]`. Between the square brackets, you indicate what elements to select. For example, consider a vector $x$, a specific element $x_i$ is selected with the expression `x[i]` where `i` is the index (which runs from 1 to $n$, for a vector with $n$ elements). Say, we would like to obtain the 5th entry from the following vector $x$:
-```{r}
-x = c(5,6,3,4,5,8,23,4,6,4,3,23,7,5,4,23,7,90)
-x[5]
-```
-
-
-**Slicing** 
-
-Sometimes it is of interest to extract a slice of a vector (a sub-vector) using an index range as the argument. $x_{r:s}$ denotes the slice of the vector from index $r$ to $s$. In the code below, `x[1:4]` selects the element from index 1 to 4.
-```{r}
-x[1:4]
-```
-
-
-**Check your understanding**
+**Problem 2** 
 
 Given the following vector `y` in R,
 ```
@@ -290,81 +224,11 @@ This is not correct either.
 </choice>
 </exercise>
 
-<exercise id='4' title='Matrices'>
+<exercise id='5' title='Matrices' type = "slides">
+`r slides("chapter2_05_matrices")`
+</exercise>
 
-## Matrices
-
-A **matrix** is a rectangular array of numbers written between
-rectangular brackets (or large parentheses). For example, matrix `A` is
-a $5 \times 3$ matrix (pronounced as `5 by 3`, indicating there are 5
-rows and 3 columns in the matrix) is defined as follow:
-
-$$ A = \begin{bmatrix}4&3&2\\7&4&2\\6&3&4\\3&0&0\\2&-2&-3 \end{bmatrix} $$
-
-In R, a matrix is a collection of elements of the same data type
-(numeric, character, or logical) arranged into a fixed number of rows
-and columns. You can construct a matrix in R using the `matrix()`
-function. You can express the matrix `A` above with the following R
-code:
-
-`A <- matrix(c(4,3,2,7,4,2,6,3,4,3,0,0,2,-2,-3), byrow=TRUE, nrow=5)`
-
--   Here the first argument is the collection of elements that R will
-    arrange into the rows and columns of the matrix.
--   The second argument `byrow` indicates the arrangement of elements is
-    done by filling the matrix by the rows. If you would like to fill
-    the matrix by columns, you can use `byrow=FALSE`.
--   The third argument `nrow` indicates that the number of rows in the
-    matrix.
-
-### Matrix Operations
-
-Similar to what you have learned with vectors, the standard operators like `+`, `-`, `/`, `*`, etc. work in an element-wise way on matrices in R. For example, `2 * A` multiplies each element of `A` by two.
-
-```
-A <- matrix(c(4,3,2,7,4,2,6,3,4,3,0,0,2,-2,-3), byrow=TRUE, nrow=5)
-2*A
-
-```
-
-Consider another matrix `B` defined as `B <- matrix(c(1,1,1,2,2,2,0,0,0,-1,-1,-1,0,0,0), byrow=TRUE, nrow=5)`
-
-`A*B` creates a matrix where each element is the product of the corresponding elements in matrix `A` and matrix `B`.
-
-Those who are familiar with matrices should note that this is **not** the standard matrix multiplication for which you should use `%*%` in R.
- 
-### Add rows or columns to a matrix
-
-Sometimes we may want to add new data or information to a matrix with more rows or more columns.
-You can add a column or multiple columns to a matrix with the `cbind()` function, which merges matrices and/or vectors together by column. For example, `cbind(A,B)` yields a bigger matrix by merging matrix A and B. The resulting matrix has 5 rows and 6 columns.
-
-```{r}
-A <- matrix(c(4,3,2,7,4,2,6,3,4,3,0,0,2,-2,-3), byrow=TRUE, nrow=5)
-B <- matrix(c(1,1,1,2,2,2,0,0,0,-1,-1,-1,0,0,0), byrow=TRUE, nrow=5)
-big_matrix <- cbind(A, B)
-big_matrix
-
-```
-
-Similarly, you can add a row or multiple rows to a matrix with the `rbind()` function. For example, `big_matrix2 <- rbind(A,B)` returns a bigger matrix by putting matrix A on top of matrix B. The resulting matrix has 10 rows and 3 columns.
-
-```{r}
-big_matrix2 <- rbind(A,B)
-big_matrix2
-
-```
-
-### Indexing
-
-Similar to vectors, you can use the square brackets `[ ]` to select one or multiple elements from a matrix. Whereas vectors have one dimension, matrices have two dimensions. You should therefore use a comma to separate the rows you want to select from the columns. For example, 
-`A[1:4,3:5]` returns a matrix with the data on the rows 1, 2, 3, 4 and columns 3, 4, 5.
-
-If you want to select all elements of a row or a column, you can do the following:
-
-- `A[,1]` selects all elements of the first column of matrix A.
-- `A[1,]` selects all elements of the first row of matrix A.
-
-**Check your understanding** 
+<exercise id='6' title='Check Your Understanding on Matrices'>
 
 Consider the following matrices $S$ and $T$:
 
@@ -373,7 +237,7 @@ $$S = \begin{bmatrix}1&0\\0&1\end{bmatrix},\;\; T = \begin{bmatrix}2&2\\4&3\end{
 - Construct a matrix $M$ by stacking $S$ on top of $T$, i.e. $M = \begin{bmatrix}S\\T\end{bmatrix}$. Assign your result to the variable `M`.
 - Select a sub-matrix of $M$ with the data on the rows 1, 2, 3 and columns 2. Assign the result to the variable `part_of_M`.
 
-```{teachr 02_04}
+```{teachr 02_06}
 S = matrix(c(1,0,0,1), byrow=TRUE, nrow=2)
 T = matrix(c(2,2,4,3), byrow=TRUE, nrow=2)
 # Construct a matrix M by stacking S on top of T
@@ -407,7 +271,8 @@ test()
 
 </exercise> 
 
-<exercise id='5' title='Data Frames'>
+
+<exercise id='7' title='Data Frames'>
 
 ## Data Frames
 
@@ -415,7 +280,7 @@ A data frame has the variables of a dataset as columns and the observations as r
 
 Let's look at an example. Just run the code and you will see what a data frame looks like in R.
 
-```{r 02_05_01}
+```{r 02_07_01}
 data("iris")
 << >>
 ```
@@ -430,7 +295,7 @@ Often it is useful to show only a small part of the entire dataset, especially w
   - `str()` shows the structure of the dataset.
 
 Investigate the structure of the example dataframe. Have a look at the first and last few observations!
-```{r 02_05_02}
+```{r 02_07_02}
 df = data("ToothGrowth")
 <<head(df)>>
 
@@ -476,7 +341,7 @@ You can include different vectors as argument in the function and they will beco
 Create a data frame using vectors `symbol`, `element`, `chemical_group` and `atomic_no`, following that order.
 Assign the result data frame to `first_ten_elements`.
 
-```{teachr 02_05_03}
+```{teachr 02_07_03}
 symbol <- c('N','O','H','He','B','C','F','Ne','Li','Be')
 element <- c('Nitrogen','Oxygen','Hydrogen','Helium','Boron','Carbon','Fluorine','Neon','Lithium','Beryllium')
 chemical_group <- c('Nonmetal','Nonmetal','Nonmetal','Noble Gas','Metalloid','Nonmetal','Halogen','Noble Gas','Alkali Metal','Alkaline Earth Metal')
@@ -533,7 +398,7 @@ The above R code gives an ordered version of `x`.
 
 Now that we know how to use the `order()`, let's sort the first_ten_element data frame in ascending order of `atomic_no`, assign the sorted dataframe to `sorted_df`.
 
-```{teachr 02_05_04}
+```{teachr 02_07_04}
 
 symbol <- c('N','O','H','He','B','C','F','Ne','Li','Be')
 element <- c('Nitrogen','Oxygen','Hydrogen','Helium','Boron','Carbon','Fluorine','Neon','Lithium','Beryllium')
@@ -572,174 +437,12 @@ test <- function() {
 
 </exercise>
 
-<exercise id='6' title='Conditional Statements'>
+<exercise id='8' title='Conditional Statements' type="slides">
+`r slides("chapter2_08_conditionalstatements")`
 
-## Relational operators
+</exercise>
 
-Relational operators, or comparators, are operators which help us see how one R object relates to another. The relational operators in R are:
-
-- `<` for less than
-- `>` for greater than
-- `<=` for less than or equal to
-- `>=` for greater than or equal to
-- `==` for equal to each other
-- `!=` not equal to each other
-
-You can use these command on scalar. For example, `8 > 1` return `TRUE` since 8 is larger than 1.
-`8 == 1` return 'FALSE' since 8 is not equal to 1. This command also extends to vectors. It tests for every element of the vector if the condition stated by the comparison operator is TRUE or FALSE. For example, 
-
-```{r}
-c(0,5,100) == 5
-
-```
-
-You can see that both the first and the last entry evaluates to `FALSE` and only the second entry returns `TRUE` since the second entry is equal to 5.
-
-Now if instead we do
-```{r}
-c(0,5,100) >= 5
-
-```
-You can see the output changed since 100 is also greater than or equal to 5.
-
-If we change our code into
-
-```{r}
-c(0,5,100) < 5
-
-```
-You can see the output changed where the second entry is also `FALSE` since 5 is not strictly less than 5. 
-
-
-Note that R also support element-wise comparison if we put a relational operator between two vectors:
-```{r}
-c(2,4,6) < c(3,5,7)
-
-``` 
-
-## Logical opeators
-
-You know how to use relational operators in R. Next, what if you want to change or combine the results of these comparisons? In R, you can do this using the AND (`&`), the OR (`|`), and the NOT (`!`) operator.
-
-**the AND (`&`) operator**
-
-The AND operator typically takes two logical values and returns TRUE only if both the logical values are TRUE themselves. For example, if we check the entries of the following vector x is greater than 2 AND less than 6, we expect `TRUE` for the three entries in the middle.
-```{r}
-x = c(1,2,3,4,5,6,7)
-(x>2)&(x<6)
-
-```
-
-**the OR (`|`) operator**
-
-The OR operator (|) works similarly, but the difference is that only at least one of the logical values it uses should be equal to TRUE for the entire OR operation to evaluate to TRUE.
-For example,
-```{r}
-x = c(1,2,3,4,5,6,7)
-(x>4)|(x<2)
-
-```
-
-**the NOT (`!`) operator**
-
-The NOT operator negates the logical value it's used on. For example, the built-in R function, is `is.numeric()` checks if an R object is a numeric. 
-
-Say we want to check if an object `a` is a numeric, where `a` is actually a string `rain`, we expect the output to be `FALSE`. Consider also object `b` is a number, then the expected output is `TRUE`.
-
-```{r}
-a <- "rain"
-is.numeric(a)
-
-is.numeric(100)
-
-```
-
-If we, instead, use `!is.numeric(a)` to check if `a` is, the output is now `TRUE`.
-```{r}
-!is.numeric(a)
-```
-And when we run `!is.numeric(100)` in R, the output would be `FALSE`.
-
-## Conditional statements
-
-Now we are ready to learn about conditional statements: if, else, else if.
-These conditional statements are very useful in data analysis since often we want to treat the data differently depending on certain conditions.
-
-**if statement**
-
-The syntax of an if statement looks like this:
-```
-if (condition) {
-  do_this
-}
-```
-So if the `condition` is evaluated to be `TRUE`, the code included in the curly bracket (`do_this`) will be executed.
-
-
-For example, `customer_rating` contains a rating (out of 5) from a customer dined in a restaurant. We consider a customer to be happy if the rating is greater than or equal to 4.
-```{r}
-customer_rating = 4
-if (customer_rating >= 4){
-  print("Customer is happy!")
-}
-```
-
-
-**else statement**
-
-You can only use an else statement together with an if statement. The else statement does not require a condition. The code that comes under the else statement is executed if all of the if statements evaluated to be `FALSE`.
-
-```
-if (condition) {
-  do_this
-} else {
-  do_this_instead
-}
-```
-So if the `condition` is evaluated to be `TRUE`, the code included in the first curly bracket (`do_this`) will be executed. Otherwise, the code included in the second curly bracket (`do_this_instead`) will be executed.
-
-It's important that the syntax `else` is on the **same line** as the closing bracket of the if part!
-
-For example, we would like to be alerted if a customer is not happy.
-```{r}
-customer_rating = 2
-if (customer_rating >= 4){
-  print("Customer is happy!")
-} else { 
-  print("Attention - unhappy customer!")
-}
-
-```
-
-**else if statement**
-
-The else if statement allows you to further customize your control structure. You can add as many else if statements as you like such that you can customize the action of your code depending on the conditions.
-
-```
-if (condition1) {
-  action1
-} else if (condition2) {
-  action2
-} else if (condition3) {
-  action3
-} else {
-  action4
-}
-```
-
-For example, we would like to distinguish between happy customer (with rating 4 or above), neutral customer (rating to be less than 4 but higher than 2) and unhappy customer (rating not more than 2). Then we can do:
-```{r}
-customer_rating = 3
-if (customer_rating >= 4){
-  print("Customer is happy!")
-} else if (customer_rating <= 2){ 
-  print("Attention - unhappy customer!")
-} else {
-  print("Neutral customer.")
-}
-```
-
-**Test your understanding**
+<exercise id='9' title='Check Your Understanding on Conditional Statements'>
 
 Consider the following syntax:
 ```
@@ -794,7 +497,7 @@ This is not a correct answer.
 
 </exercise>
 
-<exercise id='7' title='Loops'>
+<exercise id='10' title='Loops'>
 
 In data analytics, often we need to perform the same operation repeatedly on the data and **loops** can come in handy on these occasions. There are 2 types of loops:
 - The 'for loop' is designed to iterate over all elements in a sequence
@@ -824,21 +527,33 @@ In the R code above, we use the `length()` function to measure the length/size o
 
 **Write your first loop!** 
 
-```{teachr 02_07_01}
+```{teachr 02_10_01}
 
 countries <- c('US', 'China','Japan', 'Germany','India')
 nominalGDP_trilion_2017 <- c(19.485, 12.238, 4.872, 3.693, 2.651)
 population_million_2017 <- c(325, 1421, 127, 82, 1338)
 
 
-# Write a for loop that prints one country in each iteration
-
+# Write a for loop that takes the nominal GDP (in trillion) for each country in 2017 and divided it by the population (in million) in the same year
+# Assign the result to the variable my_result
+my_result <- c(0,0,0,0)
+for (i in 1:length(countries)) {
+  my_result[i] <- <<nominalGDP_trilion_2017[i]/population_million_2017[i]>>
+}
 
 ___
 
-Hint: 
+Hint: To extract the i-th element of `nominalGDP_trilion_2017`, you can use `nominalGDP_trilion_2017[i]`. You can extract the i-th element of `population_million_2017` using square bracket as well.
 
 ???
+  
+test <- function() {
+  if my_result[5] != 0.00198{
+    stop("Try again.")
+  }
+  success("Well done!")
+}
+
 
 ```
 
@@ -858,18 +573,54 @@ for (rating in customer_rating) {
 ```
 The R code above prints different messages depending on the values in customer_rating.
 
-**Now it's your turn!** 
+**Check your understanding** 
 
-In this exercise, add code in the for loop so that it will do the following:
-
-- when `score` is above 79, print('Superb!')
-- when `score` is between 50 and 79, print('Well done!')
-- when `score` is below 50, print("Try again!")
-
-```{teachr 02_07_02}
-___
-???
+Consider the following syntax:
 ```
+for (result in student_result) {
+  if (result >= 79 & result < 99) {
+  print('Superb!')
+  } else if (result < 50) {
+  print('Try again!')
+  } else if (result >= 99) {
+  print('Perfect!')
+  } else {
+  print('Well done!')
+  }
+}
+```
+Here is the output from the above syntax after we have defined a vector variable `student_result`.
+
+Based on the output from the for-loop, which of the following is `student_result`?
+
+<choice> <opt text="student_result <- c(97,77,35,99,67,85)" correct="true">
+
+Good job!
+
+</opt>
+
+<opt text="student_result <- c(99,77,35,97,67,85)">
+
+This is not a correct answer.
+
+</opt>
+
+<opt text="student_result <- c(77,99,35,97,67,85)">
+
+This is not a correct answer.
+
+</opt> 
+
+<opt text="student_result <- c(100,77,35,99,67,85)">
+
+This is not a correct answer.
+
+</opt>
+
+</choice>
+
+
+
 
 ## While loops
 
@@ -912,17 +663,9 @@ while (bank_balance>= weekly_spending) {
 ```
 
 
-```{teachr 02_07_03}
-
-___
-
-???
-```
-
-
 </exercise>
 
-<exercise id='8' title='Functions'>
+<exercise id='11' title='Functions'>
 Functions are an extremely important concept in almost every programming language, including R! You can think of functions as a black box: you give some values as an input, the function processes this input and generates an output. In R, the function arguments are matched by position or by name. You can set a default value for some function arguments, and you can overwrite the default value when you need to.
 
 Here is a simple skeleton of a function in R:
@@ -939,7 +682,7 @@ Finally, you assign the function defining statement and body to the variable `my
 
 Create a function `power_three()`: it takes one argument and returns that number cubed (that number times itself and times itself again). Call this newly defined function with 12 as input.
 
-```{teachr 02_08_01}
+```{teachr 02_11_01}
 # Create a function power_three()
 power_three <- <<function(arg){
   arg*arg*arg
@@ -1003,7 +746,7 @@ You will get a different outcome ("Head" or "Tail") every time when you call the
 
 Write a function that takes no input argument and return a random outcome choosing from 1 to 6, just like rolling a die in R. Name that function `roll_a_die`.
 
-```{teachr 02_08_02}
+```{teachr 02_11_02}
 # Write some code to roll a die
 
 roll_a_die <- <<function(){
@@ -1031,7 +774,7 @@ Note that variables that are defined inside a function are not accessible outsid
 
 
 **Congratulations! This is the end of R Programming Basics!**
-Here is a useful cheat sheet from the Institute for Quantitative Social Science at Harvard Univeristy that summarize introductoary R commands nicely: https://iqss.github.io/dss-workshops/R/Rintro/base-r-cheat-sheet.pdf
+Here is a useful cheat sheet from the Institute for Quantitative Social Science at Harvard University that summarize introductory R commands nicely: https://iqss.github.io/dss-workshops/R/Rintro/base-r-cheat-sheet.pdf
 
 
 </exercise>
