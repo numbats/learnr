@@ -282,8 +282,11 @@ print(result)
 Take a look at the following statements:
 
 (1) If `x` is set to 75, "High" gets printed to the console.
+
 (2) If `x` is set to 18, "Low" gets printed to the console.
+
 (3) If `x` is set to 100, R prints out "Full"
+
 (4) If `x` is set to 21, "Low" gets printed to the console.
 
 Select the option that lists **all** the true statements.
@@ -343,6 +346,8 @@ In the R code above, we use the `length()` function to measure the length/size o
 **Write your first loop!** 
 
 <codeblock id="02_10_01">
+
+Hint: To extract the i-th element of `nominalGDP_trilion_2017`, you can use `nominalGDP_trilion_2017[i]`. You can extract the i-th element of `population_million_2017` using square bracket as well.
 
 </codeblock>
 
@@ -481,6 +486,10 @@ Create a function `power_three()`: it takes one argument and returns that number
 
 <codeblock id="02_11_01">
 
+Hint: Start with the following:
+`power_three <- function(arg){...}`
+Fill in the `...`.
+
 </codeblock>
 
 It is also possible to run a function without an input argument.
@@ -520,7 +529,7 @@ flip_a_coin()
 ```
 
 ```
-## [1] "Head"
+## [1] "Tail"
 ```
 
 ```r
@@ -529,7 +538,7 @@ flip_a_coin()
 ```
 
 ```
-## [1] "Head"
+## [1] "Tail"
 ```
 You will get a different outcome ("Head" or "Tail") every time when you call the function `flip_a_coin`.
 

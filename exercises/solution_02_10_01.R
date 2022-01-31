@@ -11,7 +11,3 @@ for (i in 1:length(countries)) {
   my_result[i] <- nominalGDP_trilion_2017[i]/population_million_2017[i]
 }
 
-___
-
-Hint: To extract the i-th element of `nominalGDP_trilion_2017`, you can use `nominalGDP_trilion_2017[i]`. You can extract the i-th element of `population_million_2017` using square bracket as well.
-

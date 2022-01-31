@@ -167,7 +167,7 @@ y = c(2,4,6,8,1,3,5,7)
 which of the following is the output of `y-2`?
 
 ```{r, echo = FALSE, results = "asis"}
-cat(mc_opts("`0  4  6  8  1  3  5  7`",
+cat(teachr::mc_opts("`0  4  6  8  1  3  5  7`",
          "`0  2  4  6 -1  1  3  5`",
          "`2  4  6  8  1  3  5  7 -2`",
          "`-4  -8 -12 -16  -2  -6 -10 -14`",
@@ -183,7 +183,7 @@ y = c(2,4,6,8,1,3,5,7)
 which of the following is the output of `y[4:7]`?
 
 ```{r, echo = FALSE, results = "asis"}
-cat(mc_opts("`8 1 3 5`",
+cat(teachr::mc_opts("`8 1 3 5`",
          "`8 1 3`",
          "`6 8 1 3`",
          "`1 3 5`",
@@ -279,7 +279,7 @@ What is the data type of the variable 'dose'?
 
 
 ```{r, echo = FALSE, results = "asis"}
-cat(mc_opts("numeric",
+cat(teachr::mc_opts("numeric",
          "string",
          "data frame",
          "matrix",
@@ -422,14 +422,17 @@ print(result)
 Take a look at the following statements:
 
 (1) If `x` is set to 75, "High" gets printed to the console.
+
 (2) If `x` is set to 18, "Low" gets printed to the console.
+
 (3) If `x` is set to 100, R prints out "Full"
+
 (4) If `x` is set to 21, "Low" gets printed to the console.
 
 Select the option that lists **all** the true statements.
 
 ```{r, echo = FALSE, results = "asis"}
-cat(mc_opts("(1) and (2)",
+cat(teachr::mc_opts("(1) and (2)",
          "(1) and (3)",
          "(2) and (4)",
          "(1), (3), (4)",
@@ -486,7 +489,7 @@ for (i in 1:length(countries)) {
   my_result[i] <- <<nominalGDP_trilion_2017[i]/population_million_2017[i]>>
 }
 
-___
+---
 
 Hint: To extract the i-th element of `nominalGDP_trilion_2017`, you can use `nominalGDP_trilion_2017[i]`. You can extract the i-th element of `population_million_2017` using square bracket as well.
 
@@ -539,7 +542,7 @@ Here is the output from the above syntax after we have defined a vector variable
 Based on the output from the for-loop, which of the following is `student_result`?
 
 ```{r, echo = FALSE, results = "asis"}
-cat(mc_opts("student_result <- c(99,77,35,97,67,85)",
+cat(teachr::mc_opts("student_result <- c(99,77,35,97,67,85)",
          "student_result <- c(77,99,35,97,67,85)",
          "student_result <- c(97,77,35,99,67,85)",
          "student_result <- c(100,77,35,99,67,85)",
@@ -615,8 +618,7 @@ power_three <- <<function(arg){arg*arg*arg}>>
 # Use the function
 power_three(<< >>)
 
-
-___
+---
 
 Hint: Start with the following:
 `power_three <- function(arg){...}`
