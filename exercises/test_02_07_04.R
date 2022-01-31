@@ -1,4 +1,5 @@
 library(testthat)
+  
 test <- function() {
 
     symbol <- c('N','O','H','He','B','C','F','Ne','Li','Be')

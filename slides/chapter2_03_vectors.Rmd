@@ -92,4 +92,3 @@ Sometimes it is of interest to extract a slice of a vector (a sub-vector) using 
 ```{r}
 x[1:4]
 ```
-

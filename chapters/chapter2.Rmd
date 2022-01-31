@@ -189,6 +189,7 @@ This is not the correct answer.
 This is not the correct answer.
 
 </opt> 
+
 </choice>
 
 **Problem 2** 
@@ -200,6 +201,7 @@ y = c(2,4,6,8,1,3,5,7)
 which of the following is the output of `y[4:7]`?
 
 <choice> 
+
 <opt text="`8 1 3 5`" correct="true">
 
 Good job!
@@ -302,6 +304,7 @@ Often it is useful to show only a small part of the entire dataset, especially w
   - `str()` shows the structure of the dataset.
 
 Investigate the structure of the example dataframe. Have a look at the first and last few observations!
+
 ```{r 02_07_02}
 df = data("ToothGrowth")
 <<head(df)>>
@@ -421,11 +424,14 @@ positions <- <<order(first_ten_elements$atomic_no)>>
 sorted_df <- <<first_ten_elements[positions, ]>>
 
 ___
+
+
 Hint: 
 - Use order(first_ten_elements$atomic_no) to create positions.
 - Then, use 'positions' with square brackets: first_ten_elements[...]; can you fill in the ...? Don not forget that 'positions' indicates the order of the rows in the data frame.
 
 ???
+  
 test <- function() {
 
     symbol <- c('N','O','H','He','B','C','F','Ne','Li','Be')
@@ -445,6 +451,7 @@ test <- function() {
 </exercise>
 
 <exercise id='8' title='Conditional Statements' type="slides">
+
 `r slides("chapter2_08_conditionalstatements")`
 
 </exercise>
@@ -674,6 +681,7 @@ while (bank_balance>= weekly_spending) {
 </exercise>
 
 <exercise id='11' title='Functions'>
+
 Functions are an extremely important concept in almost every programming language, including R! You can think of functions as a black box: you give some values as an input, the function processes this input and generates an output. In R, the function arguments are matched by position or by name. You can set a default value for some function arguments, and you can overwrite the default value when you need to.
 
 Here is a simple skeleton of a function in R:
@@ -692,10 +700,7 @@ Create a function `power_three()`: it takes one argument and returns that number
 
 ```{teachr 02_11_01}
 # Create a function power_three()
-power_three <- <<function(arg){
-  arg*arg*arg
-}
->>
+power_three <- <<function(arg){arg*arg*arg}>>
 # Use the function
 
 
@@ -758,8 +763,7 @@ Write a function that takes no input argument and return a random outcome choosi
 ```{teachr 02_11_02}
 # Write some code to roll a die
 
-roll_a_die <- <<function(){
-  sample(1:6, size = 1)}>>
+roll_a_die <- <<function(){sample(1:6, size = 1)}>>
 
 ---
   

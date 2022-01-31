@@ -13,6 +13,8 @@ positions <- order(first_ten_elements$atomic_no)
 sorted_df <- first_ten_elements[positions, ]
 
 ___
+
+
 Hint: 
 - Use order(first_ten_elements$atomic_no) to create positions.
 - Then, use 'positions' with square brackets: first_ten_elements[...]; can you fill in the ...? Don not forget that 'positions' indicates the order of the rows in the data frame.

@@ -212,7 +212,10 @@ pre code {
 <p><codeblock id="02_02"> Hint: Replace the values in the R code with values that are provided in the instructions (the line with the comment <code>#</code>). For example, <code>weather &lt;- "sunny"</code> assigns the string “sunny” to the variable <code>weather</code>.</p>
 <p></codeblock></p>
 <p></exercise></p>
-<p><exercise id='3' title='Vectors' type="slides"> <iframe src='../slides/chapter2_03_vectors.html' width='800' height='500'></iframe> </exercise></p>
+<p><exercise id='3' title='Vectors' type="slides"></p>
+<iframe src="../slides//slides/chapter2_03_vectors.html" width="800" height="500">
+</iframe>
+<p></exercise></p>
 <p><exercise id='4' title='Check Your Understanding on Vectors'></p>
 <p><strong>Problem 1</strong></p>
 <p>Given the following vector <code>y</code> in R,</p>
@@ -229,12 +232,14 @@ pre code {
 <p></opt></p>
 <p><opt text="`-4  -8 -12 -16  -2  -6 -10 -14`"></p>
 <p>This is not the correct answer.</p>
-<p></opt> </choice></p>
+<p></opt></p>
+<p></choice></p>
 <p><strong>Problem 2</strong></p>
 <p>Given the following vector <code>y</code> in R,</p>
 <pre><code>y = c(2,4,6,8,1,3,5,7)</code></pre>
 <p>which of the following is the output of <code>y[4:7]</code>?</p>
-<p><choice> <opt text="`8 1 3 5`" correct="true"></p>
+<p><choice></p>
+<p><opt text="`8 1 3 5`" correct="true"></p>
 <p>Good job!</p>
 <p></opt></p>
 <p><opt text="`8 1 3`"></p>
@@ -245,8 +250,13 @@ pre code {
 <p></opt></p>
 <p><opt text="`1 3 5`"></p>
 <p>This is not correct either.</p>
-<p></opt> </choice> </exercise></p>
-<p><exercise id='5' title='Matrices' type = "slides"> <iframe src='../slides/chapter2_05_matrices.html' width='800' height='500'></iframe> </exercise></p>
+<p></opt></p>
+<p></choice></p>
+<p></exercise></p>
+<p><exercise id='5' title='Matrices' type = "slides"></p>
+<iframe src="../slides/chapter2_05_matrices.html" width="800" height="500">
+</iframe>
+<p></exercise></p>
 <p><exercise id='6' title='Check Your Understanding on Matrices'></p>
 <p>Consider the following matrices <span class="math inline">\(S\)</span> and <span class="math inline">\(T\)</span>:</p>
 <p><span class="math display">\[S = \begin{bmatrix}1&amp;0\\0&amp;1\end{bmatrix},\;\; T = \begin{bmatrix}2&amp;2\\4&amp;3\end{bmatrix}\]</span></p>
@@ -320,7 +330,9 @@ order(x)</code></pre>
 <p><codeblock id="02_07_04"></p>
 <p></codeblock></p>
 <p></exercise></p>
-<p><exercise id='8' title='Conditional Statements' type="slides"> <iframe src='../slides/chapter2_08_conditionalstatements.html' width='800' height='500'></iframe></p>
+<p><exercise id='8' title='Conditional Statements' type="slides"></p>
+<iframe src="../slides/chapter2_08_conditionalstatements.html" width="800" height="500">
+</iframe>
 <p></exercise></p>
 <p><exercise id='9' title='Check Your Understanding on Conditional Statements'></p>
 <p>Consider the following syntax:</p>
@@ -475,7 +487,8 @@ while (bank_balance&gt;= weekly_spending) {
 ## [1] 86
 ## [1] &quot;Find a job and cut weekly spending!&quot;</code></pre>
 <p></exercise></p>
-<p><exercise id='11' title='Functions'> Functions are an extremely important concept in almost every programming language, including R! You can think of functions as a black box: you give some values as an input, the function processes this input and generates an output. In R, the function arguments are matched by position or by name. You can set a default value for some function arguments, and you can overwrite the default value when you need to.</p>
+<p><exercise id='11' title='Functions'></p>
+<p>Functions are an extremely important concept in almost every programming language, including R! You can think of functions as a black box: you give some values as an input, the function processes this input and generates an output. In R, the function arguments are matched by position or by name. You can set a default value for some function arguments, and you can overwrite the default value when you need to.</p>
 <p>Here is a simple skeleton of a function in R:</p>
 <pre><code>my_fun_name &lt;- function(arg1, arg2) {
   body
@@ -502,7 +515,7 @@ print(&#39;Hello World!&#39;)
 
 #Flip the coin the first time
 flip_a_coin()</code></pre>
-<pre><code>## [1] &quot;Head&quot;</code></pre>
+<pre><code>## [1] &quot;Tail&quot;</code></pre>
 <pre class="r"><code>#Flip the coin second time
 flip_a_coin()</code></pre>
 <pre><code>## [1] &quot;Head&quot;</code></pre>
@@ -512,7 +525,8 @@ flip_a_coin()</code></pre>
 <p>You will get a different outcome (“Head” or “Tail”) every time when you call the function <code>flip_a_coin</code>.</p>
 <p><strong>Write your code to roll a die!</strong></p>
 <p>Write a function that takes no input argument and return a random outcome choosing from 1 to 6, just like rolling a die in R. Name that function <code>roll_a_die</code>.</p>
-<p><codeblock id="02_11_02"> Hint: You can obtain a random integer from 1 to 6 using <code>sample(1:6, size = 1)</code>. Have you try putting that in the function body?</p>
+<p><codeblock id="02_11_02"></p>
+<p>Hint: You can obtain a random integer from 1 to 6 using <code>sample(1:6, size = 1)</code>. Have you try putting that in the function body?</p>
 <p></codeblock></p>
 <p><strong>Function Scoping</strong></p>
 <p>Note that variables that are defined inside a function are not accessible outside that function. Variables we use inside a function are considered as local variables, which are different from variables that are designed outside of the function (global variables).</p>

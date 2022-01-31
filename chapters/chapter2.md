@@ -1,7 +1,7 @@
 ---
 title: 'Chapter 2: R Programming Basics'
 description:
-  'In R Programming Basics, you will master the basic operations of this popular open source language. You will also learn to perform simple algebraic operations on vectors and matrices, as well as other data structures such as factors, lists, and data frames. You will also learn about conditional statements, loops, and functions to power your R code, making your work more efficient and elegant.'
+  'In R Programming Basics, you will master the basic operations of this popular open source language. You will also learn to perform simple algebraic operations on vectors and matrices. You will also learn about data frames, conditional statements, loops, and functions to power your R code, making your work more efficient and elegant.'
 prev: /chapter1
 next: /chapter3
 type: chapter
@@ -102,7 +102,9 @@ in the instructions (the line with the comment `#`). For example, `weather <- "s
 
 
 <exercise id='3' title='Vectors' type="slides">
-<iframe src='../slides/chapter2_03_vectors.html' width='800' height='500'></iframe>
+
+<iframe src='../slides//slides/chapter2_03_vectors.html' width='800' height='500'></iframe>
+
 </exercise>
 
 <exercise id='4' title='Check Your Understanding on Vectors'>
@@ -138,6 +140,7 @@ This is not the correct answer.
 This is not the correct answer.
 
 </opt> 
+
 </choice>
 
 **Problem 2** 
@@ -149,6 +152,7 @@ y = c(2,4,6,8,1,3,5,7)
 which of the following is the output of `y[4:7]`?
 
 <choice> 
+
 <opt text="`8 1 3 5`" correct="true">
 
 Good job!
@@ -173,11 +177,15 @@ This is not correct either.
 This is not correct either.
 
 </opt>
+
 </choice>
+
 </exercise>
 
 <exercise id='5' title='Matrices' type = "slides">
+
 <iframe src='../slides/chapter2_05_matrices.html' width='800' height='500'></iframe>
+
 </exercise>
 
 <exercise id='6' title='Check Your Understanding on Matrices'>
@@ -222,6 +230,7 @@ Often it is useful to show only a small part of the entire dataset, especially w
   - `str()` shows the structure of the dataset.
 
 Investigate the structure of the example dataframe. Have a look at the first and last few observations!
+
 
 ```r
 df = data("ToothGrowth")
@@ -314,6 +323,7 @@ Now that we know how to use the `order()`, let's sort the first_ten_element data
 </exercise>
 
 <exercise id='8' title='Conditional Statements' type="slides">
+
 <iframe src='../slides/chapter2_08_conditionalstatements.html' width='800' height='500'></iframe>
 
 </exercise>
@@ -510,6 +520,7 @@ In the while loop, R will keep running the code between the brackets `{ }` repea
 
 For example, we create a while loop that will go on subtracting 28.5 (as weekly_spending) to the variable `bank_balance` until `bank_balance` is less than `weekly_spending`. If you execute the R code, you will notice the loop stopped at the 7th iteration.
 
+
 ```r
 bank_balance = 200
 weekly_spending = 28.5
@@ -560,6 +571,7 @@ while (bank_balance>= weekly_spending) {
 </exercise>
 
 <exercise id='11' title='Functions'>
+
 Functions are an extremely important concept in almost every programming language, including R! You can think of functions as a black box: you give some values as an input, the function processes this input and generates an output. In R, the function arguments are matched by position or by name. You can set a default value for some function arguments, and you can overwrite the default value when you need to.
 
 Here is a simple skeleton of a function in R:
@@ -608,7 +620,7 @@ flip_a_coin()
 ```
 
 ```
-## [1] "Head"
+## [1] "Tail"
 ```
 
 ```r
@@ -635,6 +647,7 @@ You will get a different outcome ("Head" or "Tail") every time when you call the
 Write a function that takes no input argument and return a random outcome choosing from 1 to 6, just like rolling a die in R. Name that function `roll_a_die`.
 
 <codeblock id="02_11_02">
+  
 Hint: You can obtain a random integer from 1 to 6 using `sample(1:6, size = 1)`. Have you try putting that in the function body?
 
 </codeblock>
