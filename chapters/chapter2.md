@@ -186,10 +186,9 @@ A data frame has the variables of a dataset as columns and the observations as r
 
 Let's look at an example. Just run the code and you will see what a data frame looks like in R.
 
+<codeblock id="02_07_01">
 
-```r
-data("iris")
-```
+</codeblock>
 
 The iris data set gives the measurements in centimeters of the variables sepal length, sepal width, petal length and petal width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.
 
@@ -202,10 +201,11 @@ Often it is useful to show only a small part of the entire dataset, especially w
 
 Investigate the structure of the example dataframe. Have a look at the first and last few observations!
 
+<codeblock id="02_07_02">
 
-```r
-df = data("ToothGrowth")
-```
+Hint: Use the `head(df)` can help.
+
+</codeblock>
 
 **Answer the following questions**
 
@@ -264,6 +264,7 @@ order(x)
 ```
 ## [1] 2 1 3
 ```
+
 The output above is the ranked positions and we can use that to sort the vector `x`.
 
 ```r
@@ -568,7 +569,7 @@ flip_a_coin()
 ```
 
 ```
-## [1] "Tail"
+## [1] "Head"
 ```
 
 ```r

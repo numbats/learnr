@@ -252,7 +252,7 @@ A data frame has the variables of a dataset as columns and the observations as r
 
 Let's look at an example. Just run the code and you will see what a data frame looks like in R.
 
-```{r 02_07_01}
+```{teachr 02_07_01}
 data("iris")
 << >>
 ```
@@ -268,9 +268,13 @@ Often it is useful to show only a small part of the entire dataset, especially w
 
 Investigate the structure of the example dataframe. Have a look at the first and last few observations!
 
-```{r 02_07_02}
+```{teachr 02_07_02}
 df = data("ToothGrowth")
 <<head(df)>>
+
+---
+
+Hint: Use the `head(df)` can help.
 
 ```
 
@@ -346,6 +350,7 @@ x <- c(100, -200,300)
 order(x)
 
 ```
+
 The output above is the ranked positions and we can use that to sort the vector `x`.
 ```{r}
 x[order(x)]

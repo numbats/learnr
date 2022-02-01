@@ -260,13 +260,16 @@ pre code {
 <h2>Data Frames</h2>
 <p>A data frame has the variables of a dataset as columns and the observations as rows.</p>
 <p>Let’s look at an example. Just run the code and you will see what a data frame looks like in R.</p>
-<pre class="r"><code>data(&quot;iris&quot;)</code></pre>
+<p><codeblock id="02_07_01"></p>
+<p></codeblock></p>
 <p>The iris data set gives the measurements in centimeters of the variables sepal length, sepal width, petal length and petal width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.</p>
 <div id="quick-look-at-the-data-frame" class="section level3">
 <h3>Quick Look at the Data Frame</h3>
 <p>Often it is useful to show only a small part of the entire dataset, especially when we are working with very big data set where showing the entire dataset is not easy. Here are a few useful commands that helps you understand the data frame very quickly. - <code>head()</code> shows the first few observations of a data frame. - <code>tail()</code> shows the last few observations of a data frame. - <code>str()</code> shows the structure of the dataset.</p>
 <p>Investigate the structure of the example dataframe. Have a look at the first and last few observations!</p>
-<pre class="r"><code>df = data(&quot;ToothGrowth&quot;)</code></pre>
+<p><codeblock id="02_07_02"></p>
+<p>Hint: Use the <code>head(df)</code> can help.</p>
+<p></codeblock></p>
 <p><strong>Answer the following questions</strong></p>
 <p>What is the data type of the variable ‘dose’?</p>
 <div>
@@ -483,7 +486,7 @@ print(&#39;Hello World!&#39;)
 
 #Flip the coin the first time
 flip_a_coin()</code></pre>
-<pre><code>## [1] &quot;Tail&quot;</code></pre>
+<pre><code>## [1] &quot;Head&quot;</code></pre>
 <pre class="r"><code>#Flip the coin second time
 flip_a_coin()</code></pre>
 <pre><code>## [1] &quot;Head&quot;</code></pre>
