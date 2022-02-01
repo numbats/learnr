@@ -169,8 +169,22 @@ pre code {
 
 
 <p><exercise id="1" title="Introduction to tidyverse"></p>
-<p>The tidyverse is a powerful collection of R packages that transform and visualize data. This chapter focuses on two packages <strong>tidyr</strong> and <strong>dplyr</strong>. <strong>tidyr</strong> helps you to create tidy data or data where each variable is in a column, each observation is a row and each value is a cell. <strong>dplyr</strong> is used for grammar of data manipulation. You can use it to solve the most common data manipulation challenges.</p>
-<p>You can install the complete tidyverse with: <code>install.packages("tidyverse")</code></p>
+<div id="introduction-to-tidyverse" class="section level2">
+<h2>Introduction to tidyverse</h2>
+<p>The tidyverse is a collection of R packages that transform and visualize data. All packages of the tidyverse share very similar syntax and ideologies.</p>
+<p>Tidyverse includes the following packages:</p>
+<ul>
+<li><code>dplyr</code>: grammar of data manipulation</li>
+<li><code>tidyr</code>: reshape your data</li>
+<li><code>ggplot2</code>: grammar of graphics</li>
+<li><code>readr</code>: read rectangular data</li>
+<li><code>tibble</code>: re-imagining of data frame</li>
+<li><code>stringr</code>: working with string data</li>
+</ul>
+<p>and many more…</p>
+<p>There are many other packages with more specialized functions in the tidyverse. In this chapter, we focuses on two packages: <strong>tidyr</strong> and <strong>dplyr</strong>.</p>
+<p><strong>dplyr</strong> is used for grammar of data manipulation. <strong>tidyr</strong> helps you to create tidy data or data where each variable is in a column, each observation is a row and each value is a cell. You can use them to solve the most common data manipulation challenges.</p>
+<p>You can install the core tidyverse packages with: <code>install.packages("tidyverse")</code></p>
 <p>Then, to load the package:</p>
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
@@ -179,234 +193,16 @@ pre code {
 ## ✓ tidyr   1.1.4     ✓ stringr 1.4.0
 ## ✓ readr   2.1.1     ✓ forcats 0.5.1</code></pre>
 <pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<div id="tidy-reshape-your-data" class="section level2">
-<h2>Tidy (reshape) your data</h2>
-<p>Raw data that we acquired can often be messy and complicated. The tidyr package allows you to wrangle messy datasets into nice and tidy ones.</p>
-<p>A tidy data format has a rectangular shape which means it has columns, rows, and cells, just like in a spreadsheet. Each column should hold a single variable, each row should hold a single observation and each cell should hold a single value.</p>
-<p>The example below shows the same information (country, year, population, and number of cases) organised in 3 different ways. Examine each of the table.</p>
-<pre class="r"><code>table1</code></pre>
-<pre><code>## # A tibble: 6 × 4
-##   country      year  cases population
-##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
-## 1 Afghanistan  1999    745   19987071
-## 2 Afghanistan  2000   2666   20595360
-## 3 Brazil       1999  37737  172006362
-## 4 Brazil       2000  80488  174504898
-## 5 China        1999 212258 1272915272
-## 6 China        2000 213766 1280428583</code></pre>
-<pre class="r"><code>table2</code></pre>
-<pre><code>## # A tibble: 12 × 4
-##    country      year type            count
-##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
-##  1 Afghanistan  1999 cases             745
-##  2 Afghanistan  1999 population   19987071
-##  3 Afghanistan  2000 cases            2666
-##  4 Afghanistan  2000 population   20595360
-##  5 Brazil       1999 cases           37737
-##  6 Brazil       1999 population  172006362
-##  7 Brazil       2000 cases           80488
-##  8 Brazil       2000 population  174504898
-##  9 China        1999 cases          212258
-## 10 China        1999 population 1272915272
-## 11 China        2000 cases          213766
-## 12 China        2000 population 1280428583</code></pre>
-<pre class="r"><code>table3</code></pre>
-<pre><code>## # A tibble: 6 × 3
-##   country      year rate             
-## * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            
-## 1 Afghanistan  1999 745/19987071     
-## 2 Afghanistan  2000 2666/20595360    
-## 3 Brazil       1999 37737/172006362  
-## 4 Brazil       2000 80488/174504898  
-## 5 China        1999 212258/1272915272
-## 6 China        2000 213766/1280428583</code></pre>
-<p>Which table is tidy? <choice> <opt text="Table 1 only" correct="true"></p>
-<p>Good job!</p>
-<p></opt></p>
-<p><opt text="Table 3 only"></p>
-<p>This is not a correct answer.</p>
-<p></opt></p>
-<p><opt text="Table 1 and 3"></p>
-<p>This is not a correct answer.</p>
-<p></opt></p>
-<p><opt text="Table 2 and 3"></p>
-<p>This is not a correct answer.</p>
-<p></opt></p>
-<p></choice></p>
-<p>Sometimes raw data may have multiple variables or multiple values (not the same variable) in the same column, or sometimes you may want to merge multiple columns into one. Here are a few commands that can be helpful in manupulating the data into a tidy format:</p>
-<ul>
-<li><code>separate()</code>: separating multiple variables in one column to different columns</li>
-<li><code>unite()</code>: merging multiple columns into one, inserting underscore <code>_</code> as a separator between the two inputs.</li>
-<li><code>separate_rows()</code>: separating multiple observations in the same cell. We pass the messy column name and a string to use as a separator.</li>
-</ul>
-<p>In table 3, the <code>rate</code> column contains both the number of cases and the size of the populations. We want to separate the <code>rate</code> variable into variables <code>cases</code> and <code>population</code>.</p>
-<pre class="r"><code>table3 %&gt;%
-  separate(rate, into = c(&quot;cases&quot;, &quot;population&quot;), sep = &quot;/&quot;, convert = TRUE)</code></pre>
-<pre><code>## # A tibble: 6 × 4
-##   country      year  cases population
-##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
-## 1 Afghanistan  1999    745   19987071
-## 2 Afghanistan  2000   2666   20595360
-## 3 Brazil       1999  37737  172006362
-## 4 Brazil       2000  80488  174504898
-## 5 China        1999 212258 1272915272
-## 6 China        2000 213766 1280428583</code></pre>
-<p>The <code>into</code> argument expects a vector of column names. The <code>sep</code> argument expects the non-alphanumeric character (a charater that is not a letter or a number) that we split upon. The <code>convert</code> argument is set to TRUE here so that R will try and convert to better types after the split.</p>
-<p>In table 5, the <code>century</code> and <code>year</code> column can be combined to give a <code>year_new</code> column. The <code>sep</code> argument here is what comes in between the values from different columns. If we don’t want anything in between, we can use ““.</p>
-<pre class="r"><code>table5 %&gt;%
-  unite(new_year,century, year, sep = &quot;&quot;)</code></pre>
-<pre><code>## # A tibble: 6 × 3
-##   country     new_year rate             
-##   &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;            
-## 1 Afghanistan 1999     745/19987071     
-## 2 Afghanistan 2000     2666/20595360    
-## 3 Brazil      1999     37737/172006362  
-## 4 Brazil      2000     80488/174504898  
-## 5 China       1999     212258/1272915272
-## 6 China       2000     213766/1280428583</code></pre>
-<p>In table 6, there are multiple observations in the same cell in each row of <code>year</code> and <code>cases</code>. We would like to separate them.</p>
-<pre class="r"><code>table6 &lt;- tibble(
-  country = c(&quot;Afghanistan&quot;, &quot;Brazil&quot;, &quot;China&quot;),
-  year = c(&quot;1999,2000&quot;, &quot;1999,2000&quot;, &quot;1999,2000&quot;),
-  cases= c(&quot;745,2666&quot;, &quot;37737,80488&quot;, &quot;212258,213766&quot;)
-)
-
-table6 %&gt;%
-  separate_rows(cases, year, sep=&#39;,&#39;, convert = TRUE)</code></pre>
-<pre><code>## # A tibble: 6 × 3
-##   country      year  cases
-##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;
-## 1 Afghanistan  1999    745
-## 2 Afghanistan  2000   2666
-## 3 Brazil       1999  37737
-## 4 Brazil       2000  80488
-## 5 China        1999 212258
-## 6 China        2000 213766</code></pre>
-</div>
-<div id="missing-values" class="section level2">
-<h2>Missing values</h2>
-<p>There are various ways to handle missing values (the NAs) in your data set. Tidyr has three functions:</p>
-<ul>
-<li><code>fill()</code>: fill the missing values using the last observation carried forward. It has a <code>.direction</code> argument that you can pass <code>up</code> or <code>down</code>.</li>
-<li><code>drop_na()</code>: drop the rows with observations that are <code>NA</code></li>
-<li><code>replace_na()</code>: replace the <code>NA</code> with specific values</li>
-</ul>
-<p>Let’s look at this toy data set. We will start with the <code>fill()</code> function to impute the <code>return</code> column in the <code>up</code> direction, then we will impute in the <code>down</code> direction. Can you spot the difference?</p>
-<pre class="r"><code>apple &lt;- tibble(
-  year   = c(2020, 2020, 2020, 2020, 2021, 2021, 2021),
-  qtr    = c(   1,    2,    3,    4,    2,    3,    4),
-  return = c(0.75, 0.39, 0.34,   NA, 0.99, 0.07, 1.88)
-)
-
-apple %&gt;%
-  fill(return, .direction = &quot;up&quot;)</code></pre>
-<pre><code>## # A tibble: 7 × 3
-##    year   qtr return
-##   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-## 1  2020     1   0.75
-## 2  2020     2   0.39
-## 3  2020     3   0.34
-## 4  2020     4   0.99
-## 5  2021     2   0.99
-## 6  2021     3   0.07
-## 7  2021     4   1.88</code></pre>
-<pre class="r"><code>apple %&gt;%
-  fill(return, .direction = &quot;down&quot;)</code></pre>
-<pre><code>## # A tibble: 7 × 3
-##    year   qtr return
-##   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-## 1  2020     1   0.75
-## 2  2020     2   0.39
-## 3  2020     3   0.34
-## 4  2020     4   0.34
-## 5  2021     2   0.99
-## 6  2021     3   0.07
-## 7  2021     4   1.88</code></pre>
-<p>Then, we will try to drop the NAs in the return in <code>apple</code>.</p>
-<pre class="r"><code>apple %&gt;%
-  drop_na(return)</code></pre>
-<pre><code>## # A tibble: 6 × 3
-##    year   qtr return
-##   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-## 1  2020     1   0.75
-## 2  2020     2   0.39
-## 3  2020     3   0.34
-## 4  2021     2   0.99
-## 5  2021     3   0.07
-## 6  2021     4   1.88</code></pre>
-<p>Finally, we will also replace the NAs with the value <code>999</code>.</p>
-<pre class="r"><code>apple %&gt;%
-  replace_na(list(return=999))</code></pre>
-<pre><code>## # A tibble: 7 × 3
-##    year   qtr return
-##   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-## 1  2020     1   0.75
-## 2  2020     2   0.39
-## 3  2020     3   0.34
-## 4  2020     4 999   
-## 5  2021     2   0.99
-## 6  2021     3   0.07
-## 7  2021     4   1.88</code></pre>
-</div>
-<div id="pivoting" class="section level2">
-<h2>Pivoting</h2>
-<p>Two common problems in raw data set: - some of the column names are not really names of variables, but <strong>values</strong> of a variable. - when an observation is scattered across multiple rows.</p>
-<p>To tackle these problems, you will need <code>pivot_longer()</code> and/or <code>pivot_wider()</code></p>
-<p><strong>pivot_longer()</strong></p>
-<p><code>table4a</code> is a great example of data that needs <code>pivot_longer()</code>. Here you see that the case count of each country is separated into two columns because they are from different years.</p>
-<pre class="r"><code>table4a</code></pre>
-<pre><code>## # A tibble: 3 × 3
-##   country     `1999` `2000`
-## * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
-## 1 Afghanistan    745   2666
-## 2 Brazil       37737  80488
-## 3 China       212258 213766</code></pre>
-<p>The first argument is the vector of column names that are actually values not variables. The second argument is the name of the variable to move the column <strong>names</strong> to. The third argument is the name of the variable to move the column <strong>values</strong> to.</p>
-<pre class="r"><code>table4a %&gt;% 
-  pivot_longer(c(`1999`, `2000`), names_to = &quot;year&quot;, values_to = &quot;cases&quot;)</code></pre>
-<pre><code>## # A tibble: 6 × 3
-##   country     year   cases
-##   &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;
-## 1 Afghanistan 1999     745
-## 2 Afghanistan 2000    2666
-## 3 Brazil      1999   37737
-## 4 Brazil      2000   80488
-## 5 China       1999  212258
-## 6 China       2000  213766</code></pre>
-<p><strong>pivot_wider()</strong></p>
-<p>In table 2, each observation is a certain country in a certain year. However, the observation is spread across two rows since there are <code>cases</code> and <code>population</code>.</p>
-<pre class="r"><code>table2</code></pre>
-<pre><code>## # A tibble: 12 × 4
-##    country      year type            count
-##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
-##  1 Afghanistan  1999 cases             745
-##  2 Afghanistan  1999 population   19987071
-##  3 Afghanistan  2000 cases            2666
-##  4 Afghanistan  2000 population   20595360
-##  5 Brazil       1999 cases           37737
-##  6 Brazil       1999 population  172006362
-##  7 Brazil       2000 cases           80488
-##  8 Brazil       2000 population  174504898
-##  9 China        1999 cases          212258
-## 10 China        1999 population 1272915272
-## 11 China        2000 cases          213766
-## 12 China        2000 population 1280428583</code></pre>
-<p>The first argument is the column to take variable <strong>names</strong> from, which is <code>type</code>. The second argument is the column to take variable <strong>values</strong> from, where is <code>count</code>.</p>
-<pre class="r"><code>table2 %&gt;%
-  pivot_wider(names_from = type, values_from = count)</code></pre>
-<pre><code>## # A tibble: 6 × 4
-##   country      year  cases population
-##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
-## 1 Afghanistan  1999    745   19987071
-## 2 Afghanistan  2000   2666   20595360
-## 3 Brazil       1999  37737  172006362
-## 4 Brazil       2000  80488  174504898
-## 5 China        1999 212258 1272915272
-## 6 China        2000 213766 1280428583</code></pre>
+## x readr::edition_get()   masks testthat::edition_get()
+## x dplyr::filter()        masks stats::filter()
+## x purrr::is_null()       masks testthat::is_null()
+## x dplyr::lag()           masks stats::lag()
+## x readr::local_edition() masks testthat::local_edition()
+## x dplyr::matches()       masks tidyr::matches(), testthat::matches()</code></pre>
+<p>You can also load specific library separately, for example, <code>library(dplyr)</code>.</p>
 <p></exercise></p>
-<p><exercise id="2" title="Introduction to dplyr"> <code>dplyr</code> provides a selection of tools for the most common data wrangling tasks.</p>
+<p><exercise id="2" title="Introduction to dplyr"></p>
+<p><code>dplyr</code> provides a selection of tools for the most common data wrangling tasks.</p>
 </div>
 <div id="data-transformation-and-aggregation" class="section level2">
 <h2>Data Transformation and Aggregation</h2>
@@ -538,7 +334,8 @@ homework2 &lt;- tibble(name = c(&#39;Alphonso&#39;, &#39;Philip&#39;, &#39;Melin
 ## 2 Philip          102      34      97
 ## 3 Melinda         432      NA      56</code></pre>
 <p>When we do right join with our <code>homework1</code> and <code>homework2</code> gradebooks, we will only consider those students who submitted homework 2 and look for their marks in homework 1. Daisy’s result will not be included in the join even though she has submitted her homework 1, while Melinda will have <code>NA</code> showing as the missing value.</p>
-<p><strong>Full Join</strong> Full joins retain all rows.</p>
+<p><strong>Full Join</strong></p>
+<p>Full joins retain all rows.</p>
 <pre class="r"><code>full_join(homework1, homework2, by = c(&#39;name&#39;,&#39;student_no&#39;))</code></pre>
 <pre><code>## # A tibble: 4 × 4
 ##   name     student_no marks.x marks.y
@@ -552,7 +349,8 @@ homework2 &lt;- tibble(name = c(&#39;Alphonso&#39;, &#39;Philip&#39;, &#39;Melin
 <div id="filtering-joins" class="section level3">
 <h3>Filtering Joins</h3>
 <p>Filtering joins return a copy of the dataset that has been filtered.</p>
-<p><strong>Semi Join</strong> The semi join returns a filtered version of the left data set based on matching entries in the right data set.</p>
+<p><strong>Semi Join</strong></p>
+<p>The semi join returns a filtered version of the left data set based on matching entries in the right data set.</p>
 <pre class="r"><code>semi_join(homework1, homework2, by = c(&#39;name&#39;,&#39;student_no&#39;))</code></pre>
 <pre><code>## # A tibble: 2 × 3
 ##   name     student_no marks
@@ -565,7 +363,8 @@ homework2 &lt;- tibble(name = c(&#39;Alphonso&#39;, &#39;Philip&#39;, &#39;Melin
 ##   &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt;
 ## 1 Alphonso        456    85
 ## 2 Philip          102    97</code></pre>
-<p><strong>Anti Join</strong> Now, let’s say we want to know who didn’t submit homeworks. The anti join will return the rows in the left data set that doesn’t have an entry in the right data set.</p>
+<p><strong>Anti Join</strong></p>
+<p>Now, let’s say we want to know who didn’t submit homeworks. The anti join will return the rows in the left data set that doesn’t have an entry in the right data set.</p>
 <pre class="r"><code>anti_join(homework1, homework2, by = c(&#39;name&#39;,&#39;student_no&#39;))</code></pre>
 <pre><code>## # A tibble: 1 × 3
 ##   name  student_no marks
@@ -577,7 +376,232 @@ homework2 &lt;- tibble(name = c(&#39;Alphonso&#39;, &#39;Philip&#39;, &#39;Melin
 ##   &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;
 ## 1 Melinda        432    56</code></pre>
 <p></exercise></p>
+<p><exercise id="3" title="Check Your Understanding on `dplyr`"></p>
+<p></exercise></p>
+<p><exercise id="4" title="Tidy (reshape) your data"></p>
 </div>
+</div>
+<div id="tidy-reshape-your-data" class="section level2">
+<h2>Tidy (reshape) your data</h2>
+<p>Raw data that we acquired can often be messy and complicated. The tidyr package allows you to wrangle messy datasets into nice and tidy ones.</p>
+<p>A tidy data format has a rectangular shape which means it has columns, rows, and cells, just like in a spreadsheet. Each column should hold a single variable, each row should hold a single observation and each cell should hold a single value.</p>
+<p>The example below shows the same information (country, year, population, and number of cases) organised in 3 different ways. Examine each of the table.</p>
+<pre class="r"><code>table1</code></pre>
+<pre><code>## # A tibble: 6 × 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+<pre class="r"><code>table2</code></pre>
+<pre><code>## # A tibble: 12 × 4
+##    country      year type            count
+##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
+##  1 Afghanistan  1999 cases             745
+##  2 Afghanistan  1999 population   19987071
+##  3 Afghanistan  2000 cases            2666
+##  4 Afghanistan  2000 population   20595360
+##  5 Brazil       1999 cases           37737
+##  6 Brazil       1999 population  172006362
+##  7 Brazil       2000 cases           80488
+##  8 Brazil       2000 population  174504898
+##  9 China        1999 cases          212258
+## 10 China        1999 population 1272915272
+## 11 China        2000 cases          213766
+## 12 China        2000 population 1280428583</code></pre>
+<pre class="r"><code>table3</code></pre>
+<pre><code>## # A tibble: 6 × 3
+##   country      year rate             
+## * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            
+## 1 Afghanistan  1999 745/19987071     
+## 2 Afghanistan  2000 2666/20595360    
+## 3 Brazil       1999 37737/172006362  
+## 4 Brazil       2000 80488/174504898  
+## 5 China        1999 212258/1272915272
+## 6 China        2000 213766/1280428583</code></pre>
+<p>Which table is tidy?</p>
+<div>
+<p><input type="radio"> Table 1 only | <span style="color:red">CORRECT</span> That’s correct!</p>
+<p><input type="radio"> Table 3 only | Try again! Each cell in a tidy data format should hold only a single value. The column <code>rate</code> contains data with two values (one divided by the other) and is converted to characters.</p>
+<p><input type="radio"> Table 1 and 3 | Try again! Each cell in a tidy data format should hold only a single value. The column <code>rate</code> in Table 3 contains data with two values (one divided by the other) and is converted to characters.</p>
+<p><input type="radio"> Table 2 and 3 | Try again! Each cell in a tidy data format should hold only a single value. The column <code>rate</code> in Table 3 contains data with two values (one divided by the other) and is converted to characters. Table 2 contains two variables under the same column ‘type’.</p>
+</div>
+<p>Sometimes raw data may have multiple variables or multiple values (not the same variable) in the same column, or sometimes you may want to merge multiple columns into one. Here are a few commands that can be helpful in manupulating the data into a tidy format:</p>
+<ul>
+<li><code>separate()</code>: separating multiple variables in one column to different columns</li>
+<li><code>unite()</code>: merging multiple columns into one, inserting underscore <code>_</code> as a separator between the two inputs.</li>
+<li><code>separate_rows()</code>: separating multiple observations in the same cell. We pass the messy column name and a string to use as a separator.</li>
+</ul>
+<p>In table 3, the <code>rate</code> column contains both the number of cases and the size of the populations. We want to separate the <code>rate</code> variable into variables <code>cases</code> and <code>population</code>.</p>
+<pre class="r"><code>table3 %&gt;%
+  separate(rate, into = c(&quot;cases&quot;, &quot;population&quot;), sep = &quot;/&quot;, convert = TRUE)</code></pre>
+<pre><code>## # A tibble: 6 × 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+<p>The <code>into</code> argument expects a vector of column names. The <code>sep</code> argument expects the non-alphanumeric character (a charater that is not a letter or a number) that we split upon. The <code>convert</code> argument is set to TRUE here so that R will try and convert to better types after the split.</p>
+<p>In table 5, the <code>century</code> and <code>year</code> column can be combined to give a <code>year_new</code> column. The <code>sep</code> argument here is what comes in between the values from different columns. If we don’t want anything in between, we can use ““.</p>
+<pre class="r"><code>table5 %&gt;%
+  unite(new_year,century, year, sep = &quot;&quot;)</code></pre>
+<pre><code>## # A tibble: 6 × 3
+##   country     new_year rate             
+##   &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;            
+## 1 Afghanistan 1999     745/19987071     
+## 2 Afghanistan 2000     2666/20595360    
+## 3 Brazil      1999     37737/172006362  
+## 4 Brazil      2000     80488/174504898  
+## 5 China       1999     212258/1272915272
+## 6 China       2000     213766/1280428583</code></pre>
+<p>In table 6, there are multiple observations in the same cell in each row of <code>year</code> and <code>cases</code>. We would like to separate them.</p>
+<pre class="r"><code>table6 &lt;- tibble(
+  country = c(&quot;Afghanistan&quot;, &quot;Brazil&quot;, &quot;China&quot;),
+  year = c(&quot;1999,2000&quot;, &quot;1999,2000&quot;, &quot;1999,2000&quot;),
+  cases= c(&quot;745,2666&quot;, &quot;37737,80488&quot;, &quot;212258,213766&quot;)
+)
+
+table6 %&gt;%
+  separate_rows(cases, year, sep=&#39;,&#39;, convert = TRUE)</code></pre>
+<pre><code>## # A tibble: 6 × 3
+##   country      year  cases
+##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;
+## 1 Afghanistan  1999    745
+## 2 Afghanistan  2000   2666
+## 3 Brazil       1999  37737
+## 4 Brazil       2000  80488
+## 5 China        1999 212258
+## 6 China        2000 213766</code></pre>
+</div>
+<div id="pivoting" class="section level2">
+<h2>Pivoting</h2>
+<p>Two common problems in raw data set: - some of the column names are not really names of variables, but <strong>values</strong> of a variable. - when an observation is scattered across multiple rows.</p>
+<p>To tackle these problems, you will need <code>pivot_longer()</code> and/or <code>pivot_wider()</code></p>
+<p><strong>pivot_longer()</strong></p>
+<p><code>table4a</code> is a great example of data that needs <code>pivot_longer()</code>. Here you see that the case count of each country is separated into two columns because they are from different years.</p>
+<pre class="r"><code>table4a</code></pre>
+<pre><code>## # A tibble: 3 × 3
+##   country     `1999` `2000`
+## * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
+## 1 Afghanistan    745   2666
+## 2 Brazil       37737  80488
+## 3 China       212258 213766</code></pre>
+<p>The first argument is the vector of column names that are actually values not variables. The second argument is the name of the variable to move the column <strong>names</strong> to. The third argument is the name of the variable to move the column <strong>values</strong> to.</p>
+<pre class="r"><code>table4a %&gt;% 
+  pivot_longer(c(`1999`, `2000`), names_to = &quot;year&quot;, values_to = &quot;cases&quot;)</code></pre>
+<pre><code>## # A tibble: 6 × 3
+##   country     year   cases
+##   &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;
+## 1 Afghanistan 1999     745
+## 2 Afghanistan 2000    2666
+## 3 Brazil      1999   37737
+## 4 Brazil      2000   80488
+## 5 China       1999  212258
+## 6 China       2000  213766</code></pre>
+<p><strong>pivot_wider()</strong></p>
+<p>In table 2, each observation is a certain country in a certain year. However, the observation is spread across two rows since there are <code>cases</code> and <code>population</code>.</p>
+<pre class="r"><code>table2</code></pre>
+<pre><code>## # A tibble: 12 × 4
+##    country      year type            count
+##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
+##  1 Afghanistan  1999 cases             745
+##  2 Afghanistan  1999 population   19987071
+##  3 Afghanistan  2000 cases            2666
+##  4 Afghanistan  2000 population   20595360
+##  5 Brazil       1999 cases           37737
+##  6 Brazil       1999 population  172006362
+##  7 Brazil       2000 cases           80488
+##  8 Brazil       2000 population  174504898
+##  9 China        1999 cases          212258
+## 10 China        1999 population 1272915272
+## 11 China        2000 cases          213766
+## 12 China        2000 population 1280428583</code></pre>
+<p>The first argument is the column to take variable <strong>names</strong> from, which is <code>type</code>. The second argument is the column to take variable <strong>values</strong> from, where is <code>count</code>.</p>
+<pre class="r"><code>table2 %&gt;%
+  pivot_wider(names_from = type, values_from = count)</code></pre>
+<pre><code>## # A tibble: 6 × 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+</div>
+<div id="missing-values" class="section level2">
+<h2>Missing values</h2>
+<p>There are various ways to handle missing values (the NAs) in your data set. Tidyr has three functions:</p>
+<ul>
+<li><code>fill()</code>: fill the missing values using the last observation carried forward. It has a <code>.direction</code> argument that you can pass <code>up</code> or <code>down</code>.</li>
+<li><code>drop_na()</code>: drop the rows with observations that are <code>NA</code></li>
+<li><code>replace_na()</code>: replace the <code>NA</code> with specific values</li>
+</ul>
+<p>Let’s look at this toy data set. We will start with the <code>fill()</code> function to impute the <code>return</code> column in the <code>up</code> direction, then we will impute in the <code>down</code> direction. Can you spot the difference?</p>
+<pre class="r"><code>apple &lt;- tibble(
+  year   = c(2020, 2020, 2020, 2020, 2021, 2021, 2021),
+  qtr    = c(   1,    2,    3,    4,    2,    3,    4),
+  return = c(0.75, 0.39, 0.34,   NA, 0.99, 0.07, 1.88)
+)
+
+apple %&gt;%
+  fill(return, .direction = &quot;up&quot;)</code></pre>
+<pre><code>## # A tibble: 7 × 3
+##    year   qtr return
+##   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1  2020     1   0.75
+## 2  2020     2   0.39
+## 3  2020     3   0.34
+## 4  2020     4   0.99
+## 5  2021     2   0.99
+## 6  2021     3   0.07
+## 7  2021     4   1.88</code></pre>
+<pre class="r"><code>apple %&gt;%
+  fill(return, .direction = &quot;down&quot;)</code></pre>
+<pre><code>## # A tibble: 7 × 3
+##    year   qtr return
+##   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1  2020     1   0.75
+## 2  2020     2   0.39
+## 3  2020     3   0.34
+## 4  2020     4   0.34
+## 5  2021     2   0.99
+## 6  2021     3   0.07
+## 7  2021     4   1.88</code></pre>
+<p>Then, we will try to drop the NAs in the return in <code>apple</code>.</p>
+<pre class="r"><code>apple %&gt;%
+  drop_na(return)</code></pre>
+<pre><code>## # A tibble: 6 × 3
+##    year   qtr return
+##   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1  2020     1   0.75
+## 2  2020     2   0.39
+## 3  2020     3   0.34
+## 4  2021     2   0.99
+## 5  2021     3   0.07
+## 6  2021     4   1.88</code></pre>
+<p>Finally, we will also replace the NAs with the value <code>999</code>.</p>
+<pre class="r"><code>apple %&gt;%
+  replace_na(list(return=999))</code></pre>
+<pre><code>## # A tibble: 7 × 3
+##    year   qtr return
+##   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1  2020     1   0.75
+## 2  2020     2   0.39
+## 3  2020     3   0.34
+## 4  2020     4 999   
+## 5  2021     2   0.99
+## 6  2021     3   0.07
+## 7  2021     4   1.88</code></pre>
+<p></exercise></p>
+<p><exercise id="5" title="Check Your Understanding on `tidyr`"></p>
+<p></exercise></p>
 </div>
 
 

@@ -9,19 +9,38 @@ id: 6
 output:
   html_document:
     self_contained: false
+    keep_md: true
 ---
 
 ```{r setup, include = FALSE}
 library(teachr)
+library(testthat)
 ```
-
 
 
 <exercise id="1" title="Introduction to tidyverse">
 
-The tidyverse is a powerful collection of R packages that transform and visualize data. This chapter focuses on two packages **tidyr** and **dplyr**. **tidyr** helps you to create tidy data or data where each variable is in a column, each observation is a row and each value is a cell. **dplyr** is used for grammar of data manipulation. You can use it to solve the most common data manipulation challenges.
+## Introduction to tidyverse
 
-You can install the complete tidyverse with:
+The tidyverse is a collection of R packages that transform and visualize data. All packages of the tidyverse share very similar syntax and ideologies.
+
+Tidyverse includes the following packages:
+
+- `dplyr`: grammar of data manipulation
+- `tidyr`: reshape your data
+- `ggplot2`: grammar of graphics
+- `readr`: read rectangular data
+- `tibble`: re-imagining of data frame
+- `stringr`: working with string data
+
+and many more...
+
+
+There are many other packages with more specialized functions in the tidyverse. In this chapter, we focuses on two packages: **tidyr** and **dplyr**.
+
+**dplyr** is used for grammar of data manipulation. **tidyr** helps you to create tidy data or data where each variable is in a column, each observation is a row and each value is a cell. You can use them to solve the most common data manipulation challenges.
+
+You can install the core tidyverse packages with:
 `install.packages("tidyverse")`
 
 Then, to load the package:
@@ -29,13 +48,146 @@ Then, to load the package:
 library(tidyverse)
 ```
 
+You can also load specific library separately, for example, `library(dplyr)`.
+
+</exercise>
+
+
+
+<exercise id="2" title="Introduction to dplyr">
+
+`dplyr` provides a selection of tools for the most common data wrangling tasks.
+
+## Data Transformation and Aggregation
+
+There are a bunch of useful commands to transform and aggregate data in R.
+
+- `select()`: pick particular variables from your data.
+
+```{r}
+table1 %>%
+  select(country)
+```
+
+- `filter()`: extract observations from the data based on a given condition
+```{r}
+table2 %>%
+  filter(year==1999)
+```
+
+- `arrange()`: sort your data based on one or more variables
+```{r}
+table2 %>%
+  arrange(count)
+```
+
+- `mutate()`: add new variables or change existing variables
+```{r}
+table1 %>%
+  mutate(rate = cases/population)
+```
+
+- `group_by()` and `ungroup()`: takes existing data and groups specific variables together for future operations. These two functions are often used together with other `dplyr` functions. We will introduce them with the `summarize()` function. The `summarize()` function creates a new dataframe based on the argument provided.
+
+```{r}
+table2 %>% group_by(type) %>% summarize(min = min(count), max =max(count))
+```
+
+You can summarize the data in different ways based on the groupings and different argument you included.
+```{r}
+table2 %>% group_by(type) %>% summarize(mean(count), median(count),sd(count))
+```
+
+- `count()`: a convenient way to get a sense of the distribution of values in a data set.
+```{r}
+table2 %>% count(country)
+```
+
+## Joining Datasets
+
+Often you will need information from multiple datasets in your data analysis. It is important to learn different types of joins to accommodate different needs in your tasks.
+
+We are going to use the following tables in our example. Consider there are 4 students in a class and they submitted homework 1 and homework 2. The tables contains their scores for the homeworks (gradebook) and not everyone submitted their homework during the semester.
+
+```{r}
+homework1 <- tibble(name = c('Alphonso', 'Daisy', 'Philip'), student_no = c(456,100,102), marks = c(80, 65, 34))
+homework2 <- tibble(name = c('Alphonso', 'Philip', 'Melinda'), student_no = c(456,102,432), marks = c(85, 97, 56))
+```
+
+### Mutating Joins
+
+Mutation joins return a copy of the dataset that has been augmented.
+
+**Inner Join**
+
+Inner joins retain only rows that exists on both datasets.
+```{r}
+inner_join(homework1, homework2, by = c('name','student_no'))
+```
+When we perform inner join by `name` and `student_no`, R only returns rows that exists in both data set. When we do inner join with our `homework1` and `homework2` gradebooks, only `Alphonso` and `Philip` 's marks will show up since they are the only ones that submitted both homeworks.
+
+**Left Join**
+
+Left joins starts with the left data set (`homework1`) and search in the right data set looking for the same values of `name` and `student_no` to add to the left data set. 
+```{r}
+left_join(homework1, homework2, by = c('name','student_no'))
+```
+When we do left join with our `homework1` and `homework2` gradebooks, we will only consider those students who submitted homework 1 and look for their marks in homework 2. Melinda's result will not be included in the join even though she has submitted her homework 2, while Daisy will have `NA` showing as the missing value.
+
+**Right Join**
+
+Right joins starts with the right data set (homework2) and search in the left data set looking for the same values of `name` and `student_no` to add to the right data set.
+```{r}
+right_join(homework1, homework2, by = c('name','student_no'))
+```
+When we do right join with our `homework1` and `homework2` gradebooks, we will only consider those students who submitted homework 2 and look for their marks in homework 1. Daisy's result will not be included in the join even though she has submitted her homework 1, while Melinda will have `NA` showing as the missing value.
+
+
+**Full Join**
+
+Full joins retain all rows.
+```{r}
+full_join(homework1, homework2, by = c('name','student_no'))
+```
+All the submissions with the corresponding mark are included in the full join of the gradebook.
+
+### Filtering Joins
+
+Filtering joins return a copy of the dataset that has been filtered.
+
+**Semi Join**
+
+The semi join returns a filtered version of the left data set based on matching entries in the right data set.
+```{r}
+semi_join(homework1, homework2, by = c('name','student_no'))
+semi_join(homework2, homework1, by = c('name','student_no'))
+```
+
+**Anti Join**
+
+Now, let's say we want to know who didn't submit homeworks. The anti join will return the rows in the left data set that doesn't have an entry in the right data set.
+```{r}
+anti_join(homework1, homework2, by = c('name','student_no'))
+anti_join(homework2, homework1, by = c('name','student_no'))
+```
+
+</exercise>
+
+<exercise id="3" title="Check Your Understanding on `dplyr`">
+
+</exercise>
+
+<exercise id="4" title="Tidy (reshape) your data">
+
 ## Tidy (reshape) your data
+
 Raw data that we acquired can often be messy and complicated. The tidyr package allows you to wrangle messy datasets into nice and tidy ones.
 
 A tidy data format has a rectangular shape which means it has columns, rows, and cells, just like in a spreadsheet. Each column should hold a single variable, each row should hold a single observation and each cell should hold a single value.
 
 The example below shows the same information (country, year, population, and number of cases) organised in 3 different ways.
 Examine each of the table.
+
 ```{r}
 table1
 table2
@@ -43,31 +195,14 @@ table3
 ```
 
 Which table is tidy?
-<choice> <opt text="Table 1 only" correct="true">
 
-Good job!
-
-</opt>
-
-<opt text="Table 3 only">
-
-This is not a correct answer.
-
-</opt>
-
-<opt text="Table 1 and 3">
-
-This is not a correct answer.
-
-</opt> 
-
-<opt text="Table 2 and 3">
-
-This is not a correct answer.
-
-</opt>
-
-</choice>
+```{r, echo = FALSE, results = "asis"}
+cat(mc_opts("Table 1 only" = "That's correct!",
+         "Table 3 only" = "Try again! Each cell in a tidy data format should hold only a single value. The column `rate` contains data with two values (one divided by the other) and is converted to characters.",
+         "Table 1 and 3" = "Try again! Each cell in a tidy data format should hold only a single value. The column `rate` in Table 3 contains data with two values (one divided by the other) and is converted to characters.",
+         "Table 2 and 3" = "Try again! Each cell in a tidy data format should hold only a single value. The column `rate` in Table 3 contains data with two values (one divided by the other) and is converted to characters. Table 2 contains two variables under the same column 'type'.",
+         correct = 1))
+```
 
 Sometimes raw data may have multiple variables or multiple values (not the same variable) in the same column, or sometimes you may want to merge multiple columns into one. Here are a few commands that can be helpful in manupulating the data into a tidy format:
 
@@ -99,6 +234,7 @@ table5 %>%
 
 In table 6, there are multiple observations in the same cell in each row of `year` and `cases`. We would like to separate them.
 ```{r}
+
 table6 <- tibble(
   country = c("Afghanistan", "Brazil", "China"),
   year = c("1999,2000", "1999,2000", "1999,2000"),
@@ -107,45 +243,6 @@ table6 <- tibble(
 
 table6 %>%
   separate_rows(cases, year, sep=',', convert = TRUE)
-```
-
-
-## Missing values
-
-There are various ways to handle missing values (the NAs) in your data set. Tidyr has three functions:
-
-- `fill()`: fill the missing values using the last observation carried forward. It has a `.direction` argument that you can pass `up` or `down`.
-- `drop_na()`: drop the rows with observations that are `NA`
-- `replace_na()`: replace the `NA` with specific values
-
-Let's look at this toy data set. We will start with the `fill()` function to impute the `return` column in the `up` direction, then we will impute in the `down` direction. Can you spot the difference?
-
-```{r}
-apple <- tibble(
-  year   = c(2020, 2020, 2020, 2020, 2021, 2021, 2021),
-  qtr    = c(   1,    2,    3,    4,    2,    3,    4),
-  return = c(0.75, 0.39, 0.34,   NA, 0.99, 0.07, 1.88)
-)
-
-apple %>%
-  fill(return, .direction = "up")
-
-apple %>%
-  fill(return, .direction = "down")
-```
-
-
-Then, we will try to drop the NAs in the return in `apple`.
-
-```{r}
-apple %>%
-  drop_na(return)
-```
- 
-Finally, we will also replace the NAs with the value `999`.
-```{r}
-apple %>%
-  replace_na(list(return=999))
 ```
 
 ## Pivoting
@@ -187,116 +284,53 @@ The second argument is the column to take variable **values** from, where is `co
 table2 %>%
   pivot_wider(names_from = type, values_from = count)
 ```
-</exercise>
 
-<exercise id="2" title="Introduction to dplyr">
-`dplyr` provides a selection of tools for the most common data wrangling tasks.
 
-## Data Transformation and Aggregation
-There are a bunch of useful commands to transform and aggregate data in R.
+## Missing values
 
-- `select()`: pick particular variables from your data.
-```{r}
-table1 %>%
-  select(country)
-```
-- `filter()`: extract observations from the data based on a given condition
-```{r}
-table2 %>%
-  filter(year==1999)
-```
-- `arrange()`: sort your data based on one or more variables
-```{r}
-table2 %>%
-  arrange(count)
-```
-- `mutate()`: add new variables or change existing variables
-```{r}
-table1 %>%
-  mutate(rate = cases/population)
-```
+There are various ways to handle missing values (the NAs) in your data set. Tidyr has three functions:
 
-- `group_by()` and `ungroup()`: takes existing data and groups specific variables together for future operations. These two functions are often used together with other `dplyr` functions. We will introduce them with the `summarize()` function. The `summarize()` function creates a new dataframe based on the argument provided.
+- `fill()`: fill the missing values using the last observation carried forward. It has a `.direction` argument that you can pass `up` or `down`.
+- `drop_na()`: drop the rows with observations that are `NA`
+- `replace_na()`: replace the `NA` with specific values
+
+Let's look at this toy data set. We will start with the `fill()` function to impute the `return` column in the `up` direction, then we will impute in the `down` direction. Can you spot the difference?
 
 ```{r}
-table2 %>% group_by(type) %>% summarize(min = min(count), max =max(count))
-```
+apple <- tibble(
+  year   = c(2020, 2020, 2020, 2020, 2021, 2021, 2021),
+  qtr    = c(   1,    2,    3,    4,    2,    3,    4),
+  return = c(0.75, 0.39, 0.34,   NA, 0.99, 0.07, 1.88)
+)
 
-You can summarize the data in different ways based on the groupings and different argument you included.
-```{r}
-table2 %>% group_by(type) %>% summarize(mean(count), median(count),sd(count))
+apple %>%
+  fill(return, .direction = "up")
+
+apple %>%
+  fill(return, .direction = "down")
 ```
 
 
-- `count()`: a convenient way to get a sense of the distribution of values in a data set.
+Then, we will try to drop the NAs in the return in `apple`.
+
 ```{r}
-table2 %>% count(country)
+apple %>%
+  drop_na(return)
 ```
-
-## Joining Datasets
-
-Often you will need information from multiple datasets in your data analysis. It is important to learn different types of joins to accommodate different needs in your tasks.
-
-We are going to use the following tables in our example. Consider there are 4 students in a class and they submitted homework 1 and homework 2. The tables contains their scores for the homeworks (gradebook) and not everyone submitted their homework during the semester.
+ 
+Finally, we will also replace the NAs with the value `999`.
 ```{r}
-homework1 <- tibble(name = c('Alphonso', 'Daisy', 'Philip'), student_no = c(456,100,102), marks = c(80, 65, 34))
-homework2 <- tibble(name = c('Alphonso', 'Philip', 'Melinda'), student_no = c(456,102,432), marks = c(85, 97, 56))
-```
-
-### Mutating Joins
-Mutation joins return a copy of the dataset that has been augmented.
-
-**Inner Join**
-
-Inner joins retain only rows that exists on both datasets.
-```{r}
-inner_join(homework1, homework2, by = c('name','student_no'))
-```
-When we perform inner join by `name` and `student_no`, R only returns rows that exists in both data set. When we do inner join with our `homework1` and `homework2` gradebooks, only `Alphonso` and `Philip` 's marks will show up since they are the only ones that submitted both homeworks.
-
-**Left Join**
-
-Left joins starts with the left data set (`homework1`) and search in the right data set looking for the same values of `name` and `student_no` to add to the left data set. 
-```{r}
-left_join(homework1, homework2, by = c('name','student_no'))
-```
-When we do left join with our `homework1` and `homework2` gradebooks, we will only consider those students who submitted homework 1 and look for their marks in homework 2. Melinda's result will not be included in the join even though she has submitted her homework 2, while Daisy will have `NA` showing as the missing value.
-
-**Right Join**
-
-Right joins starts with the right data set (homework2) and search in the left data set looking for the same values of `name` and `student_no` to add to the right data set.
-```{r}
-right_join(homework1, homework2, by = c('name','student_no'))
-```
-When we do right join with our `homework1` and `homework2` gradebooks, we will only consider those students who submitted homework 2 and look for their marks in homework 1. Daisy's result will not be included in the join even though she has submitted her homework 1, while Melinda will have `NA` showing as the missing value.
-
-
-**Full Join**
-Full joins retain all rows.
-```{r}
-full_join(homework1, homework2, by = c('name','student_no'))
-```
-All the submissions with the corresponding mark are included in the full join of the gradebook.
-
-### Filtering Joins
-Filtering joins return a copy of the dataset that has been filtered.
-
-**Semi Join**
-The semi join returns a filtered version of the left data set based on matching entries in the right data set.
-```{r}
-semi_join(homework1, homework2, by = c('name','student_no'))
-semi_join(homework2, homework1, by = c('name','student_no'))
-```
-
-**Anti Join**
-Now, let's say we want to know who didn't submit homeworks. The anti join will return the rows in the left data set that doesn't have an entry in the right data set.
-```{r}
-anti_join(homework1, homework2, by = c('name','student_no'))
-anti_join(homework2, homework1, by = c('name','student_no'))
+apple %>%
+  replace_na(list(return=999))
 ```
 
 
 </exercise>
+
+<exercise id="5" title="Check Your Understanding on `tidyr`">
+
+</exercise>
+
 
 
 
