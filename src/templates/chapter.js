@@ -9,7 +9,7 @@ import { Button } from '../components/button'
 
 import classes from '../styles/chapter.module.sass'
 
-const Template = ({ data }) => {
+const Template = ({ data, location }) => {
     const { markdownRemark, site } = data
     const { courseId } = site.siteMetadata
     const { frontmatter, htmlAst } = markdownRemark
@@ -21,6 +21,15 @@ const Template = ({ data }) => {
         { slug: prev, text: '« Previous Chapter' },
         { slug: next, text: 'Next Chapter »' },
     ]
+    const handleSetActiveExc = id => {
+        window.location.hash = `${id}`
+        setActiveExc(id)
+    }
+    useEffect(() => {
+        if (location.hash) {
+            setActiveExc(parseInt(location.hash.split('#')[1]))
+        }
+    }, [location.hash])
 
     //  Render MathJax syntax
     useEffect(() => {
@@ -28,7 +37,9 @@ const Template = ({ data }) => {
     })
 
     return (
-        <ChapterContext.Provider value={{ activeExc, setActiveExc, completed, setCompleted }}>
+        <ChapterContext.Provider
+            value={{ activeExc, setActiveExc: handleSetActiveExc, completed, setCompleted }}
+        >
             <Layout title={title} description={description}>
                 {html}
 
