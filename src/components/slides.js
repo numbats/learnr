@@ -4,6 +4,9 @@ import Marked from 'reveal.js/plugin/markdown/marked.js'
 import classNames from 'classnames'
 
 import '../styles/reveal.css'
+import '../styles/reveal-custom.css'
+import '../styles/quarto.css'
+import '../styles/quarto-syntax-highlighting.css'
 import classes from '../styles/slides.module.sass'
 
 function getFiles({ allMarkdownRemark }) {
