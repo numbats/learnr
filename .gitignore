@@ -70,3 +70,7 @@ yarn-error.log
 # Yarn Integrity file
 .yarn-integrity
 .Rproj.user
+
+cache
+chapter/cache
+.Rhistory
