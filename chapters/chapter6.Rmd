@@ -60,13 +60,36 @@ You can also load specific library separately, for example, `library(dplyr)`.
 
 ## Data Transformation and Aggregation
 
-There are a bunch of useful commands to transform and aggregate data in R.
+There are a bunch of useful commands to transform and aggregate data in R. We will use inbuilt data sets: `table1`, `table2`, `iris` and `billboard` for demonstration.
 
 - `select()`: pick particular variables from your data.
 
 ```{r}
 table1 %>%
   select(country)
+```
+
+In addition, you can use **selection helpers**. These helpers select variables by matching patterns in their names. 
+
+- `starts_with()`: select all variables that start with a prefix.
+```{r}
+billboard %>% select(starts_with("wk"))
+```
+
+- `ends_with()`: select all variables that end with a suffix.
+```{r}
+iris %>% select(ends_with("Width"))
+```
+
+- `contains()`: select all variables that contains a literal string.
+```{r}
+iris %>% select(contains("th"))
+```
+
+
+- `num_range()`: select all variables that matches a numerical range like x01, x02, x03.
+```{r}
+billboard %>% select(num_range("wk", 10:15))
 ```
 
 - `filter()`: extract observations from the data based on a given condition
@@ -102,6 +125,7 @@ table2 %>% group_by(type) %>% summarize(mean(count), median(count),sd(count))
 ```{r}
 table2 %>% count(country)
 ```
+
 
 ## Joining Datasets
 
