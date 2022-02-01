@@ -1,5 +1,5 @@
 ---
-title: Facet in `ggplot2`
+title: Multiple subplots in `ggplot2`
 execute:
   keep-md: true
 format: 
@@ -21,5 +21,122 @@ knitr::opts_chunk$set(fig.path = "images/chapter7-05/",
                       cache.path = "cache/",
                       cache = FALSE,
                       echo = TRUE)
+```
+
+
+---
+
+## Facets 
+
+* Faceting in `ggplot2` refers to partitioning of the plot region to multiple panels each showing a different subset of the data.
+* There are three types of faceting:
+
+  * `facet_null()` (the default),
+  * `facet_wrap()`, and
+  * `facet_grid()`.
+
+---
+
+## Motivating data: growth of soybean
+
+```{r}
+data(davidian.soybean, package = "agridat")
+str(davidian.soybean)
+```
+
+* The data contains:
+  * `plot`: the plot code
+  * `variety`: the code (`F` = commercial and `P` = experimental) for which soybean variety
+  * `year`: the year it was grown (1988-1990)
+  * `day` days after planting
+  * `weight` weight of soybean leaves
+
+---
+
+## `facet_wrap()`
+
+* `facet_wrap()` divides the data into mutually exclusive subset based on the input variable and create subplots based on the data in the corresponding panel.
+
+```{r facet-wrap-demo, fig.width = 10}
+library(ggplot2)
+ggplot(davidian.soybean, aes(day, weight)) + 
+  geom_point() +
+  facet_wrap(~year)
+```
+
+---
+
+## Wrapping many panels
+
+* It "wraps" the panels into 2d if you have many panels
+
+```{r facet-wrap-demo-wrap, fig.width = 10}
+ggplot(davidian.soybean, aes(day, weight)) + 
+  geom_point() +
+  facet_wrap(~plot)
+```
+
+---
+
+## Wrapping by a continuous variable
+
+* If you want to wrap the facet by a continuous variable, then you first need to discretize the continuous variable, e.g. using `cut()`, `cut_width()`, `cut_interval()` or `cut_number()`.
+
+```{r facet-wrap-demo-cont, fig.width = 10}
+ggplot(davidian.soybean, aes(day, weight)) + 
+  geom_point() +
+  facet_wrap(~cut_number(day, 4))
+```
+
+---
+
+## Changing the scales for each panel
+
+* By default the scales are shared across the panels but you can choose to have scales  built independently for each panel:
+
+```{r facet-wrap-demo-cont-scales, fig.width = 10}
+ggplot(davidian.soybean, aes(day, weight)) + 
+  geom_point() +
+  facet_wrap(~cut_number(day, 4), scales = "free")
+```
+
+
+---
+
+## Wrapping with more than one variables
+
+* If you want to wrap the facet by more than one variable, you can combine the variables by using `+`:
+
+```{r facet-wrap-demo-interaction, fig.width = 10}
+ggplot(davidian.soybean, aes(day, weight)) + 
+  geom_point() +
+  facet_wrap(~ year + variety)
+```
+
+
+---
+
+## `facet_grid()`
+
+* Alternatively, you can use `facet_grid()` to lay out the panels in a 2d grid:
+
+```{r facet-grid-demo, fig.width = 10}
+ggplot(davidian.soybean, aes(day, weight)) + 
+  geom_point() +
+  facet_grid(variety ~ year)
+```
+
+---
+
+## Missing facet variables
+
+* If a layer data is missing the faceting variable(s), then the layer will be shown across all panels based on all of the layer data
+
+```{r facet-all, fig.width = 10}
+ggplot(davidian.soybean, aes(day, weight)) + 
+  geom_point(data = dplyr::select(davidian.soybean, -c(variety, year)),
+             color = "grey70") +
+  geom_point() +
+  facet_grid(variety ~ year)
 ```
 
