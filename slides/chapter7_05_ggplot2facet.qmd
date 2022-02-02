@@ -16,7 +16,7 @@ type: slides
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(fig.path = "images/chapter7-05/",
                       fig.align = "center",
-                      fig.width = 4, 
+                      fig.width = 10, 
                       fig.height = 4,
                       cache.path = "cache/",
                       cache = FALSE,
@@ -57,7 +57,7 @@ str(davidian.soybean)
 
 * `facet_wrap()` divides the data into mutually exclusive subset based on the input variable and create subplots based on the data in the corresponding panel.
 
-```{r facet-wrap-demo, fig.width = 10}
+```{r facet-wrap-demo}
 library(ggplot2)
 ggplot(davidian.soybean, aes(day, weight)) + 
   geom_point() +
@@ -70,7 +70,7 @@ ggplot(davidian.soybean, aes(day, weight)) +
 
 * It "wraps" the panels into 2d if you have many panels
 
-```{r facet-wrap-demo-wrap, fig.width = 10}
+```{r facet-wrap-demo-wrap}
 ggplot(davidian.soybean, aes(day, weight)) + 
   geom_point() +
   facet_wrap(~plot)
@@ -82,7 +82,7 @@ ggplot(davidian.soybean, aes(day, weight)) +
 
 * If you want to wrap the facet by a continuous variable, then you first need to discretize the continuous variable, e.g. using `cut()`, `cut_width()`, `cut_interval()` or `cut_number()`.
 
-```{r facet-wrap-demo-cont, fig.width = 10}
+```{r facet-wrap-demo-cont}
 ggplot(davidian.soybean, aes(day, weight)) + 
   geom_point() +
   facet_wrap(~cut_number(day, 4))
@@ -94,7 +94,7 @@ ggplot(davidian.soybean, aes(day, weight)) +
 
 * By default the scales are shared across the panels but you can choose to have scales  built independently for each panel:
 
-```{r facet-wrap-demo-cont-scales, fig.width = 10}
+```{r facet-wrap-demo-cont-scales}
 ggplot(davidian.soybean, aes(day, weight)) + 
   geom_point() +
   facet_wrap(~cut_number(day, 4), scales = "free")
@@ -107,7 +107,7 @@ ggplot(davidian.soybean, aes(day, weight)) +
 
 * If you want to wrap the facet by more than one variable, you can combine the variables by using `+`:
 
-```{r facet-wrap-demo-interaction, fig.width = 10}
+```{r facet-wrap-demo-interaction}
 ggplot(davidian.soybean, aes(day, weight)) + 
   geom_point() +
   facet_wrap(~ year + variety)
@@ -120,7 +120,7 @@ ggplot(davidian.soybean, aes(day, weight)) +
 
 * Alternatively, you can use `facet_grid()` to lay out the panels in a 2d grid:
 
-```{r facet-grid-demo, fig.width = 10}
+```{r facet-grid-demo}
 ggplot(davidian.soybean, aes(day, weight)) + 
   geom_point() +
   facet_grid(variety ~ year)
@@ -132,11 +132,70 @@ ggplot(davidian.soybean, aes(day, weight)) +
 
 * If a layer data is missing the faceting variable(s), then the layer will be shown across all panels based on all of the layer data
 
-```{r facet-all, fig.width = 10}
+```{r facet-all}
 ggplot(davidian.soybean, aes(day, weight)) + 
   geom_point(data = dplyr::select(davidian.soybean, -c(variety, year)),
              color = "grey70") +
   geom_point() +
   facet_grid(variety ~ year)
+```
+
+---
+
+## Combining plots with `patchwork`
+
+* We use the `patchwork` package for combining plots.
+
+```{r patchwork}
+library(patchwork)
+```
+* Combining multiple `ggplot` objects is then just a matter of using `+` (side-by-side) or `/` (top-to-bottom).
+
+```{r patchwork-demo, fig.height = 3}
+g1 <- ggplot(davidian.soybean, aes(day, weight)) +
+  geom_point(aes(color = as.factor(year))) 
+g2 <- ggplot(davidian.soybean, aes(as.factor(year), weight)) +
+  geom_jitter(aes(color = as.factor(year))) 
+g1 + g2
+```
+
+---
+
+### Combining plot layouts
+
+* `patchwork` can collect the same guides across the plots as well as automatically add tag labels
+
+```{r patchwork-layouts}
+g1 + g2 + 
+  plot_layout(guides = "collect") + 
+  plot_annotation(tag_levels = "A")
+```
+
+---
+
+### Plot layout
+
+* You can combine the use of `+` and `/` to layout plots horizontally or vertically using `(` to group rows or columns
+
+```{r patchwork-layout}
+(g1 + g2) / (g2 + g1) + 
+  plot_layout(guides = "collect")
+```
+
+---
+
+## Flexible plot layout
+
+* If you want even more control over the plot layout, then you can specify a strinng with the structure you want like below:
+
+```{r patchwork-design}
+design <- "
+ 11###
+ 11###
+ #2222"
+
+g1 + g2 + 
+  plot_layout(guides = "collect",
+              design = design)
 ```
 

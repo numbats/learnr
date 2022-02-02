@@ -516,10 +516,72 @@
 <span id="cb9-3"><a href="#cb9-3"></a>             <span class="at">color =</span> <span class="st">"grey70"</span>) <span class="sc">+</span></span>
 <span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">facet_grid</span>(variety <span class="sc">~</span> year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="images/chapter7-05/facet-all-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="combining-plots-with-patchwork" class="slide level2">
+<h2>Combining plots with <code>patchwork</code></h2>
+<ul>
+<li>We use the <code>patchwork</code> package for combining plots.</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">library</span>(patchwork)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Combining multiple <code>ggplot</code> objects is then just a matter of using <code>+</code> (side-by-side) or <code>/</code> (top-to-bottom).</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(davidian.soybean, <span class="fu">aes</span>(day, weight)) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(year))) </span>
+<span id="cb11-3"><a href="#cb11-3"></a>g2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(davidian.soybean, <span class="fu">aes</span>(<span class="fu">as.factor</span>(year), weight)) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(year))) </span>
+<span id="cb11-5"><a href="#cb11-5"></a>g1 <span class="sc">+</span> g2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="images/chapter7-05/patchwork-demo-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section class="slide level2">
+
+<h3 id="combining-plot-layouts">Combining plot layouts</h3>
+<ul>
+<li><code>patchwork</code> can collect the same guides across the plots as well as automatically add tag labels</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>g1 <span class="sc">+</span> g2 <span class="sc">+</span> </span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">"collect"</span>) <span class="sc">+</span> </span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">"A"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="images/chapter7-05/patchwork-layouts-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section class="slide level2">
+
+<h3 id="plot-layout">Plot layout</h3>
+<ul>
+<li>You can combine the use of <code>+</code> and <code>/</code> to layout plots horizontally or vertically using <code>(</code> to group rows or columns</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>(g1 <span class="sc">+</span> g2) <span class="sc">/</span> (g2 <span class="sc">+</span> g1) <span class="sc">+</span> </span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">"collect"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="images/chapter7-05/patchwork-layout-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="flexible-plot-layout" class="slide level2">
+<h2>Flexible plot layout</h2>
+<ul>
+<li>If you want even more control over the plot layout, then you can specify a strinng with the structure you want like below:</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>design <span class="ot">&lt;-</span> <span class="st">"</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="st"> 11###</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="st"> 11###</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="st"> #2222"</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a></span>
+<span id="cb14-6"><a href="#cb14-6"></a>g1 <span class="sc">+</span> g2 <span class="sc">+</span> </span>
+<span id="cb14-7"><a href="#cb14-7"></a>  <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">"collect"</span>,</span>
+<span id="cb14-8"><a href="#cb14-8"></a>              <span class="at">design =</span> design)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/chapter7-05/facet-all-1.png" width="960"></p>
+<p><img data-src="images/chapter7-05/patchwork-design-1.png" width="960"></p>
 </figure>
 </div>
 </div>

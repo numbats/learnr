@@ -194,3 +194,93 @@ ggplot(davidian.soybean, aes(day, weight)) +
 ![](images/chapter7-05/facet-all-1.png){fig-align='center' width=960}
 :::
 :::
+
+---
+
+## Combining plots with `patchwork`
+
+* We use the `patchwork` package for combining plots.
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+library(patchwork)
+```
+:::
+* Combining multiple `ggplot` objects is then just a matter of using `+` (side-by-side) or `/` (top-to-bottom).
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+g1 <- ggplot(davidian.soybean, aes(day, weight)) +
+  geom_point(aes(color = as.factor(year))) 
+g2 <- ggplot(davidian.soybean, aes(as.factor(year), weight)) +
+  geom_jitter(aes(color = as.factor(year))) 
+g1 + g2
+```
+
+::: {.cell-output-display}
+![](images/chapter7-05/patchwork-demo-1.png){fig-align='center' width=960}
+:::
+:::
+
+---
+
+### Combining plot layouts
+
+* `patchwork` can collect the same guides across the plots as well as automatically add tag labels
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+g1 + g2 + 
+  plot_layout(guides = "collect") + 
+  plot_annotation(tag_levels = "A")
+```
+
+::: {.cell-output-display}
+![](images/chapter7-05/patchwork-layouts-1.png){fig-align='center' width=960}
+:::
+:::
+
+---
+
+### Plot layout
+
+* You can combine the use of `+` and `/` to layout plots horizontally or vertically using `(` to group rows or columns
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+(g1 + g2) / (g2 + g1) + 
+  plot_layout(guides = "collect")
+```
+
+::: {.cell-output-display}
+![](images/chapter7-05/patchwork-layout-1.png){fig-align='center' width=960}
+:::
+:::
+
+---
+
+## Flexible plot layout
+
+* If you want even more control over the plot layout, then you can specify a strinng with the structure you want like below:
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+design <- "
+ 11###
+ 11###
+ #2222"
+
+g1 + g2 + 
+  plot_layout(guides = "collect",
+              design = design)
+```
+
+::: {.cell-output-display}
+![](images/chapter7-05/patchwork-design-1.png){fig-align='center' width=960}
+:::
+:::
