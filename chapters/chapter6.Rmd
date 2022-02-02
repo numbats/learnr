@@ -7,6 +7,7 @@ next: /chapter7
 type: chapter
 id: 6
 output:
+  teachr::teachr_chapter:
   html_document:
     self_contained: false
     keep_md: true
