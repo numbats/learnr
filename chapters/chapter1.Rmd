@@ -6,9 +6,10 @@ next: /chapter2
 type: chapter
 id: 1
 output:
-  html_document:
-    self_contained: false
-    keep_md: true
+  teachr::teachr_chapter:
+  # html_document:
+  #   self_contained: false
+  #   keep_md: true
 ---
 
 
@@ -32,33 +33,20 @@ knitr::opts_chunk$set(fig.path = "ch1/",
                       warning = FALSE)
 # `slides` and `opts` (now called `mc_opts` functions now live in the `teachr` package
 # install latest at https://github.com/numbats/teachr
-
-codeblock <- function(id, hint) {
-  if(knitr::is_html_output(excludes = c("markdown"))) {
-    out <- c('<pre class="r">',
-             paste("<code>",
-                   readLines(sprintf("../exercises/exc_%s.R", id)),
-                   "</code>"),
-             '</pre>',
-             '<details open><summary>Hint</summary>',
-             hint,
-             '</details>')
-  } else {
-    out <- c(glue::glue('<codeblock id="{id}">'),
-             hint,
-             "</codeblock>")
-  }
-  paste(out, collapse = "\n")
-}
 ```
 
-## Install guide for R and RStudio IDE 
+<exercise id="1" title="Install guide for R and RStudio IDE" type="slides">
 
 `r slides("chapter1_01_Install")`
 
-## RStudio basic 
+</exercise>
+
+<exercise id="2" title="RStudio basic" type="slides">
 
 `r slides("chapter1_02_RStudio_basic")`
+
+</exercise>
+
 
 
 

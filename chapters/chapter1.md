@@ -1,17 +1,20 @@
 ---
 title: 'Chapter 1: Getting started'
-description:
-  'This chapter will teach you about many cool things about R and RStuduo and help you get start with RStudio.'
+description: This chapter will teach you about many cool things about R and RStuduo
+  and help you get start with RStudio.
 next: /chapter2
 type: chapter
 id: 1
-output:
-  html_document:
-    self_contained: false
-    keep_md: true
+
 ---
+<exercise id="1" title="Install guide for R and RStudio IDE" type="slides">
 
+<slides source="chapter1_01_Install"> </slides>
 
+</exercise>
 
+<exercise id="2" title="RStudio basic" type="slides">
 
-<iframe src='../slides/chapter1_01_Install.html' width='800' height='500'></iframe>
+<slides source="chapter1_02_RStudio_basic"> </slides>
+
+</exercise>
