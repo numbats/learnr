@@ -1,6 +1,7 @@
 ---
 title: Vectors
 output:
+  teachr::teachr_slides:
   revealjs::revealjs_presentation:
      css: [reveal.css, slide.css]
      transition: slide
