@@ -9,16 +9,7 @@ output:
      self_contained: false
 ---
 
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(fig.path = "images/chapter1-01/",
-                      fig.align = "center",
-                      fig.width = 2, 
-                      fig.height = 2,
-                      cache.path = "cache/",
-                      cache = FALSE,
-                      echo = TRUE)
 
-```
 
 # Why do we want to learn and use R and RStudio?
 
@@ -46,9 +37,7 @@ Download the latest version of R from: [The Comprehensive R Archive Network (CRA
 
 Please select Download R for `your operating system`
 
-```{r, echo=FALSE, out.width="50%"}
-knitr::include_graphics("images/chapter1-01/R_Install_CRAN.png")
-```
+<img src="images/chapter1-01/R_Install_CRAN.png" width="50%" style="display: block; margin: auto;" />
 
 ---
 
@@ -56,9 +45,7 @@ knitr::include_graphics("images/chapter1-01/R_Install_CRAN.png")
 
 You should see this webpage once you click on `Download R for macOS`.  
 
-```{r, echo=FALSE, out.width="50%"}
-knitr::include_graphics("images/chapter1-01/R_Install_Mac.png")
-```
+<img src="images/chapter1-01/R_Install_Mac.png" width="50%" style="display: block; margin: auto;" />
 
 Click on `R-4.1.2.pkg` to start the download. (The top one will always be the most recent version. During the first development of this short course, 4.1.2 is the latest version of R.)
 ---
@@ -67,9 +54,7 @@ Click on `R-4.1.2.pkg` to start the download. (The top one will always be the mo
 
 After finishing the download of `R-4.1.2.pkg`, double click on it, you should see the message below. 
 
-```{r, echo=FALSE, out.width="50%"}
-knitr::include_graphics("images/chapter1-01/R_Install_Mac_1.png")
-```
+<img src="images/chapter1-01/R_Install_Mac_1.png" width="50%" style="display: block; margin: auto;" />
 
 Click `Continue`. 
 
@@ -79,9 +64,7 @@ Click `Continue`.
 
 Read through the important information about R. 
 
-```{r, echo=FALSE, out.width="50%"}
-knitr::include_graphics("images/chapter1-01/R_Install_Mac_2.png")
-```
+<img src="images/chapter1-01/R_Install_Mac_2.png" width="50%" style="display: block; margin: auto;" />
 
 Click `Continue`.
 
@@ -91,9 +74,7 @@ Click `Continue`.
 
 Read through the software licence agreement about R. 
 
-```{r, echo=FALSE, out.width="50%"}
-knitr::include_graphics("images/chapter1-01/R_Install_Mac_3.png")
-```
+<img src="images/chapter1-01/R_Install_Mac_3.png" width="50%" style="display: block; margin: auto;" />
 
 Click `Continue`.
 
@@ -103,9 +84,7 @@ Click `Continue`.
 
 The default installation location for macOS is the `Macintosh HD`. If you want to change the install location, click `Change Install Location`. Otherwise, click `Install`.
 
-```{r, echo=FALSE, out.width="50%"}
-knitr::include_graphics("images/chapter1-01/R_Install_Mac_4.png")
-```
+<img src="images/chapter1-01/R_Install_Mac_4.png" width="50%" style="display: block; margin: auto;" />
 
 
 ---
@@ -114,9 +93,7 @@ knitr::include_graphics("images/chapter1-01/R_Install_Mac_4.png")
 
 Once you successfully installed R. You can click `Close` to exit the installation process. 
 
-```{r, echo=FALSE, out.width="50%"}
-knitr::include_graphics("images/chapter1-01/R_Install_Mac_5.png")
-```
+<img src="images/chapter1-01/R_Install_Mac_5.png" width="50%" style="display: block; margin: auto;" />
 
 ---
 
@@ -126,9 +103,7 @@ Download the latest version of RStudio from [RStudio](https://www.rstudio.com/pr
 
 Scroll down to `All Installers` and download the RStudio version for your operating system. 
 
-```{r, echo=FALSE, out.width="50%"}
-knitr::include_graphics("images/chapter1-01/RStudio_Install.png")
-```
+<img src="images/chapter1-01/RStudio_Install.png" width="50%" style="display: block; margin: auto;" />
 
 ---
 
@@ -136,9 +111,7 @@ knitr::include_graphics("images/chapter1-01/RStudio_Install.png")
 
 Drag RStudio.app into the `Applications` folder. 
 
-```{r, echo=FALSE, out.width="50%"}
-knitr::include_graphics("images/chapter1-01/RStudio_Install_Mac_1.png")
-```
+<img src="images/chapter1-01/RStudio_Install_Mac_1.png" width="50%" style="display: block; margin: auto;" />
 
 After this step, you should have RStudio ready to explore!  
 
