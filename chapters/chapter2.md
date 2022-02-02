@@ -569,7 +569,7 @@ flip_a_coin()
 ```
 
 ```
-## [1] "Head"
+## [1] "Tail"
 ```
 
 ```r
@@ -578,7 +578,7 @@ flip_a_coin()
 ```
 
 ```
-## [1] "Head"
+## [1] "Tail"
 ```
 
 ```r
@@ -587,7 +587,7 @@ flip_a_coin()
 ```
 
 ```
-## [1] "Head"
+## [1] "Tail"
 ```
 You will get a different outcome ("Head" or "Tail") every time when you call the function `flip_a_coin`.
 
