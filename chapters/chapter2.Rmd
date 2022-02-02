@@ -7,6 +7,7 @@ next: /chapter3
 type: chapter
 id: 2
 output:
+  teachr::teachr_chapter:
   html_document:
     self_contained: false
     keep_md: true
@@ -146,6 +147,50 @@ test <- function() {
 }
 
 test()
+```
+
+## Missing Values
+
+There are several special values in R, including `NA`, `NaN`, and `Inf`.
+
+**NA**
+
+`NA` (short for 'Not Available'), is a logical constant of length 1 which contains a missing value indicator. We use `NA` to replace an entry of a vector when such value is unknown or missing. There are different types of `NA` for different class, including `NA_integer_`, `NA_real_`, `NA_complex_` and `NA_character_`. `NA_integer` is of the integer class and so on. 
+
+Most operations on an `NA` becomes an `NA`. For instance, 
+```{r}
+x <- c(1, 2, NA, 4)
+sum(x)
+```
+
+However, there is an exception - when we use the `paste()` function to concatenate `NA` with other strings. The operation will be performed with the `NA`.
+```{r}
+some_string <- c("Apple","Banana", NA, "Orange")
+paste(some_string, " is good for you.")
+```
+
+We can use `is.na()` to test if a values is `NA`. The function is.na(x) returns a boolean vector of the same size as `x` with value TRUE if the corresponding element in `x` is `NA`.
+
+```{r}
+is.na(x)
+```
+
+**NaN**
+
+`NaN` (short for 'Not A Number') is for arithmetic purposes. `NaN` usually comes from arithmetic operations that create undefined values such as 0/0, hence `NaN` is numeric. You can also use `is.na()` to check if a value is `NaN`.
+
+```{r}
+y <- c(4, 0/0, 3,5)
+is.na(y)
+```
+
+
+**Inf**
+
+`Inf` (short for `Infinite`), like `NaN`, also stems from numerical operations and thus is of numeric class. It usually comes operations like 1/0 where the result is a very very large number (larger than other numeric). Note that `Inf` is not a type of `NA`.
+You can use `is.infinite()` to check if a value is `Inf`.
+```{r}
+is.infinite(23/0)
 ```
 
 </exercise>
@@ -338,6 +383,8 @@ Similar to vectors and matrices, you select elements from a data frame using squ
 - For example, if you would like to select row 2 to 4 and column 3 to 5 from a data frame called `my_df`, you can do `my_df[2:4, 3:5]`.
 - When you want to select the entire first row of a data frame, you can use `my_df[1, ]
 - When you want to select the entire first column of a data frame, you can use `my_df[,1]`
+
+Note that when you select a single column (e.g. `my_df[,1]`), it turns into a vector. If you would like it to remain as a data frame, you can use `my_df[, 1, drop = FALSE]`.
 
 Alternatively, if you would like to select a certain variable from the data frame, you can use the column name in the square bracket directly or use `$` instead: `my_df[ , "column_name"]` or `my_df$column_name`.
 
