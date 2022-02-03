@@ -211,6 +211,34 @@ pre code {
 <p>Now, it’s your turn to play around with different variable types!</p>
 <p><codeblock id="02_02"> Hint: Replace the values in the R code with values that are provided in the instructions (the line with the comment <code>#</code>). For example, <code>weather &lt;- "sunny"</code> assigns the string “sunny” to the variable <code>weather</code>.</p>
 <p></codeblock></p>
+</div>
+</div>
+<div id="missing-values" class="section level2">
+<h2>Missing Values</h2>
+<p>There are several special values in R, including <code>NA</code>, <code>NaN</code>, and <code>Inf</code>.</p>
+<p><strong>NA</strong></p>
+<p><code>NA</code> (short for ‘Not Available’), is a logical constant of length 1 which contains a missing value indicator. We use <code>NA</code> to replace an entry of a vector when such value is unknown or missing. There are different types of <code>NA</code> for different class, including <code>NA_integer_</code>, <code>NA_real_</code>, <code>NA_complex_</code> and <code>NA_character_</code>. <code>NA_integer</code> is of the integer class and so on.</p>
+<p>Most operations on an <code>NA</code> becomes an <code>NA</code>. For instance,</p>
+<pre class="r"><code>x &lt;- c(1, 2, NA, 4)
+sum(x)</code></pre>
+<pre><code>## [1] NA</code></pre>
+<p>However, there is an exception - when we use the <code>paste()</code> function to concatenate <code>NA</code> with other strings. The operation will be performed with the <code>NA</code>.</p>
+<pre class="r"><code>some_string &lt;- c(&quot;Apple&quot;,&quot;Banana&quot;, NA, &quot;Orange&quot;)
+paste(some_string, &quot; is good for you.&quot;)</code></pre>
+<pre><code>## [1] &quot;Apple  is good for you.&quot;  &quot;Banana  is good for you.&quot;
+## [3] &quot;NA  is good for you.&quot;     &quot;Orange  is good for you.&quot;</code></pre>
+<p>We can use <code>is.na()</code> to test if a values is <code>NA</code>. The function is.na(x) returns a boolean vector of the same size as <code>x</code> with value TRUE if the corresponding element in <code>x</code> is <code>NA</code>.</p>
+<pre class="r"><code>is.na(x)</code></pre>
+<pre><code>## [1] FALSE FALSE  TRUE FALSE</code></pre>
+<p><strong>NaN</strong></p>
+<p><code>NaN</code> (short for ‘Not A Number’) is for arithmetic purposes. <code>NaN</code> usually comes from arithmetic operations that create undefined values such as 0/0, hence <code>NaN</code> is numeric. You can also use <code>is.na()</code> to check if a value is <code>NaN</code>.</p>
+<pre class="r"><code>y &lt;- c(4, 0/0, 3,5)
+is.na(y)</code></pre>
+<pre><code>## [1] FALSE  TRUE FALSE FALSE</code></pre>
+<p><strong>Inf</strong></p>
+<p><code>Inf</code> (short for <code>Infinite</code>), like <code>NaN</code>, also stems from numerical operations and thus is of numeric class. It usually comes operations like 1/0 where the result is a very very large number (larger than other numeric). Note that <code>Inf</code> is not a type of <code>NA</code>. You can use <code>is.infinite()</code> to check if a value is <code>Inf</code>.</p>
+<pre class="r"><code>is.infinite(23/0)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 <p></exercise></p>
 <p><exercise id='3' title='Vectors' type="slides"></p>
 <iframe src="../slides/chapter2_03_vectors.html" width="800" height="500">
@@ -255,7 +283,6 @@ pre code {
 <p></exercise></p>
 <p><exercise id='7' title='Data Frames'></p>
 </div>
-</div>
 <div id="data-frames" class="section level2">
 <h2>Data Frames</h2>
 <p>A data frame has the variables of a dataset as columns and the observations as rows.</p>
@@ -296,6 +323,7 @@ pre code {
 <li>When you want to select the entire first row of a data frame, you can use `my_df[1, ]</li>
 <li>When you want to select the entire first column of a data frame, you can use <code>my_df[,1]</code></li>
 </ul>
+<p>Note that when you select a single column (e.g. <code>my_df[,1]</code>), it turns into a vector. If you would like it to remain as a data frame, you can use <code>my_df[, 1, drop = FALSE]</code>.</p>
 <p>Alternatively, if you would like to select a certain variable from the data frame, you can use the column name in the square bracket directly or use <code>$</code> instead: <code>my_df[ , "column_name"]</code> or <code>my_df$column_name</code>.</p>
 </div>
 <div id="sorting" class="section level3">
@@ -486,13 +514,13 @@ print(&#39;Hello World!&#39;)
 
 #Flip the coin the first time
 flip_a_coin()</code></pre>
-<pre><code>## [1] &quot;Tail&quot;</code></pre>
+<pre><code>## [1] &quot;Head&quot;</code></pre>
 <pre class="r"><code>#Flip the coin second time
 flip_a_coin()</code></pre>
-<pre><code>## [1] &quot;Tail&quot;</code></pre>
+<pre><code>## [1] &quot;Head&quot;</code></pre>
 <pre class="r"><code>#Flip the coin once again
 flip_a_coin()</code></pre>
-<pre><code>## [1] &quot;Tail&quot;</code></pre>
+<pre><code>## [1] &quot;Head&quot;</code></pre>
 <p>You will get a different outcome (“Head” or “Tail”) every time when you call the function <code>flip_a_coin</code>.</p>
 <p><strong>Write your code to roll a die!</strong></p>
 <p>Write a function that takes no input argument and return a random outcome choosing from 1 to 6, just like rolling a die in R. Name that function <code>roll_a_die</code>.</p>
