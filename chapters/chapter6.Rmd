@@ -15,7 +15,22 @@ output:
 
 ```{r setup, include = FALSE}
 library(teachr)
-library(testthat)
+library(tidyverse)
+knitr::knit_hooks$set(class = function(before, options, envir) {
+  if(before) {
+    sprintf("<div class='%s'>", options$class)
+  } else {
+    "</div>"
+  }
+})
+knitr::opts_chunk$set(fig.retina = 2,
+                      fig.width = 6, 
+                      fig.height = 4,
+                      fig.align = "center",
+                      cache = TRUE,
+                      cache.path = "cache/",
+                      message = FALSE,
+                      warning = FALSE)
 ```
 
 
@@ -92,16 +107,41 @@ test()
 
 **Problem 2**
 
-Joins
-```{teachr 06_03_02}
+Consider the data sets `size` and `color`. 
+```{r}
+size <- tibble(
+  product_name = c('mini', 'pro', 'maxi'),
+  diameter = c(23, 27, 32)
+)
 
+color <- tibble(
+  product_name = c('mini','light', 'pro'),
+  hue = c('red','green', 'silver')
+)
 
----
-  
-Hint: 
-  
-???
-  
+```
+
+We would like to merge the tables so that the result looks like:
+
+```
+# A tibble: 4 × 3
+  product_name hue    diameter
+  <chr>        <chr>     <dbl>
+1 mini         red          23
+2 light        green        NA
+3 pro          silver       27
+4 maxi         NA           32
+
+```
+
+Which of the following commands does the operation?
+
+```{r, echo = FALSE}
+mc_opts("inner_join(color, size)" = "Try again!",
+        "left_join(color, size)" = "Try again!",
+        "right_join(color, size)" = "Try again!",
+        "full_join(color, size)" = "That's right!",
+        correct = 4)
 ```
 
 </exercise>
@@ -120,35 +160,53 @@ Hint:
 Which table is tidy?
 
 ```{r, echo = FALSE, results = "asis"}
-cat(mc_opts("Table 1 only" = "That's correct!",
+mc_opts("Table 1 only" = "That's correct!",
          "Table 3 only" = "Try again! Each cell in a tidy data format should hold only a single value. The column `rate` contains data with two values (one divided by the other) and is converted to characters.",
          "Table 1 and 3" = "Try again! Each cell in a tidy data format should hold only a single value. The column `rate` in Table 3 contains data with two values (one divided by the other) and is converted to characters.",
          "Table 2 and 3" = "Try again! Each cell in a tidy data format should hold only a single value. The column `rate` in Table 3 contains data with two values (one divided by the other) and is converted to characters. Table 2 contains two variables under the same column 'type'.",
-         correct = 1))
+         correct = 1)
 ```
 
 
 **Problem 2**
-Pivoting
-
-```{teachr 06_05_01}
-
----
-  
-???
+Consider the following simple table `smoke`, which command do I need to transform `smoke` to `smoke2`?
+```{r}
+smoke <- tribble(
+  ~smoke, ~employed, ~unemployed,
+  "yes", 23, 10,
+  "no", 20, 12
+)
+```
 
 ```
+smoke2
+# A tibble: 4 × 3
+  smoke employment_status count
+  <chr> <chr>             <dbl>
+1 yes   employed             23
+2 yes   unemployed           10
+3 no    employed             20
+4 no    unemployed           12
+```
+
+```{r, echo = FALSE}
+mc_opts("Using pivot_wider() on smoke" = "Try again!",
+        "Using pivot_longer() on smoke" = "That's correct!",
+        "Using select() on smoke" = "Try again!",
+        "Using filter() on smoke" = "Try again!",
+        correct = 2)
+```
+
 **Problem 3**
-
-Missing values
-
-```{teachr 06_05_02}
-
----
-  
-???
-
+Which is the best way to check if there are missing observations in your data?
+```{r, echo = FALSE}
+mc_opts("Eyeballing and look for blanks in my data" = "That's not very effective nor efficient. Use R command to help you!",
+        "Eyeballing and look for `blanks`NA` in my data" = "That's not very effective nor efficient. Use R command to help you!",
+        "Using is.na() on my data" = "Try again!",
+        "There is no need to find the missing values. We can ignore them." = "That's incorrect.",
+        correct = 3)
 ```
+
 
 
 **Congratulations! This is the end of Data Wrangling!**
