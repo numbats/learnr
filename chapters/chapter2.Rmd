@@ -100,20 +100,34 @@ test()
 
 There are numerous data types in R. Here are some of the basic ones:
 
--   **numerics**: decimal values like `5.217`.
--   **integers**: whole numbers like `7`. Note that integers are also
-    numerics
+-   **numerics**: numerical values
 -   **logical**: boolean values (`TRUE` or `FALSE`)
 -   **characters**: String (a piece of text) like 'some text' or "some
     text". Note that we use quotation marks to indicate if a value is a
     string.
-
+    
 ### Checking the data types
 
 You can check the data type of a variable with the `class()` function.
 This is a useful function since often you need matching data types when
 you perform operations in R. For example, you will get an error message
 if you try to evaluate `5 + "6"`.
+    
+### More on numerics: Integer vs Double
+The two most common numeric classes are "integer" and "double" (for double precision floating point numbers). "Integers" are whole numbers like `7`. "Double" are decimal values like `5.217`. R uses double precision numeric values by default.
+
+```{r}
+db_var <- 7
+class(db_var)
+```
+To create integer values, you can add `L` after the number.
+
+```{r}
+int_var <- 7L
+class(int_var)
+```
+
+
 
 Now, it's your turn to play around with different variable types!
 

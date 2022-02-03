@@ -70,9 +70,7 @@ to `average`, you can do: `average <- sum_to_five/5`
 
 There are numerous data types in R. Here are some of the basic ones:
 
--   **numerics**: decimal values like `5.217`.
--   **integers**: whole numbers like `7`. Note that integers are also
-    numerics
+-   **numerics**: numerical values
 -   **logical**: boolean values (`TRUE` or `FALSE`)
 -   **characters**: String (a piece of text) like ‘some text’ or “some
     text”. Note that we use quotation marks to indicate if a value is a
@@ -84,6 +82,25 @@ You can check the data type of a variable with the `class()` function.
 This is a useful function since often you need matching data types when
 you perform operations in R. For example, you will get an error message
 if you try to evaluate `5 + "6"`.
+
+### More on numerics: Integer vs Double
+
+The two most common numeric classes are “integer” and “double” (for
+double precision floating point numbers). “Integers” are whole numbers
+like `7`. “Double” are decimal values like `5.217`. R uses double
+precision numeric values by default.
+
+    db_var <- 7
+    class(db_var)
+
+    ## [1] "numeric"
+
+To create integer values, you can add `L` after the number.
+
+    int_var <- 7L
+    class(int_var)
+
+    ## [1] "integer"
 
 Now, it’s your turn to play around with different variable types!
 
@@ -174,7 +191,7 @@ Given the following vector `y` in R,
 
 which of the following is the output of `y-2`?
 
-<choice id=0.276853134157136>
+<choice id=0.827567265136167>
 
 <opt text="`0  4  6  8  1  3  5  7`" >
 
@@ -210,7 +227,7 @@ Given the following vector `y` in R,
 
 which of the following is the output of `y[4:7]`?
 
-<choice id=0.149260082747787>
+<choice id=0.621879367390648>
 
 <opt text="`8 1 3 5`" correct="true">
 
@@ -311,7 +328,7 @@ Hint: Use the `head(df)` can help.
 
 What is the data type of the variable ‘dose’?
 
-<choice id=0.144962850492448>
+<choice id=0.0769183293450624>
 
 <opt text="numeric" correct="true">
 
@@ -450,7 +467,7 @@ Take a look at the following statements:
 
 Select the option that lists **all** the true statements.
 
-<choice id=0.951607841765508>
+<choice id=0.151293479138985>
 
 <opt text="(1) and (2)" >
 
@@ -580,7 +597,7 @@ variable `student_result`.
 Based on the output from the for-loop, which of the following is
 `student_result`?
 
-<choice id=0.613168280338868>
+<choice id=0.211994137382135>
 
 <opt text="student_result <- c(99,77,35,97,67,85)" >
 
@@ -732,12 +749,12 @@ For example:
     #Flip the coin the first time
     flip_a_coin()
 
-    ## [1] "Head"
+    ## [1] "Tail"
 
     #Flip the coin second time
     flip_a_coin()
 
-    ## [1] "Head"
+    ## [1] "Tail"
 
     #Flip the coin once again
     flip_a_coin()
