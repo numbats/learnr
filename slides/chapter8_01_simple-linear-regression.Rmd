@@ -1,0 +1,10 @@
+---
+title: Simple linear regression
+output: 
+  teachr::teachr_slides
+---
+
+
+```{r child=gsub("[.]Rmd", ".qmd", knitr::current_input())}
+```
+
