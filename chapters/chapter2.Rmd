@@ -15,7 +15,22 @@ output:
 
 ```{r setup, include = FALSE}
 library(teachr)
-library(testthat)
+library(tidyverse)
+knitr::knit_hooks$set(class = function(before, options, envir) {
+  if(before) {
+    sprintf("<div class='%s'>", options$class)
+  } else {
+    "</div>"
+  }
+})
+knitr::opts_chunk$set(fig.retina = 2,
+                      fig.width = 6, 
+                      fig.height = 4,
+                      fig.align = "center",
+                      cache = TRUE,
+                      cache.path = "cache/",
+                      message = FALSE,
+                      warning = FALSE)
 ```
 
 

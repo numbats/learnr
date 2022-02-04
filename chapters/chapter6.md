@@ -43,21 +43,6 @@ Then, to load the package:
 
     library(tidyverse)
 
-    ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
-
-    ## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
-    ## ✓ tibble  3.1.6     ✓ dplyr   1.0.7
-    ## ✓ tidyr   1.1.4     ✓ stringr 1.4.0
-    ## ✓ readr   2.1.1     ✓ forcats 0.5.1
-
-    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-    ## x readr::edition_get()   masks testthat::edition_get()
-    ## x dplyr::filter()        masks stats::filter()
-    ## x purrr::is_null()       masks testthat::is_null()
-    ## x dplyr::lag()           masks stats::lag()
-    ## x readr::local_edition() masks testthat::local_edition()
-    ## x dplyr::matches()       masks tidyr::matches(), testthat::matches()
-
 You can also load specific library separately, for example,
 `library(dplyr)`.
 
@@ -92,11 +77,31 @@ task.
 
 **Problem 2**
 
-Joins <codeblock id="06_03_02">
+Consider the data sets `size` and `color`.
 
-Hint:
+    size <- tibble(
+      product_name = c('mini', 'pro', 'maxi'),
+      diameter = c(23, 27, 32)
+    )
 
-</codeblock>
+    color <- tibble(
+      product_name = c('mini','light', 'pro'),
+      hue = c('red','green', 'silver')
+    )
+
+We would like to merge the tables so that the result looks like:
+
+    # A tibble: 4 × 3
+      product_name hue    diameter
+      <chr>        <chr>     <dbl>
+    1 mini         red          23
+    2 light        green        NA
+    3 pro          silver       27
+    4 maxi         NA           32
+
+Which of the following commands does the operation?
+
+    ## [1] "<choice id=0.143768886337057>\n\n<opt text=\"inner_join(color, size)\" >\n\nTry again!\n\n</opt>\n\n<opt text=\"left_join(color, size)\" >\n\nTry again!\n\n</opt>\n\n<opt text=\"right_join(color, size)\" >\n\nTry again!\n\n</opt>\n\n<opt text=\"full_join(color, size)\" correct=\"true\">\n\nThat's right!\n\n</opt>\n\n</choice>"
 
 </exercise>
 
@@ -112,52 +117,44 @@ Hint:
 
 Which table is tidy?
 
-<choice id=0.175283598946407>
-
-<opt text="Table 1 only" correct="true">
-
-That’s correct!
-
-</opt>
-
-<opt text="Table 3 only" >
-
-Try again! Each cell in a tidy data format should hold only a single
-value. The column `rate` contains data with two values (one divided by
-the other) and is converted to characters.
-
-</opt>
-
-<opt text="Table 1 and 3" >
-
-Try again! Each cell in a tidy data format should hold only a single
+\[1\] “<choice id=0.887109126895666>&lt;opt text="Table 1 only"
+correct="true">‘s correct!</opt>&lt;opt text="Table 3 only" &gt;again!
+Each cell in a tidy data format should hold only a single value. The
+column `rate` contains data with two values (one divided by the other)
+and is converted to characters.</opt>&lt;opt text="Table 1 and 3"
+&gt;again! Each cell in a tidy data format should hold only a single
 value. The column `rate` in Table 3 contains data with two values (one
-divided by the other) and is converted to characters.
+divided by the other) and is converted to characters.</opt>&lt;opt
+text="Table 2 and 3" &gt;again! Each cell in a tidy data format should
+hold only a single value. The column `rate` in Table 3 contains data
+with two values (one divided by the other) and is converted to
+characters. Table 2 contains two variables under the same column
+’type’.</opt></choice>”
 
-</opt>
+**Problem 2** Consider the following simple table `smoke`, which command
+do I need to transform `smoke` to `smoke2`?
 
-<opt text="Table 2 and 3" >
+    smoke <- tribble(
+      ~smoke, ~employed, ~unemployed,
+      "yes", 23, 10,
+      "no", 20, 12
+    )
 
-Try again! Each cell in a tidy data format should hold only a single
-value. The column `rate` in Table 3 contains data with two values (one
-divided by the other) and is converted to characters. Table 2 contains
-two variables under the same column ‘type’.
+    smoke2
+    # A tibble: 4 × 3
+      smoke employment_status count
+      <chr> <chr>             <dbl>
+    1 yes   employed             23
+    2 yes   unemployed           10
+    3 no    employed             20
+    4 no    unemployed           12
 
-</opt>
+    ## [1] "<choice id=0.956487833755091>\n\n<opt text=\"Using pivot_wider() on smoke\" >\n\nTry again!\n\n</opt>\n\n<opt text=\"Using pivot_longer() on smoke\" correct=\"true\">\n\nThat's correct!\n\n</opt>\n\n<opt text=\"Using select() on smoke\" >\n\nTry again!\n\n</opt>\n\n<opt text=\"Using filter() on smoke\" >\n\nTry again!\n\n</opt>\n\n</choice>"
 
-</choice>
+**Problem 3** Which is the best way to check if there are missing
+observations in your data?
 
-**Problem 2** Pivoting
-
-<codeblock id="06_05_01">
-
-</codeblock> **Problem 3**
-
-Missing values
-
-<codeblock id="06_05_02">
-
-</codeblock>
+    ## [1] "<choice id=0.0667221460025758>\n\n<opt text=\"Eyeballing and look for blanks in my data\" >\n\nThat's not very effective nor efficient. Use R command to help you!\n\n</opt>\n\n<opt text=\"Eyeballing and look for `blanks`NA` in my data\" >\n\nThat's not very effective nor efficient. Use R command to help you!\n\n</opt>\n\n<opt text=\"Using is.na() on my data\" correct=\"true\">\n\nTry again!\n\n</opt>\n\n<opt text=\"There is no need to find the missing values. We can ignore them.\" >\n\nThat's incorrect.\n\n</opt>\n\n</choice>"
 
 **Congratulations! This is the end of Data Wrangling!** Here is a useful
 cheat sheet from the RStudio with commands that we introduced and many
