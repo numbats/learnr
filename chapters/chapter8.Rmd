@@ -1,0 +1,64 @@
+---
+title: 'Chapter 8: Linear regression with R'
+description: |
+  This chapter demonstrates how to fit linear models in R using the `lm` function. You'll learn about how to fitting simple linear regression, models with categorical variables and models with interaction effects.
+prev: /chapter7
+next: /chapter9
+type: chapter
+id: 8
+output:
+  #teachr::teachr_chapter:
+  html_document:
+    self_contained: false
+  #md_document
+---
+
+```{r setup, include = FALSE}
+library(teachr)
+knitr::opts_chunk$set(fig.path = "ch8/",
+                      fig.retina = 2,
+                      fig.width = 6, 
+                      fig.height = 4,
+                      fig.align = "center",
+                      cache = TRUE,
+                      cache.path = "cache/",
+                      message = FALSE,
+                      warning = FALSE)
+```
+
+
+<exercise id="1" title="Simple linear regression" type="slides">
+
+`r slides("chapter8_01_simple-linear-regression")`
+
+</exercise>
+
+<exercise id="2" title="Test your knowledge">
+
+
+
+</exercise>
+
+
+
+<exercise id="3" title="Regression with categorical variables" type="slides">
+
+`r slides("chapter8_02_regression-with-categorical-var")`
+
+</exercise>
+
+
+<exercise id="4" title="Test your knoweldge">
+
+
+</exercise>
+
+
+<exercise id="5" title="Regression models with interaction effects">
+`r slides("chapter8_03_interaction")`
+</exercise>
+
+
+<exercise id="6" title="Practice">
+
+</exercise>

@@ -9,8 +9,9 @@ format:
     logo: images/monash-stacked-blue-rgb-transparent.png
     slide-number: true
     show-slide-number: all
-    # below doesn't seem to be working
-    #width: wide
+    controls: true
+    width: 1280
+    height: 720
 ---
 
 ```{r setup, include = FALSE}

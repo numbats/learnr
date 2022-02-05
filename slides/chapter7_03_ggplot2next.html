@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.3.34">
+  <meta name="generator" content="quarto-0.3.93">
   <title>Plotting two or more variables with ggplot2</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -39276,23 +39276,16 @@
 </section>
 <section id="drawing-world-map-with-geom_polygon" class="slide level2">
 <h2>Drawing world map with <code>geom_polygon()</code></h2>
-<div class="cell" data-layout-align="center" data-hash="cache/geom-polygon_93fb9a37625869ea0695f7ffba41fbb2">
+<div class="cell" data-layout-align="center" data-hash="cache/geom-polygon_8a75400ce67249df451890a08a007e3c">
 <div class="sourceCode" id="cb23"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>world <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"world"</span>)</span>
 <span id="cb23-2"><a href="#cb23-2"></a><span class="fu">ggplot</span>(world, <span class="fu">aes</span>(long, lat, <span class="at">group =</span> group)) <span class="sc">+</span></span>
 <span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">geom_polygon</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/chapter7-03/geom-polygon-1.png" width="576"></p>
-</figure>
 </div>
-</div>
-</div>
-<p><img src="images/monash-stacked-blue-rgb-transparent.png" class="slide-logo"></p>
+
 <div class="footer footer-default">
 
 </div>
-</section>
+<img src="images/monash-stacked-blue-rgb-transparent.png" class="slide-logo r-stretch"></section>
     </div>
   </div>
 
@@ -39317,7 +39310,7 @@
       // Full list of configuration options available at:
       // https://revealjs.com/config/
       Reveal.initialize({
-'controlsAuto': true,
+'controlsAuto': false,
 'previewLinksAuto': false,
 'smaller': false,
 'pdfSeparateFragments': false,
@@ -39329,7 +39322,7 @@
 'smaller': false,
 
         // Display controls in the bottom right corner
-        controls: false,
+        controls: true,
 
         // Help the user learn the controls by providing hints, for example by
         // bouncing the down arrow when they first encounter a vertical slide
@@ -39471,9 +39464,9 @@
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1050,
+        width: 1280,
 
-        height: 700,
+        height: 720,
 
         // Factor of the display size that should remain empty around the content
         margin: 0.1,
