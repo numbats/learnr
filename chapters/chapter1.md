@@ -18,3 +18,16 @@ id: 1
 <slides source="chapter1_02_RStudio_basic"> </slides>
 
 </exercise>
+
+<exercise id="3" title="Additonal Sources">
+
+## Additional Sources
+
+-   [Introduction to R](https://cengel.github.io/R-intro/)
+
+-   [RStudio Eduction for
+    Beginners](https://education.rstudio.com/learn/beginner/)
+
+-   [R for Data Science](https://r4ds.had.co.nz)
+
+</exercise>
