@@ -56,4 +56,9 @@ id: 5
 
 -   [R for Data Science - chapter 8](https://r4ds.had.co.nz)
 
+-   [Project-oriented
+    workflow](https://rstats.wtf/project-oriented-workflow.html)
+
+-   [here package](https://here.r-lib.org)
+
 </exercise>
