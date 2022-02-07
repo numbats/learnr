@@ -519,9 +519,10 @@ pre.sourceCode:hover>.code-copy-button-checked:hover>.bi::before {
 }
 @media(min-width: 30em) {
     .panel-tabset [role=tablist] li {
-    display: inline-block;
+        display: inline-block;
+    }
 }
-}.panel-tabset [role=tab] {
+.panel-tabset [role=tab] {
     border: 1px solid transparent;
     border-top-color: #bbb;
     display: block;
@@ -530,24 +531,27 @@ pre.sourceCode:hover>.code-copy-button-checked:hover>.bi::before {
 }
 @media(min-width: 30em) {
     .panel-tabset [role=tab] {
-    border-top-color: transparent;
-    display: inline-block;
-    margin-bottom: -1px;
+        border-top-color: transparent;
+        display: inline-block;
+        margin-bottom: -1px;
+    }
 }
-}.panel-tabset [role=tab][aria-selected=true] {
+.panel-tabset [role=tab][aria-selected=true] {
     background-color: #bbb;
 }
 @media(min-width: 30em) {
     .panel-tabset [role=tab][aria-selected=true] {
-    background-color: transparent;
-    border: 1px solid #bbb;
-    border-bottom-color: #fff;
+        background-color: transparent;
+        border: 1px solid #bbb;
+        border-bottom-color: #fff;
+    }
 }
-}@media(min-width: 30em) {
-    .panel-tabset [role=tab]: hover:not([aria-selected=true]) {
-    border: 1px solid #bbb;
+@media(min-width: 30em) {
+    .panel-tabset [role=tab] hover:not([aria-selected=true]) {
+        border: 1px solid #bbb;
+    }
 }
-}section.has-light-background, section.has-light-background h1, section.has-light-background h2, section.has-light-background h3, section.has-light-background h4, section.has-light-background h5, section.has-light-background h6 {
+section.has-light-background, section.has-light-background h1, section.has-light-background h2, section.has-light-background h3, section.has-light-background h4, section.has-light-background h5, section.has-light-background h6 {
     color: #222;
 }
 section.has-light-background a, section.has-light-background a:hover {
