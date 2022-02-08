@@ -621,6 +621,15 @@ for (result in student_result) {
 ```
 Here is the output from the above syntax after we have defined a vector variable `student_result`.
 
+```
+[1] "Superb!"
+[1] "Well done!"
+[1] "Try again!"
+[1] "Perfect!"
+[1] "Well done!"
+[1] "Superb!"
+```
+
 Based on the output from the for-loop, which of the following is `student_result`?
 
 ```{r, echo = FALSE, results = "asis"}
