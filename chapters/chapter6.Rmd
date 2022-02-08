@@ -136,12 +136,12 @@ We would like to merge the tables so that the result looks like:
 
 Which of the following commands does the operation?
 
-```{r, echo = FALSE}
-mc_opts("inner_join(color, size)" = "Try again!",
-        "left_join(color, size)" = "Try again!",
-        "right_join(color, size)" = "Try again!",
-        "full_join(color, size)" = "That's right!",
-        correct = 4)
+```{r, echo = FALSE,results = "asis"}
+cat(mc_opts("<code>inner_join(color, size)</code>" = "Try again!",
+        "<code>left_join(color, size)</code>" = "Try again!",
+        "<code>right_join(color, size)</code>" = "Try again!",
+        "<code>full_join(color, size)</code>" = "That's right!",
+        correct = 4))
 ```
 
 </exercise>
@@ -160,15 +160,16 @@ mc_opts("inner_join(color, size)" = "Try again!",
 Which table is tidy?
 
 ```{r, echo = FALSE, results = "asis"}
-mc_opts("Table 1 only" = "That's correct!",
+cat(mc_opts("Table 1 only" = "That's correct!",
          "Table 3 only" = "Try again! Each cell in a tidy data format should hold only a single value. The column `rate` contains data with two values (one divided by the other) and is converted to characters.",
          "Table 1 and 3" = "Try again! Each cell in a tidy data format should hold only a single value. The column `rate` in Table 3 contains data with two values (one divided by the other) and is converted to characters.",
          "Table 2 and 3" = "Try again! Each cell in a tidy data format should hold only a single value. The column `rate` in Table 3 contains data with two values (one divided by the other) and is converted to characters. Table 2 contains two variables under the same column 'type'.",
-         correct = 1)
+         correct = 1))
 ```
 
 
 **Problem 2**
+
 Consider the following simple table `smoke`, which command do I need to transform `smoke` to `smoke2`?
 ```{r}
 smoke <- tribble(
@@ -189,27 +190,30 @@ smoke2
 4 no    unemployed           12
 ```
 
-```{r, echo = FALSE}
-mc_opts("Using pivot_wider() on smoke" = "Try again!",
-        "Using pivot_longer() on smoke" = "That's correct!",
-        "Using select() on smoke" = "Try again!",
-        "Using filter() on smoke" = "Try again!",
-        correct = 2)
+```{r, echo = FALSE, results = "asis"}
+cat(mc_opts("Using <code>pivot_wider()</code> on smoke" = "Try again!",
+        "Using <code>pivot_longer()</code> on smoke" = "That's correct!",
+        "Using <code>select()</code> on smoke" = "Try again!",
+        "Using <code>filter()</code> on smoke" = "Try again!",
+        correct = 2))
 ```
 
 **Problem 3**
+
 Which is the best way to check if there are missing observations in your data?
-```{r, echo = FALSE}
-mc_opts("Eyeballing and look for blanks in my data" = "That's not very effective nor efficient. Use R command to help you!",
-        "Eyeballing and look for `blanks`NA` in my data" = "That's not very effective nor efficient. Use R command to help you!",
-        "Using is.na() on my data" = "Try again!",
+
+```{r, echo = FALSE, results = "asis"}
+cat(mc_opts("Eyeballing and look for blanks in my data" = "That's not very effective nor efficient. Use R command to help you!",
+        "Eyeballing and look for <code>NA</code> in my data" = "That's not very effective nor efficient. Use R command to help you!",
+        "Using <code> is.na() </code> on my data" = "Try again!",
         "There is no need to find the missing values. We can ignore them." = "That's incorrect.",
-        correct = 3)
+        correct = 3))
 ```
 
 
 
 **Congratulations! This is the end of Data Wrangling!**
+
 Here is a useful cheat sheet from the RStudio with commands that we introduced and many more:
 https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf 
 </exercise>
