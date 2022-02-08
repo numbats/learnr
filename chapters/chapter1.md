@@ -15,11 +15,11 @@ id: 1
 
 <exercise id="2" title="RStudio basic" type="slides">
 
-<slides source="chapter1_02_RStudio_basic"> </slides>
+<slides source="chapter_1_02_RStudio_basics"> </slides>
 
 </exercise>
 
-<exercise id="3" title="Additonal Sources">
+<exercise id="3" title="Additional Sources">
 
 ## Additional Sources
 

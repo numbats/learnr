@@ -17,15 +17,24 @@ knitr::opts_chunk$set(fig.path = "images/chapter7-02/",
                       fig.height = 4,
                       cache.path = "cache/",
                       cache = TRUE,
-                      echo = TRUE)
+                      echo = TRUE,
+                      message = FALSE, 
+                      warning = FALSE)
 ```
 
 ## What is `ggplot2`?
 
 
-* `ggplot2` is an R-package that was initially developed by Hadley Wickham as part of his PhD
-* `ggplot2` implements a particular interpretation of the "The Grammar of Graphics" by Leland Wilkinson 
-* It is one of the most popular packages in R for data visualisation and widely used in scientific outputs, reports, and even news articles
+* `ggplot2` is an R-package that was initially developed by Hadley Wickham as part of his PhD project.
+* `ggplot2` implements an interpretation of the "The Grammar of Graphics" by Leland Wilkinson.
+* It is one of the most popular packages in R for data visualisation and widely used in scientific outputs, reports, and even news articles.
+
+Note: 
+
+* Currently `ggplot2` is maintained by Thomas Lin Pedersen along with authors: Hadley Wickham, Winston Chang, Lionel Henry, Kohske Takahashi, Claus Wilke, Kara Woo, Hiroaki Yutani and Dewey Dunnington.
+* `ggplot2` is an open-source tool so you can find all code for this at https://github.com/tidyverse/ggplot2
+* There are over 250 contributors to the package. 
+* Fun fact: Professor Dianne Cook at Monash University was the PhD supervisor of Hadley Wickham when she was still at Iowa State University. 
 
 ---
 
@@ -49,6 +58,19 @@ library(ggplot2)
 library(tidyverse)
 ```
 
+Note:
+
+* You can find more about `tidyverse` at https://www.tidyverse.org/
+* If you use `library(tidyverse)`, it loads 8 packages:
+   * `ggplot2`
+   * `tibble`
+   * `tidyr`
+   * `readr`
+   * `purrr`
+   * `dplyr`
+   * `stringr`
+   * `forcats`
+
 ---
 
 ## Basic structure of `ggplot`
@@ -59,6 +81,30 @@ library(tidyverse)
 2. a set of **aesthetic** mappings between variables in the data and visual properties
 3. at least one **layer** which describes how to render each observation
 
+Note:
+
+* The layer usually is function starting with `geom_` or `stat_`. 
+
+---
+
+## Illustrative data 💰 Wages
+
+* Let's look at a survey of average hourly earnings in United States where each observation is an individual.
+
+```{r}
+data(CPSch3, package = "Ecdat")
+str(CPSch3)
+```
+
+
+
+Note: 
+
+* Let's use a data to illustrate the different layers in `ggplot2`.
+* This data contains: 
+  * `year` = the survey year
+  * `ahe` = the average hourly earnings
+  * `sex` = the sex (male or female)
 
 ---
 
@@ -66,26 +112,44 @@ library(tidyverse)
 
 
 ```{r plot-initial}
-ggplot(data = diamonds) 
+ggplot(data = CPSch3) 
 ```
 
 * When there is no layer, it produces a blank layer (`geom_blank()`) like the above plot.
+
+Note: 
+
+This graph isn't really useful. 
 
 ---
 
 ## Mapping data variables to aesthetics
 
 ```{r plot-mapping}
-ggplot(data = diamonds,
-       mapping = aes(x = carat, y = price)) 
+ggplot(data = CPSch3,
+       mapping = aes(x = sex, y = ahe)) 
 ```
 
 * This get the scale ready but no layer is defined so nothing is rendered in the panel.
 
+Note: 
+
+Notice that the scales are automatically setup based on the data -- less work for you to do in plotting the data. 
+
 ---
 
-# `geom` layers
+## Layers
 
+* Each layers have five main components:
+   * `geom` - the geometric object to use display the data 
+   * `stat` - statistical transformation to use on the data 
+   * `data` - data to be displayed in this layer (usually inherited)
+   * `mapping` - aesthetic mappings (usually inherited)
+   * `position` - position adjustment
+
+Note: 
+
+* Most layer functions you use will start with `geom_`.
 
 ---
 
@@ -217,21 +281,12 @@ ggplot(sumdf1, aes(g1, y)) +
 `r x<-1:6;paste(glue::glue('<img src="images/chapter7-02/catalogue-single-{x}.png"/>'), collapse = "")`
 </div>
 
----
+Note:
 
-## Motivating data 💰 Wages
+* Distribution of a single _continuous_ variable can be studied with **histogram**, **density or frequency plot**, **boxplot**, **violin plot** or **dot plot**. 
+* If you have a discrete or categorical variable, you may like to study this using a **barplot** (or sometimes called barchart). 
+* We'll go through how to create these layers in `ggplot2` next. 
 
-* A survey of average hourly earnings in United States
-* Each observation is an individual
-
-```{r}
-data(CPSch3, package = "Ecdat")
-str(CPSch3)
-```
-
-* `year` is the survey year
-* `ahe` is the average hourly earnings
-* `sex` is the sex (male or female)
 
 ---
 
@@ -244,6 +299,47 @@ ggplot(data = CPSch3,
   labs(x = "Average hourly earnings (US$)")
 ```
 
+Note:
+
+* By default `ggplot2` uses 30 bins (`bins = 30`) when drawing histograms. 
+* It is often a good idea to try different number of bins (`bins`) or different bin widths (`bindwidth`) to see how the **shape** of the histogram changes. 
+* Here we can see that the distribution for the average hourly earnings are slightly right skewed.
+* The mode average hourly earning looks like it's about US$14. 
+* To find more about how to change parameters of the layer, have a look at the corresponding documentation (`?geom_histogram`).
+
+
+---
+
+## Layer data
+
+```{r geom-histogram-data}
+g <- ggplot(data = CPSch3, 
+       mapping = aes(x = ahe)) +
+  geom_histogram() 
+layer_data(g, 1)
+```
+
+Note: 
+
+* A histogram by default shows the **count** on the y-axis. 
+* `ggplot2` calculates other useful statistics as well (seen using `layer_data`) and sometimes you want to use these instead. 
+
+---
+
+## Layer data
+
+```{r geom-histogram-density}
+ggplot(data = CPSch3, 
+       mapping = aes(x = ahe)) +
+  geom_histogram(aes(y = after_stat(density))) 
+```
+
+Note: 
+
+* In this plot, the y-axis is showing density intead of count. 
+* This is signalled by using `y = after_stat(density)`. 
+* This syntax is equivalent to `y = stat(density)` or `y = ..density..`, which was the old syntax to refer to computed statistics. 
+
 ---
 
 ## A density plot with `geom_density()`
@@ -254,6 +350,13 @@ ggplot(data = CPSch3,
   geom_density() +
   labs(x = "Average hourly earnings (US$)")
 ```
+
+Note: 
+
+* A density plot is like a histogram where it reveals the distribution of a (continuous) numerical variable. 
+* The y-axis is showing the density, which is esimated using a particular kernel function. 
+* The estimated density can oversmooth or have problems in the tails -- so don't only rely on density plots to tell you the full picture of the data. 
+
 
 ---
 
@@ -266,6 +369,10 @@ ggplot(data = CPSch3,
   labs(x = "Average hourly earnings (US$)")
 ```
 
+Note: 
+
+* The default `geom_freqpoly` is showing the same statistic (`stat = "bin"`) as the default `geom_histogram` except one is using a bar (`geom = "bar"`) and the other is using a line (`geom = "path"`). 
+
 ---
 
 ## A boxplot with `geom_boxplot()`
@@ -277,9 +384,22 @@ ggplot(data = CPSch3,
   labs(x = "Average hourly earnings (US$)")
 ```
 
+Note: 
+
+* A boxplot depicts graphically the five number summary: minimum, first quartile, median, third quartile and maximum. 
+* `geom_boxplot` is also useful in comparing distributions of multiple numerical variables, like below, where each variable corresponds to one boxplot. 
+
+```{r boxplot-multiple, echo = FALSE}
+ggplot(data = CPSch3, 
+       mapping = aes(x = ahe, y = sex)) +
+  geom_boxplot() +
+  labs(x = "Average hourly earnings (US$)")
+```
+
+
 ---
 
-## A boxplot with `geom_violin()`
+## A violin plot with `geom_violin()`
 
 ```{r geom-violin}
 ggplot(data = CPSch3, 
@@ -288,7 +408,11 @@ ggplot(data = CPSch3,
   labs(x = "Average hourly earnings (US$)")
 ```
 
-* Note: a dummy is required for `y` here!
+Note: 
+
+
+* A dummy is required for `y` here!
+* A violin plot depicts a density estimate of a continous variable.
 
 ---
 
@@ -301,18 +425,71 @@ ggplot(data = dplyr::sample_n(CPSch3, 200),
   labs(x = "Average hourly earnings (US$)")
 ```
 
-* A dotplot works best for small number of observations so above plot is based on 200 random samples of the data
+Note: 
+
+* A dotplot works best for small number of observations so this plot is based on 200 random samples of the data.
 
 
 ---
 
-## A barplot with `geom_bar()`
+## A barplot with `geom_bar()` with categorical variables
 
-```{r}
+```{r geom-bar}
 ggplot(data = CPSch3, 
        mapping = aes(x = sex)) +
   geom_bar()
 ```
+
+Note: 
+
+* If you have a categorical variable, then you usually want to study the frequency of its categories. 
+* Notice here that the `stat = "count"` is computing the frequencies for each category for you.  
+
+---
+
+## A barplot with `geom_bar()` with discrete variables
+
+```{r geom-bar2A}
+ggplot(data = filter(CPSch3, year!=1994), 
+       mapping = aes(x = year)) +
+  geom_bar()
+```
+
+Note: 
+
+* If you supply a numerical variable, you can see now that the x-axis scale is continuous. 
+* The years are 2 years apart -- I filtered out 1994 on purpose so that it's easier to see the distance between bars are determined by the numerical value. 
+* If you want to study each level in a discrete variable, then you may want to convert the discrete variable to a factor instead `x = factor(year)`. 
+
+```{r geom-bar2B, echo = FALSE}
+ggplot(data = filter(CPSch3, year!=1994), 
+       mapping = aes(x = factor(year))) +
+  geom_bar()
+```
+
+* When the variable is a factor or character, the distances between the bars are equal and the labels correspond to that particular level.
+
+
+---
+
+## A barplot with `geom_col()` 
+
+```{r geom-col, fig.width = 3, fig.height = 2}
+dfsum <- CPSch3 %>% group_by(sex) %>% tally()
+dfsum
+
+ggplot(data = dfsum, 
+       mapping = aes(x = sex, y = n)) +
+  geom_col()
+```
+
+Note:
+
+* `tally()` is just a shorthand for `summarise(n = n())`. 
+* Sometimes your input data may already contain pre-computed counts. 
+* In this case, you don't need `stat = "count"` to do the counting for you. 
+* You can use `geom_col()` instead.
+* This is essential a short hand for `geom_bar(stat = "identity")` where `stat = "identity"` means that you will take the value as supplied without any statistical tranformation.
 
 
 ---
@@ -320,85 +497,15 @@ ggplot(data = CPSch3,
 ## Modifying the layer parameters
 
 * Layers often have default parameter values.
-* E.g. in histogram, the default is to have `bins = 30`.
+* E.g. in the frequency polygon, the default is to have `bins = 30`.
 * It's important to modify the parameters values appropriately
-* More **details about the parameters of a layer is in the documentation** of the corresponding function, e.g. `?geom_histogram` to see the help file on the histogram layer.
+* More **details about the parameters of a layer is in the documentation** of the corresponding function, e.g. `?geom_freqpoly` to see the help file on the histogram layer.
 
 ---
 
-## Examining two or more variables
+## Summary 
 
-```{r catalogue-two, fig.width = 3, fig.height = 3, echo = FALSE, fig.show='hide'}
-ggplot(df2, aes(carat, price)) +
-  geom_point(color = yellows[1]) +
-  theme_corr +
-  theme_yaxis +
-  theme_xaxis +
-  ggtitle("SCATTER PLOT")
-
-ggplot(economics, aes(date, uempmed)) +
-  geom_line(color = yellows[1]) +
-  theme_corr +
-  theme_yaxis +
-  theme_xaxis +
-  ggtitle("LINE PLOT")
-
-ggplot(df2, aes(carat, price, size = depth)) +
-  geom_point(color = yellows[1], alpha = 0.3) +
-  theme_corr +
-  theme_yaxis +
-  theme_xaxis +
-  ggtitle("BUBBLE CHART") + guides(size = "none")
-
-ggplot(sumdf2, aes(g1, y, fill = g2)) +
-  geom_col() +
-  theme_rank +
-  theme_yaxis +
-  ggtitle("STACKED\nBARPLOT")
-
-ggplot(sumdf2, aes(g1, y, fill = g2)) +
-  geom_col(position = "dodge") +
-  theme_rank +
-  theme_yaxis +
-  ggtitle("GROUPED\nBARPLOT")
-
-ggplot(sumdf2, aes(g1, y, fill = g2)) +
-  geom_col(position = "fill") +
-  theme_rank +
-  theme_yaxis +
-  ggtitle("STACKED\nPERCENTAGE\nBARPLOT")
-
-
-ggplot(df3, aes(dosef, supp, fill = mlen)) +
-  geom_tile(color = "black", size = 1.2) +
-  theme_other +
-  ggtitle("HEATMAP")
-
-
-library(ozmaps)
-oz_sf <- ozmap_data("states")
-oz_sf %>%
-  mutate(value = factor(rnorm(n()))) %>%
-  ggplot(aes(fill = value)) +
-  geom_sf() +
-  theme_other +
-  ggtitle("CHOROPLETH\nMAP")
-```
-
-
-<div class="catalogue">
-`r x<-1:6;paste(glue::glue('<img src="images/chapter7-02/catalogue-two-{x}.png"/>'), collapse = "")`
-</div>
-
-
----
-
-## Motivating data 💎 diamonds
-
-* Let's have a look at the `diamonds` data which contains information about different attributes of diamonds
-
-```{r}
-data(diamonds, package = "ggplot2")
-diamonds
-```
+* We looked at the basic code structure to draw a plot with `ggplot2`.
+* You've seen now the layers: `geom_histogram()`, `geom_density()`, `geom_freqpoly()`, `geom_boxplot()`, `geom_violin()`, `geom_dotplot()`, `geom_bar()`, and `geom_col()`. 
+* You can look at the statistics computed by `ggplot` by using `layer_data()` and if you want to use these, you can use `after_stat()`. 
 

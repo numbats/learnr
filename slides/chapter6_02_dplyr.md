@@ -3,14 +3,10 @@ title: Introduction to dplyr
 type: slides
 
 ---
-`dplyr` provides a selection of tools for the most common data wrangling
-tasks.
-
 ## Data Transformation and Aggregation
 
-There are a bunch of useful commands to transform and aggregate data in
-R. We will use inbuilt data sets: `table1`, `table2`, `table5` and
-`billboard` for demonstration.
+`dplyr` provides a selection of tools for the most common data wrangling
+tasks.
 
 -   `select()`: pick particular variables from your data.
 
@@ -29,8 +25,15 @@ R. We will use inbuilt data sets: `table1`, `table2`, `table5` and
     ## 5 China      
     ## 6 China
 
-In addition, you can use **selection helpers**. These helpers select
-variables by matching patterns in their names.
+Note:
+
+There are a bunch of useful commands to transform and aggregate data in
+R. We will use inbuilt data sets: `table1`, `table2`, `table5` and
+`billboard` for demonstration.
+
+---
+
+### Selection helpers
 
 -   `starts_with()`: select all variables that start with a prefix.
 
@@ -59,6 +62,13 @@ variables by matching patterns in their names.
     ## #   wk40 <dbl>, wk41 <dbl>, wk42 <dbl>, wk43 <dbl>, wk44 <dbl>, wk45 <dbl>,
     ## #   wk46 <dbl>, wk47 <dbl>, wk48 <dbl>, wk49 <dbl>, wk50 <dbl>, wk51 <dbl>, …
 
+Note:
+
+In addition, you can use **selection helpers**. These helpers select
+variables by matching patterns in their names.
+
+---
+
 -   `ends_with()`: select all variables that end with a suffix.
 
 <!-- -->
@@ -80,6 +90,13 @@ variables by matching patterns in their names.
     ## 10    57    79    NA    NA    NA    NA NA   
     ## # … with 307 more rows
 
+Note:
+
+In addition, you can use **selection helpers**. These helpers select
+variables by matching patterns in their names.
+
+---
+
 -   `contains()`: select all variables that contains a literal string.
 
 <!-- -->
@@ -95,6 +112,13 @@ variables by matching patterns in their names.
     ## 4 Brazil      20     
     ## 5 China       19     
     ## 6 China       20
+
+Note:
+
+In addition, you can use **selection helpers**. These helpers select
+variables by matching patterns in their names.
+
+---
 
 -   `num_range()`: select all variables that matches a numerical range
     like x01, x02, x03.
@@ -117,6 +141,11 @@ variables by matching patterns in their names.
     ##  9    10     9     8     6     1     2
     ## 10    59    66    68    61    67    59
     ## # … with 307 more rows
+
+Note:
+
+In addition, you can use **selection helpers**. These helpers select
+variables by matching patterns in their names.
 
 ---
 
@@ -141,6 +170,8 @@ variables.
     ## 5 China        1999 cases          212258
     ## 6 China        1999 population 1272915272
 
+---
+
 -   `arrange()`: sort your data based on one or more variables
 
 <!-- -->
@@ -164,6 +195,8 @@ variables.
     ## 11 China        1999 population 1272915272
     ## 12 China        2000 population 1280428583
 
+---
+
 -   `mutate()`: add new variables or change existing variables
 
 <!-- -->
@@ -184,15 +217,13 @@ variables.
 ---
 
 -   `group_by()` and `ungroup()`: takes existing data and groups
-    specific variables together for future operations. These two
-    functions are often used together with other `dplyr` functions. We
-    will introduce them with the `summarize()` function. The
-    `summarize()` function creates a new dataframe based on the argument
-    provided.
+    specific variables together for future operations.
 
 <!-- -->
 
-    table2 %>% group_by(type) %>% summarize(min = min(count), max =max(count))
+    table2 %>% 
+      group_by(type) %>% 
+      summarize(min = min(count), max =max(count))
 
     ## # A tibble: 2 × 3
     ##   type            min        max
@@ -200,16 +231,34 @@ variables.
     ## 1 cases           745     213766
     ## 2 population 19987071 1280428583
 
+Note:
+
+These two functions are often used together with other `dplyr`
+functions. We will introduce them with the `summarize()` function. The
+`summarize()` function creates a new dataframe based on the argument
+provided.
+
+---
+
 You can summarize the data in different ways based on the groupings and
 different argument you included.
 
-    table2 %>% group_by(type) %>% summarize(mean(count), median(count),sd(count))
+    table2 %>% 
+      group_by(type) %>% 
+      summarize(mean(count), median(count),sd(count))
 
     ## # A tibble: 2 × 4
     ##   type       `mean(count)` `median(count)` `sd(count)`
     ##   <chr>              <dbl>           <dbl>       <dbl>
     ## 1 cases             91277.          59112.      98662.
     ## 2 population    490072924.      173255630   613130267.
+
+Note:
+
+These two functions are often used together with other `dplyr`
+functions. We will introduce them with the `summarize()` function. The
+`summarize()` function creates a new dataframe based on the argument
+provided.
 
 ---
 
@@ -227,14 +276,17 @@ different argument you included.
     ## 2 Brazil          4
     ## 3 China           4
 
+---
+
 -   `case_when()`: This command takes multiple conditions and tests them
-    in order. You should order the tests from specific to general, and
-    keep track of how those ambiguous rows are being treated. `TRUE`
-    here is equivalent to the `else` statement.
+    in order.
 
 <!-- -->
 
-    table1 %>% mutate(band = case_when(cases>= 1000 & cases <=100000~ "Medium", cases > 100000 ~ "High", TRUE ~ "Low"))
+    table1 %>% 
+      mutate(band = case_when(cases>= 1000 & cases <=100000~ "Medium",
+                              cases > 100000 ~ "High",
+                              TRUE ~ "Low"))
 
     ## # A tibble: 6 × 5
     ##   country      year  cases population band  
@@ -246,9 +298,24 @@ different argument you included.
     ## 5 China        1999 212258 1272915272 High  
     ## 6 China        2000 213766 1280428583 High
 
+Note:
+
+For `case_when()`, you should order the tests from specific to general,
+and keep track of how those ambiguous rows are being treated. `TRUE`
+here is equivalent to the `else` statement.
+
 ---
 
 ## Joining Datasets
+
+We are going to use the following tables in our example.
+
+    homework1 <- tibble(name = c('Alphonso', 'Daisy', 'Philip'), 
+                        student_no = c(456,100,102), marks = c(80, 65, 34))
+    homework2 <- tibble(name = c('Alphonso', 'Philip', 'Melinda'), 
+                        student_no = c(456,102,432), marks = c(85, 97, 56))
+
+Note:
 
 Often you will need information from multiple datasets in your data
 analysis. It is important to learn different types of joins to
@@ -259,14 +326,13 @@ are 4 students in a class and they submitted homework 1 and homework 2.
 The tables contains their scores for the homeworks (gradebook) and not
 everyone submitted their homework during the semester.
 
-    homework1 <- tibble(name = c('Alphonso', 'Daisy', 'Philip'), student_no = c(456,100,102), marks = c(80, 65, 34))
-    homework2 <- tibble(name = c('Alphonso', 'Philip', 'Melinda'), student_no = c(456,102,432), marks = c(85, 97, 56))
-
 ---
 
 ### Mutating Joins
 
 Mutation joins return a copy of the dataset that has been augmented.
+
+---
 
 **Inner Join**
 
@@ -280,11 +346,15 @@ Inner joins retain only rows that exists on both datasets.
     ## 1 Alphonso        456      80      85
     ## 2 Philip          102      34      97
 
+Note:
+
 When we perform inner join by `name` and `student_no`, R only returns
 rows that exists in both data set. When we do inner join with our
 `homework1` and `homework2` gradebooks, only `Alphonso` and `Philip` ’s
 marks will show up since they are the only ones that submitted both
 homeworks.
+
+---
 
 **Left Join**
 
@@ -300,6 +370,8 @@ add to the left data set.
     ## 1 Alphonso        456      80      85
     ## 2 Daisy           100      65      NA
     ## 3 Philip          102      34      97
+
+Note:
 
 When we do left join with our `homework1` and `homework2` gradebooks, we
 will only consider those students who submitted homework 1 and look for
@@ -324,11 +396,15 @@ add to the right data set.
     ## 2 Philip          102      34      97
     ## 3 Melinda         432      NA      56
 
+Note:
+
 When we do right join with our `homework1` and `homework2` gradebooks,
 we will only consider those students who submitted homework 2 and look
 for their marks in homework 1. Daisy’s result will not be included in
 the join even though she has submitted her homework 1, while Melinda
 will have `NA` showing as the missing value.
+
+---
 
 **Full Join**
 
@@ -353,6 +429,8 @@ join of the gradebook.
 
 Filtering joins return a copy of the dataset that has been filtered.
 
+---
+
 **Semi Join**
 
 The semi join returns a filtered version of the left data set based on
@@ -373,6 +451,8 @@ matching entries in the right data set.
     ##   <chr>         <dbl> <dbl>
     ## 1 Alphonso        456    85
     ## 2 Philip          102    97
+
+---
 
 **Anti Join**
 

@@ -101,7 +101,33 @@ We would like to merge the tables so that the result looks like:
 
 Which of the following commands does the operation?
 
-    ## [1] "<choice id=0.143768886337057>\n\n<opt text=\"inner_join(color, size)\" >\n\nTry again!\n\n</opt>\n\n<opt text=\"left_join(color, size)\" >\n\nTry again!\n\n</opt>\n\n<opt text=\"right_join(color, size)\" >\n\nTry again!\n\n</opt>\n\n<opt text=\"full_join(color, size)\" correct=\"true\">\n\nThat's right!\n\n</opt>\n\n</choice>"
+<choice id=0.29377543181181>
+
+<opt text="<code>inner_join(color, size)</code>" >
+
+Try again!
+
+</opt>
+
+<opt text="<code>left_join(color, size)</code>" >
+
+Try again!
+
+</opt>
+
+<opt text="<code>right_join(color, size)</code>" >
+
+Try again!
+
+</opt>
+
+<opt text="<code>full_join(color, size)</code>" correct="true">
+
+That’s right!
+
+</opt>
+
+</choice>
 
 </exercise>
 
@@ -117,22 +143,45 @@ Which of the following commands does the operation?
 
 Which table is tidy?
 
-\[1\] “<choice id=0.887109126895666>&lt;opt text="Table 1 only"
-correct="true">‘s correct!</opt>&lt;opt text="Table 3 only" &gt;again!
-Each cell in a tidy data format should hold only a single value. The
-column `rate` contains data with two values (one divided by the other)
-and is converted to characters.</opt>&lt;opt text="Table 1 and 3"
-&gt;again! Each cell in a tidy data format should hold only a single
-value. The column `rate` in Table 3 contains data with two values (one
-divided by the other) and is converted to characters.</opt>&lt;opt
-text="Table 2 and 3" &gt;again! Each cell in a tidy data format should
-hold only a single value. The column `rate` in Table 3 contains data
-with two values (one divided by the other) and is converted to
-characters. Table 2 contains two variables under the same column
-’type’.</opt></choice>”
+<choice id=0.961768619948998>
 
-**Problem 2** Consider the following simple table `smoke`, which command
-do I need to transform `smoke` to `smoke2`?
+<opt text="Table 1 only" correct="true">
+
+That’s correct!
+
+</opt>
+
+<opt text="Table 3 only" >
+
+Try again! Each cell in a tidy data format should hold only a single
+value. The column `rate` contains data with two values (one divided by
+the other) and is converted to characters.
+
+</opt>
+
+<opt text="Table 1 and 3" >
+
+Try again! Each cell in a tidy data format should hold only a single
+value. The column `rate` in Table 3 contains data with two values (one
+divided by the other) and is converted to characters.
+
+</opt>
+
+<opt text="Table 2 and 3" >
+
+Try again! Each cell in a tidy data format should hold only a single
+value. The column `rate` in Table 3 contains data with two values (one
+divided by the other) and is converted to characters. Table 2 contains
+two variables under the same column ‘type’.
+
+</opt>
+
+</choice>
+
+**Problem 2**
+
+Consider the following simple table `smoke`, which command do I need to
+transform `smoke` to `smoke2`?
 
     smoke <- tribble(
       ~smoke, ~employed, ~unemployed,
@@ -149,15 +198,70 @@ do I need to transform `smoke` to `smoke2`?
     3 no    employed             20
     4 no    unemployed           12
 
-    ## [1] "<choice id=0.956487833755091>\n\n<opt text=\"Using pivot_wider() on smoke\" >\n\nTry again!\n\n</opt>\n\n<opt text=\"Using pivot_longer() on smoke\" correct=\"true\">\n\nThat's correct!\n\n</opt>\n\n<opt text=\"Using select() on smoke\" >\n\nTry again!\n\n</opt>\n\n<opt text=\"Using filter() on smoke\" >\n\nTry again!\n\n</opt>\n\n</choice>"
+<choice id=0.0697324802167714>
 
-**Problem 3** Which is the best way to check if there are missing
-observations in your data?
+<opt text="Using <code>pivot_wider()</code> on smoke" >
 
-    ## [1] "<choice id=0.0667221460025758>\n\n<opt text=\"Eyeballing and look for blanks in my data\" >\n\nThat's not very effective nor efficient. Use R command to help you!\n\n</opt>\n\n<opt text=\"Eyeballing and look for `blanks`NA` in my data\" >\n\nThat's not very effective nor efficient. Use R command to help you!\n\n</opt>\n\n<opt text=\"Using is.na() on my data\" correct=\"true\">\n\nTry again!\n\n</opt>\n\n<opt text=\"There is no need to find the missing values. We can ignore them.\" >\n\nThat's incorrect.\n\n</opt>\n\n</choice>"
+Try again!
 
-**Congratulations! This is the end of Data Wrangling!** Here is a useful
-cheat sheet from the RStudio with commands that we introduced and many
-more:
+</opt>
+
+<opt text="Using <code>pivot_longer()</code> on smoke" correct="true">
+
+That’s correct!
+
+</opt>
+
+<opt text="Using <code>select()</code> on smoke" >
+
+Try again!
+
+</opt>
+
+<opt text="Using <code>filter()</code> on smoke" >
+
+Try again!
+
+</opt>
+
+</choice>
+
+**Problem 3**
+
+Which is the best way to check if there are missing observations in your
+data?
+
+<choice id=0.444903891533613>
+
+<opt text="Eyeballing and look for blanks in my data" >
+
+That’s not very effective nor efficient. Use R command to help you!
+
+</opt>
+
+<opt text="Eyeballing and look for <code>NA</code> in my data" >
+
+That’s not very effective nor efficient. Use R command to help you!
+
+</opt>
+
+<opt text="Using <code> is.na() </code> on my data" correct="true">
+
+Try again!
+
+</opt>
+
+<opt text="There is no need to find the missing values. We can ignore them." >
+
+That’s incorrect.
+
+</opt>
+
+</choice>
+
+**Congratulations! This is the end of Data Wrangling!**
+
+Here is a useful cheat sheet from the RStudio with commands that we
+introduced and many more:
 <https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf>
 </exercise>

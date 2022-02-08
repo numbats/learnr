@@ -68,3 +68,44 @@ ggplot(data = cars,
   geom_point()
 ```
 
+
+
+
+
+
+---
+
+## Average weekday for a full-time university student
+
+```{r}
+data <- data.frame(activity = c("Education", "Work", "Sleep", "Leisure", "Other"),
+                   hours = c(3.5, 2.3, 8.8, 4, 5.4))
+
+data
+```
+
+---
+
+## Plotting with R (base version)
+
+
+```{r base-barplot, fig.width = 7}
+barplot(hours ~ activity,
+        data = data)
+```
+
+
+---
+
+## Plotting with R (ggplot2 version)
+
+
+```{r ggplot-barplot, fig.width = 7, cache = FALSE}
+library(ggplot2)
+ggplot(data = data, 
+       mapping = aes(x = activity, 
+                     y = hours)) +
+  geom_col()
+```
+
+

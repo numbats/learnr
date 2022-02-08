@@ -10,7 +10,7 @@ id: 5
 ---
 <exercise id="1" title="Getting start with an R project" type="slides">
 
-<slides source="chapte4_01_Project_Structure"> </slides>
+<slides source="chapter4_01_Project_Structure"> </slides>
 
 </exercise>
 

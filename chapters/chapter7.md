@@ -1,7 +1,7 @@
 ---
 title: 'Chapter 7: Data Visualisation with R'
 description: This chapter will give you an introduction to the R graphics system and
-  teach you how to get started with using the `ggplot2` package for drawing all kind
+  teach you how to get started with using the ggplot2 package for drawing all kind
   of plots.
 prev: /chapter6
 next: /chapter8
@@ -39,7 +39,7 @@ id: 7
 
 Which of the following is a contributed R package?
 
-<choice id=0.351084995782003>
+<choice id=0.381169719155878>
 
 <opt text="ggplot2" correct="true">
 
@@ -70,7 +70,7 @@ No, this a core package and loads automatically when you launch R.
 
 Which R package actually renders the graphics in R?
 
-<choice id=0.691930644679815>
+<choice id=0.0326864495873451>
 
 <opt text="ggplot2" >
 
@@ -99,9 +99,9 @@ Yes, that’s right!
 </choice>
 
 Remember that there are two primary graphic models in R: the base and
-grid graphics. Which one is `ggplot2` using?
+grid graphics. Which one is ggplot2 using?
 
-<choice id=0.127467743353918>
+<choice id=0.400727231986821>
 
 <opt text="base" >
 
@@ -119,13 +119,19 @@ Yes that’s right! Well done!
 
 </exercise>
 
-<exercise id="3" title="Getting started with `ggplot2`" type="slides">
+<exercise id="3" title="Getting started with ggplot2" type="slides">
 
 <slides source="chapter7_02_ggplot2intro"> </slides>
 
 </exercise>
 
-<exercise id="4" title="Make basic plots with `ggplot2`">
+<exercise id="4" title="Plotting two or more variables with ggplot2" type="slides">
+
+<slides source="chapter7_03_ggplot2next"> </slides>
+
+</exercise>
+
+<exercise id="5" title="Make basic plots with ggplot2">
 
 For the following questions we are going to use `BudgetFood` data from
 the `Ecdat` package which contains the budget share of food for Spanish
@@ -154,59 +160,64 @@ The meaning of the variables are described below:
     into 5 groups: 1 for small towns, 5 for big ones
 -   `sex`: sex of reference person (man,woman)
 
-Try to recreate the scatter plot below. Is there anything that unusual
-that you notice about the plot?
+Try to recreate the scatter plot below. Is there anything unusual that
+you notice about the plot?
 
 <img src="ch7/plot4A-1.png" width="432" style="display: block; margin: auto;" />
 
+Note: the **submit button doesn’t do anything** in this chapter. You
+will need to eyeball your output plot is the same as the target plots
+for all questions.
+
 <codeblock id="07_04A">
 
-</codeblock>
+Hint: The scatter plots are created using `geom_point`.
 
-<codeblock id="07_04A"> The scatter plots are created using
-`geom_point`. </codeblock>
+</codeblock>
 
 <img src="ch7/plot4B-1.png" width="432" style="display: block; margin: auto;" />
 
 <codeblock id="07_04B">
 
-</codeblock>
-
-<codeblock id="07_04B"> The hex plots are created using `geom_hex`.
-</codeblock>
+Hint: The hex plots are created using `geom_hex`. </codeblock>
 
 <img src="ch7/plot4C-1.png" width="432" style="display: block; margin: auto;" />
 
 <codeblock id="07_04C">
 
-</codeblock>
-
-<codeblock id="07_04C"> This is a hint. </codeblock>
+Hint: The five number summary is often graphically depicted by a
+boxplot. </codeblock>
 
 <img src="ch7/plot4D-1.png" width="432" style="display: block; margin: auto;" />
 
 <codeblock id="07_04D">
 
-</codeblock> <codeblock id="07_04D"> This is a hint. </codeblock>
+Hint: what do you notice about the x-axis scale? Do you perhaps need to
+convert `town`? </codeblock>
 
 <img src="ch7/plot4E-1.png" width="432" style="display: block; margin: auto;" />
 
 <codeblock id="07_04E">
 
-</codeblock> <codeblock id="07_04E"> This is a hint. </codeblock>
+Hint: this plot is called a histogram.
+
+</codeblock>
 
 <img src="ch7/plot4F-1.png" width="432" style="display: block; margin: auto;" />
 
 <codeblock id="07_04F">
 
-</codeblock> <codeblock id="07_04F"> This is a hint. </codeblock>
+Hint: this is a density plot but the y-axis is showing counts. What did
+`after_stat` function do?
+
+</codeblock>
 
 </exercise>
 
-<exercise id="5" title="Multiple layers in `ggplot2`">
-<slides source="chapter7_03_ggplot2layers"> </slides> </exercise>
+<exercise id="6" title="Multiple layers in ggplot2"  type="slides">
+<slides source="chapter7_04_ggplot2layers"> </slides> </exercise>
 
-<exercise id="6" title="Practice creating multiple layers">
+<exercise id="7" title="Practice creating multiple layers">
 
 We are again going to use the `BudgetFood` data from the `Ecdat` package
 to make the plots.
@@ -218,67 +229,65 @@ that you notice about the plot?
 
 <codeblock id="07_06A">
 
-</codeblock> <codeblock id="07_06A"> XX. </codeblock>
+</codeblock>
 
 <img src="ch7/plot6B-1.png" width="432" style="display: block; margin: auto;" />
 
 <codeblock id="07_06B">
 
-</codeblock> <codeblock id="07_06B"> XX. </codeblock>
+</codeblock>
 
 <img src="ch7/plot6C-1.png" width="432" style="display: block; margin: auto;" />
 
 <codeblock id="07_06C">
 
-</codeblock> <codeblock id="07_06C"> XX. </codeblock>
+</codeblock>
 
 <img src="ch7/plot6D-1.png" width="432" style="display: block; margin: auto;" />
 
 <codeblock id="07_06D">
 
-</codeblock> <codeblock id="07_06D"> XX. </codeblock>
+</codeblock>
 
 <img src="ch7/plot6E-1.png" width="432" style="display: block; margin: auto;" />
 
 <codeblock id="07_06E">
 
-</codeblock> <codeblock id="07_06E"> XX. </codeblock>
+</codeblock>
 
 </exercise>
 
-<exercise id="7" title="Scales and guides in `ggplot2`">
-<slides source="chapter7_04_ggplot2scales"> </slides> </exercise>
+<exercise id="8" title="Scales and guides in ggplot2"  type="slides">
+<slides source="chapter7_05_ggplot2scales"> </slides> </exercise>
 
-<exercise id="8" title="Practice changing scales and guides.">
+<exercise id="9" title="Practice changing scales and guides.">
 
 </exercise>
 
-<exercise id="9" title="Multiple plots in one figure">
-<slides source="chapter7_05_ggplot2facet"> </slides> </exercise>
+<exercise id="10" title="Multiple plots in one figure"  type="slides">
+<slides source="chapter7_06_ggplot2facet"> </slides> </exercise>
 
-<exercise id="10" title="Practice combining multiple plots.">
+<exercise id="11" title="Practice making multiple subplots.">
 
 <img src="ch7/plot7A-1.png" width="432" style="display: block; margin: auto;" />
 
 <codeblock id="07_10A">
 
-</codeblock> <codeblock id="07_10A"> XX. </codeblock>
+</codeblock>
 
 <img src="ch7/plot7B-1.png" width="432" style="display: block; margin: auto;" />
 
 <codeblock id="07_10B">
 
-</codeblock> <codeblock id="07_10B"> XX. </codeblock>
-
-<img src="ch7/plot7C-1.png" width="432" style="display: block; margin: auto;" />
+</codeblock>
 
 <codeblock id="07_10C">
 
-</codeblock> <codeblock id="07_10C"> XX. </codeblock> </exercise>
+</codeblock> </exercise>
 
-<exercise id="11" title="Customise the look with themes in `ggplot2`">
-<slides source="chapter7_06_ggplot2theme"> </slides> </exercise>
+<exercise id="12" title="Customise the look with themes in ggplot2"  type="slides">
+<slides source="chapter7_07_ggplot2theme"> </slides> </exercise>
 
-<exercise id="12" title="Make publication ready plots.">
+<exercise id="13" title="Make publication ready plots.">
 
 </exercise>
