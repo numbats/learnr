@@ -105,8 +105,14 @@ cat(mc_opts("base" = "No, that's incorrect.",
 
 </exercise>
 
+<exercise id="4" title="Plotting two or more variables with ggplot2" type="slides">
 
-<exercise id="4" title="Make basic plots with ggplot2">
+`r slides("chapter7_03_ggplot2next")`
+
+</exercise>
+
+
+<exercise id="5" title="Make basic plots with ggplot2">
 
 For the following questions we are going to use `BudgetFood` data from the `Ecdat` package which contains the budget share of food for Spanish households. You can load the dataset and see the structure of the data below.
 
@@ -221,12 +227,12 @@ cat(codeblock("07_04F", "This is a hint."))
 </exercise>
 
 
-<exercise id="5" title="Multiple layers in ggplot2">
-`r slides("chapter7_03_ggplot2layers")`
+<exercise id="6" title="Multiple layers in ggplot2"  type="slides">
+`r slides("chapter7_04_ggplot2layers")`
 </exercise>
 
 
-<exercise id="6" title="Practice creating multiple layers">
+<exercise id="7" title="Practice creating multiple layers">
 
 We are again going to use the `BudgetFood` data from the `Ecdat` package to make the plots.
 
@@ -321,20 +327,20 @@ cat(codeblock("07_06E", "XX."))
 
 </exercise>
 
-<exercise id="7" title="Scales and guides in ggplot2">
-`r slides("chapter7_04_ggplot2scales")`
+<exercise id="8" title="Scales and guides in ggplot2"  type="slides">
+`r slides("chapter7_05_ggplot2scales")`
 </exercise>
 
-<exercise id="8" title="Practice changing scales and guides.">
+<exercise id="9" title="Practice changing scales and guides.">
 
 
 </exercise>
 
-<exercise id="9" title="Multiple plots in one figure">
-`r slides("chapter7_05_ggplot2facet")`
+<exercise id="10" title="Multiple plots in one figure"  type="slides">
+`r slides("chapter7_06_ggplot2facet")`
 </exercise>
 
-<exercise id="10" title="Practice combining multiple plots.">
+<exercise id="11" title="Practice combining multiple plots.">
 ```{r plot7A, code = readLines("../exercises/solution_07_10A.R"), echo = FALSE, class = "target", cache = FALSE}
 ```
 ```{teachr 07_10A, outdir = "../exercises"}
@@ -386,10 +392,10 @@ cat(codeblock("07_10C", "XX."))
 ```
 </exercise>
 
-<exercise id="11" title="Customise the look with themes in ggplot2">
-`r slides("chapter7_06_ggplot2theme")`
+<exercise id="12" title="Customise the look with themes in ggplot2"  type="slides">
+`r slides("chapter7_07_ggplot2theme")`
 </exercise>
 
-<exercise id="12" title="Make publication ready plots.">
+<exercise id="13" title="Make publication ready plots.">
 
 </exercise>

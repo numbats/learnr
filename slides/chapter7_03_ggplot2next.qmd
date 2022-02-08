@@ -17,21 +17,14 @@ knitr::opts_chunk$set(fig.path = "images/chapter7-03/",
                       fig.height = 4,
                       cache.path = "cache/",
                       cache = TRUE,
-                      echo = TRUE)
+                      echo = TRUE,
+                      warning = FALSE, 
+                      message = FALSE)
 library(ozmaps)
 library(ggplot2)
 oz_sf <- ozmap_data("states")
 ```
 
-
-```{css, echo = FALSE}
-.catalogue img {
-  margin-right: 20px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  width: 20%;
-}
-```
 
 
 ```{r catalogue-setup, include = FALSE}
@@ -175,7 +168,7 @@ oz_sf %>%
 
 ---
 
-## Motivating data 💎 diamonds
+## Illustrative data 💎 diamonds
 
 * Let's have a look at the `diamonds` data which contains information about different attributes of diamonds
 

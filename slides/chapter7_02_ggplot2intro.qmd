@@ -503,79 +503,9 @@ Note:
 
 ---
 
-## Examining two or more variables
+## Summary 
 
-```{r catalogue-two, fig.width = 3, fig.height = 3, echo = FALSE, fig.show='hide'}
-ggplot(df2, aes(carat, price)) +
-  geom_point(color = yellows[1]) +
-  theme_corr +
-  theme_yaxis +
-  theme_xaxis +
-  ggtitle("SCATTER PLOT")
-
-ggplot(economics, aes(date, uempmed)) +
-  geom_line(color = yellows[1]) +
-  theme_corr +
-  theme_yaxis +
-  theme_xaxis +
-  ggtitle("LINE PLOT")
-
-ggplot(df2, aes(carat, price, size = depth)) +
-  geom_point(color = yellows[1], alpha = 0.3) +
-  theme_corr +
-  theme_yaxis +
-  theme_xaxis +
-  ggtitle("BUBBLE CHART") + guides(size = "none")
-
-ggplot(sumdf2, aes(g1, y, fill = g2)) +
-  geom_col() +
-  theme_rank +
-  theme_yaxis +
-  ggtitle("STACKED\nBARPLOT")
-
-ggplot(sumdf2, aes(g1, y, fill = g2)) +
-  geom_col(position = "dodge") +
-  theme_rank +
-  theme_yaxis +
-  ggtitle("GROUPED\nBARPLOT")
-
-ggplot(sumdf2, aes(g1, y, fill = g2)) +
-  geom_col(position = "fill") +
-  theme_rank +
-  theme_yaxis +
-  ggtitle("STACKED\nPERCENTAGE\nBARPLOT")
-
-
-ggplot(df3, aes(dosef, supp, fill = mlen)) +
-  geom_tile(color = "black", size = 1.2) +
-  theme_other +
-  ggtitle("HEATMAP")
-
-
-library(ozmaps)
-oz_sf <- ozmap_data("states")
-oz_sf %>%
-  mutate(value = factor(rnorm(n()))) %>%
-  ggplot(aes(fill = value)) +
-  geom_sf() +
-  theme_other +
-  ggtitle("CHOROPLETH\nMAP")
-```
-
-
-<div class="catalogue">
-`r x<-1:6;paste(glue::glue('<img src="images/chapter7-02/catalogue-two-{x}.png"/>'), collapse = "")`
-</div>
-
-
----
-
-## Motivating data 💎 diamonds
-
-* Let's have a look at the `diamonds` data which contains information about different attributes of diamonds
-
-```{r}
-data(diamonds, package = "ggplot2")
-diamonds
-```
+* We looked at the basic code structure to draw a plot with `ggplot2`.
+* You've seen now the layers: `geom_histogram()`, `geom_density()`, `geom_freqpoly()`, `geom_boxplot()`, `geom_violin()`, `geom_dotplot()`, `geom_bar()`, and `geom_col()`. 
+* You can look at the statistics computed by `ggplot` by using `layer_data()` and if you want to use these, you can use `after_stat()`. 
 
