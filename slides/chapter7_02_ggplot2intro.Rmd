@@ -1,0 +1,17 @@
+---
+title: Getting started with `ggplot2`
+output: 
+  teachr::teachr_slides
+# need to run following from console to work
+# might be issue with render in RStudio daily build
+# rmarkdown::render("chapter7_02_ggplot2intro.Rmd")
+# Need to copy over the images as well
+# images/chapter7
+## fs::dir_copy("images/", "../static/chapter7/images/", overwrite = TRUE)
+---
+
+
+
+```{r child=gsub("[.]Rmd", ".qmd", knitr::current_input())}
+```
+
