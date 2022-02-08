@@ -7,7 +7,7 @@ next: /chapter9
 type: chapter
 id: 8
 output:
-  #teachr::teachr_chapter:
+  teachr::teachr_chapter:
   html_document:
     self_contained: false
   #md_document
@@ -54,7 +54,7 @@ knitr::opts_chunk$set(fig.path = "ch8/",
 </exercise>
 
 
-<exercise id="5" title="Regression models with interaction effects">
+<exercise id="5" title="Regression models with interaction effects" type="slides">
 `r slides("chapter8_03_interaction")`
 </exercise>
 
