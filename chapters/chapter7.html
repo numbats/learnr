@@ -213,18 +213,18 @@ automatically when you launch R.</p>
 style="color:red">CORRECT</span> Yes, that’s right!</p>
 </div>
 <p>Remember that there are two primary graphic models in R: the base and
-grid graphics. Which one is <code>ggplot2</code> using?</p>
+grid graphics. Which one is ggplot2 using?</p>
 <div>
 <p><input type="radio"> base | No, that’s incorrect.</p>
 <p><input type="radio"> grid | <span style="color:red">CORRECT</span>
 Yes that’s right! Well done!</p>
 </div>
 <p></exercise></p>
-<p><exercise id="3" title="Getting started with `ggplot2`" type="slides"></p>
+<p><exercise id="3" title="Getting started with ggplot2" type="slides"></p>
 <iframe src="../slides/chapter7_02_ggplot2intro.html" width="800" height="500">
 </iframe>
 <p></exercise></p>
-<p><exercise id="4" title="Make basic plots with `ggplot2`"></p>
+<p><exercise id="4" title="Make basic plots with ggplot2"></p>
 <p>For the following questions we are going to use
 <code>BudgetFood</code> data from the <code>Ecdat</code> package which
 contains the budget share of food for Spanish households. You can load
@@ -364,7 +364,7 @@ Hint
 This is a hint.
 </details>
 <p></exercise></p>
-<p><exercise id="5" title="Multiple layers in `ggplot2`">
+<p><exercise id="5" title="Multiple layers in ggplot2">
 <iframe src='../slides/chapter7_03_ggplot2layers.html' width='800' height='500'></iframe>
 </exercise></p>
 <p><exercise id="6" title="Practice creating multiple layers"></p>
@@ -382,7 +382,7 @@ unusual that you notice about the plot?</p>
 <code> library(Ecdat) </code>
 <code> ggplot(data = _____,  </code>
 <code>        mapping = aes(x = _____)) + </code>
-<code>   geom______(aes(y = stat(density))) + </code>
+<code>   geom______(aes(y = after_stat(density))) + </code>
 <code>   geom______(color = "red") </code>
 </pre>
 <details open>
@@ -494,7 +494,7 @@ Hint
 </ol>
 </details>
 <p></exercise></p>
-<p><exercise id="7" title="Scales and guides in `ggplot2`">
+<p><exercise id="7" title="Scales and guides in ggplot2">
 <iframe src='../slides/chapter7_04_ggplot2scales.html' width='800' height='500'></iframe>
 </exercise></p>
 <p><exercise id="8" title="Practice changing scales and guides."></p>
@@ -576,7 +576,7 @@ Hint
 </ol>
 </details>
 <p></exercise></p>
-<p><exercise id="11" title="Customise the look with themes in `ggplot2`">
+<p><exercise id="11" title="Customise the look with themes in ggplot2">
 <iframe src='../slides/chapter7_06_ggplot2theme.html' width='800' height='500'></iframe>
 </exercise></p>
 <p><exercise id="12" title="Make publication ready plots."></p>

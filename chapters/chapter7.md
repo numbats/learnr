@@ -1,7 +1,7 @@
 ---
 title: 'Chapter 7: Data Visualisation with R'
 description: This chapter will give you an introduction to the R graphics system and
-  teach you how to get started with using the `ggplot2` package for drawing all kind
+  teach you how to get started with using the ggplot2 package for drawing all kind
   of plots.
 prev: /chapter6
 next: /chapter8
@@ -39,7 +39,7 @@ id: 7
 
 Which of the following is a contributed R package?
 
-<choice id=0.351084995782003>
+<choice id=0.381169719155878>
 
 <opt text="ggplot2" correct="true">
 
@@ -70,7 +70,7 @@ No, this a core package and loads automatically when you launch R.
 
 Which R package actually renders the graphics in R?
 
-<choice id=0.691930644679815>
+<choice id=0.0326864495873451>
 
 <opt text="ggplot2" >
 
@@ -99,9 +99,9 @@ Yes, that’s right!
 </choice>
 
 Remember that there are two primary graphic models in R: the base and
-grid graphics. Which one is `ggplot2` using?
+grid graphics. Which one is ggplot2 using?
 
-<choice id=0.127467743353918>
+<choice id=0.400727231986821>
 
 <opt text="base" >
 
@@ -119,13 +119,13 @@ Yes that’s right! Well done!
 
 </exercise>
 
-<exercise id="3" title="Getting started with `ggplot2`" type="slides">
+<exercise id="3" title="Getting started with ggplot2" type="slides">
 
 <slides source="chapter7_02_ggplot2intro"> </slides>
 
 </exercise>
 
-<exercise id="4" title="Make basic plots with `ggplot2`">
+<exercise id="4" title="Make basic plots with ggplot2">
 
 For the following questions we are going to use `BudgetFood` data from
 the `Ecdat` package which contains the budget share of food for Spanish
@@ -203,7 +203,7 @@ that you notice about the plot?
 
 </exercise>
 
-<exercise id="5" title="Multiple layers in `ggplot2`">
+<exercise id="5" title="Multiple layers in ggplot2">
 <slides source="chapter7_03_ggplot2layers"> </slides> </exercise>
 
 <exercise id="6" title="Practice creating multiple layers">
@@ -246,7 +246,7 @@ that you notice about the plot?
 
 </exercise>
 
-<exercise id="7" title="Scales and guides in `ggplot2`">
+<exercise id="7" title="Scales and guides in ggplot2">
 <slides source="chapter7_04_ggplot2scales"> </slides> </exercise>
 
 <exercise id="8" title="Practice changing scales and guides.">
@@ -276,7 +276,7 @@ that you notice about the plot?
 
 </codeblock> <codeblock id="07_10C"> XX. </codeblock> </exercise>
 
-<exercise id="11" title="Customise the look with themes in `ggplot2`">
+<exercise id="11" title="Customise the look with themes in ggplot2">
 <slides source="chapter7_06_ggplot2theme"> </slides> </exercise>
 
 <exercise id="12" title="Make publication ready plots.">

@@ -1,15 +1,15 @@
 ---
 title: 'Chapter 7: Data Visualisation with R'
 description:
-  'This chapter will give you an introduction to the R graphics system and teach you how to get started with using the `ggplot2` package for drawing all kind of plots.'
+  'This chapter will give you an introduction to the R graphics system and teach you how to get started with using the ggplot2 package for drawing all kind of plots.'
 prev: /chapter6
 next: /chapter8
 type: chapter
 id: 7
 output:
   teachr::teachr_chapter:
-  html_document:
-    self_contained: false
+  # html_document:
+  #   self_contained: false
   #md_document
 ---
 
@@ -86,7 +86,7 @@ cat(mc_opts("ggplot2" = "No, that's incorrect.",
          correct = 4))
 ```
 
-Remember that there are two primary graphic models in R: the base and grid graphics. Which one is `ggplot2` using?
+Remember that there are two primary graphic models in R: the base and grid graphics. Which one is ggplot2 using?
 
 ```{r, echo = FALSE, results = "asis"}
 cat(mc_opts("base" = "No, that's incorrect.",
@@ -99,14 +99,14 @@ cat(mc_opts("base" = "No, that's incorrect.",
 
 
 
-<exercise id="3" title="Getting started with `ggplot2`" type="slides">
+<exercise id="3" title="Getting started with ggplot2" type="slides">
 
 `r slides("chapter7_02_ggplot2intro")`
 
 </exercise>
 
 
-<exercise id="4" title="Make basic plots with `ggplot2`">
+<exercise id="4" title="Make basic plots with ggplot2">
 
 For the following questions we are going to use `BudgetFood` data from the `Ecdat` package which contains the budget share of food for Spanish households. You can load the dataset and see the structure of the data below.
 
@@ -221,7 +221,7 @@ cat(codeblock("07_04F", "This is a hint."))
 </exercise>
 
 
-<exercise id="5" title="Multiple layers in `ggplot2`">
+<exercise id="5" title="Multiple layers in ggplot2">
 `r slides("chapter7_03_ggplot2layers")`
 </exercise>
 
@@ -321,7 +321,7 @@ cat(codeblock("07_06E", "XX."))
 
 </exercise>
 
-<exercise id="7" title="Scales and guides in `ggplot2`">
+<exercise id="7" title="Scales and guides in ggplot2">
 `r slides("chapter7_04_ggplot2scales")`
 </exercise>
 
@@ -386,7 +386,7 @@ cat(codeblock("07_10C", "XX."))
 ```
 </exercise>
 
-<exercise id="11" title="Customise the look with themes in `ggplot2`">
+<exercise id="11" title="Customise the look with themes in ggplot2">
 `r slides("chapter7_06_ggplot2theme")`
 </exercise>
 
