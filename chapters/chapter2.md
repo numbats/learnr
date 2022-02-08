@@ -191,27 +191,27 @@ Given the following vector `y` in R,
 
 which of the following is the output of `y-2`?
 
-<choice id=0.827567265136167>
+<choice id=0.157848197268322>
 
-<opt text="`0  4  6  8  1  3  5  7`" >
+<opt text="<code> 0  4  6  8  1  3  5  7 </code>" >
 
 Try again! Check your calculation in R!
 
 </opt>
 
-<opt text="`0  2  4  6 -1  1  3  5`" correct="true">
+<opt text="<code> 0  2  4  6 -1  1  3  5 </code>" correct="true">
 
 That’s correct!
 
 </opt>
 
-<opt text="`2  4  6  8  1  3  5  7 -2`" >
+<opt text="<code> 2  4  6  8  1  3  5  7 -2 </code>" >
 
 Try again! Check your calculation in R!
 
 </opt>
 
-<opt text="`-4  -8 -12 -16  -2  -6 -10 -14`" >
+<opt text="<code> -4  -8 -12 -16  -2  -6 -10 -14 </code>" >
 
 Try again! Check your calculation in R!
 
@@ -227,27 +227,27 @@ Given the following vector `y` in R,
 
 which of the following is the output of `y[4:7]`?
 
-<choice id=0.621879367390648>
+<choice id=0.713531662942842>
 
-<opt text="`8 1 3 5`" correct="true">
+<opt text="<code> 8 1 3 5 </code>" correct="true">
 
 That’s correct!
 
 </opt>
 
-<opt text="`8 1 3`" >
+<opt text="<code> 8 1 3 </code>" >
 
 Try again! Check your calculation in R!
 
 </opt>
 
-<opt text="`6 8 1 3`" >
+<opt text="<code> 6 8 1 3 </code>" >
 
 Try again! Check your calculation in R!
 
 </opt>
 
-<opt text="`1 3 5`" >
+<opt text="<code> 1 3 5 </code>" >
 
 Try again! Check your calculation in R!
 
@@ -298,6 +298,8 @@ frame looks like in R.
 
 <codeblock id="02_07_01">
 
+Hint: Just run the command!
+
 </codeblock>
 
 The iris data set gives the measurements in centimeters of the variables
@@ -310,10 +312,11 @@ setosa, versicolor, and virginica.
 Often it is useful to show only a small part of the entire dataset,
 especially when we are working with very big data set where showing the
 entire dataset is not easy. Here are a few useful commands that helps
-you understand the data frame very quickly. - `head()` shows the first
-few observations of a data frame. - `tail()` shows the last few
-observations of a data frame. - `str()` shows the structure of the
-dataset.
+you understand the data frame very quickly.
+
+-   `head()` shows the first few observations of a data frame.
+-   `tail()` shows the last few observations of a data frame.
+-   `str()` shows the structure of the dataset.
 
 Investigate the structure of the example dataframe. Have a look at the
 first and last few observations!
@@ -324,11 +327,11 @@ Hint: Use the `head(df)` can help.
 
 </codeblock>
 
-**Answer the following questions**
+**Answer the following question**
 
 What is the data type of the variable ‘dose’?
 
-<choice id=0.0769183293450624>
+<choice id=0.21195152006112>
 
 <opt text="numeric" correct="true">
 
@@ -467,7 +470,7 @@ Take a look at the following statements:
 
 Select the option that lists **all** the true statements.
 
-<choice id=0.151293479138985>
+<choice id=0.799286498455331>
 
 <opt text="(1) and (2)" >
 
@@ -597,27 +600,27 @@ variable `student_result`.
 Based on the output from the for-loop, which of the following is
 `student_result`?
 
-<choice id=0.211994137382135>
+<choice id=0.724303174531087>
 
-<opt text="student_result <- c(99,77,35,97,67,85)" >
-
-Try again! Copy the code and try it with some numbers in R!
-
-</opt>
-
-<opt text="student_result <- c(77,99,35,97,67,85)" >
+<opt text="<code>student_result <- c(99,77,35,97,67,85)</code>" >
 
 Try again! Copy the code and try it with some numbers in R!
 
 </opt>
 
-<opt text="student_result <- c(97,77,35,99,67,85)" correct="true">
+<opt text="<code>student_result <- c(77,99,35,97,67,85)</code>" >
+
+Try again! Copy the code and try it with some numbers in R!
+
+</opt>
+
+<opt text="<code>student_result <- c(97,77,35,99,67,85)</code>" correct="true">
 
 That’s correct!
 
 </opt>
 
-<opt text="student_result <- c(100,77,35,99,67,85)" >
+<opt text="<code>student_result <- c(100,77,35,99,67,85)</code>" >
 
 Try again! Copy the code and try it with some numbers in R!
 
@@ -749,7 +752,7 @@ For example:
     #Flip the coin the first time
     flip_a_coin()
 
-    ## [1] "Tail"
+    ## [1] "Head"
 
     #Flip the coin second time
     flip_a_coin()
@@ -759,7 +762,7 @@ For example:
     #Flip the coin once again
     flip_a_coin()
 
-    ## [1] "Head"
+    ## [1] "Tail"
 
 You will get a different outcome (“Head” or “Tail”) every time when you
 call the function `flip_a_coin`.

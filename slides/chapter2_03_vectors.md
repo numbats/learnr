@@ -5,26 +5,32 @@ type: slides
 ---
 ## Vectors
 
-Vectors (and matrices) are used a lot in equations, models, mathematical
-optimization problems. Learning how to read and use them allows you to
-(i) understand complex operations and (ii) express operations that you
-want to perform in a compact and elegant way.
+A **vector** is an ordered finite list of numbers.
 
-A **vector** is an ordered finite list of numbers. You may have seen
-them before, for example, a (column) vector x can be written as follow:
+A (column) vector x can be written as follow:
 
 $$ x = (4,7,6,3,2) = \\begin{bmatrix}4\\\\7\\\\6\\\\3\\\\2 \\end{bmatrix} $$
 
 Note that a row vector (say, `y`) can be written as *y* = (3 4 7 4 2) or
 $y = \\begin{bmatrix} 3&4&7&4&2\\end{bmatrix}$.
 
+You can express the vector `x` above with the following R code:
+
+    x <- c(4,7,6,3,2)
+
+Notes:
+
+Vectors (and matrices) are used a lot in equations, models, mathematical
+optimization problems. Learning how to read and use them allows you to
+(i) understand complex operations and (ii) express operations that you
+want to perform in a compact and elegant way.
+
+A **vector** is an ordered finite list of numbers.
+
 In R, vectors are one-dimension arrays that can hold numeric data,
 character data or logical data. You can create a vector in R with the
 combine function `c()`, where each element in the vector is separated by
-a comma `,`. You can express the vector `x` above with the following R
-code:
-
-    x <- c(4,7,6,3,2)
+a comma `,`.
 
 ---
 
@@ -61,18 +67,22 @@ scalar-vector product either as `c*a` or `a*c`. For example, if you do
 
     ## [1] 3 6 9
 
+---
+
 **Scalar-vector addition**
 
 In R, you can add a scalar `c` and a vector `a` using c+a. This means
-that the scalar is added to each element of the vector. For example, if
-you do `3+a`:
+that the scalar is added to each element of the vector.
+
+For example, if you do `3+a`:
 
     3+a
 
     ## [1] 4 5 6
 
-This is, however, **NOT** a standard mathematical notation. (In
-mathematical notations, we should use this as, e.g. *a* + *c***1**,
+This is, however, **NOT** a standard mathematical notation.
+
+(In mathematical notations, we should use this as, e.g. *a* + *c***1**,
 where *a* is a vector and *c* is a scalar.)
 
 ---
@@ -81,27 +91,42 @@ where *a* is a vector and *c* is a scalar.)
 
 **Indexing**
 
-To select elements of a vector (and later matrices, data frames, …), you
-can use square brackets `[ ]`. Between the square brackets, you indicate
-what elements to select. For example, consider a vector *x*, a specific
-element *x*<sub>*i*</sub> is selected with the expression `x[i]` where
-`i` is the index (which runs from 1 to *n*, for a vector with *n*
-elements). Say, we would like to obtain the 5th entry from the following
-vector *x*:
+A specific element *x*<sub>*i*</sub> is selected with the expression
+`x[i]` where `i` is the index.
+
+Say, we would like to obtain the 5th entry from the following vector
+*x*:
 
     x = c(5,6,3,4,5,8,23,4,6,4,3,23,7,5,4,23,7,90)
     x[5]
 
     ## [1] 5
 
+Notes:
+
+To select elements of a vector (and later matrices, data frames, …), you
+can use square brackets (`[ ]`). Between the square brackets, you
+indicate what elements to select. For example, consider a vector *x*, a
+specific element *x*<sub>*i*</sub> is selected with the expression
+`x[i]` where `i` is the index (which runs from 1 to *n*, for a vector
+with *n* elements).
+
+---
+
 **Slicing**
 
-Sometimes it is of interest to extract a slice of a vector (a
-sub-vector) using an index range as the argument.
 *x*<sub>*r* : *s*</sub> denotes the slice of the vector from index *r*
-to *s*. In the code below, `x[1:4]` selects the element from index 1 to
-4.
+to *s*.
+
+For instance, `x[1:4]` selects the element from index 1 to 4.
 
     x[1:4]
 
     ## [1] 5 6 3 4
+
+Notes:
+
+Sometimes it is of interest to extract a slice of a vector (a
+sub-vector) using an index range as the argument.
+*x*<sub>*r* : *s*</sub> denotes the slice of the vector from index *r*
+to *s*.

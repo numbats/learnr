@@ -5,17 +5,19 @@ type: slides
 ---
 ## Tidy (reshape) your data
 
-Raw data that we acquired can often be messy and complicated. The tidyr
-package allows you to wrangle messy datasets into nice and tidy ones.
+A tidy data format:
 
-A tidy data format has a rectangular shape which means it has columns,
-rows, and cells, just like in a spreadsheet. Each column should hold a
-single variable, each row should hold a single observation and each cell
-should hold a single value.
+-   Each column should hold a single variable
+-   each row should hold a single observation
+-   each cell should hold a single value.
 
-The example below shows the same information (country, year, population,
-and number of cases) organised in 3 different ways. Examine each of the
-table.
+Examine `table1`, `table2` and `table3`.
+
+They show the same information in 3 different ways.
+
+---
+
+Table 1
 
     table1
 
@@ -28,6 +30,24 @@ table.
     ## 4 Brazil       2000  80488  174504898
     ## 5 China        1999 212258 1272915272
     ## 6 China        2000 213766 1280428583
+
+Note:
+
+Raw data that we acquired can often be messy and complicated. The tidyr
+package allows you to wrangle messy datasets into nice and tidy ones.
+
+A tidy data format has a rectangular shape which means it has columns,
+rows, and cells, just like in a spreadsheet. Each column should hold a
+single variable, each row should hold a single observation and each cell
+should hold a single value.
+
+The example on the left shows the same information (country, year,
+population, and number of cases) organised in 3 different ways. Examine
+each of the table.
+
+---
+
+Table 2
 
     table2
 
@@ -47,6 +67,24 @@ table.
     ## 11 China        2000 cases          213766
     ## 12 China        2000 population 1280428583
 
+Note:
+
+Raw data that we acquired can often be messy and complicated. The tidyr
+package allows you to wrangle messy datasets into nice and tidy ones.
+
+A tidy data format has a rectangular shape which means it has columns,
+rows, and cells, just like in a spreadsheet. Each column should hold a
+single variable, each row should hold a single observation and each cell
+should hold a single value.
+
+The example on the left shows the same information (country, year,
+population, and number of cases) organised in 3 different ways. Examine
+each of the table.
+
+---
+
+Table 3
+
     table3
 
     ## # A tibble: 6 × 3
@@ -59,26 +97,46 @@ table.
     ## 5 China        1999 212258/1272915272
     ## 6 China        2000 213766/1280428583
 
+Note:
+
+Raw data that we acquired can often be messy and complicated. The tidyr
+package allows you to wrangle messy datasets into nice and tidy ones.
+
+A tidy data format has a rectangular shape which means it has columns,
+rows, and cells, just like in a spreadsheet. Each column should hold a
+single variable, each row should hold a single observation and each cell
+should hold a single value.
+
+The example below shows the same information (country, year, population,
+and number of cases) organised in 3 different ways. Examine each of the
+table.
+
 ---
 
-Sometimes raw data may have multiple variables or multiple values (not
-the same variable) in the same column, or sometimes you may want to
-merge multiple columns into one. Here are a few commands that can be
-helpful in manupulating the data into a tidy format:
+R functions to tidy the data:
 
 -   `separate()`: separating multiple variables in one column to
-    different columns
+    different columns.
 -   `unite()`: merging multiple columns into one, inserting underscore
-    `_` as a separator between the two inputs.
+    (`_`) as a separator between the two inputs.
 -   `separate_rows()`: separating multiple observations in the same
     cell. We pass the messy column name and a string to use as a
     separator.
 
+Note:
+
+Sometimes raw data may have multiple variables or multiple values (not
+the same variable) in the same column, or sometimes you may want to
+merge multiple columns into one. Here are a few commands that can be
+helpful in manipulating the data into a tidy format.
+
 ---
 
 In table 3, the `rate` column contains both the number of cases and the
-size of the populations. We want to separate the `rate` variable into
-variables `cases` and `population`.
+size of the populations.
+
+We want to separate the `rate` variable into variables `cases` and
+`population`.
 
     table3 %>%
       separate(rate, into = c("cases", "population"), sep = "/", convert = TRUE)
@@ -93,15 +151,18 @@ variables `cases` and `population`.
     ## 5 China        1999 212258 1272915272
     ## 6 China        2000 213766 1280428583
 
-The `into` argument expects a vector of column names. The `sep` argument
-expects the non-alphanumeric character (a charater that is not a letter
-or a number) that we split upon. The `convert` argument is set to TRUE
-here so that R will try and convert to better types after the split.
+Note:
+
+-   The `into` argument expects a vector of column names.
+-   The `sep` argument expects the non-alphanumeric character (a
+    character that is not a letter or a number) that we split upon.
+-   The `convert` argument is set to TRUE here so that R will try and
+    convert to better types after the split.
+
+---
 
 In table 5, the `century` and `year` column can be combined to give a
-`year_new` column. The `sep` argument here is what comes in between the
-values from different columns. If we don’t want anything in between, we
-can use ““.
+`year_new` column.
 
     table5 %>%
       unite(new_year,century, year, sep = "")
@@ -116,19 +177,23 @@ can use ““.
     ## 5 China       1999     212258/1272915272
     ## 6 China       2000     213766/1280428583
 
+Note:
+
+The `sep` argument here is what comes in between the values from
+different columns. If we don’t want anything in between, we can use ““.
+
 ---
 
 In table 6, there are multiple observations in the same cell in each row
-of `year` and `cases`. We would like to separate them.
+of `year` and `cases`.
 
-    table6 <- tibble(
-      country = c("Afghanistan", "Brazil", "China"),
+We would like to separate them.
+
+    table6 <- tibble(country = c("Afghanistan", "Brazil", "China"),
       year = c("1999,2000", "1999,2000", "1999,2000"),
-      cases= c("745,2666", "37737,80488", "212258,213766")
-    )
+      cases= c("745,2666", "37737,80488", "212258,213766"))
 
-    table6 %>%
-      separate_rows(cases, year, sep=',', convert = TRUE)
+    table6 %>% separate_rows(cases, year, sep=',', convert = TRUE)
 
     ## # A tibble: 6 × 3
     ##   country      year  cases
@@ -144,17 +209,22 @@ of `year` and `cases`. We would like to separate them.
 
 ## Pivoting
 
-Two common problems in raw data set: - some of the column names are not
-really names of variables, but **values** of a variable. - when an
-observation is scattered across multiple rows.
+Two common problems in raw data set:
+
+-   some of the column names are not really names of variables, but
+    **values** of a variable.
+-   when an observation is scattered across multiple rows.
 
 To tackle these problems, you will need `pivot_longer()` and/or
 `pivot_wider()`
 
+---
+
 **pivot\_longer()**
 
-`table4a` is a great example of data that needs `pivot_longer()`. Here
-you see that the case count of each country is separated into two
+`table4a` is a great example of data that needs `pivot_longer()`.
+
+Here you see that the case count of each country is separated into two
 columns because they are from different years.
 
     table4a
@@ -165,11 +235,6 @@ columns because they are from different years.
     ## 1 Afghanistan    745   2666
     ## 2 Brazil       37737  80488
     ## 3 China       212258 213766
-
-The first argument is the vector of column names that are actually
-values not variables. The second argument is the name of the variable to
-move the column **names** to. The third argument is the name of the
-variable to move the column **values** to.
 
     table4a %>% 
       pivot_longer(c(`1999`, `2000`), names_to = "year", values_to = "cases")
@@ -184,11 +249,21 @@ variable to move the column **values** to.
     ## 5 China       1999  212258
     ## 6 China       2000  213766
 
+Notes:
+
+-   The first argument is the vector of column names that are actually
+    values not variables.
+-   The second argument is the name of the variable to move the column
+    **names** to.
+-   The third argument is the name of the variable to move the column
+    **values** to.
+
 ---
 
 **pivot\_wider()**
 
 In table 2, each observation is a certain country in a certain year.
+
 However, the observation is spread across two rows since there are
 `cases` and `population`.
 
@@ -210,10 +285,6 @@ However, the observation is spread across two rows since there are
     ## 11 China        2000 cases          213766
     ## 12 China        2000 population 1280428583
 
-The first argument is the column to take variable **names** from, which
-is `type`. The second argument is the column to take variable **values**
-from, where is `count`.
-
     table2 %>%
       pivot_wider(names_from = type, values_from = count)
 
@@ -227,12 +298,21 @@ from, where is `count`.
     ## 5 China        1999 212258 1272915272
     ## 6 China        2000 213766 1280428583
 
+Notes:
+
+-   The first argument is the column to take variable **names** from,
+    which is `type`.
+-   The second argument is the column to take variable **values** from,
+    where is `count`.
+
 ---
 
 ## Missing values
 
-There are various ways to handle missing values (the NAs) in your data
-set. Tidyr has three functions:
+There are various ways to handle missing values (the `NA`s) in your data
+set.
+
+Tidyr has three functions:
 
 -   `fill()`: fill the missing values using the last observation carried
     forward. It has a `.direction` argument that you can pass `up` or
@@ -242,9 +322,12 @@ set. Tidyr has three functions:
 
 ---
 
-Let’s look at this toy data set. We will start with the `fill()`
-function to impute the `return` column in the `up` direction, then we
-will impute in the `down` direction. Can you spot the difference?
+Let’s look at this toy data set.
+
+We will start with the `fill()` function to impute the `return` column
+in the `up` direction, then we will impute in the `down` direction.
+
+Can you spot the difference?
 
     apple <- tibble(
       year   = c(2020, 2020, 2020, 2020, 2021, 2021, 2021),
@@ -282,7 +365,7 @@ will impute in the `down` direction. Can you spot the difference?
 
 ---
 
-Then, we will try to drop the NAs in the return in `apple`.
+Then, we will try to drop the `NA`s in the return in `apple`.
 
     apple %>%
       drop_na(return)
@@ -297,7 +380,9 @@ Then, we will try to drop the NAs in the return in `apple`.
     ## 5  2021     3   0.07
     ## 6  2021     4   1.88
 
-Finally, we will also replace the NAs with the value `999`.
+---
+
+Finally, we will also replace the `NA`s with the value `999`.
 
     apple %>%
       replace_na(list(return=999))
