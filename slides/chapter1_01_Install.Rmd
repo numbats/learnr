@@ -1,12 +1,8 @@
 ---
 title: Getting started with R and RStudio IDE
 output:
-  revealjs::revealjs_presentation:
-     css: [reveal.css, slide.css]
-     transition: slide
-     keep_md: true
-     lib_dir: libs/
-     self_contained: false
+  teachr::teachr_slides
+type: slides
 ---
 
 ```{r setup, include = FALSE}

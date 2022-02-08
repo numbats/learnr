@@ -43,19 +43,19 @@ knitr::opts_chunk$set(fig.path = "ch1/",
 
 <exercise id="2" title="RStudio basic" type="slides">
 
-`r slides("chapter1_02_RStudio_basic")`
+`r slides("chapter_1_02_RStudio_basics")`
 
 </exercise>
 
-<exercise id="3" title="Additonal Sources">
+<exercise id="3" title="Additional Sources">
 
 ## Additional Sources 
 
-* [Introduction to R](https://cengel.github.io/R-intro/)
+- [Introduction to R](https://cengel.github.io/R-intro/)
 
-* [RStudio Eduction for Beginners](https://education.rstudio.com/learn/beginner/)
+- [RStudio Eduction for Beginners](https://education.rstudio.com/learn/beginner/)
 
-* [R for Data Science](https://r4ds.had.co.nz)
+- [R for Data Science](https://r4ds.had.co.nz)
 
 </exercise>
 

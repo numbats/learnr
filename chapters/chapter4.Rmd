@@ -36,7 +36,7 @@ knitr::opts_chunk$set(fig.retina = 2,
 
 <exercise id="1" title="Getting start with an R project" type="slides">
 
-`r slides("chapte4_01_Project_Structure")`
+`r slides("chapter4_01_Project_Structure")`
 
 </exercise>
 

@@ -1,17 +1,18 @@
 ---
-title: "Getting start with an R project"
+title: Getting start with an R project
 output:
-  revealjs::revealjs_presentation:
-     css: [reveal.css, slide.css]
-     transition: slide
-     keep_md: true
-     lib_dir: libs/
-     self_contained: false
+  teachr::teachr_slides
+type: slides
 ---
-
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(fig.path = "images/")
-library(icons)
+knitr::opts_chunk$set(fig.path = "images/chapter4/",
+                      fig.align = "center",
+                      fig.width = 2, 
+                      fig.height = 2,
+                      cache.path = "cache/",
+                      cache = FALSE,
+                      echo = TRUE)
+
 ```
 
 ## Why do I want to start an R Project? 
