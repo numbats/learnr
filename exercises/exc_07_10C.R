@@ -8,4 +8,4 @@ g2 <- ggplot(BudgetFood,
   geom_boxplot() + 
   scale_y_log10()
 
-g1 / g2 + plot_layout(guides = "collect")
+# combine the plot as one figure 

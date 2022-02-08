@@ -160,52 +160,57 @@ The meaning of the variables are described below:
     into 5 groups: 1 for small towns, 5 for big ones
 -   `sex`: sex of reference person (man,woman)
 
-Try to recreate the scatter plot below. Is there anything that unusual
-that you notice about the plot?
+Try to recreate the scatter plot below. Is there anything unusual that
+you notice about the plot?
 
 <img src="ch7/plot4A-1.png" width="432" style="display: block; margin: auto;" />
 
+Note: the **submit button doesn’t do anything** in this chapter. You
+will need to eyeball your output plot is the same as the target plots
+for all questions.
+
 <codeblock id="07_04A">
 
-</codeblock>
+Hint: The scatter plots are created using `geom_point`.
 
-<codeblock id="07_04A"> The scatter plots are created using
-`geom_point`. </codeblock>
+</codeblock>
 
 <img src="ch7/plot4B-1.png" width="432" style="display: block; margin: auto;" />
 
 <codeblock id="07_04B">
 
-</codeblock>
-
-<codeblock id="07_04B"> The hex plots are created using `geom_hex`.
-</codeblock>
+Hint: The hex plots are created using `geom_hex`. </codeblock>
 
 <img src="ch7/plot4C-1.png" width="432" style="display: block; margin: auto;" />
 
 <codeblock id="07_04C">
 
-</codeblock>
-
-<codeblock id="07_04C"> This is a hint. </codeblock>
+Hint: The five number summary is often graphically depicted by a
+boxplot. </codeblock>
 
 <img src="ch7/plot4D-1.png" width="432" style="display: block; margin: auto;" />
 
 <codeblock id="07_04D">
 
-</codeblock> <codeblock id="07_04D"> This is a hint. </codeblock>
+Hint: what do you notice about the x-axis scale? Do you perhaps need to
+convert `town`? </codeblock>
 
 <img src="ch7/plot4E-1.png" width="432" style="display: block; margin: auto;" />
 
 <codeblock id="07_04E">
 
-</codeblock> <codeblock id="07_04E"> This is a hint. </codeblock>
+Hint: this plot is called a histogram.
+
+</codeblock>
 
 <img src="ch7/plot4F-1.png" width="432" style="display: block; margin: auto;" />
 
 <codeblock id="07_04F">
 
-</codeblock> <codeblock id="07_04F"> This is a hint. </codeblock>
+Hint: this is a density plot but the y-axis is showing counts. What did
+`after_stat` function do?
+
+</codeblock>
 
 </exercise>
 
@@ -224,31 +229,31 @@ that you notice about the plot?
 
 <codeblock id="07_06A">
 
-</codeblock> <codeblock id="07_06A"> XX. </codeblock>
+</codeblock>
 
 <img src="ch7/plot6B-1.png" width="432" style="display: block; margin: auto;" />
 
 <codeblock id="07_06B">
 
-</codeblock> <codeblock id="07_06B"> XX. </codeblock>
+</codeblock>
 
 <img src="ch7/plot6C-1.png" width="432" style="display: block; margin: auto;" />
 
 <codeblock id="07_06C">
 
-</codeblock> <codeblock id="07_06C"> XX. </codeblock>
+</codeblock>
 
 <img src="ch7/plot6D-1.png" width="432" style="display: block; margin: auto;" />
 
 <codeblock id="07_06D">
 
-</codeblock> <codeblock id="07_06D"> XX. </codeblock>
+</codeblock>
 
 <img src="ch7/plot6E-1.png" width="432" style="display: block; margin: auto;" />
 
 <codeblock id="07_06E">
 
-</codeblock> <codeblock id="07_06E"> XX. </codeblock>
+</codeblock>
 
 </exercise>
 
@@ -262,25 +267,23 @@ that you notice about the plot?
 <exercise id="10" title="Multiple plots in one figure"  type="slides">
 <slides source="chapter7_06_ggplot2facet"> </slides> </exercise>
 
-<exercise id="11" title="Practice combining multiple plots.">
+<exercise id="11" title="Practice making multiple subplots.">
 
 <img src="ch7/plot7A-1.png" width="432" style="display: block; margin: auto;" />
 
 <codeblock id="07_10A">
 
-</codeblock> <codeblock id="07_10A"> XX. </codeblock>
+</codeblock>
 
 <img src="ch7/plot7B-1.png" width="432" style="display: block; margin: auto;" />
 
 <codeblock id="07_10B">
 
-</codeblock> <codeblock id="07_10B"> XX. </codeblock>
-
-<img src="ch7/plot7C-1.png" width="432" style="display: block; margin: auto;" />
+</codeblock>
 
 <codeblock id="07_10C">
 
-</codeblock> <codeblock id="07_10C"> XX. </codeblock> </exercise>
+</codeblock> </exercise>
 
 <exercise id="12" title="Customise the look with themes in ggplot2"  type="slides">
 <slides source="chapter7_07_ggplot2theme"> </slides> </exercise>

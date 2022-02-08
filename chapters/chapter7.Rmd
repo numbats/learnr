@@ -129,10 +129,12 @@ The meaning of the variables are described below:
 * `town`: size of the town where the household is placed categorized into 5 groups: 1 for small towns, 5 for big ones
 * `sex`: sex of reference person (man,woman)
 
-Try to recreate the scatter plot below. Is there anything that unusual that you notice about the plot?
+Try to recreate the scatter plot below. Is there anything unusual that you notice about the plot?
 
 ```{r plot4A, code = readLines("../exercises/solution_07_04A.R"), echo = FALSE, class = "target"}
 ```
+
+Note: the **submit button doesn't do anything** in this chapter. You will need to eyeball your output plot is the same as the target plots for all questions. 
 
 ```{teachr 07_04A, outdir = "../exercises"}
 library(ggplot2)
@@ -141,10 +143,11 @@ ggplot(data = <<BudgetFood>>,
        mapping = aes(x = <<size>>, 
                      y = <<totexp>>)) +
   geom_<<point>>()
-```
 
-```{r, echo = FALSE, results = "asis"}
-cat(codeblock("07_04A", "The scatter plots are created using `geom_point`."))
+---
+  
+Hint: The scatter plots are created using `geom_point`.
+
 ```
 
 ```{r plot4B, code = readLines("../exercises/solution_07_04B.R"), echo = FALSE, class = "target"}
@@ -157,10 +160,10 @@ ggplot(data = <<BudgetFood>>,
        mapping = aes(x = <<size>>, 
                      y = <<totexp>>)) +
   geom_<<hex>>()
-```
 
-```{r, echo = FALSE, results = "asis"}
-cat(codeblock("07_04B", "The hex plots are created using `geom_hex`."))
+---
+  
+Hint: The hex plots are created using `geom_hex`.
 ```
 
 
@@ -174,10 +177,10 @@ ggplot(data = <<BudgetFood>>,
        mapping = aes(x = <<sex>>, 
                      y = <<age>>)) +
   geom_<<boxplot>>()
-```
 
-```{r, echo = FALSE, results = "asis"}
-cat(codeblock("07_04C", "This is a hint."))
+---
+  
+Hint: The five number summary is often graphically depicted by a boxplot. 
 ```
 
 
@@ -191,9 +194,10 @@ ggplot(data = <<BudgetFood>>,
        mapping = aes(x = <<factor(town)>>, 
                      y = <<totexp>>)) +
   geom_<<violin>>()
-```
-```{r, echo = FALSE, results = "asis"}
-cat(codeblock("07_04D", "This is a hint."))
+
+---
+  
+Hint: what do you notice about the x-axis scale? Do you perhaps need to convert `town`?
 ```
 
 ```{r plot4E, code = readLines("../exercises/solution_07_04E.R"), echo = FALSE, class = "target"}
@@ -204,11 +208,12 @@ library(Ecdat)
 ggplot(data = <<BudgetFood>>, 
        mapping = aes(x = <<wfood>>)) +
   geom_<<histogram>>(binwidth = 0.001)
-```
-```{r, echo = FALSE, results = "asis"}
-cat(codeblock("07_04E", "This is a hint."))
-```
 
+---
+  
+Hint: this plot is called a histogram.
+
+```
 
 ```{r plot4F, code = readLines("../exercises/solution_07_04F.R"), echo = FALSE, class = "target"}
 ```
@@ -216,13 +221,14 @@ cat(codeblock("07_04E", "This is a hint."))
 library(ggplot2)
 library(Ecdat)
 ggplot(data = <<BudgetFood>>, 
-       mapping = aes(x = <<wfood>>)) +
-  geom_<<density>>()
-```
-```{r, echo = FALSE, results = "asis"}
-cat(codeblock("07_04F", "This is a hint."))
-```
+       mapping = aes(x = <<wfood>>))  +
+  geom_density(aes(y = <<after_stat(count)>>))
 
+---
+
+Hint: this is a density plot but the y-axis is showing counts. What did `after_stat` function do?
+    
+```
 
 </exercise>
 
@@ -249,9 +255,6 @@ ggplot(data = <<BudgetFood>>,
   geom_<<histogram>>(aes(y = after_stat(density))) +
   geom_<<density>>(color = "red")
 ```
-```{r, echo = FALSE, results = "asis"}
-cat(codeblock("07_06A", "XX."))
-```
 
 ```{r plot6B, code = readLines("../exercises/solution_07_06B.R"), echo = FALSE, class = "target"}
 ```
@@ -263,9 +266,6 @@ ggplot(data = <<subset(BudgetFood, !is.na(sex))>>,
                      y = <<age>>)) +
   geom_<<violin>>(<<aes(fill = sex)>>) +
   geom_<<boxplot>>(<<width>> = 0.1) 
-```
-```{r, echo = FALSE, results = "asis"}
-cat(codeblock("07_06B", "XX."))
 ```
 
 ```{r plot6C, code = readLines("../exercises/solution_07_06C.R"), echo = FALSE, class = "target"}
@@ -281,10 +281,6 @@ ggplot(data = <<subset(BudgetFood, size < 30)>>,
                   method = loess,
                   formula = y ~ x)
 ```
-```{r, echo = FALSE, results = "asis"}
-cat(codeblock("07_06C", "XX."))
-```
-
 ```{r plot6D, code = readLines("../exercises/solution_07_06D.R"), echo = FALSE, class = "target", cache = FALSE}
 ```
 ```{teachr 07_06D, outdir = "../exercises"}
@@ -296,9 +292,6 @@ ggplot(data = <<subset(BudgetFood, !is.na(sex))>>,
   geom_<<text>>(aes(label = <<after_stat(count)>>),
                  vjust = -0.3,
                  stat = <<"count">>)
-```
-```{r, echo = FALSE, results = "asis", cache = FALSE}
-cat(codeblock("07_06D", "XX."))
 ```
 
 ```{r plot6E, code = readLines("../exercises/solution_07_06E.R"), echo = FALSE, class = "target", cache = FALSE}
@@ -321,9 +314,7 @@ dat <- BudgetFood %>%
                    y = <<-totexp>>,
                   <<fill = "man">>))
 ```
-```{r, echo = FALSE, results = "asis", cache = FALSE}
-cat(codeblock("07_06E", "XX."))
-```
+
 
 </exercise>
 
@@ -340,7 +331,7 @@ cat(codeblock("07_06E", "XX."))
 `r slides("chapter7_06_ggplot2facet")`
 </exercise>
 
-<exercise id="11" title="Practice combining multiple plots.">
+<exercise id="11" title="Practice making multiple subplots.">
 ```{r plot7A, code = readLines("../exercises/solution_07_10A.R"), echo = FALSE, class = "target", cache = FALSE}
 ```
 ```{teachr 07_10A, outdir = "../exercises"}
@@ -353,9 +344,7 @@ ggplot(BudgetFood, aes(x = <<age>>)) +
   geom_density(color = "red") +
   facet_<<wrap(~town)>>
 ```
-```{r, echo = FALSE, results = "asis", cache = FALSE}
-cat(codeblock("07_10A", "XX."))
-```
+
 
 ```{r plot7B, code = readLines("../exercises/solution_07_10B.R"), echo = FALSE, class = "target", cache = FALSE}
 ```
@@ -369,9 +358,7 @@ ggplot(subset(BudgetFood, !is.na(sex)), aes(age)) +
             aes(label = n)) +
   facet_<<grid(sex ~ town)>>
 ```
-```{r, echo = FALSE, results = "asis", cache = FALSE}
-cat(codeblock("07_10B", "XX."))
-```
+
 ```{r plot7C, code = readLines("../exercises/solution_07_10C.R"), echo = FALSE, class = "target", cache = FALSE}
 ```
 ```{teachr 07_10C, outdir = "../exercises"}
@@ -385,10 +372,8 @@ g2 <- ggplot(BudgetFood,
   geom_boxplot() + 
   scale_y_log10()
 
-g1 / g2 + plot_layout(guides = "collect")
-```
-```{r, echo = FALSE, results = "asis", cache = FALSE}
-cat(codeblock("07_10C", "XX."))
+# combine the plot as one figure 
+<<g1 / g2 + plot_layout(guides = "collect")>>
 ```
 </exercise>
 
