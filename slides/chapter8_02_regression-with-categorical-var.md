@@ -5,12 +5,12 @@ type: slides
 ---
 ## Tooth growth data
 
--   We’ll now use the `ToothGrowth` data to illustrate a model with a
+-   We'll now use the `ToothGrowth` data to illustrate a model with a
     categorical variable:
 
-<!-- -->
-
-    str(ToothGrowth)
+``` r
+str(ToothGrowth)
+```
 
     ## 'data.frame':    60 obs. of  3 variables:
     ##  $ len : num  4.2 11.5 7.3 5.8 6.4 10 11.2 11.2 5.2 7 ...
@@ -23,55 +23,55 @@ type: slides
     -   `supp`: supplement type (VC = vitamin C, OJ = orange juice)
     -   `dose`: dose of supplement in milligrams/days
 
-<img src="images/chapter8-02/toothgrowth-plot-1.png" style="display: block; margin: auto;" />
+`<img src="images/chapter8-02/toothgrowth-plot-1.png" style="display: block; margin: auto;" />`{=html}
 
 ---
 
 ## Fitting a categorical variable in `lm`: illustration
 
--   `supp` is a factor with two levels: “VC” and “OJ”
+-   `supp` is a factor with two levels: "VC" and "OJ"
 -   What model are we fitting below?
 
-<!-- -->
+``` r
+fit1s <- lm(len ~ 1 + as.numeric(supp=="VC") + as.numeric(supp=="OJ") , data = ToothGrowth)
+```
 
-    fit1s <- lm(len ~ 1 + as.numeric(supp=="VC") + as.numeric(supp=="OJ") , data = ToothGrowth)
-
-$$\\color{#006dae}{y\_{ij}} = \\beta\_0\\cdot \\color{#006dae}{1} + \\beta\_1 \\color{#006dae}{x\_{1i}}+ \\beta\_2 \\color{#006dae}{x\_{2i}} + e\_{ij}, \\qquad \\text{for }i = 1, 2, j = 1, 2, 3$$
+$$\color{#006dae}{y_{ij}} = \beta_0\cdot \color{#006dae}{1} + \beta_1 \color{#006dae}{x_{1i}}+ \beta_2 \color{#006dae}{x_{2i}} + e_{ij}, \qquad \text{for }i = 1, 2, j = 1, 2, 3$$
 where:
 
--   *i* corresponds to the level of the supplementary variable,
--   *j* corresponds to the dose level,
--   $x\_{1i} = \\begin{cases}1\\quad\\text{if }i=1\\\\0\\quad\\text{if }i=2\\end{cases},$
--   $x\_{2i} = \\begin{cases}1\\quad\\text{if }i=2\\\\0\\quad\\text{if }i=1\\end{cases},$
+-   $i$ corresponds to the level of the supplementary variable,
+-   $j$ corresponds to the dose level,
+-   $x_{1i} = \begin{cases}1\quad\text{if }i=1\\0\quad\text{if }i=2\end{cases},$
+-   $x_{2i} = \begin{cases}1\quad\text{if }i=2\\0\quad\text{if }i=1\end{cases},$
     and
 -   in this case the system is singular so the last term is dropped
-    (same as *β*<sub>2</sub> = 0).
+    (same as $\beta_2 = 0$).
 
 ---
 
 ## Fitting a categorical variable in `lm`: convenient approach
 
--   Instead of creating dummy variables, like *x*<sub>1*i*</sub> and
-    *x*<sub>2*i*</sub>, for every level of a categorical variable, it is
-    more convenient to use the categorical variable directly in the
-    symbolic formula like below:
+-   Instead of creating dummy variables, like $x_{1i}$ and $x_{2i}$, for
+    every level of a categorical variable, it is more convenient to use
+    the categorical variable directly in the symbolic formula like
+    below:
 
-<!-- -->
-
-    fit2s <- lm(len ~ supp, data = ToothGrowth)
+``` r
+fit2s <- lm(len ~ supp, data = ToothGrowth)
+```
 
 -   Above model is the equivalent as `fit1s`:
 
-<!-- -->
+``` r
+coef(fit1s)
+```
 
-    coef(fit1s)
+    ##              (Intercept) as.numeric(supp == "VC") as.numeric(supp == "OJ") 
+    ##                 20.66333                 -3.70000                       NA
 
-    ##              (Intercept) as.numeric(supp == "VC") 
-    ##                 20.66333                 -3.70000 
-    ## as.numeric(supp == "OJ") 
-    ##                       NA
-
-    coef(fit2s)
+``` r
+coef(fit2s)
+```
 
     ## (Intercept)      suppVC 
     ##    20.66333    -3.70000
@@ -84,17 +84,17 @@ where:
 
 ## Predicted values
 
-$$\\widehat{\\texttt{len}} = 20.66 - 3.7 \\cdot \\texttt{supp}\_{\\texttt{VC}}$$
+$$\widehat{\texttt{len}} = 20.66 - 3.7 \cdot \texttt{supp}_{\texttt{VC}}$$
 
 -   There are only two possible response values from this model:
 
-<!-- -->
-
-    predict(fit2s, data.frame(supp = c("OJ", "VC")))
+``` r
+predict(fit2s, data.frame(supp = c("OJ", "VC")))
+```
 
     ##        1        2 
     ## 20.66333 16.96333
 
-<img src="images/chapter8-02/toothgrowth-plot2-1.png" style="display: block; margin: auto;" />
+`<img src="images/chapter8-02/toothgrowth-plot2-1.png" style="display: block; margin: auto;" />`{=html}
 
 -   Is this a reasonable model?

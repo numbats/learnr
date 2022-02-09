@@ -6,32 +6,42 @@ type: slides
 ## Simple linear regression
 
 -   Simple linear regression refers to fitting a straight line
-    *y* = *β*<sub>0</sub> + *β*<sub>1</sub>*x* to a set of bivariate
-    data.
+    $y = \beta_0 + \beta_1 x$ to a set of bivariate data.
 
-    ggplot(cars, aes(speed, dist)) +
-      geom_point() + 
-      geom_abline(intercept = -17, 
-                  slope = 4, size = 1.5,
-                  color = "indianred") + 
-      geom_abline(intercept = -5, 
-                  slope = 3, size = 1.5,
-                  color = "cadetblue")  + 
-      geom_abline(intercept = 80, 
-                  slope = -3.5, size = 1.5,
-                  color = "seagreen")
+::: columns
+::: {.column width="70%"}
+``` r
+ggplot(cars, aes(speed, dist)) +
+  geom_point() + 
+  geom_abline(intercept = -17, 
+              slope = 4, size = 1.5,
+              color = "indianred") + 
+  geom_abline(intercept = -5, 
+              slope = 3, size = 1.5,
+              color = "cadetblue")  + 
+  geom_abline(intercept = 80, 
+              slope = -3.5, size = 1.5,
+              color = "seagreen")
+```
+:::
 
-<img src="images/chapter8-01/slr-plot-1.png" style="display: block; margin: auto;" />
+::: {.column width="30%"}
+`<img src="images/chapter8-01/slr-plot-1.png" style="display: block; margin: auto;" />`{=html}
+:::
+:::
 
+```{=html}
 <aside class="notes">
-
+```
 -   Three lines are shown in the plot:
-    -   *y* =  − 17 + 4*x*
-    -   *y* =  − 5 + 3*x*
-    -   *y* = 80 − 3.5*x*
+    -   $y = -17 + 4x$
+    -   $y = -5 + 3x$
+    -   $y = 80 - 3.5x$
 -   Which of these three lines do you think fits the best?
 
+```{=html}
 </aside>
+```
 
 ---
 
@@ -42,22 +52,23 @@ type: slides
 -   In simple linear regression, the **residuals** are the vertical
     distance of the observations from the fitted line.
 
-<img src="images/chapter8-01/residuals-1.png" style="display: block; margin: auto;" />
+`<img src="images/chapter8-01/residuals-1.png" style="display: block; margin: auto;" />`{=html}
 
 ---
 
 ## Least squares
 
-*y* = *β*<sub>0</sub> + *β*<sub>1</sub>*x*
+$$y = \beta_0 + \beta_1 x$$
 
--   **Method of least squares** to estimate the parameters,
-    *β*<sub>0</sub> (intercept) and *β*<sub>1</sub> (slope).
+-   **Method of least squares** to estimate the parameters, $\beta_0$
+    (intercept) and $\beta_1$ (slope).
 -   Method of least squares estimate parameters such that it minimizes
     the residual sum of the squares (RSS).
--   **Residuals** = observed − fitted value.
--   **Fitted value** = the predicted response (*y*) value from the
-    fitted model using predictors (*x*) from the data
+-   **Residuals** = observed $-$ fitted value.
+-   **Fitted value** = the predicted response $(y)$ value from the
+    fitted model using predictors $(x)$ from the data
 
+::: notes
 -   Unless stated otherwise, simple linear regression uses the **method
     of least squares** to estimate the model parameters.
 -   Method of least squares estimates the model parameters by finding
@@ -66,21 +77,24 @@ type: slides
     the fitted value.
 -   Fitted values are the predicted response value under the fitted
     model for the predictors in the data.
+:::
 
 ---
 
 ## Sum of the squares of the residuals
 
-<img src="images/chapter8-01/plot-fits-1.png" style="display: block; margin: auto;" />
+`<img src="images/chapter8-01/plot-fits-1.png" style="display: block; margin: auto;" />`{=html}
 
--   The sum of the red squares are the residual sum of squares (RSS) –
+::: notes
+-   The sum of the red squares are the residual sum of squares (RSS) --
     the actual RSS can be seen on top of the plot
--   It doesn’t look like squares because the scale on the x- and y-axis
+-   It doesn't look like squares because the scale on the x- and y-axis
     differ
 -   There is a closed-form solution to finding parameters that minimise
     the residual sum of the squares.
 -   You can use calculus to find this or consult any standard first year
     statsitics text book.
+:::
 
 ---
 
@@ -92,7 +106,7 @@ type: slides
     represents the linear model.
 -   For example, `y ~ 1 + x` corresponds to a linear model
 
-$$\\color{#006dae}{y\_i} = \\beta\_0 \\cdot \\color{#006dae}{1} + \\beta\_1 \\cdot \\color{#006dae}{x\_i} + e\_i, \\qquad\\text{for } i = 1, ..., n.$$
+$$\color{#006dae}{y_i} = \beta_0 \cdot \color{#006dae}{1} + \beta_1 \cdot \color{#006dae}{x_i} + e_i, \qquad\text{for } i = 1, ..., n.$$
 
 -   The intercept term `1` is included by default.
 -   So `lm(y ~ 1 + x)` is the same as `lm(y ~ x)` .
@@ -101,21 +115,21 @@ $$\\color{#006dae}{y\_i} = \\beta\_0 \\cdot \\color{#006dae}{1} + \\beta\_1 \\cd
 
 ## Fitting the linear regression with R
 
--   To fit a linear regression, it’s best to parse the `data.frame` into
+-   To fit a linear regression, it's best to parse the `data.frame` into
     the `data` argument.
 -   The variables in the formula refers to the variables in the input
     data.
 
-<!-- -->
-
-    fit <- lm(dist ~  speed, data = cars)
+``` r
+fit <- lm(dist ~  speed, data = cars)
+```
 
 -   To get the model parameter estimates, referred to also as
     **coefficients**, you can use `coef` function on the model object:
 
-<!-- -->
-
-    coef(fit)
+``` r
+coef(fit)
+```
 
     ## (Intercept)       speed 
     ##  -17.579095    3.932409
@@ -124,7 +138,9 @@ $$\\color{#006dae}{y\_i} = \\beta\_0 \\cdot \\color{#006dae}{1} + \\beta\_1 \\cd
 
 ## Model summaries
 
-    summary(fit)
+``` r
+summary(fit)
+```
 
     ## 
     ## Call:
@@ -155,9 +171,9 @@ $$\\color{#006dae}{y\_i} = \\beta\_0 \\cdot \\color{#006dae}{1} + \\beta\_1 \\cd
 -   The package `broom` has handy functions to get the summary values
     out in a tidy format:
 
-<!-- -->
-
-    broom::tidy(fit)
+``` r
+broom::tidy(fit)
+```
 
     ## # A tibble: 2 × 5
     ##   term        estimate std.error statistic  p.value
@@ -165,14 +181,14 @@ $$\\color{#006dae}{y\_i} = \\beta\_0 \\cdot \\color{#006dae}{1} + \\beta\_1 \\cd
     ## 1 (Intercept)   -17.6      6.76      -2.60 1.23e- 2
     ## 2 speed           3.93     0.416      9.46 1.49e-12
 
-    broom::glance(fit)
+``` r
+broom::glance(fit)
+```
 
     ## # A tibble: 1 × 12
-    ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC
-    ##       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl>
-    ## 1     0.651         0.644  15.4      89.6 1.49e-12     1  -207.  419.
-    ## # … with 4 more variables: BIC <dbl>, deviance <dbl>,
-    ## #   df.residual <int>, nobs <int>
+    ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC deviance df.residual  nobs
+    ##       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>    <dbl>       <int> <int>
+    ## 1     0.651         0.644  15.4      89.6 1.49e-12     1  -207.  419.  425.   11354.          48    50
 
 ---
 
@@ -181,9 +197,9 @@ $$\\color{#006dae}{y\_i} = \\beta\_0 \\cdot \\color{#006dae}{1} + \\beta\_1 \\cd
 -   You can also easily augment the data with model information,
     e.g. fitted values and residuals.
 
-<!-- -->
-
-    broom::augment(fit)
+``` r
+broom::augment(fit)
+```
 
     ## # A tibble: 50 × 8
     ##     dist speed .fitted .resid   .hat .sigma  .cooksd .std.resid
@@ -204,16 +220,16 @@ $$\\color{#006dae}{y\_i} = \\beta\_0 \\cdot \\color{#006dae}{1} + \\beta\_1 \\cd
 
 ## Predictions from the fitted model
 
-$$\\widehat{\\texttt{dist}} = -17.58 + 3.93\\cdot \\texttt{speed}$$
+$$\widehat{\texttt{dist}} = -17.58 + 3.93\cdot \texttt{speed}$$
 
 -   The `predict` function can return predicted response values from a
     fitted model:
 
-<!-- -->
-
-    predict(fit, data.frame(speed = c(5, 10)))
+``` r
+predict(fit, data.frame(speed = c(5, 10)))
+```
 
     ##         1         2 
     ##  2.082949 21.744993
 
-<img src="images/chapter8-01/predict-plot-1.png" style="display: block; margin: auto;" />
+`<img src="images/chapter8-01/predict-plot-1.png" style="display: block; margin: auto;" />`{=html}
