@@ -31,3 +31,5 @@ mtcars %>%
 Math works too:
 
 $$\dfrac{\beta}{\alpha}$$
+
+You can also write math inline: \(\beta/\alpha\)

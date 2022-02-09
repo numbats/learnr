@@ -40,3 +40,6 @@ Update the following code to produce a boxplot of fuel efficiency
 <codeblock id="example">
 
 </codeblock>
+
+
+You can also write math inline: \\(\beta/\alpha\\)
