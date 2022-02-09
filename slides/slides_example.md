@@ -17,21 +17,17 @@ To separate content onto the next slide, use `---` on a new line.
 
 In slides you can provide R code examples;
 
-    library(tidyverse)
+``` {.r}
+library(tidyverse)
+mtcars %>% 
+  ggplot(aes(x = factor(cyl), y = mpg)) + 
+  geom_boxplot()
+```
 
-    ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
+<img src="slides_example_files/figure-markdown/unnamed-chunk-1-1.png" style="display: block; margin: auto;" />
 
-    ## ✓ ggplot2 3.3.5.9000     ✓ purrr   0.3.4     
-    ## ✓ tibble  3.1.6          ✓ dplyr   1.0.7     
-    ## ✓ tidyr   1.1.4          ✓ stringr 1.4.0     
-    ## ✓ readr   2.0.2          ✓ forcats 0.5.1
+---
 
-    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-    ## x dplyr::filter() masks stats::filter()
-    ## x dplyr::lag()    masks stats::lag()
+Math works too:
 
-    mtcars %>% 
-      ggplot(aes(x = factor(cyl), y = mpg)) + 
-      geom_boxplot()
-
-![](slides_example_files/figure-markdown_strict/unnamed-chunk-1-1.png)
+$$\dfrac{\beta}{\alpha}$$

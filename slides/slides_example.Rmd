@@ -3,9 +3,13 @@ title: Example slides
 output:
   teachr::teachr_slides
 type: slides
+chapter: 3
 ---
 
 ```{r setup, include = FALSE}
+knitr::opts_chunk$set(fig.align = "center",
+                      fig.width = 4, 
+                      fig.height = 4)
 ```
 
 ## Example slides
@@ -21,10 +25,15 @@ To separate content onto the next slide, use `---` on a new line.
 
 In slides you can provide R code examples;
 
-```{r}
+```{r, message=FALSE}
 library(tidyverse)
 mtcars %>% 
   ggplot(aes(x = factor(cyl), y = mpg)) + 
   geom_boxplot()
 ```
 
+---
+
+Math works too:
+
+$$\dfrac{\beta}{\alpha}$$
