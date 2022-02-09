@@ -64,7 +64,7 @@ const Layout = ({ isHome, title, description, children }) => {
                                         <H3>About us</H3>
                                         {meta.showProfileImage && (
                                             <img
-                                                src="/profile.jpg"
+                                                src="/profile.png"
                                                 alt=""
                                                 className={classes.profile}
                                             />

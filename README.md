@@ -184,8 +184,8 @@ The following assets need to be available and can be customized:
 | ----------------- | -------------------------------------------------------- |
 | `icon.png`        | Custom [favicon](https://en.wikipedia.org/wiki/Favicon). |
 | `logo.svg`        | The course logo.                                         |
-| `profile.jpg`     | Photo or profile image.                                  |
-| `social.jpg`      | Social image, displayed in Twitter and Facebook cards.   |
+| `profile.png`     | Photo or profile image.                                  |
+| `social.png`      | Social image, displayed in Twitter and Facebook cards.   |
 | `icon_check.svg`  | "Check" icon displayed on "Mark as completed" button.    |
 | `icon_slides.svg` | Icon displayed in the corner of a slides exercise.       |
 
