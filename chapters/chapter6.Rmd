@@ -79,6 +79,7 @@ You can also load specific library separately, for example, `library(dplyr)`.
 <exercise id="3" title="Check Your Understanding on `dplyr`">
 
 **Problem 1**
+
 In this problem, we will use the `iris` data set. The `iris` dataset is a built-in dataset in R that contains measurements on 4 different attributes (in centimeters) for 50 flowers from 3 different species: setosa, versicolor,virginica.
 
 Create a new dataframe from the `iris` data set that meets the following criteria: contains only the `Sepal.Length` column and a new column called `petal_area` containing a value that approximates the area of the petal. (`Petal.Length` times `Petal.Width`). Only the rows where `petal_area` is greater than 5 should be shown in the final dataframe. The final dataframe should be called `new_iris`.
@@ -108,6 +109,7 @@ test()
 **Problem 2**
 
 Consider the data sets `size` and `color`. 
+
 ```{r}
 size <- tibble(
   product_name = c('mini', 'pro', 'maxi'),
@@ -157,7 +159,7 @@ cat(mc_opts("<code>inner_join(color, size)</code>" = "Try again!",
 **Problem 1**
 
 
-Which table is tidy?
+We have used `table1`, `table2` and `table3` as example in the slides. Which table is tidy?
 
 ```{r, echo = FALSE, results = "asis"}
 cat(mc_opts("Table 1 only" = "That's correct!",
