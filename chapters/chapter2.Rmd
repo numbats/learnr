@@ -1,5 +1,5 @@
 ---
-title: 'Chapter 2: R Programming Basics'
+title: 'Chapter 2: R programming basics'
 description:
   'In R Programming Basics, you will master the basic operations of this popular open source language. You will also learn to perform simple algebraic operations on vectors and matrices. You will also learn about data frames, conditional statements, loops, and functions to power your R code, making your work more efficient and elegant.'
 prev: /chapter1

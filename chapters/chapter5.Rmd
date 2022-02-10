@@ -1,5 +1,5 @@
 ---
-title: 'Chapter 5: Data Wrangling'
+title: 'Chapter 5: Data wrangling'
 description:
   'In this chapter, you will learn to use tidyr and dplyr from the tidyverse in R.'
 prev: /chapter4
@@ -76,7 +76,8 @@ You can also load specific library separately, for example, `library(dplyr)`.
 
 </exercise>
 
-<exercise id="3" title="Check Your Understanding on `dplyr`">
+
+<exercise id="3" title="Check Your Understanding on dplyr">
 
 **Problem 1**
 
@@ -154,7 +155,7 @@ cat(mc_opts("<code>inner_join(color, size)</code>" = "Try again!",
 
 </exercise>
 
-<exercise id="5" title="Check Your Understanding on `tidyr`">
+<exercise id="5" title="Check Your Understanding on tidyr" >
 
 **Problem 1**
 

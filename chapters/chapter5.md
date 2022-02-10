@@ -1,5 +1,5 @@
 ---
-title: 'Chapter 5: Data Wrangling'
+title: 'Chapter 5: Data wrangling'
 description: In this chapter, you will learn to use tidyr and dplyr from the tidyverse
   in R.
 prev: /chapter4
@@ -56,7 +56,7 @@ You can also load specific library separately, for example,
 
 </exercise>
 
-`<exercise id="3" title="Check Your Understanding on `dplyr`">`
+<exercise id="3" title="Check Your Understanding on dplyr">
 
 **Problem 1**
 
@@ -107,7 +107,7 @@ We would like to merge the tables so that the result looks like:
 
 Which of the following commands does the operation?
 
-<choice id=0.471820156788453>
+<choice id=0.79479358275421>
 
 <opt text="<code>inner_join(color, size)</code>" >
 
@@ -143,14 +143,14 @@ That's right!
 
 </exercise>
 
-`<exercise id="5" title="Check Your Understanding on `tidyr`">`
+<exercise id="5" title="Check Your Understanding on tidyr" >
 
 **Problem 1**
 
 We have used `table1`, `table2` and `table3` as example in the slides.
 Which table is tidy?
 
-<choice id=0.392315640114248>
+<choice id=0.00416539935395122>
 
 <opt text="Table 1 only" correct="true">
 
@@ -207,7 +207,7 @@ smoke <- tribble(
     3 no    employed             20
     4 no    unemployed           12
 
-<choice id=0.927774973912165>
+<choice id=0.800078342668712>
 
 <opt text="Using <code>pivot_wider()</code> on smoke" >
 
@@ -240,7 +240,7 @@ Try again!
 Which is the best way to check if there are missing observations in your
 data?
 
-<choice id=0.918903469340876>
+<choice id=0.36603415873833>
 
 <opt text="Eyeballing and look for blanks in my data" >
 
