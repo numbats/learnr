@@ -21,13 +21,17 @@ You can use these command on scalar.
 
 For example,
 
-    8 > 1
+``` r
+8 > 1
+```
 
     ## [1] TRUE
 
 `8 > 1` return `TRUE` since 8 is larger than 1.
 
-    8 ==1
+``` r
+8 ==1
+```
 
     ## [1] FALSE
 
@@ -50,7 +54,9 @@ These command also extends to vectors.
 
 For example,
 
-    c(0,5,100) == 5
+``` r
+c(0,5,100) == 5
+```
 
     ## [1] FALSE  TRUE FALSE
 
@@ -80,7 +86,9 @@ to 5.
 
 Now if instead we do
 
-    c(0,5,100) >= 5
+``` r
+c(0,5,100) >= 5
+```
 
     ## [1] FALSE  TRUE  TRUE
 
@@ -89,7 +97,9 @@ to 5.
 
 If we change our code into
 
-    c(0,5,100) < 5
+``` r
+c(0,5,100) < 5
+```
 
     ## [1]  TRUE FALSE FALSE
 
@@ -101,7 +111,9 @@ since 5 is not strictly less than 5.
 Note that R also support element-wise comparison if we put a relational
 operator between two vectors:
 
-    c(2,4,6) < c(3,5,7)
+``` r
+c(2,4,6) < c(3,5,7)
+```
 
     ## [1] TRUE TRUE TRUE
 
@@ -134,8 +146,10 @@ For example, if we check the entries of the following vector x is
 greater than 2 AND less than 6, we expect `TRUE` for the three entries
 in the middle.
 
-    x = c(1,2,3,4,5,6,7)
-    (x>2)&(x<6)
+``` r
+x = c(1,2,3,4,5,6,7)
+(x>2)&(x<6)
+```
 
     ## [1] FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE
 
@@ -143,14 +157,16 @@ in the middle.
 
 **the OR (`|`) operator**
 
-The OR operator (|) works similarly, but the difference is that only at
+The OR operator (\|) works similarly, but the difference is that only at
 least one of the logical values it uses should be equal to TRUE for the
 entire OR operation to evaluate to TRUE.
 
 For example,
 
-    x = c(1,2,3,4,5,6,7)
-    (x>4)|(x<2)
+``` r
+x = c(1,2,3,4,5,6,7)
+(x>4)|(x<2)
+```
 
     ## [1]  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE
 
@@ -158,24 +174,28 @@ For example,
 
 **the NOT (`!`) operator**
 
-The NOT operator negates the logical value it’s used on.
+The NOT operator negates the logical value it's used on.
 
 Say we want to check if an object `a` is a numeric, where `a` is
 actually a string `rain`, we expect the output to be `FALSE`.
 
-    a <- "rain"
-    is.numeric(a)
+``` r
+a <- "rain"
+is.numeric(a)
+```
 
     ## [1] FALSE
 
-    #if the input is actually a number
-    is.numeric(100)
+``` r
+#if the input is actually a number
+is.numeric(100)
+```
 
     ## [1] TRUE
 
 Notes:
 
-The NOT operator negates the logical value it’s used on.
+The NOT operator negates the logical value it's used on.
 
 For example, the built-in R function, is `is.numeric()` checks if an R
 object is a numeric.
@@ -191,13 +211,17 @@ Consider also object `b` is a number, then the expected output is
 If we, instead, use `!is.numeric(a)` to check if `a` is, the output is
 now `TRUE`.
 
-    !is.numeric(a)
+``` r
+!is.numeric(a)
+```
 
     ## [1] TRUE
 
 And when we run `!is.numeric(100)` in R, the output would be `FALSE`.
 
-    !is.numeric(100)
+``` r
+!is.numeric(100)
+```
 
     ## [1] FALSE
 
@@ -241,10 +265,12 @@ customer dined in a restaurant.
 We consider a customer to be happy if the rating is greater than or
 equal to 4.
 
-    customer_rating = 4
-    if (customer_rating >= 4){
-      print("Customer is happy!")
-    }
+``` r
+customer_rating = 4
+if (customer_rating >= 4){
+  print("Customer is happy!")
+}
+```
 
     ## [1] "Customer is happy!"
 
@@ -262,7 +288,7 @@ The syntax of an else statement looks like this:
       do_this_instead
     }
 
-It’s important that the syntax `else` is on the **same line** as the
+It's important that the syntax `else` is on the **same line** as the
 closing bracket of the if part!
 
 Note:
@@ -279,19 +305,21 @@ the first curly bracket (`do_this`) will be executed. Otherwise, the
 code included in the second curly bracket (`do_this_instead`) will be
 executed.
 
-It’s important that the syntax `else` is on the **same line** as the
+It's important that the syntax `else` is on the **same line** as the
 closing bracket of the if part!
 
 ---
 
 For example, we would like to be alerted if a customer is not happy.
 
-    customer_rating = 2
-    if (customer_rating >= 4){
-      print("Customer is happy!")
-    } else { 
-      print("Attention - unhappy customer!")
-    }
+``` r
+customer_rating = 2
+if (customer_rating >= 4){
+  print("Customer is happy!")
+} else { 
+  print("Attention - unhappy customer!")
+}
+```
 
     ## [1] "Attention - unhappy customer!"
 
@@ -328,15 +356,15 @@ For example, we would like to distinguish between:
 -   neutral customer (rating to be less than 4 but higher than 2)
 -   unhappy customer (rating not more than 2).
 
-<!-- -->
-
-    customer_rating = 3
-    if (customer_rating >= 4){
-      print("Customer is happy!")
-    } else if (customer_rating <= 2){ 
-      print("Attention - unhappy customer!")
-    } else {
-      print("Neutral customer.")
-    }
+``` r
+customer_rating = 3
+if (customer_rating >= 4){
+  print("Customer is happy!")
+} else if (customer_rating <= 2){ 
+  print("Attention - unhappy customer!")
+} else {
+  print("Neutral customer.")
+}
+```
 
     ## [1] "Neutral customer."

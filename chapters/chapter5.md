@@ -1,11 +1,11 @@
 ---
-title: 'Chapter 6: Data Wrangling'
+title: 'Chapter 5: Data Wrangling'
 description: In this chapter, you will learn to use tidyr and dplyr from the tidyverse
   in R.
-prev: /chapter5
-next: /chapter7
+prev: /chapter4
+next: /chapter6
 type: chapter
-id: 6
+id: 5
 
 ---
 <exercise id="1" title="Introduction to tidyverse">
@@ -25,7 +25,7 @@ Tidyverse includes the following packages:
 -   `tibble`: re-imagining of data frame
 -   `stringr`: working with string data
 
-and many more…
+and many more...
 
 There are many other packages with more specialized functions in the
 tidyverse. In this chapter, we focuses on two packages: **tidyr** and
@@ -41,7 +41,9 @@ You can install the core tidyverse packages with:
 
 Then, to load the package:
 
-    library(tidyverse)
+``` r
+library(tidyverse)
+```
 
 You can also load specific library separately, for example,
 `library(dplyr)`.
@@ -50,16 +52,18 @@ You can also load specific library separately, for example,
 
 <exercise id="2" title="Introduction to dplyr" type="slides">
 
-&lt;<slides source="chapter6_02_dplyr"> </slides>&gt;
+\<<slides source="chapter5_02_dplyr"> </slides>\>
 
 </exercise>
 
-<exercise id="3" title="Check Your Understanding on `dplyr`">
+`<exercise id="3" title="Check Your Understanding on `dplyr`">`
 
-**Problem 1** In this problem, we will use the `iris` data set. The
-`iris` dataset is a built-in dataset in R that contains measurements on
-4 different attributes (in centimeters) for 50 flowers from 3 different
-species: setosa, versicolor,virginica.
+**Problem 1**
+
+In this problem, we will use the `iris` data set. The `iris` dataset is
+a built-in dataset in R that contains measurements on 4 different
+attributes (in centimeters) for 50 flowers from 3 different species:
+setosa, versicolor,virginica.
 
 Create a new dataframe from the `iris` data set that meets the following
 criteria: contains only the `Sepal.Length` column and a new column
@@ -68,7 +72,7 @@ petal. (`Petal.Length` times `Petal.Width`). Only the rows where
 `petal_area` is greater than 5 should be shown in the final dataframe.
 The final dataframe should be called `new_iris`.
 
-<codeblock id="06_03_01">
+<codeblock id="05_03_01">
 
 Hint: You can use `mutate()`, `filter()` and `select()` to help with the
 task.
@@ -79,15 +83,17 @@ task.
 
 Consider the data sets `size` and `color`.
 
-    size <- tibble(
-      product_name = c('mini', 'pro', 'maxi'),
-      diameter = c(23, 27, 32)
-    )
+``` r
+size <- tibble(
+  product_name = c('mini', 'pro', 'maxi'),
+  diameter = c(23, 27, 32)
+)
 
-    color <- tibble(
-      product_name = c('mini','light', 'pro'),
-      hue = c('red','green', 'silver')
-    )
+color <- tibble(
+  product_name = c('mini','light', 'pro'),
+  hue = c('red','green', 'silver')
+)
+```
 
 We would like to merge the tables so that the result looks like:
 
@@ -101,7 +107,7 @@ We would like to merge the tables so that the result looks like:
 
 Which of the following commands does the operation?
 
-<choice id=0.29377543181181>
+<choice id=0.471820156788453>
 
 <opt text="<code>inner_join(color, size)</code>" >
 
@@ -123,7 +129,7 @@ Try again!
 
 <opt text="<code>full_join(color, size)</code>" correct="true">
 
-That’s right!
+That's right!
 
 </opt>
 
@@ -133,21 +139,22 @@ That’s right!
 
 <exercise id="4" title="Tidy (reshape) your data" type="slides">
 
-&lt;<slides source="chapter6_04_tidyr"> </slides>&gt;
+\<<slides source="chapter5_04_tidyr"> </slides>\>
 
 </exercise>
 
-<exercise id="5" title="Check Your Understanding on `tidyr`">
+`<exercise id="5" title="Check Your Understanding on `tidyr`">`
 
 **Problem 1**
 
+We have used `table1`, `table2` and `table3` as example in the slides.
 Which table is tidy?
 
-<choice id=0.961768619948998>
+<choice id=0.392315640114248>
 
 <opt text="Table 1 only" correct="true">
 
-That’s correct!
+That's correct!
 
 </opt>
 
@@ -172,7 +179,7 @@ divided by the other) and is converted to characters.
 Try again! Each cell in a tidy data format should hold only a single
 value. The column `rate` in Table 3 contains data with two values (one
 divided by the other) and is converted to characters. Table 2 contains
-two variables under the same column ‘type’.
+two variables under the same column 'type'.
 
 </opt>
 
@@ -183,11 +190,13 @@ two variables under the same column ‘type’.
 Consider the following simple table `smoke`, which command do I need to
 transform `smoke` to `smoke2`?
 
-    smoke <- tribble(
-      ~smoke, ~employed, ~unemployed,
-      "yes", 23, 10,
-      "no", 20, 12
-    )
+``` r
+smoke <- tribble(
+  ~smoke, ~employed, ~unemployed,
+  "yes", 23, 10,
+  "no", 20, 12
+)
+```
 
     smoke2
     # A tibble: 4 × 3
@@ -198,7 +207,7 @@ transform `smoke` to `smoke2`?
     3 no    employed             20
     4 no    unemployed           12
 
-<choice id=0.0697324802167714>
+<choice id=0.927774973912165>
 
 <opt text="Using <code>pivot_wider()</code> on smoke" >
 
@@ -208,7 +217,7 @@ Try again!
 
 <opt text="Using <code>pivot_longer()</code> on smoke" correct="true">
 
-That’s correct!
+That's correct!
 
 </opt>
 
@@ -231,17 +240,17 @@ Try again!
 Which is the best way to check if there are missing observations in your
 data?
 
-<choice id=0.444903891533613>
+<choice id=0.918903469340876>
 
 <opt text="Eyeballing and look for blanks in my data" >
 
-That’s not very effective nor efficient. Use R command to help you!
+That's not very effective nor efficient. Use R command to help you!
 
 </opt>
 
 <opt text="Eyeballing and look for <code>NA</code> in my data" >
 
-That’s not very effective nor efficient. Use R command to help you!
+That's not very effective nor efficient. Use R command to help you!
 
 </opt>
 
@@ -253,7 +262,7 @@ Try again!
 
 <opt text="There is no need to find the missing values. We can ignore them." >
 
-That’s incorrect.
+That's incorrect.
 
 </opt>
 

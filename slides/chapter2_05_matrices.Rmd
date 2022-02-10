@@ -12,6 +12,7 @@ output:
      #   before_body: header.html
      #incremental: true
 type: slides
+chapter: 2
 ---
 
 ```{r setup, include = FALSE}

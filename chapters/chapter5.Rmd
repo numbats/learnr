@@ -1,11 +1,11 @@
 ---
-title: 'Chapter 6: Data Wrangling'
+title: 'Chapter 5: Data Wrangling'
 description:
   'In this chapter, you will learn to use tidyr and dplyr from the tidyverse in R.'
-prev: /chapter5
-next: /chapter7
+prev: /chapter4
+next: /chapter6
 type: chapter
-id: 6
+id: 5
 output:
   teachr::teachr_chapter:
   html_document:
@@ -72,7 +72,7 @@ You can also load specific library separately, for example, `library(dplyr)`.
 
 <exercise id="2" title="Introduction to dplyr" type="slides">
 
-<`r slides("chapter6_02_dplyr")`>
+<`r slides("chapter5_02_dplyr")`>
 
 </exercise>
 
@@ -84,7 +84,7 @@ In this problem, we will use the `iris` data set. The `iris` dataset is a built-
 
 Create a new dataframe from the `iris` data set that meets the following criteria: contains only the `Sepal.Length` column and a new column called `petal_area` containing a value that approximates the area of the petal. (`Petal.Length` times `Petal.Width`). Only the rows where `petal_area` is greater than 5 should be shown in the final dataframe. The final dataframe should be called `new_iris`.
 
-```{teachr 06_03_01}
+```{teachr 05_03_01}
 
 new_iris <- iris %>% 
   <<mutate(petal_area = Petal.Length * Petal.Width) %>% filter(petal_area > 5) %>% select(Sepal.Length, petal_area)>>
@@ -150,7 +150,7 @@ cat(mc_opts("<code>inner_join(color, size)</code>" = "Try again!",
 
 <exercise id="4" title="Tidy (reshape) your data" type="slides">
 
-<`r slides("chapter6_04_tidyr")`>
+<`r slides("chapter5_04_tidyr")`>
 
 </exercise>
 

@@ -19,7 +19,9 @@ They show the same information in 3 different ways.
 
 Table 1
 
-    table1
+``` r
+table1
+```
 
     ## # A tibble: 6 × 4
     ##   country      year  cases population
@@ -49,7 +51,9 @@ each of the table.
 
 Table 2
 
-    table2
+``` r
+table2
+```
 
     ## # A tibble: 12 × 4
     ##    country      year type            count
@@ -85,7 +89,9 @@ each of the table.
 
 Table 3
 
-    table3
+``` r
+table3
+```
 
     ## # A tibble: 6 × 3
     ##   country      year rate             
@@ -138,8 +144,10 @@ size of the populations.
 We want to separate the `rate` variable into variables `cases` and
 `population`.
 
-    table3 %>%
-      separate(rate, into = c("cases", "population"), sep = "/", convert = TRUE)
+``` r
+table3 %>%
+  separate(rate, into = c("cases", "population"), sep = "/", convert = TRUE)
+```
 
     ## # A tibble: 6 × 4
     ##   country      year  cases population
@@ -164,8 +172,10 @@ Note:
 In table 5, the `century` and `year` column can be combined to give a
 `year_new` column.
 
-    table5 %>%
-      unite(new_year,century, year, sep = "")
+``` r
+table5 %>%
+  unite(new_year,century, year, sep = "")
+```
 
     ## # A tibble: 6 × 3
     ##   country     new_year rate             
@@ -180,7 +190,7 @@ In table 5, the `century` and `year` column can be combined to give a
 Note:
 
 The `sep` argument here is what comes in between the values from
-different columns. If we don’t want anything in between, we can use ““.
+different columns. If we don't want anything in between, we can use "".
 
 ---
 
@@ -189,11 +199,13 @@ of `year` and `cases`.
 
 We would like to separate them.
 
-    table6 <- tibble(country = c("Afghanistan", "Brazil", "China"),
-      year = c("1999,2000", "1999,2000", "1999,2000"),
-      cases= c("745,2666", "37737,80488", "212258,213766"))
+``` r
+table6 <- tibble(country = c("Afghanistan", "Brazil", "China"),
+  year = c("1999,2000", "1999,2000", "1999,2000"),
+  cases= c("745,2666", "37737,80488", "212258,213766"))
 
-    table6 %>% separate_rows(cases, year, sep=',', convert = TRUE)
+table6 %>% separate_rows(cases, year, sep=',', convert = TRUE)
+```
 
     ## # A tibble: 6 × 3
     ##   country      year  cases
@@ -220,14 +232,16 @@ To tackle these problems, you will need `pivot_longer()` and/or
 
 ---
 
-**pivot\_longer()**
+**pivot_longer()**
 
 `table4a` is a great example of data that needs `pivot_longer()`.
 
 Here you see that the case count of each country is separated into two
 columns because they are from different years.
 
-    table4a
+``` r
+table4a
+```
 
     ## # A tibble: 3 × 3
     ##   country     `1999` `2000`
@@ -236,8 +250,10 @@ columns because they are from different years.
     ## 2 Brazil       37737  80488
     ## 3 China       212258 213766
 
-    table4a %>% 
-      pivot_longer(c(`1999`, `2000`), names_to = "year", values_to = "cases")
+``` r
+table4a %>% 
+  pivot_longer(c(`1999`, `2000`), names_to = "year", values_to = "cases")
+```
 
     ## # A tibble: 6 × 3
     ##   country     year   cases
@@ -260,14 +276,16 @@ Notes:
 
 ---
 
-**pivot\_wider()**
+**pivot_wider()**
 
 In table 2, each observation is a certain country in a certain year.
 
 However, the observation is spread across two rows since there are
 `cases` and `population`.
 
-    table2
+``` r
+table2
+```
 
     ## # A tibble: 12 × 4
     ##    country      year type            count
@@ -285,8 +303,10 @@ However, the observation is spread across two rows since there are
     ## 11 China        2000 cases          213766
     ## 12 China        2000 population 1280428583
 
-    table2 %>%
-      pivot_wider(names_from = type, values_from = count)
+``` r
+table2 %>%
+  pivot_wider(names_from = type, values_from = count)
+```
 
     ## # A tibble: 6 × 4
     ##   country      year  cases population
@@ -322,21 +342,23 @@ Tidyr has three functions:
 
 ---
 
-Let’s look at this toy data set.
+Let's look at this toy data set.
 
 We will start with the `fill()` function to impute the `return` column
 in the `up` direction, then we will impute in the `down` direction.
 
 Can you spot the difference?
 
-    apple <- tibble(
-      year   = c(2020, 2020, 2020, 2020, 2021, 2021, 2021),
-      qtr    = c(   1,    2,    3,    4,    2,    3,    4),
-      return = c(0.75, 0.39, 0.34,   NA, 0.99, 0.07, 1.88)
-    )
+``` r
+apple <- tibble(
+  year   = c(2020, 2020, 2020, 2020, 2021, 2021, 2021),
+  qtr    = c(   1,    2,    3,    4,    2,    3,    4),
+  return = c(0.75, 0.39, 0.34,   NA, 0.99, 0.07, 1.88)
+)
 
-    apple %>%
-      fill(return, .direction = "up")
+apple %>%
+  fill(return, .direction = "up")
+```
 
     ## # A tibble: 7 × 3
     ##    year   qtr return
@@ -349,8 +371,10 @@ Can you spot the difference?
     ## 6  2021     3   0.07
     ## 7  2021     4   1.88
 
-    apple %>%
-      fill(return, .direction = "down")
+``` r
+apple %>%
+  fill(return, .direction = "down")
+```
 
     ## # A tibble: 7 × 3
     ##    year   qtr return
@@ -367,8 +391,10 @@ Can you spot the difference?
 
 Then, we will try to drop the `NA`s in the return in `apple`.
 
-    apple %>%
-      drop_na(return)
+``` r
+apple %>%
+  drop_na(return)
+```
 
     ## # A tibble: 6 × 3
     ##    year   qtr return
@@ -384,8 +410,10 @@ Then, we will try to drop the `NA`s in the return in `apple`.
 
 Finally, we will also replace the `NA`s with the value `999`.
 
-    apple %>%
-      replace_na(list(return=999))
+``` r
+apple %>%
+  replace_na(list(return=999))
+```
 
     ## # A tibble: 7 × 3
     ##    year   qtr return

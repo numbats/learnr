@@ -10,11 +10,11 @@ rectangular brackets (or large parentheses).
 
 For example, matrix `A` is defined as follow:
 
-$$ A = \\begin{bmatrix}4&3&2\\\\7&4&2\\\\6&3&4\\\\3&0&0\\\\2&-2&-3 \\end{bmatrix} $$
+$$ A = \begin{bmatrix}4&3&2\\7&4&2\\6&3&4\\3&0&0\\2&-2&-3 \end{bmatrix} $$
 Note:
 
-Matrix `A` here is a 5 × 3 matrix (pronounced as `5 by 3`, indicating
-there are 5 rows and 3 columns in the matrix).
+Matrix `A` here is a $5 \times 3$ matrix (pronounced as `5 by 3`,
+indicating there are 5 rows and 3 columns in the matrix).
 
 ---
 
@@ -49,8 +49,10 @@ In the R code shown on the slides:
 
 Consider the following operation:
 
-    A <- matrix(c(4,3,2,7,4,2,6,3,4,3,0,0,2,-2,-3), byrow=TRUE, nrow=5)
-    2*A
+``` r
+A <- matrix(c(4,3,2,7,4,2,6,3,4,3,0,0,2,-2,-3), byrow=TRUE, nrow=5)
+2*A
+```
 
     ##      [,1] [,2] [,3]
     ## [1,]    8    6    4
@@ -78,8 +80,10 @@ Consider another matrix `B` defined as
 `A*B` creates a matrix where each element is the product of the
 corresponding elements in matrix `A` and matrix `B`.
 
-    B <- matrix(c(1,1,1,2,2,2,0,0,0,-1,-1,-1,0,0,0), byrow=TRUE, nrow=5)
-    A*B
+``` r
+B <- matrix(c(1,1,1,2,2,2,0,0,0,-1,-1,-1,0,0,0), byrow=TRUE, nrow=5)
+A*B
+```
 
     ##      [,1] [,2] [,3]
     ## [1,]    4    3    2
@@ -104,10 +108,12 @@ more rows or more columns.
 
 You can use the `cbind()` function.
 
-    A <- matrix(c(4,3,2,7,4,2,6,3,4,3,0,0,2,-2,-3), byrow=TRUE, nrow=5)
-    B <- matrix(c(1,1,1,2,2,2,0,0,0,-1,-1,-1,0,0,0), byrow=TRUE, nrow=5)
-    big_matrix <- cbind(A, B)
-    big_matrix
+``` r
+A <- matrix(c(4,3,2,7,4,2,6,3,4,3,0,0,2,-2,-3), byrow=TRUE, nrow=5)
+B <- matrix(c(1,1,1,2,2,2,0,0,0,-1,-1,-1,0,0,0), byrow=TRUE, nrow=5)
+big_matrix <- cbind(A, B)
+big_matrix
+```
 
     ##      [,1] [,2] [,3] [,4] [,5] [,6]
     ## [1,]    4    3    2    1    1    1
@@ -128,8 +134,10 @@ The resulting matrix has 5 rows and 6 columns.
 Similarly, you can add a row or multiple rows to a matrix with the
 `rbind()` function.
 
-    big_matrix2 <- rbind(A,B)
-    big_matrix2
+``` r
+big_matrix2 <- rbind(A,B)
+big_matrix2
+```
 
     ##       [,1] [,2] [,3]
     ##  [1,]    4    3    2

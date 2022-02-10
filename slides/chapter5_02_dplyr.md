@@ -10,10 +10,10 @@ tasks.
 
 -   `select()`: pick particular variables from your data.
 
-<!-- -->
-
-    table1 %>%
-      select(country)
+``` r
+table1 %>%
+  select(country)
+```
 
     ## # A tibble: 6 × 1
     ##   country    
@@ -37,9 +37,9 @@ R. We will use inbuilt data sets: `table1`, `table2`, `table5` and
 
 -   `starts_with()`: select all variables that start with a prefix.
 
-<!-- -->
-
-    billboard %>% select(starts_with("wk"))
+``` r
+billboard %>% select(starts_with("wk"))
+```
 
     ## # A tibble: 317 × 76
     ##      wk1   wk2   wk3   wk4   wk5   wk6   wk7   wk8   wk9  wk10  wk11  wk12  wk13
@@ -71,9 +71,9 @@ variables by matching patterns in their names.
 
 -   `ends_with()`: select all variables that end with a suffix.
 
-<!-- -->
-
-    billboard %>% select(ends_with("9"))
+``` r
+billboard %>% select(ends_with("9"))
+```
 
     ## # A tibble: 317 × 7
     ##      wk9  wk19  wk29  wk39  wk49  wk59 wk69 
@@ -99,9 +99,9 @@ variables by matching patterns in their names.
 
 -   `contains()`: select all variables that contains a literal string.
 
-<!-- -->
-
-    table5 %>% select(contains('ry'))
+``` r
+table5 %>% select(contains('ry'))
+```
 
     ## # A tibble: 6 × 2
     ##   country     century
@@ -123,9 +123,9 @@ variables by matching patterns in their names.
 -   `num_range()`: select all variables that matches a numerical range
     like x01, x02, x03.
 
-<!-- -->
-
-    billboard %>% select(num_range("wk", 10:15))
+``` r
+billboard %>% select(num_range("wk", 10:15))
+```
 
     ## # A tibble: 317 × 6
     ##     wk10  wk11  wk12  wk13  wk14  wk15
@@ -155,10 +155,10 @@ variables.
 -   `filter()`: extract observations from the data based on a given
     condition
 
-<!-- -->
-
-    table2 %>%
-      filter(year==1999)
+``` r
+table2 %>%
+  filter(year==1999)
+```
 
     ## # A tibble: 6 × 4
     ##   country      year type            count
@@ -174,10 +174,10 @@ variables.
 
 -   `arrange()`: sort your data based on one or more variables
 
-<!-- -->
-
-    table2 %>%
-      arrange(count)
+``` r
+table2 %>%
+  arrange(count)
+```
 
     ## # A tibble: 12 × 4
     ##    country      year type            count
@@ -199,10 +199,10 @@ variables.
 
 -   `mutate()`: add new variables or change existing variables
 
-<!-- -->
-
-    table1 %>%
-      mutate(rate = cases/population)
+``` r
+table1 %>%
+  mutate(rate = cases/population)
+```
 
     ## # A tibble: 6 × 5
     ##   country      year  cases population      rate
@@ -219,11 +219,11 @@ variables.
 -   `group_by()` and `ungroup()`: takes existing data and groups
     specific variables together for future operations.
 
-<!-- -->
-
-    table2 %>% 
-      group_by(type) %>% 
-      summarize(min = min(count), max =max(count))
+``` r
+table2 %>% 
+  group_by(type) %>% 
+  summarize(min = min(count), max =max(count))
+```
 
     ## # A tibble: 2 × 3
     ##   type            min        max
@@ -243,9 +243,11 @@ provided.
 You can summarize the data in different ways based on the groupings and
 different argument you included.
 
-    table2 %>% 
-      group_by(type) %>% 
-      summarize(mean(count), median(count),sd(count))
+``` r
+table2 %>% 
+  group_by(type) %>% 
+  summarize(mean(count), median(count),sd(count))
+```
 
     ## # A tibble: 2 × 4
     ##   type       `mean(count)` `median(count)` `sd(count)`
@@ -265,9 +267,9 @@ provided.
 -   `count()`: a convenient way to get a sense of the distribution of
     values in a data set.
 
-<!-- -->
-
-    table2 %>% count(country)
+``` r
+table2 %>% count(country)
+```
 
     ## # A tibble: 3 × 2
     ##   country         n
@@ -281,12 +283,12 @@ provided.
 -   `case_when()`: This command takes multiple conditions and tests them
     in order.
 
-<!-- -->
-
-    table1 %>% 
-      mutate(band = case_when(cases>= 1000 & cases <=100000~ "Medium",
-                              cases > 100000 ~ "High",
-                              TRUE ~ "Low"))
+``` r
+table1 %>% 
+  mutate(band = case_when(cases>= 1000 & cases <=100000~ "Medium",
+                          cases > 100000 ~ "High",
+                          TRUE ~ "Low"))
+```
 
     ## # A tibble: 6 × 5
     ##   country      year  cases population band  
@@ -310,10 +312,12 @@ here is equivalent to the `else` statement.
 
 We are going to use the following tables in our example.
 
-    homework1 <- tibble(name = c('Alphonso', 'Daisy', 'Philip'), 
-                        student_no = c(456,100,102), marks = c(80, 65, 34))
-    homework2 <- tibble(name = c('Alphonso', 'Philip', 'Melinda'), 
-                        student_no = c(456,102,432), marks = c(85, 97, 56))
+``` r
+homework1 <- tibble(name = c('Alphonso', 'Daisy', 'Philip'), 
+                    student_no = c(456,100,102), marks = c(80, 65, 34))
+homework2 <- tibble(name = c('Alphonso', 'Philip', 'Melinda'), 
+                    student_no = c(456,102,432), marks = c(85, 97, 56))
+```
 
 Note:
 
@@ -338,7 +342,9 @@ Mutation joins return a copy of the dataset that has been augmented.
 
 Inner joins retain only rows that exists on both datasets.
 
-    inner_join(homework1, homework2, by = c('name','student_no'))
+``` r
+inner_join(homework1, homework2, by = c('name','student_no'))
+```
 
     ## # A tibble: 2 × 4
     ##   name     student_no marks.x marks.y
@@ -350,7 +356,7 @@ Note:
 
 When we perform inner join by `name` and `student_no`, R only returns
 rows that exists in both data set. When we do inner join with our
-`homework1` and `homework2` gradebooks, only `Alphonso` and `Philip` ’s
+`homework1` and `homework2` gradebooks, only `Alphonso` and `Philip` 's
 marks will show up since they are the only ones that submitted both
 homeworks.
 
@@ -362,7 +368,9 @@ Left joins starts with the left data set (`homework1`) and search in the
 right data set looking for the same values of `name` and `student_no` to
 add to the left data set.
 
-    left_join(homework1, homework2, by = c('name','student_no'))
+``` r
+left_join(homework1, homework2, by = c('name','student_no'))
+```
 
     ## # A tibble: 3 × 4
     ##   name     student_no marks.x marks.y
@@ -375,7 +383,7 @@ Note:
 
 When we do left join with our `homework1` and `homework2` gradebooks, we
 will only consider those students who submitted homework 1 and look for
-their marks in homework 2. Melinda’s result will not be included in the
+their marks in homework 2. Melinda's result will not be included in the
 join even though she has submitted her homework 2, while Daisy will have
 `NA` showing as the missing value.
 
@@ -387,7 +395,9 @@ Right joins starts with the right data set (homework2) and search in the
 left data set looking for the same values of `name` and `student_no` to
 add to the right data set.
 
-    right_join(homework1, homework2, by = c('name','student_no'))
+``` r
+right_join(homework1, homework2, by = c('name','student_no'))
+```
 
     ## # A tibble: 3 × 4
     ##   name     student_no marks.x marks.y
@@ -400,7 +410,7 @@ Note:
 
 When we do right join with our `homework1` and `homework2` gradebooks,
 we will only consider those students who submitted homework 2 and look
-for their marks in homework 1. Daisy’s result will not be included in
+for their marks in homework 1. Daisy's result will not be included in
 the join even though she has submitted her homework 1, while Melinda
 will have `NA` showing as the missing value.
 
@@ -410,7 +420,9 @@ will have `NA` showing as the missing value.
 
 Full joins retain all rows.
 
-    full_join(homework1, homework2, by = c('name','student_no'))
+``` r
+full_join(homework1, homework2, by = c('name','student_no'))
+```
 
     ## # A tibble: 4 × 4
     ##   name     student_no marks.x marks.y
@@ -436,7 +448,9 @@ Filtering joins return a copy of the dataset that has been filtered.
 The semi join returns a filtered version of the left data set based on
 matching entries in the right data set.
 
-    semi_join(homework1, homework2, by = c('name','student_no'))
+``` r
+semi_join(homework1, homework2, by = c('name','student_no'))
+```
 
     ## # A tibble: 2 × 3
     ##   name     student_no marks
@@ -444,7 +458,9 @@ matching entries in the right data set.
     ## 1 Alphonso        456    80
     ## 2 Philip          102    34
 
-    semi_join(homework2, homework1, by = c('name','student_no'))
+``` r
+semi_join(homework2, homework1, by = c('name','student_no'))
+```
 
     ## # A tibble: 2 × 3
     ##   name     student_no marks
@@ -456,18 +472,22 @@ matching entries in the right data set.
 
 **Anti Join**
 
-Now, let’s say we want to know who didn’t submit homeworks. The anti
-join will return the rows in the left data set that doesn’t have an
+Now, let's say we want to know who didn't submit homeworks. The anti
+join will return the rows in the left data set that doesn't have an
 entry in the right data set.
 
-    anti_join(homework1, homework2, by = c('name','student_no'))
+``` r
+anti_join(homework1, homework2, by = c('name','student_no'))
+```
 
     ## # A tibble: 1 × 3
     ##   name  student_no marks
     ##   <chr>      <dbl> <dbl>
     ## 1 Daisy        100    65
 
-    anti_join(homework2, homework1, by = c('name','student_no'))
+``` r
+anti_join(homework2, homework1, by = c('name','student_no'))
+```
 
     ## # A tibble: 1 × 3
     ##   name    student_no marks
