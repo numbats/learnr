@@ -1,7 +1,7 @@
 ---
 title: 'Chapter 5: Data wrangling'
 description: In this chapter, you will learn to use tidyr and dplyr from the tidyverse
-  in R.
+  in R for tidying your data set and data maniplulation.
 prev: /chapter4
 next: /chapter6
 type: chapter
