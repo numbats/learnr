@@ -32,26 +32,117 @@ knitr::opts_chunk$set(fig.retina = 2,
                       warning = FALSE)
 ```
 
-<exercise id="1" title="The first exercise with slides" type="slides">
+<exercise id="1" title="What do I do when I see error messages">
 
-`r slides("slides_example")`
+## What do I do when I see <span style="color: red;"> errors </span>
+
+When you first start working RStudio and sees <span style="color: red;">red errors </span>, you probably feel helpless. Don't worry, you are not alone. It is normal to feel overwhelmed by the  <span style="color: red;"> errors </span>.   
+
+The first thing to do is to simply **read** the errors. It is important for you to read the errors to have a basic understanding of the error is telling you. This will help you communicate your question to others. 
+
+
+
+## I have no idea what my <span style="color: red;"> error </span> is telling me. 
+
+Sometime after read through the <span style="color: red;"> error messages </span>, you have no idea what might cause this <span style="color: red;"> error </span> or do not understand the <span style="color: red;"> error messages </span>. The simplest way is to **copy** all your <span style="color: red;"> error messages </span>  and **paste** it to `Google` (This is not the ideal way of searching for help but it is one of the ways).
 
 </exercise>
 
-<exercise id="2" title="The second exercise with tasks">
+<exercise id="2" title="Where should I ask for help?">
 
-Which of the following are `TRUE`?
+## Where should I ask for help?
 
-```{r, echo = FALSE}
-mc_opts("TRUE" = "Well done! TRUE is TRUE!",
-        "FALSE" = "Sorry, that's wrong. FALSE is not TRUE!",
-        correct = 1)
+R is an open source language and there are a lot of platform to seek for helps. 
+
+- [stackoverflow](https://stackoverflow.com/questions/tagged/rstudio). This is a platform where you can search for solutions and ask for helps. Before you put a question on [stackoverflow](https://stackoverflow.com/questions/tagged/rstudio), you can search some key words from your understanding of your error messages. It is likely that people already asked similar question related to your error and you can try the solutions provided by others under the question. If you couldn't find any question or solutions that fix your problem, you can `Ask Questions`. Later in this chapter we will show you how to ask questions with minimal reproducible examples.
+
+- [RStudio Community](https://community.rstudio.com/#). This is a community channel for RStudio users. Similar to [stackoverflow](https://stackoverflow.com/questions/tagged/rstudio), you can ask questions and also find solutions. 
+
+- [Github](https://github.com/). If you know your error really well and you think there might be a problem with the `package`, you can open an issue at the `package` repository. 
+
+- Ask your lectures and tutors. We are here to help. Don't be afraid to ask for helps. It might take you a few hours to figure out what is going on with your error and it might take us a few minutes to help you fix it because we have went through the debug process plenty of times. 
+
+
+- Post it to your subject discussion forum. You can also post your questions to the subject discussion forum where it will get answered by one of your lecturer or tutor. 
+
+For all the above channels where you can seek for help, it is important to provide a minimal reproducible examples for your error. If we cannot reproduce your error, it is hard for us to try to understand your problem and help you. 
+
+
+</exercise>
+
+<exercise id="3" title="Minimal reproducible examples">
+
+## Decrible the problem 
+
+Please avoid `it doesn't work` or `it shows errors` these generic terms when describing the problem. It doesn't help others to understand your question. Try to be more specific when communicating the problem. 
+
+State what you want to achieve and what are the expected behaviours.  
+
+Provide a copy of your error messages. This has to be excat words of your error messages. 
+
+Use a brief but descriptive summary of your problem as the title of your question. 
+
+
+## Use `sessionInfo()`
+
+Sometime your error might be some conflicts with your R, RStudio and package versions. Provide your `sessionInfo()` is necessary for others to determine whether it is a version conflicts problem. Make sure you provide your `sessionInfo()` in your minimal reporducible examples for your error. You can run `sessionInfo()` in your console and it will shows all the session related information. 
+
+## Providing a minimal dataset
+
+If your question involves using a dataset, you will need to provide a minimal dataset to demonstrate the problem. Generally speaking, the easiest way to provide a minimal dataset would be using a build-in dataset. For example, you can use `data(mpg)` or `data(iris)`. Both of them are build-in datasets in RStudio.
+
+If you think the problem might be the original data, you can also provide a minimal dataset using the original data. You can use `dput(original_data)` in your console and copy the output to your problem. Others will be able to load in the data based on the output you provided. For example, when you run `dput(head(iris))` (using `head()` function to subset the first six rows of the dataset), it should print out: 
+```{r,eval =FALSE}
+structure(list(Sepal.Length = c(5.1, 4.9, 4.7, 4.6, 5, 5.4), 
+    Sepal.Width = c(3.5, 3, 3.2, 3.1, 3.6, 3.9), Petal.Length = c(1.4, 
+    1.4, 1.3, 1.5, 1.4, 1.7), Petal.Width = c(0.2, 0.2, 0.2, 
+    0.2, 0.2, 0.4), Species = structure(c(1L, 1L, 1L, 1L, 1L, 
+    1L), .Label = c("setosa", "versicolor", "virginica"), class = "factor")), row.names = c(NA, 
+6L), class = "data.frame")
 ```
 
-Update the following code to produce a boxplot of fuel efficiency (`mpg`) against the number of cylinders (`cyl`).
+Copy the above output to your problem, others can load in the data using this output.
 
-```{teachr example}
-mtcars %>% 
-  ggplot(aes(x = factor(cyl), y = mpg)) + 
-  geom_<<boxplot>>()
-```
+If your original dataset is very large, you should subset your datasets to make it easier for others to reproduce your problem. The above example only provides the first six rows of `iris` dataset to make it a minimal dataset. 
+
+
+## Provide minimal code
+
+When you are working in a large file, it is necessary for you to identify where the problem is raising from. Using `.Rmd` would be a good way to help you organise your code and identify where the problem is. You can organise your code in different code chunk and this would help you locate your errors. If one code chunk did not run successfully, you would know that it is this code chunk that is causing the problems. 
+
+Read the error message, it would generally tell you which line of the code is producing this error. This would also help you locate your problematic codes. 
+
+By providing the related code is necessary to communicate your problem to others. To ensure that this minimal code example works for you, you should open a new R session and test run this see if it works or not. 
+
+## State what `packages` you used in this example
+
+People might not know what `packages` is needed to reproduce your problem. So please include all the `packages` you used in your troubleshooting. 
+
+## `set.seed()`
+
+If your problem involves simulation or using any randomness functions, please `set.seed()` so it provides consistent results. 
+
+
+## Don'ts
+
+- Make sure you are not using `environment` data. Others do not have these variables or data in their `environment`. Please start a new R session to test whether your example is reproducible or not. 
+
+- Only provide relevant codes. Please do not provide the entire R file if it is not relevant to the problem. 
+
+- Don't use absolute path. People would not have the same path as you do when describing file paths. 
+
+
+</exercise>
+
+<exercise id="4" title="Additional Sources ">
+
+- [How to create a Minimal, Reproducible Example - stackoverflow](https://stackoverflow.com/help/minimal-reproducible-example)
+
+- [Posting Guide: How to ask good questions that prompt useful answers](https://www.r-project.org/posting-guide.html)
+
+
+- [How to make a great R reproducible example](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example)
+
+- [Three tips for posting good questions to R-help and Stack Overflow](https://www.r-bloggers.com/2011/01/three-tips-for-posting-good-questions-to-r-help-and-stack-overflow/)
+
+</exercise>
