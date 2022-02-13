@@ -10,8 +10,7 @@ id: 8
 ---
 <exercise id="1" title="Simple linear regression" type="slides">
 
-<slides source="chapter8_01_simple-linear-regression">
-</slides>
+<slides source="chapter8_01_simple-linear-regression"> </slides>
 
 </exercise>
 
@@ -21,8 +20,7 @@ id: 8
 
 <exercise id="3" title="Regression with categorical variables" type="slides">
 
-<slides source="chapter8_02_regression-with-categorical-var">
-</slides>
+<slides source="chapter8_02_regression-with-categorical-var"> </slides>
 
 </exercise>
 
@@ -31,8 +29,7 @@ id: 8
 </exercise>
 
 <exercise id="5" title="Regression models with interaction effects" type="slides">
-<slides source="chapter8_03_interaction"> </slides>
-</exercise>
+<slides source="chapter8_03_interaction"> </slides> </exercise>
 
 <exercise id="6" title="Practice">
 
