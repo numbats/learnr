@@ -57,6 +57,8 @@ knitr::opts_chunk$set(fig.path = "ch1/",
 
 - [R for Data Science](https://r4ds.had.co.nz)
 
+
+
 </exercise>
 
 
