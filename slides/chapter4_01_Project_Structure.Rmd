@@ -15,121 +15,150 @@ knitr::opts_chunk$set(fig.path = "images/chapter4/",
 
 ```
 
-## Why do I want to start an R Project? 
+### Why do I want to start an R Project? 
 
-* It is good project management practice which help you get all your data, scripts and RMarkdown file organised. 
+*  <font size="6"> It is good project management practice which help you get all your data, scripts and RMarkdown file organised. </font>
 
-* When you are learning with multiple subjects that all requires working in R but with totally different datasets and knowledge. Having an R project for each of the subject will help you manage your datasets,analyses and learning materials. 
-
-* This is similar process when you are organising your word documents, PDFs, excel files and ect. 
-
-* Having individual R project for different things you are working on keep your workflow and files organised. 
+* <font size="6"> When you are learning with multiple subjects that all requires working in R but with totally different datasets and knowledge. Having an R project for each of the subject will help you manage your datasets,analyses and learning materials. </font>
 
 ---
 
-## Starting an R project 
+### Why do I want to start an R Project? 
 
-On the right top corner, click on the blue project icon, you will see the pop-up window below.  
+* <font size="6"> This is similar process when you are organising your word documents, PDFs, excel files and ect. </font>
 
-```{r, echo=FALSE, out.width="50%"}
+* <font size="6"> Having individual R project for different things you are working on keep your workflow and files organised. </font>
+
+---
+
+### Starting an R project 
+
+```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("images/chapter4/project_1.png")
 ```
 
+Note: On the right top corner, click on the blue project icon, you will see the pop-up window below.  
+
+
 ---
 
-## Starting an R project 
+### Starting an R project 
 
-Click on `New Project...` you will see the window below. If you want to start a new R project in a new location on your computer, select `New Directory`. If you want to start a new R project in a location where you have other R projects, select `Existing Directory`. For you very first R project, please select `New Directory`. 
 
-```{r, echo=FALSE, out.width="50%"}
+```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("images/chapter4/project_2.png")
 ```
 
+Note: Click on `New Project...` you will see the window below. 
+
+If you want to start a new R project in a new location on your computer, select `New Directory`. 
+
+If you want to start a new R project in a location where you have other R projects, select `Existing Directory`. 
+
+For you very first R project, please select `New Directory`.  
+
 ---
 
-## Starting an R project 
+### Starting an R project 
 
-There are a few different R project including `New project`, `R Package` and `Shiny Application`. If you want to start writing an R package, you can choose `R Package`. If you want to start a shiny app, you can choose `Shiny Application`. For genernal R project, click `New Project`. 
 
-```{r, echo=FALSE, out.width="50%"}
+```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("images/chapter4/project_3.png")
 ```
 
+Note: There are a few different R project including `New project`, `R Package` and `Shiny Application`. 
+
+If you want to start writing an R package, you can choose `R Package`. If you want to start a shiny app, you can choose `Shiny Application`. 
+
+For general R project, click `New Project`.  
+
 ---
 
-## Starting an R project 
+### Starting an R project 
 
-You can name the under `Directory name` and choose the project location under `Create project as subdirectory of:`. You can also `Browse...` for locations on your computer. 
 
-```{r, echo=FALSE, out.width="50%"}
+```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("images/chapter4/project_4.png")
 ```
 
+Note: You can name the under `Directory name` and choose the project location under `Create project as subdirectory of:`. 
+
+You can also `Browse...` for locations on your computer. 
+
 ---
 
-## Setting working directory 
-
-* After getting your R project, you current working directory is where the R project located on your computer.
-
-* When you open up your R project, on the `Console` window, it shows your current working directory. 
-
-* To double check your current working directory use function `getwd()`. After running this function in `Console`, you should have your current working directory printed out. 
+### Setting working directory 
 
 
-```{r, echo=FALSE, out.width="50%"}
+```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("images/chapter4/getwd.png")
 ```
+Note: After getting your R project, you current working directory is where the R project located on your computer.
+
+When you open up your R project, on the `Console` window, it shows your current working directory. 
+
+To double check your current working directory use function `getwd()`. After running this function in `Console`, you should have your current working directory printed out. 
 
 ---
 
-## Setting working directory 
+### Setting working directory 
 
-* If you are not working in a R project, you can still set up an working directory for your analyses. 
 
-* Go to the right bottom window, click on `More`. You can click on `Set As working Directory`. This will set the current location you are in showing on the `Files` window as the current working directory.   
-
-```{r, echo=FALSE, out.width="50%"}
+```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("images/chapter4/RStudo_setwd.png")
 ```
 
-* Alternatively, use function `setwd()` to set your working directory. Noted that the path you are putting in `setwd()` need to be double quoted `""`. For example, `setwd("~/Desktop/Tutoring /data vis")`. 
+Note: If you are not working in a R project, you can still set up an working directory for your analyses. 
+
+Go to the right bottom window, click on `More`. You can click on `Set As working Directory`. This will set the current location you are in showing on the `Files` window as the current working directory.   
+
+Alternatively, use function `setwd()` to set your working directory. Noted that the path you are putting in `setwd()` need to be double quoted `""`. For example, `setwd("~/Desktop/Tutoring /data vis")`. 
+
 
 ---
 
-## Relative path vs Absolute path
+### Relative path vs Absolute path
 
-* Relative path means that the file path you use is relative to your current working directory.
+* <font size="6"> Relative path means that the file path you use is relative to your current working directory. </font>
 
-* Absolute path means that the file path is the path on your personal computer which you should never use. Using absolute path would create problem when you trying to communicate your project to others. They might not have the same absolute path you used in this project.
+* <font size="6"> Absolute path means that the file path is the path on your personal computer which you should never use. Using absolute path would create problem when you trying to communicate your project to others. They might not have the same absolute path you used in this project. </font>
 
-* Make sure that all your data and scripts are all packed in one R project and use the relative path to direct where are the files located. 
+---
 
-* For example, an relative path to the `data vis` project would be `\data\cars.csv`
+### Relative path vs Absolute path
+
+
+* <font size="6"> Make sure that all your data and scripts are all packed in one R project and use the relative path to direct where are the files located. </font> 
+
+* <font size="6"> For example, an relative path to the `data vis` project would be `\data\cars.csv` </font>
 
 --- 
 
-## Let's not store any past information in the R environment 
+### Let's not store any past information in the R environment 
 
-* Every time you run some R code and read in datasets, they will be automatically stored in the `Environment` which is the top right window. 
+* <font size="6"> Every time you run some R code and read in datasets, they will be automatically stored in the `Environment` which is the top right window. </font>
 
-* When you quite RStudio session, the data you read in, the functions you created will be stored in this `Environment`. So later on, you can come back and continue from where you left. 
+* <font size="6"> When you quite RStudio session, the data you read in, the functions you created will be stored in this `Environment`. So later on, you can come back and continue from where you left. </font>
 
-* However, this could create problems. It is hard to communicate your code and analyses to others as they might not have the same variables or data stored in their environment. 
+--- 
 
-* The better project management way is to disable this function. This way you will keep all your analysis steps in one script and it is reproducible by others. 
+### Let's not store any past information in the R environment 
+
+* <font size="6"> However, this could create problems. It is hard to communicate your code and analyses to others as they might not have the same variables or data stored in their environment. </font>
+
+* <font size="6"> The better project management way is to disable this function. This way you will keep all your analysis steps in one script and it is reproducible by others. </font>
 
 
 ---
 
-## Let's not store any past information in the R environment 
+### Let's not store any past information in the R environment 
 
-* To disable this function in RStudio, go to `Tools`  `r icons::fontawesome("arrow-circle-right", style = "solid")`  `Global Options` `r icons::fontawesome("arrow-circle-right", style = "solid")`  `General` 
 
-* Unselected `Rstore .RData into workspace at startup` and change `Save workspace to .RData on exit` to `Never`
-
-```{r, echo=FALSE, out.width="50%"}
+```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("images/chapter4/disable_store.png")
 ```
 
+Note: To disable this function in RStudio, go to `Tools`  `r icons::fontawesome("arrow-circle-right", style = "solid")`  `Global Options` `r icons::fontawesome("arrow-circle-right", style = "solid")`  `General` 
 
+Unselected `Rstore .RData into workspace at startup` and change `Save workspace to .RData on exit` to `Never`
 
