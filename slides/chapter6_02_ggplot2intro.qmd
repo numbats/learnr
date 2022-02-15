@@ -2,7 +2,7 @@
 title: Getting started with `ggplot2`
 format: 
   revealjs:
-    logo: images/monash-stacked-blue-rgb-transparent.png
+    logo: monash-stacked-blue-rgb-transparent.png
     slide-number: true
     show-slide-number: all
     controls: true
@@ -11,7 +11,7 @@ format:
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(fig.path = "images/chapter7-02/",
+knitr::opts_chunk$set(#fig.path = "chapter7-02/",
                       fig.align = "center",
                       fig.width = 6, 
                       fig.height = 4,
@@ -20,6 +20,7 @@ knitr::opts_chunk$set(fig.path = "images/chapter7-02/",
                       echo = TRUE,
                       message = FALSE, 
                       warning = FALSE)
+fig_path <- knitr::opts_chunk$get("fig.path")
 ```
 
 ## What is `ggplot2`?
@@ -75,7 +76,7 @@ Note:
 
 ## Basic structure of `ggplot`
 
-![](images/ggplot-basic-str.png)
+![](ggplot-basic-str.png)
 
 1. **data** as `data.frame`
 2. a set of **aesthetic** mappings between variables in the data and visual properties
@@ -206,7 +207,8 @@ theme_other <- c(theme_base,
                                        color = NA)),
                      scale_fill_manual(values = purples)))
 
-
+theme_border <- theme(plot.background = element_rect(color = "black",
+                                                     size = 3))
 
 
 theme_yaxis <- theme(axis.line.y = element_line(color = "black", size = 1),
@@ -233,53 +235,57 @@ ggplot(faithful, aes(eruptions)) +
   theme_dist +
   theme_xaxis +
   theme_yaxis +
-  ggtitle("HISTOGRAM")
+  ggtitle("HISTOGRAM") +
+  theme_border
 
 ggplot(faithful, aes(eruptions)) +
   geom_density(fill = green, color = NA) +
   theme_dist +
   theme_xaxis +
   theme_yaxis +
+  theme_border +
   ggtitle("DENSITY/FREQUENCY PLOT")
 
 ggplot(faithful, aes(eruptions, "")) +
   geom_boxplot(fill = "white", color = green, width = 0.3) +
   theme_dist +
   theme_xaxis +
+  theme_border +
   ggtitle("BOXPLOT")
 
 ggplot(faithful, aes(eruptions, "")) +
   geom_violin(fill = green) +
   theme_dist +
   theme_xaxis +
+  theme_border +
   ggtitle("VIOLIN PLOT")
 
 ggplot(faithful, aes(eruptions)) +
   geom_dotplot(fill = green) +
   theme_dist +
   theme_xaxis +
+  theme_border +
   ggtitle("DOT PLOT")
 
 ggplot(sumdf1, aes(g1, y)) +
   geom_col(fill = reds[1]) +
   theme_rank +
   theme_yaxis +
+  theme_border +
   ggtitle("BARPLOT") 
 
 ```
 
-```{css, echo = FALSE}
-.catalogue img {
-  margin-right: 20px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  width: 20%;
+<style>
+.catalogue { 
+  margin: 0!important; 
+  width: 18%!important;
+  margin-right: 2%!important;
 }
-```
+</style>
 
-<div class="catalogue">
-`r x<-1:6;paste(glue::glue('<img src="images/chapter7-02/catalogue-single-{x}.png"/>'), collapse = "")`
-</div>
+
+`r x<-1:6;paste(glue::glue('<img class="catalogue" src="{fig_path}catalogue-single-{x}.png"/>'), collapse = "")`
 
 Note:
 

@@ -750,7 +750,13 @@ graph? Is this easy to see from the table below?
 
 ## A data visualisation catalogue
 
-<style>.catalogue { margin: 0!important;}</style>
+<style>
+.catalogue { 
+  margin: 0!important; 
+  width: 18%!important;
+  margin-right: 2%!important;
+}
+</style>
 
 <img class="catalogue"  src="chapter6_01_rgraphics_files/figure-markdown/datavis-catalogue-1.png"/><img class="catalogue"  src="chapter6_01_rgraphics_files/figure-markdown/datavis-catalogue-2.png"/><img class="catalogue"  src="chapter6_01_rgraphics_files/figure-markdown/datavis-catalogue-3.png"/><img class="catalogue"  src="chapter6_01_rgraphics_files/figure-markdown/datavis-catalogue-4.png"/><img class="catalogue"  src="chapter6_01_rgraphics_files/figure-markdown/datavis-catalogue-5.png"/><img class="catalogue"  src="chapter6_01_rgraphics_files/figure-markdown/datavis-catalogue-6.png"/><img class="catalogue"  src="chapter6_01_rgraphics_files/figure-markdown/datavis-catalogue-7.png"/><img class="catalogue"  src="chapter6_01_rgraphics_files/figure-markdown/datavis-catalogue-8.png"/><img class="catalogue"  src="chapter6_01_rgraphics_files/figure-markdown/datavis-catalogue-9.png"/><img class="catalogue"  src="chapter6_01_rgraphics_files/figure-markdown/datavis-catalogue-10.png"/><img class="catalogue"  src="chapter6_01_rgraphics_files/figure-markdown/datavis-catalogue-11.png"/><img class="catalogue"  src="chapter6_01_rgraphics_files/figure-markdown/datavis-catalogue-12.png"/><img class="catalogue"  src="chapter6_01_rgraphics_files/figure-markdown/datavis-catalogue-13.png"/><img class="catalogue"  src="chapter6_01_rgraphics_files/figure-markdown/datavis-catalogue-14.png"/><img class="catalogue"  src="chapter6_01_rgraphics_files/figure-markdown/datavis-catalogue-15.png"/>
 

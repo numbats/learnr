@@ -254,7 +254,13 @@ oz_sf %>%
   ggtitle("CHOROPLETH\nMAP") 
 ```
 
-<style>.catalogue { margin: 0!important;}</style>
+<style>
+.catalogue { 
+  margin: 0!important; 
+  width: 18%!important;
+  margin-right: 2%!important;
+}
+</style>
 
 `r x<-1:15;paste(glue::glue('<img class="catalogue"  src="{fig_path}datavis-catalogue-{x}.png"/>'), collapse = "")`
 

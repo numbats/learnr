@@ -66,7 +66,7 @@ Note:
 
 ## Basic structure of `ggplot`
 
-![](images/ggplot-basic-str.png)
+![](ggplot-basic-str.png)
 
 1.  **data** as `data.frame`
 2.  a set of **aesthetic** mappings between variables in the data and
@@ -111,7 +111,7 @@ Note:
 ggplot(data = CPSch3) 
 ```
 
-<img src="images/chapter7-02/plot-initial-1.png" style="display: block; margin: auto;" />
+<img src="chapter6_02_ggplot2intro_files/figure-markdown/plot-initial-1.png" style="display: block; margin: auto;" />
 
 -   When there is no layer, it produces a blank layer (`geom_blank()`)
     like the above plot.
@@ -129,7 +129,7 @@ ggplot(data = CPSch3,
        mapping = aes(x = sex, y = ahe)) 
 ```
 
-<img src="images/chapter7-02/plot-mapping-1.png" style="display: block; margin: auto;" />
+<img src="chapter6_02_ggplot2intro_files/figure-markdown/plot-mapping-1.png" style="display: block; margin: auto;" />
 
 -   This get the scale ready but no layer is defined so nothing is
     rendered in the panel.
@@ -158,9 +158,15 @@ Note:
 
 ## Distribution of a single variable
 
-::: catalogue
-<img src="images/chapter7-02/catalogue-single-1.png"/><img src="images/chapter7-02/catalogue-single-2.png"/><img src="images/chapter7-02/catalogue-single-3.png"/><img src="images/chapter7-02/catalogue-single-4.png"/><img src="images/chapter7-02/catalogue-single-5.png"/><img src="images/chapter7-02/catalogue-single-6.png"/>
-:::
+<style>
+.catalogue { 
+  margin: 0!important; 
+  width: 18%!important;
+  margin-right: 2%!important;
+}
+</style>
+
+<img class="catalogue" src="chapter6_02_ggplot2intro_files/figure-markdown/catalogue-single-1.png"/><img class="catalogue" src="chapter6_02_ggplot2intro_files/figure-markdown/catalogue-single-2.png"/><img class="catalogue" src="chapter6_02_ggplot2intro_files/figure-markdown/catalogue-single-3.png"/><img class="catalogue" src="chapter6_02_ggplot2intro_files/figure-markdown/catalogue-single-4.png"/><img class="catalogue" src="chapter6_02_ggplot2intro_files/figure-markdown/catalogue-single-5.png"/><img class="catalogue" src="chapter6_02_ggplot2intro_files/figure-markdown/catalogue-single-6.png"/>
 
 Note:
 
@@ -182,7 +188,7 @@ ggplot(data = CPSch3,
   labs(x = "Average hourly earnings (US$)")
 ```
 
-<img src="images/chapter7-02/geom-histogram-1.png" style="display: block; margin: auto;" />
+<img src="chapter6_02_ggplot2intro_files/figure-markdown/geom-histogram-1.png" style="display: block; margin: auto;" />
 
 Note:
 
@@ -208,68 +214,99 @@ g <- ggplot(data = CPSch3,
 layer_data(g, 1)
 ```
 
-    ##       y count         x       xmin      xmax      density      ncount    ndensity
-    ## 1    19    19  1.734720  0.8673601  2.602080 0.0009840768 0.014011799 0.014011799
-    ## 2    91    91  3.469440  2.6020802  4.336800 0.0047132101 0.067109145 0.067109145
-    ## 3   255   255  5.204160  4.3368004  6.071521 0.0132073470 0.188053097 0.188053097
-    ## 4   514   514  6.938881  6.0715206  7.806241 0.0266218681 0.379056047 0.379056047
-    ## 5   760   760  8.673601  7.8062407  9.540961 0.0393630735 0.560471976 0.560471976
-    ## 6  1143  1143 10.408321  9.5409609 11.275681 0.0591999908 0.842920354 0.842920354
-    ## 7  1356  1356 12.143041 11.2756811 13.010401 0.0702320101 1.000000000 1.000000000
-    ## 8  1232  1232 13.877761 13.0104012 14.745121 0.0638096139 0.908554572 0.908554572
-    ## 9  1137  1137 15.612481 14.7451214 16.479842 0.0588892297 0.838495575 0.838495575
-    ## 10  941   941 17.347202 16.4798416 18.214562 0.0487377002 0.693952802 0.693952802
-    ## 11  798   798 19.081922 18.2145617 19.949282 0.0413312272 0.588495575 0.588495575
-    ## 12  749   749 20.816642 19.9492819 21.684002 0.0387933448 0.552359882 0.552359882
-    ## 13  497   497 22.551362 21.6840021 23.418722 0.0257413783 0.366519174 0.366519174
-    ## 14  428   428 24.286082 23.4187222 25.153442 0.0221676256 0.315634218 0.315634218
-    ## 15  279   279 26.020802 25.1534424 26.888163 0.0144503915 0.205752212 0.205752212
-    ## 16  249   249 27.755523 26.8881625 28.622883 0.0128965859 0.183628319 0.183628319
-    ## 17  186   186 29.490243 28.6228827 30.357603 0.0096335943 0.137168142 0.137168142
-    ## 18  148   148 31.224963 30.3576029 32.092323 0.0076654406 0.109144543 0.109144543
-    ## 19  101   101 32.959683 32.0923230 33.827043 0.0052311453 0.074483776 0.074483776
-    ## 20   66    66 34.694403 33.8270432 35.561763 0.0034183722 0.048672566 0.048672566
-    ## 21   40    40 36.429123 35.5617634 37.296484 0.0020717407 0.029498525 0.029498525
-    ## 22   48    48 38.163844 37.2964835 39.031204 0.0024860889 0.035398230 0.035398230
-    ## 23   29    29 39.898564 39.0312037 40.765924 0.0015020120 0.021386431 0.021386431
-    ## 24   20    20 41.633284 40.7659239 42.500644 0.0010358704 0.014749263 0.014749263
-    ## 25   15    15 43.368004 42.5006440 44.235364 0.0007769028 0.011061947 0.011061947
-    ## 26   13    13 45.102724 44.2353642 45.970084 0.0006733157 0.009587021 0.009587021
-    ## 27    6     6 46.837444 45.9700844 47.704805 0.0003107611 0.004424779 0.004424779
-    ## 28    3     3 48.572165 47.7048045 49.439525 0.0001553806 0.002212389 0.002212389
-    ## 29    5     5 50.306885 49.4395247 51.174245 0.0002589676 0.003687316 0.003687316
-    ## 30    2     2 52.041605 51.1742448 52.908965 0.0001035870 0.001474926 0.001474926
-    ##    flipped_aes PANEL group ymin ymax colour   fill size linetype alpha
-    ## 1        FALSE     1    -1    0   19     NA grey35  0.5        1    NA
-    ## 2        FALSE     1    -1    0   91     NA grey35  0.5        1    NA
-    ## 3        FALSE     1    -1    0  255     NA grey35  0.5        1    NA
-    ## 4        FALSE     1    -1    0  514     NA grey35  0.5        1    NA
-    ## 5        FALSE     1    -1    0  760     NA grey35  0.5        1    NA
-    ## 6        FALSE     1    -1    0 1143     NA grey35  0.5        1    NA
-    ## 7        FALSE     1    -1    0 1356     NA grey35  0.5        1    NA
-    ## 8        FALSE     1    -1    0 1232     NA grey35  0.5        1    NA
-    ## 9        FALSE     1    -1    0 1137     NA grey35  0.5        1    NA
-    ## 10       FALSE     1    -1    0  941     NA grey35  0.5        1    NA
-    ## 11       FALSE     1    -1    0  798     NA grey35  0.5        1    NA
-    ## 12       FALSE     1    -1    0  749     NA grey35  0.5        1    NA
-    ## 13       FALSE     1    -1    0  497     NA grey35  0.5        1    NA
-    ## 14       FALSE     1    -1    0  428     NA grey35  0.5        1    NA
-    ## 15       FALSE     1    -1    0  279     NA grey35  0.5        1    NA
-    ## 16       FALSE     1    -1    0  249     NA grey35  0.5        1    NA
-    ## 17       FALSE     1    -1    0  186     NA grey35  0.5        1    NA
-    ## 18       FALSE     1    -1    0  148     NA grey35  0.5        1    NA
-    ## 19       FALSE     1    -1    0  101     NA grey35  0.5        1    NA
-    ## 20       FALSE     1    -1    0   66     NA grey35  0.5        1    NA
-    ## 21       FALSE     1    -1    0   40     NA grey35  0.5        1    NA
-    ## 22       FALSE     1    -1    0   48     NA grey35  0.5        1    NA
-    ## 23       FALSE     1    -1    0   29     NA grey35  0.5        1    NA
-    ## 24       FALSE     1    -1    0   20     NA grey35  0.5        1    NA
-    ## 25       FALSE     1    -1    0   15     NA grey35  0.5        1    NA
-    ## 26       FALSE     1    -1    0   13     NA grey35  0.5        1    NA
-    ## 27       FALSE     1    -1    0    6     NA grey35  0.5        1    NA
-    ## 28       FALSE     1    -1    0    3     NA grey35  0.5        1    NA
-    ## 29       FALSE     1    -1    0    5     NA grey35  0.5        1    NA
-    ## 30       FALSE     1    -1    0    2     NA grey35  0.5        1    NA
+    ##       y count         x       xmin      xmax      density      ncount
+    ## 1    19    19  1.734720  0.8673601  2.602080 0.0009840768 0.014011799
+    ## 2    91    91  3.469440  2.6020802  4.336800 0.0047132101 0.067109145
+    ## 3   255   255  5.204160  4.3368004  6.071521 0.0132073470 0.188053097
+    ## 4   514   514  6.938881  6.0715206  7.806241 0.0266218681 0.379056047
+    ## 5   760   760  8.673601  7.8062407  9.540961 0.0393630735 0.560471976
+    ## 6  1143  1143 10.408321  9.5409609 11.275681 0.0591999908 0.842920354
+    ## 7  1356  1356 12.143041 11.2756811 13.010401 0.0702320101 1.000000000
+    ## 8  1232  1232 13.877761 13.0104012 14.745121 0.0638096139 0.908554572
+    ## 9  1137  1137 15.612481 14.7451214 16.479842 0.0588892297 0.838495575
+    ## 10  941   941 17.347202 16.4798416 18.214562 0.0487377002 0.693952802
+    ## 11  798   798 19.081922 18.2145617 19.949282 0.0413312272 0.588495575
+    ## 12  749   749 20.816642 19.9492819 21.684002 0.0387933448 0.552359882
+    ## 13  497   497 22.551362 21.6840021 23.418722 0.0257413783 0.366519174
+    ## 14  428   428 24.286082 23.4187222 25.153442 0.0221676256 0.315634218
+    ## 15  279   279 26.020802 25.1534424 26.888163 0.0144503915 0.205752212
+    ## 16  249   249 27.755523 26.8881625 28.622883 0.0128965859 0.183628319
+    ## 17  186   186 29.490243 28.6228827 30.357603 0.0096335943 0.137168142
+    ## 18  148   148 31.224963 30.3576029 32.092323 0.0076654406 0.109144543
+    ## 19  101   101 32.959683 32.0923230 33.827043 0.0052311453 0.074483776
+    ## 20   66    66 34.694403 33.8270432 35.561763 0.0034183722 0.048672566
+    ## 21   40    40 36.429123 35.5617634 37.296484 0.0020717407 0.029498525
+    ## 22   48    48 38.163844 37.2964835 39.031204 0.0024860889 0.035398230
+    ## 23   29    29 39.898564 39.0312037 40.765924 0.0015020120 0.021386431
+    ## 24   20    20 41.633284 40.7659239 42.500644 0.0010358704 0.014749263
+    ## 25   15    15 43.368004 42.5006440 44.235364 0.0007769028 0.011061947
+    ## 26   13    13 45.102724 44.2353642 45.970084 0.0006733157 0.009587021
+    ## 27    6     6 46.837444 45.9700844 47.704805 0.0003107611 0.004424779
+    ## 28    3     3 48.572165 47.7048045 49.439525 0.0001553806 0.002212389
+    ## 29    5     5 50.306885 49.4395247 51.174245 0.0002589676 0.003687316
+    ## 30    2     2 52.041605 51.1742448 52.908965 0.0001035870 0.001474926
+    ##       ndensity flipped_aes PANEL group ymin ymax colour   fill size linetype
+    ## 1  0.014011799       FALSE     1    -1    0   19     NA grey35  0.5        1
+    ## 2  0.067109145       FALSE     1    -1    0   91     NA grey35  0.5        1
+    ## 3  0.188053097       FALSE     1    -1    0  255     NA grey35  0.5        1
+    ## 4  0.379056047       FALSE     1    -1    0  514     NA grey35  0.5        1
+    ## 5  0.560471976       FALSE     1    -1    0  760     NA grey35  0.5        1
+    ## 6  0.842920354       FALSE     1    -1    0 1143     NA grey35  0.5        1
+    ## 7  1.000000000       FALSE     1    -1    0 1356     NA grey35  0.5        1
+    ## 8  0.908554572       FALSE     1    -1    0 1232     NA grey35  0.5        1
+    ## 9  0.838495575       FALSE     1    -1    0 1137     NA grey35  0.5        1
+    ## 10 0.693952802       FALSE     1    -1    0  941     NA grey35  0.5        1
+    ## 11 0.588495575       FALSE     1    -1    0  798     NA grey35  0.5        1
+    ## 12 0.552359882       FALSE     1    -1    0  749     NA grey35  0.5        1
+    ## 13 0.366519174       FALSE     1    -1    0  497     NA grey35  0.5        1
+    ## 14 0.315634218       FALSE     1    -1    0  428     NA grey35  0.5        1
+    ## 15 0.205752212       FALSE     1    -1    0  279     NA grey35  0.5        1
+    ## 16 0.183628319       FALSE     1    -1    0  249     NA grey35  0.5        1
+    ## 17 0.137168142       FALSE     1    -1    0  186     NA grey35  0.5        1
+    ## 18 0.109144543       FALSE     1    -1    0  148     NA grey35  0.5        1
+    ## 19 0.074483776       FALSE     1    -1    0  101     NA grey35  0.5        1
+    ## 20 0.048672566       FALSE     1    -1    0   66     NA grey35  0.5        1
+    ## 21 0.029498525       FALSE     1    -1    0   40     NA grey35  0.5        1
+    ## 22 0.035398230       FALSE     1    -1    0   48     NA grey35  0.5        1
+    ## 23 0.021386431       FALSE     1    -1    0   29     NA grey35  0.5        1
+    ## 24 0.014749263       FALSE     1    -1    0   20     NA grey35  0.5        1
+    ## 25 0.011061947       FALSE     1    -1    0   15     NA grey35  0.5        1
+    ## 26 0.009587021       FALSE     1    -1    0   13     NA grey35  0.5        1
+    ## 27 0.004424779       FALSE     1    -1    0    6     NA grey35  0.5        1
+    ## 28 0.002212389       FALSE     1    -1    0    3     NA grey35  0.5        1
+    ## 29 0.003687316       FALSE     1    -1    0    5     NA grey35  0.5        1
+    ## 30 0.001474926       FALSE     1    -1    0    2     NA grey35  0.5        1
+    ##    alpha
+    ## 1     NA
+    ## 2     NA
+    ## 3     NA
+    ## 4     NA
+    ## 5     NA
+    ## 6     NA
+    ## 7     NA
+    ## 8     NA
+    ## 9     NA
+    ## 10    NA
+    ## 11    NA
+    ## 12    NA
+    ## 13    NA
+    ## 14    NA
+    ## 15    NA
+    ## 16    NA
+    ## 17    NA
+    ## 18    NA
+    ## 19    NA
+    ## 20    NA
+    ## 21    NA
+    ## 22    NA
+    ## 23    NA
+    ## 24    NA
+    ## 25    NA
+    ## 26    NA
+    ## 27    NA
+    ## 28    NA
+    ## 29    NA
+    ## 30    NA
 
 Note:
 
@@ -287,7 +324,7 @@ ggplot(data = CPSch3,
   geom_histogram(aes(y = after_stat(density))) 
 ```
 
-<img src="images/chapter7-02/geom-histogram-density-1.png" style="display: block; margin: auto;" />
+<img src="chapter6_02_ggplot2intro_files/figure-markdown/geom-histogram-density-1.png" style="display: block; margin: auto;" />
 
 Note:
 
@@ -308,7 +345,7 @@ ggplot(data = CPSch3,
   labs(x = "Average hourly earnings (US$)")
 ```
 
-<img src="images/chapter7-02/geom-density-1.png" style="display: block; margin: auto;" />
+<img src="chapter6_02_ggplot2intro_files/figure-markdown/geom-density-1.png" style="display: block; margin: auto;" />
 
 Note:
 
@@ -331,7 +368,7 @@ ggplot(data = CPSch3,
   labs(x = "Average hourly earnings (US$)")
 ```
 
-<img src="images/chapter7-02/geom-freqpoly-1.png" style="display: block; margin: auto;" />
+<img src="chapter6_02_ggplot2intro_files/figure-markdown/geom-freqpoly-1.png" style="display: block; margin: auto;" />
 
 Note:
 
@@ -351,7 +388,7 @@ ggplot(data = CPSch3,
   labs(x = "Average hourly earnings (US$)")
 ```
 
-<img src="images/chapter7-02/geom-boxplot-1.png" style="display: block; margin: auto;" />
+<img src="chapter6_02_ggplot2intro_files/figure-markdown/geom-boxplot-1.png" style="display: block; margin: auto;" />
 
 Note:
 
@@ -361,7 +398,7 @@ Note:
     numerical variables, like below, where each variable corresponds to
     one boxplot.
 
-<img src="images/chapter7-02/boxplot-multiple-1.png" style="display: block; margin: auto;" />
+<img src="chapter6_02_ggplot2intro_files/figure-markdown/boxplot-multiple-1.png" style="display: block; margin: auto;" />
 
 ---
 
@@ -374,7 +411,7 @@ ggplot(data = CPSch3,
   labs(x = "Average hourly earnings (US$)")
 ```
 
-<img src="images/chapter7-02/geom-violin-1.png" style="display: block; margin: auto;" />
+<img src="chapter6_02_ggplot2intro_files/figure-markdown/geom-violin-1.png" style="display: block; margin: auto;" />
 
 Note:
 
@@ -392,7 +429,7 @@ ggplot(data = dplyr::sample_n(CPSch3, 200),
   labs(x = "Average hourly earnings (US$)")
 ```
 
-<img src="images/chapter7-02/geom-dotplot-1.png" style="display: block; margin: auto;" />
+<img src="chapter6_02_ggplot2intro_files/figure-markdown/geom-dotplot-1.png" style="display: block; margin: auto;" />
 
 Note:
 
@@ -409,7 +446,7 @@ ggplot(data = CPSch3,
   geom_bar()
 ```
 
-<img src="images/chapter7-02/geom-bar-1.png" style="display: block; margin: auto;" />
+<img src="chapter6_02_ggplot2intro_files/figure-markdown/geom-bar-1.png" style="display: block; margin: auto;" />
 
 Note:
 
@@ -428,7 +465,7 @@ ggplot(data = filter(CPSch3, year!=1994),
   geom_bar()
 ```
 
-<img src="images/chapter7-02/geom-bar2A-1.png" style="display: block; margin: auto;" />
+<img src="chapter6_02_ggplot2intro_files/figure-markdown/geom-bar2A-1.png" style="display: block; margin: auto;" />
 
 Note:
 
@@ -441,7 +478,7 @@ Note:
     want to convert the discrete variable to a factor instead
     `x = factor(year)`.
 
-<img src="images/chapter7-02/geom-bar2B-1.png" style="display: block; margin: auto;" />
+<img src="chapter6_02_ggplot2intro_files/figure-markdown/geom-bar2B-1.png" style="display: block; margin: auto;" />
 
 -   When the variable is a factor or character, the distances between
     the bars are equal and the labels correspond to that particular
@@ -468,7 +505,7 @@ ggplot(data = dfsum,
   geom_col()
 ```
 
-<img src="images/chapter7-02/geom-col-1.png" style="display: block; margin: auto;" />
+<img src="chapter6_02_ggplot2intro_files/figure-markdown/geom-col-1.png" style="display: block; margin: auto;" />
 
 Note:
 
