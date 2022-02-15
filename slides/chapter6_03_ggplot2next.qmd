@@ -11,10 +11,10 @@ format:
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(#fig.path = "images/chapter7-03/",
+knitr::opts_chunk$set(#fig.path = "images/chapter6-03/",
                       fig.align = "center",
                       fig.width = 6, 
-                      fig.height = 4,
+                      fig.height = 3.5,
                       cache.path = "cache/",
                       cache = FALSE,
                       echo = TRUE,
@@ -104,8 +104,6 @@ theme_border <- theme(plot.background = element_rect(color = "black",
 ```
 
 
----
-
 ## Examining two or more variables
 
 ```{r catalogue-two, fig.width = 3, fig.height = 3, echo = FALSE, fig.show='hide'}
@@ -116,6 +114,23 @@ ggplot(df2, aes(carat, price)) +
   theme_xaxis +
   theme_border + 
   ggtitle("SCATTER PLOT")
+
+ggplot(df2, aes(carat, price)) +
+  geom_hex() +
+  theme_corr +
+  theme_yaxis +
+  theme_xaxis +
+  theme_border + 
+  scale_fill_gradient(high = "white", low = yellows[1]) +
+  ggtitle("HEX PLOT")
+
+ggplot(df2, aes(carat, price)) +
+  geom_density_2d(color = yellows[1]) +
+  theme_corr +
+  theme_yaxis +
+  theme_xaxis +
+  theme_border + 
+  ggtitle("2D DENSITY PLOT")
 
 ggplot(economics, aes(date, uempmed)) +
   geom_line(color = yellows[1]) +
@@ -133,26 +148,7 @@ ggplot(df2, aes(carat, price, size = depth)) +
   theme_border + 
   ggtitle("BUBBLE CHART") + guides(size = "none")
 
-ggplot(sumdf2, aes(g1, y, fill = g2)) +
-  geom_col() +
-  theme_rank +
-  theme_yaxis +
-   theme_border + 
-  ggtitle("STACKED\nBARPLOT")
 
-ggplot(sumdf2, aes(g1, y, fill = g2)) +
-  geom_col(position = "dodge") +
-  theme_rank +
-  theme_yaxis +
-   theme_border + 
-  ggtitle("GROUPED\nBARPLOT")
-
-ggplot(sumdf2, aes(g1, y, fill = g2)) +
-  geom_col(position = "fill") +
-  theme_rank +
-  theme_yaxis +
-   theme_border + 
-  ggtitle("STACKED\nPERCENTAGE\nBARPLOT")
 
 
 ggplot(df3, aes(dosef, supp, fill = mlen)) +
@@ -182,7 +178,11 @@ oz_sf %>%
 
 
 
-`r x<-1:6;paste(glue::glue('<img class="catalogue" src="{fig_path}chapter7-02/catalogue-two-{x}.png"/>'), collapse = "")`
+`r x<-1:7;paste(glue::glue('<img class="catalogue" src="{fig_path}catalogue-two-{x}.png"/>'), collapse = "")`
+
+Notes:
+
+Let's consider looking at more layers, now with two or more variables.
 
 
 
@@ -210,6 +210,13 @@ ggplot(data = diamonds,
 * Scatter plot of price vs carat of diamonds
 * Each point correponds to a dimaond
 
+Notes:
+
+* A scatterplot is useful in visualising two numerical variables 
+* Each point corresponds to an observational unit 
+* If you have other variables, you may like to map this to other aesthetic values, such as `shape` or `color`.
+* When there is a lot of observations, it may be useful to use `alpha` to control the transparency of the points. 
+
 ---
 
 ## A hexagonal 2D heatmap with `geom_hex()`
@@ -222,6 +229,13 @@ ggplot(data = diamonds,
 
 * A hexagon shows the count of observations within the region.
 
+Notes:
+
+* A hex plot is useful if there is a lot of _overplotting_ in your scatterplot.
+* **_Overplotting_** in data visualisation means that the data or labels overlap in the data visualisation making it harder to distinguish individual data points. * Overplotting typically occurs when you have a large dataset.
+* A hex plot overcomes the issue by showing the number of observations within a hexagonal area.
+* The count is shown by the `fill` in the resulting data visualisation.
+
 ---
 
 ## A rectangular 2D heatmap with `geom_bin_2d()`
@@ -232,7 +246,12 @@ ggplot(data = diamonds,
   geom_bin_2d()
 ```
 
-* Similar to `geom_hex()` but the shape is a rectangle.
+
+Notes:
+
+
+* `geom_bin_2d()` is the same as `geom_hex()` but the shape is a rectangle instead of a hexagon.
+
 
 ---
 
@@ -244,6 +263,12 @@ ggplot(data = diamonds,
   geom_count()
 ```
 
+Notes:
+
+
+* `geom_count()` counts the number of points in the same location
+* The count is then mapped to the aesthetic `size`. 
+
 ---
 
 ## Contour of a 2D density with `geom_density_2d()`
@@ -253,6 +278,12 @@ ggplot(data = diamonds,
        mapping = aes(x = carat, y = price)) +
   geom_density_2d()
 ```
+
+Notes:
+
+* If you have want to visualise the joint density of two variables then `geom_density_2d()` is useful. 
+* The axis shows the density of the corresponding variable.
+* The 2D density is estimated using `MASS::kde2d()`. 
 
 ---
 
@@ -264,12 +295,16 @@ ggplot(data = diamonds,
   geom_density_2d_filled()
 ```
 
+Notes:
+
+* `geom_density_2d()` draws the contour line 
+* `geom_density_2d_filled()` draws the contour bands
+
 ---
 
-## Motivating data ⛰️ volcano 
+## Illustrative data ⛰️ volcano 
 
 * The data contains topographic information on Auckland's Maunga Whau Volcano
-* The original data is a matrix and we must wrangle in the form ready for `ggplot` first.
 
 ```{r}
 volcanod <- data.frame(row = as.vector(row(volcano)),
@@ -279,6 +314,9 @@ volcanod <- data.frame(row = as.vector(row(volcano)),
 volcanod
 ```
 
+Notes:
+
+* The original data is a matrix and we must wrangle in the form ready for `ggplot` first.
 
 
 ---
@@ -338,7 +376,7 @@ ggplot(volcanod, aes(xmin = col - 0.5, xmax = col + 0.5,
 
 ---
 
-## Motivating data 📈 economics
+## Illustrative data 📈 economics
 
 
 ```{r}
@@ -389,9 +427,135 @@ world
 
 ## Drawing world map with `geom_polygon()`
 
-```{r geom-polygon, eval = FALSE}
+```{r geom-polygon}
 world <- map_data("world")
 ggplot(world, aes(long, lat, group = group)) +
   geom_polygon()
 ```
 
+---
+
+## Position adjustments
+
+```{r catalogue-position, fig.width = 3, fig.height = 3, echo = FALSE, fig.show='hide'}
+ggplot(sumdf2, aes(g1, y, fill = g2)) +
+  geom_col() +
+  theme_rank +
+  theme_yaxis +
+   theme_border + 
+  ggtitle("STACKED\nBARPLOT")
+
+ggplot(sumdf2, aes(g1, y, fill = g2)) +
+  geom_col(position = "dodge") +
+  theme_rank +
+  theme_yaxis +
+   theme_border + 
+  ggtitle("GROUPED\nBARPLOT")
+
+ggplot(sumdf2, aes(g1, y, fill = g2)) +
+  geom_col(position = "fill") +
+  theme_rank +
+  theme_yaxis +
+   theme_border + 
+  ggtitle("STACKED\nPERCENTAGE\nBARPLOT")
+```
+
+`r x<-1:3;paste(glue::glue('<img class="catalogue" src="{fig_path}catalogue-position-{x}.png"/>'), collapse = "")`
+
+
+---
+
+## Other layers 
+
+* There are more layers in `ggplot`!
+* We won't cover the layers provided via functions starting with `stat_` but there are plenty of examples in the wild.
+* There are also many extension packages to draw more plots: https://exts.ggplot2.tidyverse.org/gallery/ 
+* It is normal to google and copy-and-paste code that you find on the web. 
+* `ggplot2` is also [continually updated](https://github.com/tidyverse/ggplot2/blob/main/NEWS.md) so some new features may be added in the future. 
+
+---
+
+## Illusrative data 🚢 ship accidents
+
+```{r}
+data(Accident, package = "Ecdat")
+str(Accident)
+```
+
+Notes:
+
+* `type` is the ship type
+* `constr` is year constructed
+* `operate` is the year operated
+* `months` is the service amount counted in months
+* `acc` is the number of accidents.
+
+---
+
+## A stacked barplot with `geom_col()`
+
+```{r geom-col-stack}
+ggplot(Accident, aes(type, acc, fill = constr, group = operate)) +
+  geom_col(color = "black", position = "stack")
+```
+
+Notes:
+
+* Recall that `geom_col()` is the same as `geom_bar()` except `stat="identity"`, i.e. your input data should already be summarised as count data. 
+* By default the values in `y` are stacked on top of another.
+* The aesthetic `group` here breaks the count in two groups and stack one on top of the other (try running the code without `group = operate`).
+
+
+---
+
+## A grouped barplot with `geom_col()`
+
+```{r geom-col-dodge}
+ggplot(Accident, aes(type, acc, fill = constr)) +
+  geom_col(color = "black", position = "dodge")
+```
+
+Notes:
+
+* Notice here we removed the `group = operate` -- this results in stacked bars for the same `type` and `fill`.
+* Here the `x` values are recalculated so that the factor levels within the same group (as determined by `x`) can fit.
+
+---
+
+## Another grouped barplot with `geom_col()`
+
+```{r geom-col-dodge2}
+ggplot(Accident, aes(type, acc, fill = constr, group = operate)) +
+  geom_col(color = "black", position = "dodge2")
+```
+
+Notes:
+
+* Can you see what changed?
+* `position = "dodge"` doesn't deal well when there is `fill` and `group` together but you can use `position = "dodge2"` that recalculates the `x` values in another way.
+
+
+---
+
+## Stacked percentage barplot with `geom_col()`
+
+```{r geom-col-fill}
+ggplot(Accident, aes(type, acc, fill = constr, group = operate)) +
+  geom_col(color = "black", position = "fill")
+```
+
+Notes:
+
+* If you want to compare the percentages between the different `x`, then `position = "fill"` can be handy.
+
+
+
+
+---
+
+## Summary 
+
+* We looked at more layers in `ggplot2`. 
+* There are other layers available beyond `ggplot2` in [extension packages](https://github.com/tidyverse/ggplot2/blob/main/NEWS.md). 
+* It's perfectly normal that you need to google how to use `ggplot` for certain plots (we all do in the beginning).
+* We also saw how to use the different `position` adjustments for batplots.

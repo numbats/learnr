@@ -3,8 +3,6 @@ title: Plotting two or more variables with `ggplot2`
 type: slides
 
 ---
----
-
 ## Examining two or more variables
 
 <style>
@@ -15,7 +13,11 @@ type: slides
 }
 </style>
 
-<img class="catalogue" src="chapter6_03_ggplot2next_files/figure-markdown/chapter7-02/catalogue-two-1.png"/><img class="catalogue" src="chapter6_03_ggplot2next_files/figure-markdown/chapter7-02/catalogue-two-2.png"/><img class="catalogue" src="chapter6_03_ggplot2next_files/figure-markdown/chapter7-02/catalogue-two-3.png"/><img class="catalogue" src="chapter6_03_ggplot2next_files/figure-markdown/chapter7-02/catalogue-two-4.png"/><img class="catalogue" src="chapter6_03_ggplot2next_files/figure-markdown/chapter7-02/catalogue-two-5.png"/><img class="catalogue" src="chapter6_03_ggplot2next_files/figure-markdown/chapter7-02/catalogue-two-6.png"/>
+<img class="catalogue" src="chapter6_03_ggplot2next_files/figure-markdown/catalogue-two-1.png"/><img class="catalogue" src="chapter6_03_ggplot2next_files/figure-markdown/catalogue-two-2.png"/><img class="catalogue" src="chapter6_03_ggplot2next_files/figure-markdown/catalogue-two-3.png"/><img class="catalogue" src="chapter6_03_ggplot2next_files/figure-markdown/catalogue-two-4.png"/><img class="catalogue" src="chapter6_03_ggplot2next_files/figure-markdown/catalogue-two-5.png"/><img class="catalogue" src="chapter6_03_ggplot2next_files/figure-markdown/catalogue-two-6.png"/><img class="catalogue" src="chapter6_03_ggplot2next_files/figure-markdown/catalogue-two-7.png"/>
+
+Notes:
+
+Let's consider looking at more layers, now with two or more variables.
 
 ---
 
@@ -59,6 +61,15 @@ ggplot(data = diamonds,
 -   Scatter plot of price vs carat of diamonds
 -   Each point correponds to a dimaond
 
+Notes:
+
+-   A scatterplot is useful in visualising two numerical variables
+-   Each point corresponds to an observational unit
+-   If you have other variables, you may like to map this to other
+    aesthetic values, such as `shape` or `color`.
+-   When there is a lot of observations, it may be useful to use `alpha`
+    to control the transparency of the points.
+
 ---
 
 ## A hexagonal 2D heatmap with `geom_hex()`
@@ -73,6 +84,19 @@ ggplot(data = diamonds,
 
 -   A hexagon shows the count of observations within the region.
 
+Notes:
+
+-   A hex plot is useful if there is a lot of *overplotting* in your
+    scatterplot.
+-   ***Overplotting*** in data visualisation means that the data or
+    labels overlap in the data visualisation making it harder to
+    distinguish individual data points. \* Overplotting typically occurs
+    when you have a large dataset.
+-   A hex plot overcomes the issue by showing the number of observations
+    within a hexagonal area.
+-   The count is shown by the `fill` in the resulting data
+    visualisation.
+
 ---
 
 ## A rectangular 2D heatmap with `geom_bin_2d()`
@@ -85,7 +109,10 @@ ggplot(data = diamonds,
 
 <img src="chapter6_03_ggplot2next_files/figure-markdown/geom-bin2d-1.png" style="display: block; margin: auto;" />
 
--   Similar to `geom_hex()` but the shape is a rectangle.
+Notes:
+
+-   `geom_bin_2d()` is the same as `geom_hex()` but the shape is a
+    rectangle instead of a hexagon.
 
 ---
 
@@ -99,6 +126,11 @@ ggplot(data = diamonds,
 
 <img src="chapter6_03_ggplot2next_files/figure-markdown/geom-count-1.png" style="display: block; margin: auto;" />
 
+Notes:
+
+-   `geom_count()` counts the number of points in the same location
+-   The count is then mapped to the aesthetic `size`.
+
 ---
 
 ## Contour of a 2D density with `geom_density_2d()`
@@ -110,6 +142,13 @@ ggplot(data = diamonds,
 ```
 
 <img src="chapter6_03_ggplot2next_files/figure-markdown/geom-density-2d-1.png" style="display: block; margin: auto;" />
+
+Notes:
+
+-   If you have want to visualise the joint density of two variables
+    then `geom_density_2d()` is useful.
+-   The axis shows the density of the corresponding variable.
+-   The 2D density is estimated using `MASS::kde2d()`.
 
 ---
 
@@ -123,14 +162,17 @@ ggplot(data = diamonds,
 
 <img src="chapter6_03_ggplot2next_files/figure-markdown/geom-density-2d-filled-1.png" style="display: block; margin: auto;" />
 
+Notes:
+
+-   `geom_density_2d()` draws the contour line
+-   `geom_density_2d_filled()` draws the contour bands
+
 ---
 
-## Motivating data ⛰️ volcano
+## Illustrative data ⛰️ volcano
 
 -   The data contains topographic information on Auckland's Maunga Whau
     Volcano
--   The original data is a matrix and we must wrangle in the form ready
-    for `ggplot` first.
 
 ``` r
 volcanod <- data.frame(row = as.vector(row(volcano)),
@@ -5449,6 +5491,11 @@ volcanod
     ## 5306  86  61    94
     ## 5307  87  61    94
 
+Notes:
+
+-   The original data is a matrix and we must wrangle in the form ready
+    for `ggplot` first.
+
 ---
 
 ## A 2D contour plot with `geom_contour()`
@@ -5514,7 +5561,7 @@ ggplot(volcanod, aes(xmin = col - 0.5, xmax = col + 0.5,
 
 ---
 
-## Motivating data 📈 economics
+## Illustrative data 📈 economics
 
 ``` r
 data(economics, package = "ggplot2")
@@ -38925,3 +38972,135 @@ world <- map_data("world")
 ggplot(world, aes(long, lat, group = group)) +
   geom_polygon()
 ```
+
+<img src="chapter6_03_ggplot2next_files/figure-markdown/geom-polygon-1.png" style="display: block; margin: auto;" />
+
+---
+
+## Position adjustments
+
+<img class="catalogue" src="chapter6_03_ggplot2next_files/figure-markdown/catalogue-position-1.png"/><img class="catalogue" src="chapter6_03_ggplot2next_files/figure-markdown/catalogue-position-2.png"/><img class="catalogue" src="chapter6_03_ggplot2next_files/figure-markdown/catalogue-position-3.png"/>
+
+---
+
+## Other layers
+
+-   There are more layers in `ggplot`!
+-   We won't cover the layers provided via functions starting with
+    `stat_` but there are plenty of examples in the wild.
+-   There are also many extension packages to draw more plots:
+    <https://exts.ggplot2.tidyverse.org/gallery/>
+-   It is normal to google and copy-and-paste code that you find on the
+    web.
+-   `ggplot2` is also [continually
+    updated](https://github.com/tidyverse/ggplot2/blob/main/NEWS.md) so
+    some new features may be added in the future.
+
+---
+
+## Illusrative data 🚢 ship accidents
+
+``` r
+data(Accident, package = "Ecdat")
+str(Accident)
+```
+
+    ## 'data.frame':    40 obs. of  5 variables:
+    ##  $ type   : Factor w/ 5 levels "A","B","C","D",..: 1 1 1 1 1 1 1 1 2 2 ...
+    ##  $ constr : Factor w/ 4 levels "C6064","C6569",..: 1 1 2 2 3 3 4 4 1 1 ...
+    ##  $ operate: Factor w/ 2 levels "O6074","O7579": 1 2 1 2 1 2 1 2 1 2 ...
+    ##  $ months : int  127 63 1095 1095 1512 3353 NA 2244 44882 17176 ...
+    ##  $ acc    : int  0 0 3 4 6 18 NA 11 39 29 ...
+
+Notes:
+
+-   `type` is the ship type
+-   `constr` is year constructed
+-   `operate` is the year operated
+-   `months` is the service amount counted in months
+-   `acc` is the number of accidents.
+
+---
+
+## A stacked barplot with `geom_col()`
+
+``` r
+ggplot(Accident, aes(type, acc, fill = constr, group = operate)) +
+  geom_col(color = "black", position = "stack")
+```
+
+<img src="chapter6_03_ggplot2next_files/figure-markdown/geom-col-stack-1.png" style="display: block; margin: auto;" />
+
+Notes:
+
+-   Recall that `geom_col()` is the same as `geom_bar()` except
+    `stat="identity"`, i.e. your input data should already be summarised
+    as count data.
+-   By default the values in `y` are stacked on top of another.
+-   The aesthetic `group` here breaks the count in two groups and stack
+    one on top of the other (try running the code without
+    `group = operate`).
+
+---
+
+## A grouped barplot with `geom_col()`
+
+``` r
+ggplot(Accident, aes(type, acc, fill = constr)) +
+  geom_col(color = "black", position = "dodge")
+```
+
+<img src="chapter6_03_ggplot2next_files/figure-markdown/geom-col-dodge-1.png" style="display: block; margin: auto;" />
+
+Notes:
+
+-   Notice here we removed the `group = operate` -- this results in
+    stacked bars for the same `type` and `fill`.
+-   Here the `x` values are recalculated so that the factor levels
+    within the same group (as determined by `x`) can fit.
+
+---
+
+## Another grouped barplot with `geom_col()`
+
+``` r
+ggplot(Accident, aes(type, acc, fill = constr, group = operate)) +
+  geom_col(color = "black", position = "dodge2")
+```
+
+<img src="chapter6_03_ggplot2next_files/figure-markdown/geom-col-dodge2-1.png" style="display: block; margin: auto;" />
+
+Notes:
+
+-   Can you see what changed?
+-   `position = "dodge"` doesn't deal well when there is `fill` and
+    `group` together but you can use `position = "dodge2"` that
+    recalculates the `x` values in another way.
+
+---
+
+## Stacked percentage barplot with `geom_col()`
+
+``` r
+ggplot(Accident, aes(type, acc, fill = constr, group = operate)) +
+  geom_col(color = "black", position = "fill")
+```
+
+<img src="chapter6_03_ggplot2next_files/figure-markdown/geom-col-fill-1.png" style="display: block; margin: auto;" />
+
+Notes:
+
+-   If you want to compare the percentages between the different `x`,
+    then `position = "fill"` can be handy.
+
+---
+
+## Summary
+
+-   We looked at more layers in `ggplot2`.
+-   There are other layers available beyond `ggplot2` in [extension
+    packages](https://github.com/tidyverse/ggplot2/blob/main/NEWS.md).
+-   It's perfectly normal that you need to google how to use `ggplot`
+    for certain plots (we all do in the beginning).
+-   We also saw how to use the different `position` adjustments for
+    batplots.

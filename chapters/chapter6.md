@@ -1,8 +1,10 @@
 ---
 title: 'Chapter 6: Data Visualisation with R'
-description: This chapter will give you an introduction to the R graphics system and
-  teach you how to get started with using the ggplot2 package for drawing all kind
-  of plots.
+description: 'This chapter will give you an introduction to the R graphics system
+  and teach you how to get started with using the ggplot2 package for drawing all
+  kind of plots.<br>Note: the slides may take some time before loading. Running your
+  code for the first time will take long to initialise the container but subsequent
+  runs will be faster.'
 prev: /chapter5
 next: /chapter6
 type: chapter
@@ -19,7 +21,7 @@ id: 6
 
 Which of the following is a contributed R package?
 
-<choice id=0.803817617474124>
+<choice id=0.709087997442111>
 
 <opt text="ggplot2" correct="true">
 
@@ -50,7 +52,7 @@ No, this a core package and loads automatically when you launch R.
 
 Which R package actually renders the graphics in R?
 
-<choice id=0.380914576351643>
+<choice id=0.360101639758795>
 
 <opt text="ggplot2" >
 
@@ -81,7 +83,7 @@ Yes, that's right!
 Remember that there are two primary graphic models in R: the base and
 grid graphics. Which one is ggplot2 using?
 
-<choice id=0.400727231986821>
+<choice id=0.471510825445876>
 
 <opt text="base" >
 
@@ -145,7 +147,7 @@ The meaning of the variables are described below:
 Try to recreate the scatter plot below. Is there anything unusual that
 you notice about the plot?
 
-<img src="ch7/plot4A-1.png" width="432" style="display: block; margin: auto;" />
+<img src="ch6/plot4A-1.png" width="432" style="display: block; margin: auto;" />
 
 Note: the **submit button doesn't do anything** in this chapter. You
 will need to eyeball your output plot is the same as the target plots
@@ -157,34 +159,34 @@ Hint: The scatter plots are created using `geom_point`.
 
 </codeblock>
 
-<img src="ch7/plot4B-1.png" width="432" style="display: block; margin: auto;" />
+<img src="ch6/plot4B-1.png" width="432" style="display: block; margin: auto;" />
 
 <codeblock id="06_04B">
 
 Hint: The hex plots are created using geom_hex`. `</codeblock>
 
-<img src="ch7/plot4C-1.png" width="432" style="display: block; margin: auto;" />
+<img src="ch6/plot4C-1.png" width="432" style="display: block; margin: auto;" />
 
 <codeblock id="06_04C">
 
 Hint: The five number summary is often graphically depicted by a
 boxplot. </codeblock>
 
-<img src="ch7/plot4D-1.png" width="432" style="display: block; margin: auto;" />
+<img src="ch6/plot4D-1.png" width="432" style="display: block; margin: auto;" />
 
 <codeblock id="06_04D">
 
 Hint: what do you notice about the x-axis scale? Do you perhaps need to
 convert town`? `</codeblock>
 
-<img src="ch7/plot4E-1.png" width="432" style="display: block; margin: auto;" />
+<img src="ch6/plot4E-1.png" width="432" style="display: block; margin: auto;" />
 <codeblock id="06_04E">
 
 Hint: this plot is called a histogram.
 
 </codeblock>
 
-<img src="ch7/plot4F-1.png" width="432" style="display: block; margin: auto;" />
+<img src="ch6/plot4F-1.png" width="432" style="display: block; margin: auto;" />
 <codeblock id="06_04F">
 
 Hint: this is a density plot but the y-axis is showing counts. What did
@@ -206,26 +208,26 @@ to make the plots.
 Try to recreate the scatter plot below. Is there anything that unusual
 that you notice about the plot?
 
-<img src="ch7/plot6A-1.png" width="432" style="display: block; margin: auto;" />
+<img src="ch6/plot6A-1.png" width="432" style="display: block; margin: auto;" />
 <codeblock id="06_06A">
 
 </codeblock>
 
-<img src="ch7/plot6B-1.png" width="432" style="display: block; margin: auto;" />
+<img src="ch6/plot6B-1.png" width="432" style="display: block; margin: auto;" />
 <codeblock id="06_06B">
 
 </codeblock>
 
-<img src="ch7/plot6C-1.png" width="432" style="display: block; margin: auto;" />
+<img src="ch6/plot6C-1.png" width="432" style="display: block; margin: auto;" />
 <codeblock id="06_06C">
 
 </codeblock>
-<img src="ch7/plot6D-1.png" width="432" style="display: block; margin: auto;" />
+<img src="ch6/plot6D-1.png" width="432" style="display: block; margin: auto;" />
 <codeblock id="06_06D">
 
 </codeblock>
 
-<img src="ch7/plot6E-1.png" width="432" style="display: block; margin: auto;" />
+<img src="ch6/plot6E-1.png" width="432" style="display: block; margin: auto;" />
 <codeblock id="06_06E">
 
 </codeblock>
@@ -246,12 +248,12 @@ that you notice about the plot?
 
 <exercise id="11" title="Practice making multiple subplots.">
 
-<img src="ch7/plot7A-1.png" width="432" style="display: block; margin: auto;" />
+<img src="ch6/plot7A-1.png" width="432" style="display: block; margin: auto;" />
 <codeblock id="06_10A">
 
 </codeblock>
 
-<img src="ch7/plot7B-1.png" width="432" style="display: block; margin: auto;" />
+<img src="ch6/plot7B-1.png" width="432" style="display: block; margin: auto;" />
 <codeblock id="06_10B">
 
 </codeblock>
@@ -268,7 +270,7 @@ that you notice about the plot?
 
 <exercise id="13" title="Make pretty plots">
 
-<img src="ch7/plot6-1.png" width="432" style="display: block; margin: auto;" />
+<img src="ch6/plot6-1.png" width="432" style="display: block; margin: auto;" />
 <codeblock id="06">
 
 </codeblock>

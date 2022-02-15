@@ -1,7 +1,7 @@
 ---
 title: 'Chapter 6: Data Visualisation with R'
 description:
-  'This chapter will give you an introduction to the R graphics system and teach you how to get started with using the ggplot2 package for drawing all kind of plots.'
+  'This chapter will give you an introduction to the R graphics system and teach you how to get started with using the ggplot2 package for drawing all kind of plots.<br>Note: the slides may take some time before loading. Running your code for the first time will take long to initialise the container but subsequent runs will be faster.'
 prev: /chapter5
 next: /chapter6
 type: chapter
