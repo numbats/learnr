@@ -1,28 +1,21 @@
 ---
-title: 'Chapter 7: Data Visualisation with R'
-description:
-  'This chapter will give you an introduction to the R graphics system and teach you how to get started with using the ggplot2 package for drawing all kind of plots.'
+title: 'Chapter 7: Linear regression with R'
+description: |
+  This chapter demonstrates how to fit linear models in R using the `lm` function. You'll learn about how to fitting simple linear regression, models with categorical variables and models with interaction effects.
 prev: /chapter6
 next: /chapter8
 type: chapter
 id: 7
 output:
   teachr::teachr_chapter:
-  # html_document:
-  #   self_contained: false
+  html_document:
+    self_contained: false
   #md_document
 ---
 
 ```{r setup, include = FALSE}
 library(teachr)
-knitr::knit_hooks$set(class = function(before, options, envir) {
-  if(before) {
-    sprintf("<div class='%s'>", options$class)
-  } else {
-    "</div>"
-  }
-})
-knitr::opts_chunk$set(fig.path = "ch7/",
+knitr::opts_chunk$set(fig.path = "ch8/",
                       fig.retina = 2,
                       fig.width = 6, 
                       fig.height = 4,
@@ -34,353 +27,38 @@ knitr::opts_chunk$set(fig.path = "ch7/",
 ```
 
 
+<exercise id="1" title="Simple linear regression" type="slides">
 
-
-
-<style>
-.target {
-  border: 3px solid black;
-  padding: 10px;
-  padding-top: 35px;
-  margin-bottom: 10px;
-}
-.target:before {
-  position: absolute;
-  content: "🎯 your target plot";
-  padding: 5px;
-  margin-left: -13px;
-  margin-top: -38px;
-  background-color: #003366;
-  font-size: 12pt;
-  border: 3px solid black;
-  color: white;
-}
-</style>
-
-
-<exercise id="1" title="R Graphics" type="slides">
-
-`r slides("chapter7_01_rgraphics")`
+`r slides("chapter8_01_simple-linear-regression")`
 
 </exercise>
 
-<exercise id="2" title="Test your knowledge of R Graphics">
+<exercise id="2" title="Test your knowledge">
 
-Which of the following is a contributed R package?
-
-```{r, echo = FALSE, results = "asis"}
-cat(mc_opts("ggplot2" = "That's correct! ggplot2 was developed by Hadley Wickham as part of his PhD.",
-         "grid" = "No, this is a core package so it's already installed.",
-         "graphics" = "No, this a core package and loads automatically when you launch R.",
-         "grDevices" = "No, this a core package and loads automatically when you launch R.",
-         correct = 1))
-```
-
-Which R package actually renders the graphics in R?
-
-```{r, echo = FALSE, results = "asis"}
-cat(mc_opts("ggplot2" = "No, that's incorrect.",
-         "grid" = "No, that's incorrect.",
-         "graphics" = "No, that's incorrect.",
-         "grDevices" = "Yes, that's right!",
-         correct = 4))
-```
-
-Remember that there are two primary graphic models in R: the base and grid graphics. Which one is ggplot2 using?
-
-```{r, echo = FALSE, results = "asis"}
-cat(mc_opts("base" = "No, that's incorrect.",
-         "grid" = "Yes that's right! Well done!",
-         correct = 2))
-```
 
 
 </exercise>
 
 
 
-<exercise id="3" title="Getting started with ggplot2" type="slides">
+<exercise id="3" title="Regression with categorical variables" type="slides">
 
-`r slides("chapter7_02_ggplot2intro")`
-
-</exercise>
-
-<exercise id="4" title="Plotting two or more variables with ggplot2" type="slides">
-
-`r slides("chapter7_03_ggplot2next")`
+`r slides("chapter8_02_regression-with-categorical-var")`
 
 </exercise>
 
 
-<exercise id="5" title="Make basic plots with ggplot2">
-
-For the following questions we are going to use `BudgetFood` data from the `Ecdat` package which contains the budget share of food for Spanish households. You can load the dataset and see the structure of the data below.
-
-```{r, message = FALSE, warning = FALSE}
-library(Ecdat)
-str(BudgetFood)
-```
-The meaning of the variables are described below:
-
-* `wfood`: percentage of total expenditure which the household has spent on food
-* `totexp`: total expenditure of the household
-* `age`: age of reference person in the household
-* `size`: size of the household
-* `town`: size of the town where the household is placed categorized into 5 groups: 1 for small towns, 5 for big ones
-* `sex`: sex of reference person (man,woman)
-
-Try to recreate the scatter plot below. Is there anything unusual that you notice about the plot?
-
-```{r plot4A, code = readLines("../exercises/solution_07_04A.R"), echo = FALSE, class = "target"}
-```
-
-Note: the **submit button doesn't do anything** in this chapter. You will need to eyeball your output plot is the same as the target plots for all questions. 
-
-```{teachr 07_04A, outdir = "../exercises"}
-library(ggplot2)
-library(Ecdat)
-ggplot(data = <<BudgetFood>>, 
-       mapping = aes(x = <<size>>, 
-                     y = <<totexp>>)) +
-  geom_<<point>>()
-
----
-  
-Hint: The scatter plots are created using `geom_point`.
-
-```
-
-```{r plot4B, code = readLines("../exercises/solution_07_04B.R"), echo = FALSE, class = "target"}
-```
-
-```{teachr 07_04B, outdir = "../exercises"}
-library(ggplot2)
-library(Ecdat)
-ggplot(data = <<BudgetFood>>, 
-       mapping = aes(x = <<size>>, 
-                     y = <<totexp>>)) +
-  geom_<<hex>>()
-
----
-  
-Hint: The hex plots are created using `geom_hex`.
-```
-
-
-```{r plot4C, code = readLines("../exercises/solution_07_04C.R"), echo = FALSE, class = "target"}
-```
-
-```{teachr 07_04C, outdir = "../exercises"}
-library(ggplot2)
-library(Ecdat)
-ggplot(data = <<BudgetFood>>, 
-       mapping = aes(x = <<sex>>, 
-                     y = <<age>>)) +
-  geom_<<boxplot>>()
-
----
-  
-Hint: The five number summary is often graphically depicted by a boxplot. 
-```
-
-
-```{r plot4D, code = readLines("../exercises/solution_07_04D.R"), echo = FALSE, class = "target"}
-```
-
-```{teachr 07_04D, outdir = "../exercises"}
-library(ggplot2)
-library(Ecdat)
-ggplot(data = <<BudgetFood>>, 
-       mapping = aes(x = <<factor(town)>>, 
-                     y = <<totexp>>)) +
-  geom_<<violin>>()
-
----
-  
-Hint: what do you notice about the x-axis scale? Do you perhaps need to convert `town`?
-```
-
-```{r plot4E, code = readLines("../exercises/solution_07_04E.R"), echo = FALSE, class = "target"}
-```
-```{teachr 07_04E, outdir = "../exercises"}
-library(ggplot2)
-library(Ecdat)
-ggplot(data = <<BudgetFood>>, 
-       mapping = aes(x = <<wfood>>)) +
-  geom_<<histogram>>(binwidth = 0.001)
-
----
-  
-Hint: this plot is called a histogram.
-
-```
-
-```{r plot4F, code = readLines("../exercises/solution_07_04F.R"), echo = FALSE, class = "target"}
-```
-```{teachr 07_04F, outdir = "../exercises"}
-library(ggplot2)
-library(Ecdat)
-ggplot(data = <<BudgetFood>>, 
-       mapping = aes(x = <<wfood>>))  +
-  geom_density(aes(y = <<after_stat(count)>>))
-
----
-
-Hint: this is a density plot but the y-axis is showing counts. What did `after_stat` function do?
-    
-```
-
-</exercise>
-
-
-<exercise id="6" title="Multiple layers in ggplot2"  type="slides">
-`r slides("chapter7_04_ggplot2layers")`
-</exercise>
-
-
-<exercise id="7" title="Practice creating multiple layers">
-
-We are again going to use the `BudgetFood` data from the `Ecdat` package to make the plots.
-
-
-Try to recreate the scatter plot below. Is there anything that unusual that you notice about the plot?
-
-```{r plot6A, code = readLines("../exercises/solution_07_06A.R"), echo = FALSE, class = "target"}
-```
-```{teachr 07_06A, outdir = "../exercises"}
-library(ggplot2)
-library(Ecdat)
-ggplot(data = <<BudgetFood>>, 
-       mapping = aes(x = <<totexp>>)) +
-  geom_<<histogram>>(aes(y = after_stat(density))) +
-  geom_<<density>>(color = "red")
-```
-
-```{r plot6B, code = readLines("../exercises/solution_07_06B.R"), echo = FALSE, class = "target"}
-```
-```{teachr 07_06B, outdir = "../exercises"}
-library(ggplot2)
-library(Ecdat)
-ggplot(data = <<subset(BudgetFood, !is.na(sex))>>, 
-       mapping = aes(x = <<sex>>,
-                     y = <<age>>)) +
-  geom_<<violin>>(<<aes(fill = sex)>>) +
-  geom_<<boxplot>>(<<width>> = 0.1) 
-```
-
-```{r plot6C, code = readLines("../exercises/solution_07_06C.R"), echo = FALSE, class = "target"}
-```
-```{teachr 07_06C, outdir = "../exercises"}
-library(ggplot2)
-library(Ecdat)
-ggplot(data = <<subset(BudgetFood, size < 30)>>, 
-       mapping = aes(x = <<size>>,
-                     y = <<totexp>>)) +
-  geom_<<point>>() +
-  geom_<<smooth>>(color = "red",
-                  method = loess,
-                  formula = y ~ x)
-```
-```{r plot6D, code = readLines("../exercises/solution_07_06D.R"), echo = FALSE, class = "target", cache = FALSE}
-```
-```{teachr 07_06D, outdir = "../exercises"}
-library(ggplot2)
-library(Ecdat)
-ggplot(data = <<subset(BudgetFood, !is.na(sex))>>, 
-       mapping = aes(x = <<sex>>)) +
-  geom_<<bar>>() +
-  geom_<<text>>(aes(label = <<after_stat(count)>>),
-                 vjust = -0.3,
-                 stat = <<"count">>)
-```
-
-```{r plot6E, code = readLines("../exercises/solution_07_06E.R"), echo = FALSE, class = "target", cache = FALSE}
-```
-```{teachr 07_06E, outdir = "../exercises"}
-library(tidyverse)
-library(Ecdat)
-dat <- BudgetFood %>% 
-  filter(!is.na(sex)) %>% 
-  group_by(town, sex) %>% 
-  summarise(totexp = mean(totexp))
-
-<<ggplot()>> +
-  geom_<<col>>(data = subset(dat, sex=="woman"),
-               aes(x = <<factor(town)>>,
-                   y = <<totexp>>,
-                  <<fill = "woman">>)) +
-  geom_<<col>>(data = subset(dat, sex=="man"),
-               aes(x = <<factor(town)>>,
-                   y = <<-totexp>>,
-                  <<fill = "man">>))
-```
+<exercise id="4" title="Test your knoweldge">
 
 
 </exercise>
 
-<exercise id="8" title="Scales and guides in ggplot2"  type="slides">
-`r slides("chapter7_05_ggplot2scales")`
+
+<exercise id="5" title="Regression models with interaction effects" type="slides">
+`r slides("chapter8_03_interaction")`
 </exercise>
 
-<exercise id="9" title="Practice changing scales and guides.">
 
-
-</exercise>
-
-<exercise id="10" title="Multiple plots in one figure"  type="slides">
-`r slides("chapter7_06_ggplot2facet")`
-</exercise>
-
-<exercise id="11" title="Practice making multiple subplots.">
-```{r plot7A, code = readLines("../exercises/solution_07_10A.R"), echo = FALSE, class = "target", cache = FALSE}
-```
-```{teachr 07_10A, outdir = "../exercises"}
-ggplot(BudgetFood, aes(x = <<age>>)) + 
-  geom_histogram(data = <<select(BudgetFood, -town)>>,
-                 fill = "grey", binwidth = 1,
-                 aes(y = after_stat(density))) +
-  geom_histogram(aes(y = after_stat(density)),
-                 binwidth = 1) +
-  geom_density(color = "red") +
-  facet_<<wrap(~town)>>
-```
-
-
-```{r plot7B, code = readLines("../exercises/solution_07_10B.R"), echo = FALSE, class = "target", cache = FALSE}
-```
-```{teachr 07_10B, outdir = "../exercises"}
-ggplot(subset(BudgetFood, !is.na(sex)), aes(age)) +
-  geom_histogram(aes(y = <<after_stat(density)>>)) +
-  geom_text(x = 35, y = 0.035, 
-            data = function(.data) .data %>% 
-              group_by(sex, town) %>% 
-              count(),
-            aes(label = n)) +
-  facet_<<grid(sex ~ town)>>
-```
-
-```{r plot7C, code = readLines("../exercises/solution_07_10C.R"), echo = FALSE, class = "target", cache = FALSE}
-```
-```{teachr 07_10C, outdir = "../exercises"}
-library(patchwork)
-g1 <- ggplot(BudgetFood, 
-             aes(factor(size), wfood, color = sex)) +
-  geom_boxplot() 
-
-g2 <- ggplot(BudgetFood, 
-             aes(factor(size), totexp, color = sex)) +
-  geom_boxplot() + 
-  scale_y_log10()
-
-# combine the plot as one figure 
-<<g1 / g2 + plot_layout(guides = "collect")>>
-```
-</exercise>
-
-<exercise id="12" title="Customise the look with themes in ggplot2"  type="slides">
-`r slides("chapter7_07_ggplot2theme")`
-</exercise>
-
-<exercise id="13" title="Make publication ready plots.">
+<exercise id="6" title="Practice">
 
 </exercise>
