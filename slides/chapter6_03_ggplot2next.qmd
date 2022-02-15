@@ -2,7 +2,7 @@
 title: Plotting two or more variables with `ggplot2`
 format: 
   revealjs:
-    logo: images/monash-stacked-blue-rgb-transparent.png
+    logo: monash-stacked-blue-rgb-transparent.png
     slide-number: true
     show-slide-number: all
     controls: true
@@ -11,18 +11,19 @@ format:
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(fig.path = "images/chapter7-03/",
+knitr::opts_chunk$set(#fig.path = "images/chapter7-03/",
                       fig.align = "center",
                       fig.width = 6, 
                       fig.height = 4,
                       cache.path = "cache/",
-                      cache = TRUE,
+                      cache = FALSE,
                       echo = TRUE,
                       warning = FALSE, 
                       message = FALSE)
 library(ozmaps)
-library(ggplot2)
+library(tidyverse)
 oz_sf <- ozmap_data("states")
+fig_path <- knitr::opts_chunk$get("fig.path")
 ```
 
 
@@ -97,6 +98,9 @@ theme_xaxis <- theme(axis.line.x = element_line(color = "black", size = 1),
                                                  size = 1, 
                                                  lineend = NULL),
                      axis.ticks.length.x = unit(0.3, "lines"))
+
+theme_border <- theme(plot.background = element_rect(color = "black",
+                                                     size = 3))
 ```
 
 
@@ -110,6 +114,7 @@ ggplot(df2, aes(carat, price)) +
   theme_corr +
   theme_yaxis +
   theme_xaxis +
+  theme_border + 
   ggtitle("SCATTER PLOT")
 
 ggplot(economics, aes(date, uempmed)) +
@@ -117,6 +122,7 @@ ggplot(economics, aes(date, uempmed)) +
   theme_corr +
   theme_yaxis +
   theme_xaxis +
+  theme_border + 
   ggtitle("LINE PLOT")
 
 ggplot(df2, aes(carat, price, size = depth)) +
@@ -124,30 +130,35 @@ ggplot(df2, aes(carat, price, size = depth)) +
   theme_corr +
   theme_yaxis +
   theme_xaxis +
+  theme_border + 
   ggtitle("BUBBLE CHART") + guides(size = "none")
 
 ggplot(sumdf2, aes(g1, y, fill = g2)) +
   geom_col() +
   theme_rank +
   theme_yaxis +
+   theme_border + 
   ggtitle("STACKED\nBARPLOT")
 
 ggplot(sumdf2, aes(g1, y, fill = g2)) +
   geom_col(position = "dodge") +
   theme_rank +
   theme_yaxis +
+   theme_border + 
   ggtitle("GROUPED\nBARPLOT")
 
 ggplot(sumdf2, aes(g1, y, fill = g2)) +
   geom_col(position = "fill") +
   theme_rank +
   theme_yaxis +
+   theme_border + 
   ggtitle("STACKED\nPERCENTAGE\nBARPLOT")
 
 
 ggplot(df3, aes(dosef, supp, fill = mlen)) +
   geom_tile(color = "black", size = 1.2) +
   theme_other +
+   theme_border + 
   ggtitle("HEATMAP")
 
 
@@ -157,13 +168,22 @@ oz_sf %>%
   ggplot(aes(fill = value)) +
   geom_sf() +
   theme_other +
+   theme_border + 
   ggtitle("CHOROPLETH\nMAP")
 ```
 
+<style>
+.catalogue { 
+  margin: 0!important; 
+  width: 18%!important;
+  margin-right: 2%!important;
+}
+</style>
 
-<div class="catalogue">
-`r x<-1:6;paste(glue::glue('<img src="images/chapter7-02/catalogue-two-{x}.png"/>'), collapse = "")`
-</div>
+
+
+`r x<-1:6;paste(glue::glue('<img class="catalogue" src="{fig_path}chapter7-02/catalogue-two-{x}.png"/>'), collapse = "")`
+
 
 
 ---
