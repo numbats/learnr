@@ -76,7 +76,7 @@ Note:
 
 ## Basic structure of `ggplot`
 
-![](ggplot-basic-str.png)
+![](images/ggplot-basic-str.png)
 
 1. **data** as `data.frame`
 2. a set of **aesthetic** mappings between variables in the data and visual properties

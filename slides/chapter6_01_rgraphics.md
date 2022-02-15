@@ -821,7 +821,7 @@ Note:
 -   Base graphics are drawn via the `graphics` package.
 
 <center>
-<img src="base-graphics.png" width="50%">
+<img src="images/base-graphics.png" width="50%">
 </center>
 
 Note:
@@ -888,7 +888,7 @@ Note:
 
 ## Summary of R graphics
 
-![](r-graphics-system.png) Note:
+![](images/r-graphics-system.png) Note:
 
 -   There are two main graphics model in R: base and grid graphics.
 -   All graphics are rendered using `grDevices` to your graphical
