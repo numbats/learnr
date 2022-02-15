@@ -2,8 +2,8 @@ install.packages("tidyverse")
 install.packages("rjson")
 install.packages("Ecdat")
 install.packages("testthat")
-install.packages("patchwork")
+install.packages("patchwork", repos = "https://cran.rstudio.com/")
 install.packages("broom")
 
 options(tidyverse.quiet = TRUE)
-_R_S3_METHOD_REGISTRATION_NOTE_OVERWRITES_ = 0
+Sys.setenv(`_R_S3_METHOD_REGISTRATION_NOTE_OVERWRITES_` = "false")
