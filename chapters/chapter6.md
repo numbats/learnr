@@ -4,35 +4,14 @@ description: This chapter will give you an introduction to the R graphics system
   teach you how to get started with using the ggplot2 package for drawing all kind
   of plots.
 prev: /chapter5
-next: /chapter7
+next: /chapter6
 type: chapter
 id: 6
 
 ---
-`
-<style>
-.target {
-  border: 3px solid black;
-  padding: 10px;
-  padding-top: 35px;
-  margin-bottom: 10px;
-}
-.target:before {
-  position: absolute;
-  content: "🎯 your target plot";
-  padding: 5px;
-  margin-left: -13px;
-  margin-top: -38px;
-  background-color: #003366;
-  font-size: 12pt;
-  border: 3px solid black;
-  color: white;
-}
-</style>
-```
 <exercise id="1" title="R Graphics" type="slides">
 
-<slides source="chapter7_01_rgraphics"> </slides>
+<slides source="chapter6_01_rgraphics"> </slides>
 
 </exercise>
 
@@ -40,7 +19,7 @@ id: 6
 
 Which of the following is a contributed R package?
 
-<choice id=0.381169719155878>
+<choice id=0.803817617474124>
 
 <opt text="ggplot2" correct="true">
 
@@ -71,7 +50,7 @@ No, this a core package and loads automatically when you launch R.
 
 Which R package actually renders the graphics in R?
 
-<choice id=0.0326864495873451>
+<choice id=0.380914576351643>
 
 <opt text="ggplot2" >
 
@@ -122,13 +101,13 @@ Yes that's right! Well done!
 
 <exercise id="3" title="Getting started with ggplot2" type="slides">
 
-<slides source="chapter7_02_ggplot2intro"> </slides>
+<slides source="chapter6_02_ggplot2intro"> </slides>
 
 </exercise>
 
 <exercise id="4" title="Plotting two or more variables with ggplot2" type="slides">
 
-<slides source="chapter7_03_ggplot2next"> </slides>
+<slides source="chapter6_03_ggplot2next"> </slides>
 
 </exercise>
 
@@ -166,61 +145,47 @@ The meaning of the variables are described below:
 Try to recreate the scatter plot below. Is there anything unusual that
 you notice about the plot?
 
-::: target
 <img src="ch7/plot4A-1.png" width="432" style="display: block; margin: auto;" />
-:::
 
 Note: the **submit button doesn't do anything** in this chapter. You
 will need to eyeball your output plot is the same as the target plots
 for all questions.
 
-<codeblock id="07_04A">
+<codeblock id="06_04A">
 
 Hint: The scatter plots are created using `geom_point`.
 
 </codeblock>
 
-::: target
 <img src="ch7/plot4B-1.png" width="432" style="display: block; margin: auto;" />
-:::
 
-<codeblock id="07_04B">
+<codeblock id="06_04B">
 
 Hint: The hex plots are created using geom_hex`. `</codeblock>
 
-::: target
 <img src="ch7/plot4C-1.png" width="432" style="display: block; margin: auto;" />
-:::
 
-<codeblock id="07_04C">
+<codeblock id="06_04C">
 
 Hint: The five number summary is often graphically depicted by a
 boxplot. </codeblock>
 
-::: target
 <img src="ch7/plot4D-1.png" width="432" style="display: block; margin: auto;" />
-:::
 
-<codeblock id="07_04D">
+<codeblock id="06_04D">
 
 Hint: what do you notice about the x-axis scale? Do you perhaps need to
 convert town`? `</codeblock>
 
-::: target
 <img src="ch7/plot4E-1.png" width="432" style="display: block; margin: auto;" />
-:::
-
-<codeblock id="07_04E">
+<codeblock id="06_04E">
 
 Hint: this plot is called a histogram.
 
 </codeblock>
 
-::: target
 <img src="ch7/plot4F-1.png" width="432" style="display: block; margin: auto;" />
-:::
-
-<codeblock id="07_04F">
+<codeblock id="06_04F">
 
 Hint: this is a density plot but the y-axis is showing counts. What did
 `after_stat` function do?
@@ -230,7 +195,7 @@ Hint: this is a density plot but the y-axis is showing counts. What did
 </exercise>
 
 <exercise id="6" title="Multiple layers in ggplot2"  type="slides">
-<slides source="chapter7_04_ggplot2layers"> </slides>
+<slides source="chapter6_04_ggplot2layers"> </slides>
 </exercise>
 
 <exercise id="7" title="Practice creating multiple layers">
@@ -241,50 +206,34 @@ to make the plots.
 Try to recreate the scatter plot below. Is there anything that unusual
 that you notice about the plot?
 
-::: target
 <img src="ch7/plot6A-1.png" width="432" style="display: block; margin: auto;" />
-:::
-
-<codeblock id="07_06A">
+<codeblock id="06_06A">
 
 </codeblock>
 
-::: target
 <img src="ch7/plot6B-1.png" width="432" style="display: block; margin: auto;" />
-:::
-
-<codeblock id="07_06B">
+<codeblock id="06_06B">
 
 </codeblock>
 
-::: target
 <img src="ch7/plot6C-1.png" width="432" style="display: block; margin: auto;" />
-:::
-
-<codeblock id="07_06C">
+<codeblock id="06_06C">
 
 </codeblock>
-
-::: target
 <img src="ch7/plot6D-1.png" width="432" style="display: block; margin: auto;" />
-:::
-
-<codeblock id="07_06D">
+<codeblock id="06_06D">
 
 </codeblock>
 
-::: target
 <img src="ch7/plot6E-1.png" width="432" style="display: block; margin: auto;" />
-:::
-
-<codeblock id="07_06E">
+<codeblock id="06_06E">
 
 </codeblock>
 
 </exercise>
 
 <exercise id="8" title="Scales and guides in ggplot2"  type="slides">
-<slides source="chapter7_05_ggplot2scales"> </slides>
+<slides source="chapter6_05_ggplot2scales"> </slides>
 </exercise>
 
 <exercise id="9" title="Practice changing scales and guides.">
@@ -292,38 +241,36 @@ that you notice about the plot?
 </exercise>
 
 <exercise id="10" title="Multiple plots in one figure"  type="slides">
-<slides source="chapter7_06_ggplot2facet"> </slides>
+<slides source="chapter6_06_ggplot2facet"> </slides>
 </exercise>
 
 <exercise id="11" title="Practice making multiple subplots.">
 
-::: target
 <img src="ch7/plot7A-1.png" width="432" style="display: block; margin: auto;" />
-:::
-
-<codeblock id="07_10A">
+<codeblock id="06_10A">
 
 </codeblock>
 
-::: target
 <img src="ch7/plot7B-1.png" width="432" style="display: block; margin: auto;" />
-:::
-
-<codeblock id="07_10B">
+<codeblock id="06_10B">
 
 </codeblock>
 
-::: target
-:::
+<codeblock id="06_10C">
 
-<codeblock id="07_10C">
+</codeblock>
 
-</codeblock> </exercise>
-
-<exercise id="12" title="Customise the look with themes in ggplot2"  type="slides">
-<slides source="chapter7_07_ggplot2theme"> </slides>
 </exercise>
 
-<exercise id="13" title="Make publication ready plots.">
+<exercise id="12" title="Customise the look with themes in ggplot2"  type="slides">
+<slides source="chapter6_06_ggplot2theme"> </slides>
+</exercise>
+
+<exercise id="13" title="Make pretty plots">
+
+<img src="ch7/plot6-1.png" width="432" style="display: block; margin: auto;" />
+<codeblock id="06">
+
+</codeblock>
 
 </exercise>

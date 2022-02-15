@@ -7,8 +7,8 @@ type: slides
 
 -   `ggplot2` is an R-package that was initially developed by Hadley
     Wickham as part of his PhD project.
--   `ggplot2` implements an interpretation of the “The Grammar of
-    Graphics” by Leland Wilkinson.
+-   `ggplot2` implements an interpretation of the "The Grammar of
+    Graphics" by Leland Wilkinson.
 -   It is one of the most popular packages in R for data visualisation
     and widely used in scientific outputs, reports, and even news
     articles.
@@ -32,22 +32,22 @@ Note:
 
 -   To use `ggplot2`, you first have to install the package
 
-<!-- -->
-
-    install.packages("ggplot2")
+``` r
+install.packages("ggplot2")
+```
 
 -   Once you have installed it, you can load the package:
 
-<!-- -->
-
-    library(ggplot2)
+``` r
+library(ggplot2)
+```
 
 -   `ggplot2` is part of the `tidyverse` family so if you load
-    `tidyverse`, you don’t need to load `ggplot2` like above
+    `tidyverse`, you don't need to load `ggplot2` like above
 
-<!-- -->
-
-    library(tidyverse)
+``` r
+library(tidyverse)
+```
 
 Note:
 
@@ -82,13 +82,13 @@ Note:
 
 ## Illustrative data 💰 Wages
 
--   Let’s look at a survey of average hourly earnings in United States
+-   Let's look at a survey of average hourly earnings in United States
     where each observation is an individual.
 
-<!-- -->
-
-    data(CPSch3, package = "Ecdat")
-    str(CPSch3)
+``` r
+data(CPSch3, package = "Ecdat")
+str(CPSch3)
+```
 
     ## 'data.frame':    11130 obs. of  3 variables:
     ##  $ year: int  1992 1992 1992 1992 1992 1992 1992 1992 1992 1992 ...
@@ -97,7 +97,7 @@ Note:
 
 Note:
 
--   Let’s use a data to illustrate the different layers in `ggplot2`.
+-   Let's use a data to illustrate the different layers in `ggplot2`.
 -   This data contains:
     -   `year` = the survey year
     -   `ahe` = the average hourly earnings
@@ -107,7 +107,9 @@ Note:
 
 ## Initialising the plot
 
-    ggplot(data = CPSch3) 
+``` r
+ggplot(data = CPSch3) 
+```
 
 <img src="images/chapter7-02/plot-initial-1.png" style="display: block; margin: auto;" />
 
@@ -116,14 +118,16 @@ Note:
 
 Note:
 
-This graph isn’t really useful.
+This graph isn't really useful.
 
 ---
 
 ## Mapping data variables to aesthetics
 
-    ggplot(data = CPSch3,
-           mapping = aes(x = sex, y = ahe)) 
+``` r
+ggplot(data = CPSch3,
+       mapping = aes(x = sex, y = ahe)) 
+```
 
 <img src="images/chapter7-02/plot-mapping-1.png" style="display: block; margin: auto;" />
 
@@ -132,7 +136,7 @@ This graph isn’t really useful.
 
 Note:
 
-Notice that the scales are automatically setup based on the data – less
+Notice that the scales are automatically setup based on the data -- less
 work for you to do in plotting the data.
 
 ---
@@ -154,7 +158,9 @@ Note:
 
 ## Distribution of a single variable
 
+::: catalogue
 <img src="images/chapter7-02/catalogue-single-1.png"/><img src="images/chapter7-02/catalogue-single-2.png"/><img src="images/chapter7-02/catalogue-single-3.png"/><img src="images/chapter7-02/catalogue-single-4.png"/><img src="images/chapter7-02/catalogue-single-5.png"/><img src="images/chapter7-02/catalogue-single-6.png"/>
+:::
 
 Note:
 
@@ -163,16 +169,18 @@ Note:
     plot** or **dot plot**.
 -   If you have a discrete or categorical variable, you may like to
     study this using a **barplot** (or sometimes called barchart).
--   We’ll go through how to create these layers in `ggplot2` next.
+-   We'll go through how to create these layers in `ggplot2` next.
 
 ---
 
 ## A histogram with `geom_histogram()`
 
-    ggplot(data = CPSch3, 
-           mapping = aes(x = ahe)) +
-      geom_histogram() +
-      labs(x = "Average hourly earnings (US$)")
+``` r
+ggplot(data = CPSch3, 
+       mapping = aes(x = ahe)) +
+  geom_histogram() +
+  labs(x = "Average hourly earnings (US$)")
+```
 
 <img src="images/chapter7-02/geom-histogram-1.png" style="display: block; margin: auto;" />
 
@@ -185,7 +193,7 @@ Note:
     histogram changes.
 -   Here we can see that the distribution for the average hourly
     earnings are slightly right skewed.
--   The mode average hourly earning looks like it’s about US$14.
+-   The mode average hourly earning looks like it's about US\$14.
 -   To find more about how to change parameters of the layer, have a
     look at the corresponding documentation (`?geom_histogram`).
 
@@ -193,10 +201,12 @@ Note:
 
 ## Layer data
 
-    g <- ggplot(data = CPSch3, 
-           mapping = aes(x = ahe)) +
-      geom_histogram() 
-    layer_data(g, 1)
+``` r
+g <- ggplot(data = CPSch3, 
+       mapping = aes(x = ahe)) +
+  geom_histogram() 
+layer_data(g, 1)
+```
 
     ##       y count         x       xmin      xmax      density      ncount    ndensity
     ## 1    19    19  1.734720  0.8673601  2.602080 0.0009840768 0.014011799 0.014011799
@@ -271,9 +281,11 @@ Note:
 
 ## Layer data
 
-    ggplot(data = CPSch3, 
-           mapping = aes(x = ahe)) +
-      geom_histogram(aes(y = after_stat(density))) 
+``` r
+ggplot(data = CPSch3, 
+       mapping = aes(x = ahe)) +
+  geom_histogram(aes(y = after_stat(density))) 
+```
 
 <img src="images/chapter7-02/geom-histogram-density-1.png" style="display: block; margin: auto;" />
 
@@ -289,10 +301,12 @@ Note:
 
 ## A density plot with `geom_density()`
 
-    ggplot(data = CPSch3, 
-           mapping = aes(x = ahe)) +
-      geom_density() +
-      labs(x = "Average hourly earnings (US$)")
+``` r
+ggplot(data = CPSch3, 
+       mapping = aes(x = ahe)) +
+  geom_density() +
+  labs(x = "Average hourly earnings (US$)")
+```
 
 <img src="images/chapter7-02/geom-density-1.png" style="display: block; margin: auto;" />
 
@@ -302,18 +316,20 @@ Note:
     of a (continuous) numerical variable.
 -   The y-axis is showing the density, which is esimated using a
     particular kernel function.
--   The estimated density can oversmooth or have problems in the tails –
-    so don’t only rely on density plots to tell you the full picture of
-    the data.
+-   The estimated density can oversmooth or have problems in the tails
+    -- so don't only rely on density plots to tell you the full picture
+    of the data.
 
 ---
 
 ## A frequency polygon with `geom_freqpoly()`
 
-    ggplot(data = CPSch3, 
-           mapping = aes(x = ahe)) +
-      geom_freqpoly() +
-      labs(x = "Average hourly earnings (US$)")
+``` r
+ggplot(data = CPSch3, 
+       mapping = aes(x = ahe)) +
+  geom_freqpoly() +
+  labs(x = "Average hourly earnings (US$)")
+```
 
 <img src="images/chapter7-02/geom-freqpoly-1.png" style="display: block; margin: auto;" />
 
@@ -328,10 +344,12 @@ Note:
 
 ## A boxplot with `geom_boxplot()`
 
-    ggplot(data = CPSch3, 
-           mapping = aes(x = ahe)) +
-      geom_boxplot() +
-      labs(x = "Average hourly earnings (US$)")
+``` r
+ggplot(data = CPSch3, 
+       mapping = aes(x = ahe)) +
+  geom_boxplot() +
+  labs(x = "Average hourly earnings (US$)")
+```
 
 <img src="images/chapter7-02/geom-boxplot-1.png" style="display: block; margin: auto;" />
 
@@ -349,10 +367,12 @@ Note:
 
 ## A violin plot with `geom_violin()`
 
-    ggplot(data = CPSch3, 
-           mapping = aes(x = ahe, y = "")) +
-      geom_violin() +
-      labs(x = "Average hourly earnings (US$)")
+``` r
+ggplot(data = CPSch3, 
+       mapping = aes(x = ahe, y = "")) +
+  geom_violin() +
+  labs(x = "Average hourly earnings (US$)")
+```
 
 <img src="images/chapter7-02/geom-violin-1.png" style="display: block; margin: auto;" />
 
@@ -365,10 +385,12 @@ Note:
 
 ## A dotplot with `geom_dotplot()`
 
-    ggplot(data = dplyr::sample_n(CPSch3, 200), 
-           mapping = aes(x = ahe)) +
-      geom_dotplot() +
-      labs(x = "Average hourly earnings (US$)")
+``` r
+ggplot(data = dplyr::sample_n(CPSch3, 200), 
+       mapping = aes(x = ahe)) +
+  geom_dotplot() +
+  labs(x = "Average hourly earnings (US$)")
+```
 
 <img src="images/chapter7-02/geom-dotplot-1.png" style="display: block; margin: auto;" />
 
@@ -381,9 +403,11 @@ Note:
 
 ## A barplot with `geom_bar()` with categorical variables
 
-    ggplot(data = CPSch3, 
-           mapping = aes(x = sex)) +
-      geom_bar()
+``` r
+ggplot(data = CPSch3, 
+       mapping = aes(x = sex)) +
+  geom_bar()
+```
 
 <img src="images/chapter7-02/geom-bar-1.png" style="display: block; margin: auto;" />
 
@@ -398,9 +422,11 @@ Note:
 
 ## A barplot with `geom_bar()` with discrete variables
 
-    ggplot(data = filter(CPSch3, year!=1994), 
-           mapping = aes(x = year)) +
-      geom_bar()
+``` r
+ggplot(data = filter(CPSch3, year!=1994), 
+       mapping = aes(x = year)) +
+  geom_bar()
+```
 
 <img src="images/chapter7-02/geom-bar2A-1.png" style="display: block; margin: auto;" />
 
@@ -408,9 +434,9 @@ Note:
 
 -   If you supply a numerical variable, you can see now that the x-axis
     scale is continuous.
--   The years are 2 years apart – I filtered out 1994 on purpose so that
-    it’s easier to see the distance between bars are determined by the
-    numerical value.
+-   The years are 2 years apart -- I filtered out 1994 on purpose so
+    that it's easier to see the distance between bars are determined by
+    the numerical value.
 -   If you want to study each level in a discrete variable, then you may
     want to convert the discrete variable to a factor instead
     `x = factor(year)`.
@@ -425,8 +451,10 @@ Note:
 
 ## A barplot with `geom_col()`
 
-    dfsum <- CPSch3 %>% group_by(sex) %>% tally()
-    dfsum
+``` r
+dfsum <- CPSch3 %>% group_by(sex) %>% tally()
+dfsum
+```
 
     ## # A tibble: 2 × 2
     ##   sex        n
@@ -434,9 +462,11 @@ Note:
     ## 1 male    5956
     ## 2 female  5174
 
-    ggplot(data = dfsum, 
-           mapping = aes(x = sex, y = n)) +
-      geom_col()
+``` r
+ggplot(data = dfsum, 
+       mapping = aes(x = sex, y = n)) +
+  geom_col()
+```
 
 <img src="images/chapter7-02/geom-col-1.png" style="display: block; margin: auto;" />
 
@@ -444,7 +474,7 @@ Note:
 
 -   `tally()` is just a shorthand for `summarise(n = n())`.
 -   Sometimes your input data may already contain pre-computed counts.
--   In this case, you don’t need `stat = "count"` to do the counting for
+-   In this case, you don't need `stat = "count"` to do the counting for
     you.
 -   You can use `geom_col()` instead.
 -   This is essential a short hand for `geom_bar(stat = "identity")`
@@ -457,7 +487,7 @@ Note:
 
 -   Layers often have default parameter values.
 -   E.g. in the frequency polygon, the default is to have `bins = 30`.
--   It’s important to modify the parameters values appropriately
+-   It's important to modify the parameters values appropriately
 -   More **details about the parameters of a layer is in the
     documentation** of the corresponding function, e.g. `?geom_freqpoly`
     to see the help file on the histogram layer.
@@ -467,7 +497,7 @@ Note:
 ## Summary
 
 -   We looked at the basic code structure to draw a plot with `ggplot2`.
--   You’ve seen now the layers: `geom_histogram()`, `geom_density()`,
+-   You've seen now the layers: `geom_histogram()`, `geom_density()`,
     `geom_freqpoly()`, `geom_boxplot()`, `geom_violin()`,
     `geom_dotplot()`, `geom_bar()`, and `geom_col()`.
 -   You can look at the statistics computed by `ggplot` by using

@@ -4,7 +4,7 @@ title: R Graphics
 format: 
   revealjs:
     #self-contained: true
-    logo: images/monash-stacked-blue-rgb-transparent.png
+    logo: monash-stacked-blue-rgb-transparent.png
     slide-number: true
     show-slide-number: all
     controls: true
@@ -13,7 +13,7 @@ format:
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(fig.path = "images/chapter7-01/",
+knitr::opts_chunk$set(#fig.path = "chapter6-01/",
                       fig.align = "center",
                       fig.width = 4, 
                       fig.height = 4,
@@ -26,18 +26,20 @@ library(tidyverse)
 library(ozmaps)
 covid <- read_csv("data/tidycovid19-20220123.csv")
 oz_sf <- ozmap_data("states")
+fig_path <- knitr::opts_chunk$get("fig.path")
 ```
 
 
 ## Why data visualisation?
 
-<blockquote>
-A picture is worth a thousand words
-</blockquote>
+
+
+> A picture is worth a thousand words
+
 
 * Data visualisation is a powerful tool to **_explore_**, **_understand_** and **_communicate_** data
 
-```{r covid-plot, echo = FALSE, fig.width = 10, fig.height = 3, cache = FALSE}
+```{r covid-plot, echo = FALSE, fig.width = 10, fig.height = 3.5, cache = FALSE}
 covid %>% 
   mutate(case = (1 + confirmed - lag(confirmed, 1))) %>% 
   ggplot(aes(date, case)) +
@@ -56,7 +58,7 @@ covid %>%
   mutate(case = (1 + confirmed - lag(confirmed, 1))) %>% 
   select(date, case) %>% 
   filter(!is.na(case)) %>% 
-  knitr::kable()
+  knitr::kable(format = "pipe")
 ```
 
 
@@ -252,7 +254,9 @@ oz_sf %>%
   ggtitle("CHOROPLETH\nMAP") 
 ```
 
-`r x<-1:15;paste(glue::glue('<img  src="images/chapter7-01/datavis-catalogue-{x}.png"/>'), collapse = "")`
+<style>.catalogue { margin: 0!important;}</style>
+
+`r x<-1:15;paste(glue::glue('<img class="catalogue"  src="{fig_path}datavis-catalogue-{x}.png"/>'), collapse = "")`
 
 
 Note: 
@@ -299,7 +303,9 @@ Note:
 
 * Base graphics are drawn via the `graphics` package.
 
-<img src="images/base-graphics.png" width="50%">
+<center>
+<img src="base-graphics.png" width="50%">
+</center>
 
 Note: 
 
@@ -364,7 +370,7 @@ Note:
 
 ## Summary of R graphics
 
-![](images/r-graphics-system.png)
+![](r-graphics-system.png)
 Note: 
 
 * There are two main graphics model in R: base and grid graphics.
