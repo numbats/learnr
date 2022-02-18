@@ -38,17 +38,23 @@ library(patchwork)
 str(ToothGrowth)
 ```
 
+
+  
+
+Notes:
+
 * `ToothGrowth` contains observations on 60 guinea pigs with variables:
   * `len`: the tooth length
   * `supp`: supplement type (VC = vitamin C, OJ = orange juice)
   * `dose`: dose of supplement in milligrams/days
-  
+
 ```{r toothgrowth-plot, echo = FALSE, fig.width = 5}
 ggplot(ToothGrowth, aes(supp, len, color = factor(dose))) + 
   ggbeeswarm::geom_quasirandom() +
   labs(x = "Supplement", y = "Tooth length", color = "Dose (mg/day)") +
   scale_color_viridis_d(option = "C")
 ```
+
 
 
 ---
@@ -59,11 +65,14 @@ ggplot(ToothGrowth, aes(supp, len, color = factor(dose))) +
 * What model are we fitting below?
 
 ```{r}
-fit1s <- lm(len ~ 1 + as.numeric(supp=="VC") + as.numeric(supp=="OJ") , data = ToothGrowth)
+fit1s <- lm(len ~ 1 + as.numeric(supp=="VC") + as.numeric(supp=="OJ") , 
+            data = ToothGrowth)
 ```
 
 $$\color{#006dae}{y_{ij}} = \beta_0\cdot \color{#006dae}{1} + \beta_1 \color{#006dae}{x_{1i}}+ \beta_2 \color{#006dae}{x_{2i}} + e_{ij}, \qquad \text{for }i = 1, 2, j = 1, 2, 3$$
-where:
+Notes:
+
+where
 
 * $i$ corresponds to the level of the supplementary variable,
 * $j$ corresponds to the dose level,
@@ -87,6 +96,8 @@ fit2s <- lm(len ~ supp, data = ToothGrowth)
 coef(fit1s)
 coef(fit2s)
 ```
+
+Notes:
 
 * By default `lm` uses the treatment constraint (`?contr.treatment`), i.e. first level of the categorical is omitted (same as constraining the corresponding coefficient to zero).  
 

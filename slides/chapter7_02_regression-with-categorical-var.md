@@ -1,5 +1,5 @@
 ---
-title: Simple linear regression
+title: Regression with categorical variables
 type: slides
 
 ---
@@ -17,13 +17,15 @@ str(ToothGrowth)
     ##  $ supp: Factor w/ 2 levels "OJ","VC": 2 2 2 2 2 2 2 2 2 2 ...
     ##  $ dose: num  0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 ...
 
+Notes:
+
 -   `ToothGrowth` contains observations on 60 guinea pigs with
     variables:
     -   `len`: the tooth length
     -   `supp`: supplement type (VC = vitamin C, OJ = orange juice)
     -   `dose`: dose of supplement in milligrams/days
 
-`<img src="images/chapter8-02/toothgrowth-plot-1.png" style="display: block; margin: auto;" />`{=html}
+<img src="chapter7_02_regression-with-categorical-var_files/figure-markdown/toothgrowth-plot-1.png" style="display: block; margin: auto;" />
 
 ---
 
@@ -33,11 +35,14 @@ str(ToothGrowth)
 -   What model are we fitting below?
 
 ``` r
-fit1s <- lm(len ~ 1 + as.numeric(supp=="VC") + as.numeric(supp=="OJ") , data = ToothGrowth)
+fit1s <- lm(len ~ 1 + as.numeric(supp=="VC") + as.numeric(supp=="OJ") , 
+            data = ToothGrowth)
 ```
 
 $$\color{#006dae}{y_{ij}} = \beta_0\cdot \color{#006dae}{1} + \beta_1 \color{#006dae}{x_{1i}}+ \beta_2 \color{#006dae}{x_{2i}} + e_{ij}, \qquad \text{for }i = 1, 2, j = 1, 2, 3$$
-where:
+Notes:
+
+where
 
 -   $i$ corresponds to the level of the supplementary variable,
 -   $j$ corresponds to the dose level,
@@ -76,6 +81,8 @@ coef(fit2s)
     ## (Intercept)      suppVC 
     ##    20.66333    -3.70000
 
+Notes:
+
 -   By default `lm` uses the treatment constraint (`?contr.treatment`),
     i.e. first level of the categorical is omitted (same as constraining
     the corresponding coefficient to zero).
@@ -95,6 +102,6 @@ predict(fit2s, data.frame(supp = c("OJ", "VC")))
     ##        1        2 
     ## 20.66333 16.96333
 
-`<img src="images/chapter8-02/toothgrowth-plot2-1.png" style="display: block; margin: auto;" />`{=html}
+<img src="chapter7_02_regression-with-categorical-var_files/figure-markdown/toothgrowth-plot2-1.png" style="display: block; margin: auto;" />
 
 -   Is this a reasonable model?

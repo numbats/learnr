@@ -1,5 +1,5 @@
 ---
-title: Simple linear regression
+title: Regression with categorical variables
 output: 
   teachr::teachr_slides
 chapter: 7
