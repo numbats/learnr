@@ -654,3 +654,13 @@ test <- function() {
 ```
 
 </exercise>
+
+
+<exercise id="14" title="Resources">
+
+* [ggplot2: elegant graphics for data analysis](https://ggplot2-book.org/)
+* [R for data science slack community](https://rfordatascience.slack.com/join/shared_invite/zt-13ohm2as3-k3Vl31J54zTOjw1h3wpAuQ#/shared-invite/email) has a channel on `ggplot2`
+* [Download](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf) the `ggplot2` cheatsheet
+* Ask or search questions at [Stackoverflow](https://stackoverflow.com/questions/tagged/ggplot2) or [RStudio Community](https://community.rstudio.com/tag/ggplot2) with `ggplot2` tag.
+
+</exercise>

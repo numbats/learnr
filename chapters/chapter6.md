@@ -19,7 +19,7 @@ id: 6
 
 Which of the following is a contributed R package?
 
-<choice id=0.133051856420934>
+<choice id=0.822523981332779>
 
 <opt text="ggplot2" correct="true">
 
@@ -50,7 +50,7 @@ No, this a core package and loads automatically when you launch R.
 
 Which R package actually renders the graphics in R?
 
-<choice id=0.349675618810579>
+<choice id=0.671850169077516>
 
 <opt text="ggplot2" >
 
@@ -81,7 +81,7 @@ Yes, that's right!
 Remember that there are two primary graphic models in R: the base and
 grid graphics. Which one is ggplot2 using?
 
-<choice id=0.133780262898654>
+<choice id=0.661761484574527>
 
 <opt text="base" >
 
@@ -372,5 +372,21 @@ as pretty as you can!
 <codeblock id="06_13A">
 
 </codeblock>
+
+</exercise>
+
+<exercise id="14" title="Resources">
+
+-   [ggplot2: elegant graphics for data
+    analysis](https://ggplot2-book.org/)
+-   [R for data science slack
+    community](https://rfordatascience.slack.com/join/shared_invite/zt-13ohm2as3-k3Vl31J54zTOjw1h3wpAuQ#/shared-invite/email)
+    has a channel on `ggplot2`
+-   [Download](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf)
+    the `ggplot2` cheatsheet
+-   Ask or search questions at
+    [Stackoverflow](https://stackoverflow.com/questions/tagged/ggplot2)
+    or [RStudio Community](https://community.rstudio.com/tag/ggplot2)
+    with `ggplot2` tag.
 
 </exercise>
