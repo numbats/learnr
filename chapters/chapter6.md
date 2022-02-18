@@ -19,7 +19,7 @@ id: 6
 
 Which of the following is a contributed R package?
 
-<choice id=0.219933919841424>
+<choice id=0.656753362854943>
 
 <opt text="ggplot2" correct="true">
 
@@ -50,7 +50,7 @@ No, this a core package and loads automatically when you launch R.
 
 Which R package actually renders the graphics in R?
 
-<choice id=0.646088076988235>
+<choice id=0.70951616554521>
 
 <opt text="ggplot2" >
 
@@ -81,7 +81,7 @@ Yes, that's right!
 Remember that there are two primary graphic models in R: the base and
 grid graphics. Which one is ggplot2 using?
 
-<choice id=0.0832970391493291>
+<choice id=0.884566962486133>
 
 <opt text="base" >
 
@@ -296,7 +296,34 @@ this case should `fill` be an attribute or aesthetic?
 <slides source="chapter6_05_ggplot2scales"> </slides>
 </exercise>
 
-<exercise id="9" title="Practice changing scales and guides.">
+<exercise id="9" title="Practice changing scales">
+
+In the plot below, we show the age distribution by man and woman. Change
+the color so the violin plot for the man colored as "violet" and woman
+as "royalblue".
+
+<img src="ch6/plot-06-09A-1.png" width="432" style="display: block; margin: auto;" />
+
+<codeblock id="06_09A">
+
+Hint: Recall that scales are controlled by functions beginning with
+`scale_`. The second "word" in the scale function is the aesthetic.
+
+</codeblock>
+
+In the next plot, let's have a look at the distribution of the total
+household expenditure by sex using histograms. Since hte total household
+expenditure skewed to the right, take a log with base 10 transformation
+for the scale and change the colors like the target plot below.
+
+<img src="ch6/plot-06-09B-1.png" width="432" style="display: block; margin: auto;" />
+
+<codeblock id="06_09B">
+
+Hint: Recall that scales are controlled by functions beginning with
+`scale_`. The second "word" in the scale function is the aesthetic.
+
+</codeblock>
 
 </exercise>
 

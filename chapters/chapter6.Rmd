@@ -443,7 +443,77 @@ test <- function() {
 `r slides("chapter6_05_ggplot2scales")`
 </exercise>
 
-<exercise id="9" title="Practice changing scales and guides.">
+<exercise id="9" title="Practice changing scales">
+
+In the plot below, we show the age distribution by man and woman. Change the color so the violin plot for the man  colored as "violet" and woman as "royalblue".
+
+
+```{r plot-06-09A, code = read_lines("../exercises/solution_06_09A.R"), echo = FALSE, cache = FALSE}
+```
+
+
+```{teachr 06_09A, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(Ecdat)
+})
+
+
+
+ggplot(data = filter(BudgetFood, !is.na(sex)), 
+       mapping = aes(x = sex,
+                     y = age)) +
+  geom_violin(aes(fill = sex)) + 
+  <<scale_fill>>_manual(values = c("violet", "royalblue"))
+  
+
+---
+  
+Hint: Recall that scales are controlled by functions beginning with `scale_`. The second "word" in the scale function is the aesthetic. 
+
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
+```
+
+
+In the next plot, let's have a look at the distribution of the total household expenditure by sex using histograms. Since hte total household expenditure skewed to the right, take a log with base 10 transformation for the scale and change the colors like the target plot below.
+
+
+
+```{r plot-06-09B, code = read_lines("../exercises/solution_06_09B.R"), echo = FALSE, cache = FALSE}
+```
+
+
+```{teachr 06_09B, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(Ecdat)
+})
+
+
+ggplot(data = filter(BudgetFood, !is.na(sex)), 
+       mapping = aes(x = totexp,
+                     fill = sex)) +
+  geom_histogram(bins = 40,
+                 aes(color = sex)) + 
+  <<scale_x>>_log10() +
+  <<scale_color>>_discrete() +
+  <<scale_fill>>_brewer(palette = 10)
+  
+
+---
+  
+Hint: Recall that scales are controlled by functions beginning with `scale_`. The second "word" in the scale function is the aesthetic. 
+
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
+```
 
 
 </exercise>
