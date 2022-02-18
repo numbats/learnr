@@ -40,36 +40,34 @@ help but it is one of the ways).
 R is an open source language and there are a lot of platform to seek for
 helps.
 
--   [stackoverflow](https://stackoverflow.com/questions/tagged/rstudio).
-    This is a platform where you can search for solutions and ask for
-    helps. Before you put a question on
-    [stackoverflow](https://stackoverflow.com/questions/tagged/rstudio),
-    you can search some key words from your understanding of your error
-    messages. It is likely that people already asked similar question
-    related to your error and you can try the solutions provided by
-    others under the question. If you couldn’t find any question or
-    solutions that fix your problem, you can `Ask Questions`. Later in
-    this chapter we will show you how to ask questions with minimal
-    reproducible examples.
+[stackoverflow](https://stackoverflow.com/questions/tagged/rstudio).
+This is a platform where you can search for solutions and ask for helps.
+Before you put a question on
+[stackoverflow](https://stackoverflow.com/questions/tagged/rstudio), you
+can search some key words from your understanding of your error
+messages. It is likely that people already asked similar question
+related to your error and you can try the solutions provided by others
+under the question. If you couldn’t find any question or solutions that
+fix your problem, you can `Ask Questions`. Later in this chapter we will
+show you how to ask questions with minimal reproducible examples.
 
--   [RStudio Community](https://community.rstudio.com/#). This is a
-    community channel for RStudio users. Similar to
-    [stackoverflow](https://stackoverflow.com/questions/tagged/rstudio),
-    you can ask questions and also find solutions.
+[RStudio Community](https://community.rstudio.com/#). This is a
+community channel for RStudio users. Similar to
+[stackoverflow](https://stackoverflow.com/questions/tagged/rstudio), you
+can ask questions and also find solutions.
 
--   [Github](https://github.com/). If you know your error really well
-    and you think there might be a problem with the `package`, you can
-    open an issue at the `package` repository.
+[Github](https://github.com/). If you know your error really well and
+you think there might be a problem with the `package`, you can open an
+issue at the `package` repository.
 
--   Ask your lectures and tutors. We are here to help. Don’t be afraid
-    to ask for helps. It might take you a few hours to figure out what
-    is going on with your error and it might take us a few minutes to
-    help you fix it because we have went through the debug process
-    plenty of times.
+Ask your lectures and tutors. We are here to help. Don’t be afraid to
+ask for helps. It might take you a few hours to figure out what is going
+on with your error and it might take us a few minutes to help you fix it
+because we have went through the debug process plenty of times.
 
--   Post it to your subject discussion forum. You can also post your
-    questions to the subject discussion forum where it will get answered
-    by one of your lecturer or tutor.
+Post it to your subject discussion forum. You can also post your
+questions to the subject discussion forum where it will get answered by
+one of your lecturer or tutor.
 
 For all the above channels where you can seek for help, it is important
 to provide a minimal reproducible examples for your error. If we cannot
@@ -82,17 +80,18 @@ problem and help you.
 
 ## Decrible the problem
 
-Please avoid `it doesn't work` or `it shows errors` these generic terms
-when describing the problem. It doesn’t help others to understand your
-question. Try to be more specific when communicating the problem.
+-   Please avoid `it doesn't work` or `it shows errors` these generic
+    terms when describing the problem. It doesn’t help others to
+    understand your question. Try to be more specific when communicating
+    the problem.
 
-State what you want to achieve and what are the expected behaviours.
+-   State what you want to achieve and what are the expected behaviours.
 
-Provide a copy of your error messages. This has to be excat words of
-your error messages.
+-   Provide a copy of your error messages. This has to be excat words of
+    your error messages.
 
-Use a brief but descriptive summary of your problem as the title of your
-question.
+-   Use a brief but descriptive summary of your problem as the title of
+    your question.
 
 ## Use `sessionInfo()`
 
@@ -126,8 +125,8 @@ out:
         1L), .Label = c("setosa", "versicolor", "virginica"), class = "factor")), row.names = c(NA, 
     6L), class = "data.frame")
 
-Copy the above output to your problem, others can load in the data using
-this output.
+Copy the above output to your as part of your question, others can load
+in the data using this output.
 
 If your original dataset is very large, you should subset your datasets
 to make it easier for others to reproduce your problem. The above
