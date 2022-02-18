@@ -2,7 +2,7 @@
     "courseId": "monash-intro-r",
     "title": "Introduction to R",
     "slogan": "The basics of R and the tidyverse",
-    "description": "A website with materials to learn R aimed for beginners",
+    "description": "A website with materials to help you learn R and use it to explore data. No prior experience in programming, statistics, or data is required to work through these materials. These materials were developed to prepare our students for our courses that expect some familiarity of R and data analysis.",
     "bio": "This course is brought to you by the team at Monash University, Department of Econometrics and Business Statistics. You can find the full list of contributors in the link 'Contributors' at the footer of this site.",
     "siteUrl": "https://numbats.github.io/learnr/",
     "twitter": "numbats_rise_up",
