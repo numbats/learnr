@@ -3,8 +3,6 @@ title: Multiple layers in `ggplot2`
 type: slides
 
 ---
----
-
 ## Facets
 
 -   Faceting in `ggplot2` refers to partitioning of the plot region to
@@ -16,12 +14,18 @@ type: slides
     -   `facet_wrap()`, and
     -   `facet_grid()`.
 
+Notes:
+
+-   We don't really use `facet_null()` much.
+
 ---
 
-## Motivating data: growth of soybean
+## Illustrative data 🌱 growth of soybean
 
-    data(davidian.soybean, package = "agridat")
-    str(davidian.soybean)
+``` r
+data(davidian.soybean, package = "agridat")
+str(davidian.soybean)
+```
 
     ## 'data.frame':    412 obs. of  5 variables:
     ##  $ plot   : Factor w/ 48 levels "1988F1","1988F2",..: 1 1 1 1 1 1 1 1 1 1 ...
@@ -29,6 +33,8 @@ type: slides
     ##  $ year   : int  1988 1988 1988 1988 1988 1988 1988 1988 1988 1988 ...
     ##  $ day    : int  14 21 28 35 42 49 56 63 70 77 ...
     ##  $ weight : num  0.106 0.261 0.666 2.11 3.56 ...
+
+Notes:
 
 -   The data contains:
     -   `plot`: the plot code
@@ -46,44 +52,48 @@ type: slides
     on the input variable and create subplots based on the data in the
     corresponding panel.
 
-<!-- -->
+``` r
+library(ggplot2)
+ggplot(davidian.soybean, aes(day, weight)) + 
+  geom_point() +
+  facet_wrap(~year)
+```
 
-    library(ggplot2)
-    ggplot(davidian.soybean, aes(day, weight)) + 
-      geom_point() +
-      facet_wrap(~year)
-
-<img src="images/chapter7-05/facet-wrap-demo-1.png" style="display: block; margin: auto;" />
+<img src="chapter6_06_ggplot2facet_files/figure-markdown/facet-wrap-demo-1.png" style="display: block; margin: auto;" />
 
 ---
 
 ## Wrapping many panels
 
--   It “wraps” the panels into 2d if you have many panels
+-   `facet_wrap` "wraps" the panels into 2d if you have many panels
 
-<!-- -->
+``` r
+ggplot(davidian.soybean, aes(day, weight)) + 
+  geom_point() +
+  facet_wrap(~plot)
+```
 
-    ggplot(davidian.soybean, aes(day, weight)) + 
-      geom_point() +
-      facet_wrap(~plot)
-
-<img src="images/chapter7-05/facet-wrap-demo-wrap-1.png" style="display: block; margin: auto;" />
+<img src="chapter6_06_ggplot2facet_files/figure-markdown/facet-wrap-demo-wrap-1.png" style="display: block; margin: auto;" />
 
 ---
 
 ## Wrapping by a continuous variable
 
--   If you want to wrap the facet by a continuous variable, then you
-    first need to discretize the continuous variable, e.g. using
-    `cut()`, `cut_width()`, `cut_interval()` or `cut_number()`.
+-   Discretize continuous variable using `cut()`, `cut_width()`,
+    `cut_interval()` or `cut_number()`.
 
-<!-- -->
+``` r
+ggplot(davidian.soybean, aes(day, weight)) + 
+  geom_point() +
+  facet_wrap(~cut_number(day, 4))
+```
 
-    ggplot(davidian.soybean, aes(day, weight)) + 
-      geom_point() +
-      facet_wrap(~cut_number(day, 4))
+<img src="chapter6_06_ggplot2facet_files/figure-markdown/facet-wrap-demo-cont-1.png" style="display: block; margin: auto;" />
 
-<img src="images/chapter7-05/facet-wrap-demo-cont-1.png" style="display: block; margin: auto;" />
+Notes:
+
+-   The cut functions categorize the continuous variable into discrete
+    levels.
 
 ---
 
@@ -92,13 +102,18 @@ type: slides
 -   By default the scales are shared across the panels but you can
     choose to have scales built independently for each panel:
 
-<!-- -->
+``` r
+ggplot(davidian.soybean, aes(day, weight)) + 
+  geom_point() +
+  facet_wrap(~cut_number(day, 4), scales = "free")
+```
 
-    ggplot(davidian.soybean, aes(day, weight)) + 
-      geom_point() +
-      facet_wrap(~cut_number(day, 4), scales = "free")
+<img src="chapter6_06_ggplot2facet_files/figure-markdown/facet-wrap-demo-cont-scales-1.png" style="display: block; margin: auto;" />
 
-<img src="images/chapter7-05/facet-wrap-demo-cont-scales-1.png" style="display: block; margin: auto;" />
+Note:
+
+-   If you want the scale to be independent only in one dimension then
+    you can use `scales = "free_x"` and `scales = "free_y"`.
 
 ---
 
@@ -107,13 +122,17 @@ type: slides
 -   If you want to wrap the facet by more than one variable, you can
     combine the variables by using `+`:
 
-<!-- -->
+``` r
+ggplot(davidian.soybean, aes(day, weight)) + 
+  geom_point() +
+  facet_wrap(~ year + variety)
+```
 
-    ggplot(davidian.soybean, aes(day, weight)) + 
-      geom_point() +
-      facet_wrap(~ year + variety)
+<img src="chapter6_06_ggplot2facet_files/figure-markdown/facet-wrap-demo-interaction-1.png" style="display: block; margin: auto;" />
 
-<img src="images/chapter7-05/facet-wrap-demo-interaction-1.png" style="display: block; margin: auto;" />
+Notes:
+
+-   Alternatively, you can use `vars()` instead of `+`.
 
 ---
 
@@ -122,13 +141,13 @@ type: slides
 -   Alternatively, you can use `facet_grid()` to lay out the panels in a
     2d grid:
 
-<!-- -->
+``` r
+ggplot(davidian.soybean, aes(day, weight)) + 
+  geom_point() +
+  facet_grid(variety ~ year)
+```
 
-    ggplot(davidian.soybean, aes(day, weight)) + 
-      geom_point() +
-      facet_grid(variety ~ year)
-
-<img src="images/chapter7-05/facet-grid-demo-1.png" style="display: block; margin: auto;" />
+<img src="chapter6_06_ggplot2facet_files/figure-markdown/facet-grid-demo-1.png" style="display: block; margin: auto;" />
 
 ---
 
@@ -137,15 +156,19 @@ type: slides
 -   If a layer data is missing the faceting variable(s), then the layer
     will be shown across all panels based on all of the layer data
 
-<!-- -->
+``` r
+ggplot(davidian.soybean, aes(day, weight)) + 
+  geom_point(data = dplyr::select(davidian.soybean, -c(variety, year)),
+             color = "grey70") +
+  geom_point() +
+  facet_grid(variety ~ year)
+```
 
-    ggplot(davidian.soybean, aes(day, weight)) + 
-      geom_point(data = dplyr::select(davidian.soybean, -c(variety, year)),
-                 color = "grey70") +
-      geom_point() +
-      facet_grid(variety ~ year)
+<img src="chapter6_06_ggplot2facet_files/figure-markdown/facet-all-1.png" style="display: block; margin: auto;" />
 
-<img src="images/chapter7-05/facet-all-1.png" style="display: block; margin: auto;" />
+Notes:
+
+-   This is a nice way to creating a "shadow" across all panels.
 
 ---
 
@@ -153,22 +176,26 @@ type: slides
 
 -   We use the `patchwork` package for combining plots.
 
-<!-- -->
-
-    library(patchwork)
+``` r
+library(patchwork)
+```
 
 -   Combining multiple `ggplot` objects is then just a matter of using
     `+` (side-by-side) or `/` (top-to-bottom).
 
-<!-- -->
+---
 
-    g1 <- ggplot(davidian.soybean, aes(day, weight)) +
-      geom_point(aes(color = as.factor(year))) 
-    g2 <- ggplot(davidian.soybean, aes(as.factor(year), weight)) +
-      geom_jitter(aes(color = as.factor(year))) 
-    g1 + g2
+## Demo with `patchwork`
 
-<img src="images/chapter7-05/patchwork-demo-1.png" style="display: block; margin: auto;" />
+``` r
+g1 <- ggplot(davidian.soybean, aes(day, weight)) +
+  geom_point(aes(color = as.factor(year))) 
+g2 <- ggplot(davidian.soybean, aes(as.factor(year), weight)) +
+  geom_jitter(aes(color = as.factor(year))) 
+g1 + g2
+```
+
+<img src="chapter6_06_ggplot2facet_files/figure-markdown/patchwork-demo-1.png" style="display: block; margin: auto;" />
 
 ---
 
@@ -177,13 +204,13 @@ type: slides
 -   `patchwork` can collect the same guides across the plots as well as
     automatically add tag labels
 
-<!-- -->
+``` r
+g1 + g2 + 
+  plot_layout(guides = "collect") + 
+  plot_annotation(tag_levels = "A")
+```
 
-    g1 + g2 + 
-      plot_layout(guides = "collect") + 
-      plot_annotation(tag_levels = "A")
-
-<img src="images/chapter7-05/patchwork-layouts-1.png" style="display: block; margin: auto;" />
+<img src="chapter6_06_ggplot2facet_files/figure-markdown/patchwork-layouts-1.png" style="display: block; margin: auto;" />
 
 ---
 
@@ -192,12 +219,12 @@ type: slides
 -   You can combine the use of `+` and `/` to layout plots horizontally
     or vertically using `(` to group rows or columns
 
-<!-- -->
+``` r
+(g1 + g2) / (g2 + g1) + 
+  plot_layout(guides = "collect")
+```
 
-    (g1 + g2) / (g2 + g1) + 
-      plot_layout(guides = "collect")
-
-<img src="images/chapter7-05/patchwork-layout-1.png" style="display: block; margin: auto;" />
+<img src="chapter6_06_ggplot2facet_files/figure-markdown/patchwork-layout-1.png" style="display: block; margin: auto;" />
 
 ---
 
@@ -206,15 +233,28 @@ type: slides
 -   If you want even more control over the plot layout, then you can
     specify a strinng with the structure you want like below:
 
-<!-- -->
+``` r
+design <- "
+ 11###
+ 11###
+ #2222"
 
-    design <- "
-     11###
-     11###
-     #2222"
+g1 + g2 + 
+  plot_layout(guides = "collect",
+              design = design)
+```
 
-    g1 + g2 + 
-      plot_layout(guides = "collect",
-                  design = design)
+Notes:
 
-<img src="images/chapter7-05/patchwork-design-1.png" style="display: block; margin: auto;" />
+-   Notice the empty spots in this plot output.
+-   How does it align the the `design`?
+
+<img src="chapter6_06_ggplot2facet_files/figure-markdown/patchwork-design-1.png" style="display: block; margin: auto;" />
+
+---
+
+## Summary
+
+-   You can view multiple subplots for different partitions of the data
+    using `facet_wrap()` or `facet_grid()`.
+-   You can combine plots using `patchwork` package.
