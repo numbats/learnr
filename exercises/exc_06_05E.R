@@ -5,8 +5,5 @@ suppressPackageStartupMessages({
 
 ggplot(data = _____, 
        mapping = aes(x = _____)) +
-  geom______() +
-  geom______(aes(label = _____),
-                 vjust = -0.3,
-                 stat = _____)
+  geom______(binwidth = 0.001)
 

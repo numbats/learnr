@@ -1,7 +1,7 @@
 ---
 title: 'Chapter 6: Data Visualisation with R'
 description:
-  'This chapter will give you an introduction to the R graphics system and teach you how to get started with using the ggplot2 package for drawing all kind of plots.<br>Note: the slides may take some time before loading. Running your code for the first time will take long to initialise the container but subsequent runs will be faster.'
+  'This chapter will give you an introduction to the R graphics system and teach you how to get started with using the ggplot2 package for drawing all kind of plots.'
 prev: /chapter5
 next: /chapter6
 type: chapter
@@ -20,14 +20,20 @@ knitr::opts_chunk$set(fig.path = "ch6/",
                       fig.width = 6, 
                       fig.height = 4,
                       fig.align = "center",
-                      cache = TRUE,
+                      cache = FALSE,
                       cache.path = "cache/",
                       message = FALSE,
                       warning = FALSE)
-show_target_plot <- TRUE
-read_lines <- ifelse(show_target_plot,
-                     readLines,
-                     function(x) "")
+                      #error = TRUE)
+
+read_lines <- function(x) {
+  if(file.exists(x)) {
+    readLines(x)
+  } else {
+    ""
+  }
+}
+  
 ```
 
 
@@ -104,14 +110,17 @@ The meaning of the variables are described below:
 
 Try to recreate the scatter plot below. Is there anything unusual that you notice about the plot?
 
-```{r plot4A, code = read_lines("../exercises/solution_06_04A.R"), echo = FALSE}
+```{r plot-06-05A, code = read_lines("../exercises/solution_06_05A.R"), echo = FALSE}
 ```
 
-Note: the **submit button doesn't do anything** in this chapter. You will need to eyeball your output plot is the same as the target plots for all questions. 
+Note: the **submit button doesn't check your answer** in this chapter. You will need to eyeball your output plot is the same as the target plots for all questions. 
 
-```{teachr 06_04A, outdir = "../exercises"}
-library(ggplot2)
-library(Ecdat)
+```{teachr 06_05A, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(Ecdat)
+})
+
 ggplot(data = <<BudgetFood>>, 
        mapping = aes(x = <<size>>, 
                      y = <<totexp>>)) +
@@ -121,14 +130,25 @@ ggplot(data = <<BudgetFood>>,
   
 Hint: The scatter plots are created using `geom_point`.
 
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
+
 ```
 
-```{r plot4B, code = read_lines("../exercises/solution_06_04B.R"), echo = FALSE}
+You may have noticed that there is _overplotting_ in the previous plot for the bottom left region. Let's try to create a **hex plot** like below this time.
+
+```{r plot-06-05B, code = read_lines("../exercises/solution_06_05B.R"), echo = FALSE}
 ```
 
-```{teachr 06_04B, outdir = "../exercises"}
-library(ggplot2)
-library(Ecdat)
+```{teachr 06_05B, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(Ecdat)
+})
+
 ggplot(data = <<BudgetFood>>, 
        mapping = aes(x = <<size>>, 
                      y = <<totexp>>)) +
@@ -137,15 +157,26 @@ ggplot(data = <<BudgetFood>>,
 ---
   
 Hint: The hex plots are created using `geom_hex`.
+
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
 ```
 
+This time let's have a look at some other variables in the `BudgetFood` data. Let's check the distribution of the age by sex using **boxplot** like below.
 
-```{r plot4C, code = read_lines("../exercises/solution_06_04C.R"), echo = FALSE}
+
+```{r plot-06-05C, code = read_lines("../exercises/solution_06_05C.R"), echo = FALSE}
 ```
 
-```{teachr 06_04C, outdir = "../exercises"}
-library(ggplot2)
-library(Ecdat)
+```{teachr 06_05C, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(Ecdat)
+})
+
 ggplot(data = <<BudgetFood>>, 
        mapping = aes(x = <<sex>>, 
                      y = <<age>>)) +
@@ -154,15 +185,26 @@ ggplot(data = <<BudgetFood>>,
 ---
   
 Hint: The five number summary is often graphically depicted by a boxplot. 
+
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
 ```
 
+Next study the distribution of the total expenditure of the household by size of the town using a **violin plot** like below.
 
-```{r plot4D, code = read_lines("../exercises/solution_06_04D.R"), echo = FALSE}
+
+```{r plot-06-05D, code = read_lines("../exercises/solution_06_05D.R"), echo = FALSE}
 ```
 
-```{teachr 06_04D, outdir = "../exercises"}
-library(ggplot2)
-library(Ecdat)
+```{teachr 06_05D, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(Ecdat)
+})
+
 ggplot(data = <<BudgetFood>>, 
        mapping = aes(x = <<factor(town)>>, 
                      y = <<totexp>>)) +
@@ -171,13 +213,25 @@ ggplot(data = <<BudgetFood>>,
 ---
   
 Hint: what do you notice about the x-axis scale? Do you perhaps need to convert `town`?
+  
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
 ```
 
-```{r plot4E, code = read_lines("../exercises/solution_06_04E.R"), echo = FALSE}
+Let's have a look at the distribution of the percentage of total expenditure which the household has spent on food (`wfood`). We'll adjust the bin width of the **histogram** to 0.001. Do you notice the peak at 0?
+
+```{r plot-06-05E, code = read_lines("../exercises/solution_06_05E.R"), echo = FALSE}
 ```
-```{teachr 06_04E, outdir = "../exercises"}
-library(ggplot2)
-library(Ecdat)
+
+```{teachr 06_05E, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(Ecdat)
+})
+
 ggplot(data = <<BudgetFood>>, 
        mapping = aes(x = <<wfood>>)) +
   geom_<<histogram>>(binwidth = 0.001)
@@ -186,13 +240,26 @@ ggplot(data = <<BudgetFood>>,
   
 Hint: this plot is called a histogram.
 
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
+
 ```
 
-```{r plot4F, code = read_lines("../exercises/solution_06_04F.R"), echo = FALSE}
+Finally, let's also draw a density plot but display the y-axis as counts instead of density.
+
+
+```{r plot-06-05F, code = read_lines("../exercises/solution_06_05F.R"), echo = FALSE}
 ```
-```{teachr 06_04F, outdir = "../exercises"}
-library(ggplot2)
-library(Ecdat)
+
+```{teachr 06_05F, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(Ecdat)
+})
+
 ggplot(data = <<BudgetFood>>, 
        mapping = aes(x = <<wfood>>))  +
   geom_density(aes(y = <<after_stat(count)>>))
@@ -200,6 +267,12 @@ ggplot(data = <<BudgetFood>>,
 ---
 
 Hint: this is a density plot but the y-axis is showing counts. What did `after_stat` function do?
+  
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
     
 ```
 
@@ -218,34 +291,59 @@ We are again going to use the `BudgetFood` data from the `Ecdat` package to make
 
 Try to recreate the scatter plot below. Is there anything that unusual that you notice about the plot?
 
-```{r plot6A, code = read_lines("../exercises/solution_06_06A.R"), echo = FALSE}
+```{r plot-06-07A, code = read_lines("../exercises/solution_06_07A.R"), echo = FALSE}
 ```
-```{teachr 06_06A, outdir = "../exercises"}
-library(ggplot2)
-library(Ecdat)
+```{teachr 06_07A, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(Ecdat)
+})
+
 ggplot(data = <<BudgetFood>>, 
        mapping = aes(x = <<totexp>>)) +
   geom_<<histogram>>(aes(y = after_stat(density))) +
   geom_<<density>>(color = "red")
+
+---
+
+Hint: this is a density plot but the y-axis is showing counts. What did `after_stat` function do?
+  
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
 ```
 
-```{r plot6B, code = read_lines("../exercises/solution_06_06B.R"), echo = FALSE}
+```{r plot-06-7B, code = read_lines("../exercises/solution_06_07B.R"), echo = FALSE}
 ```
 ```{teachr 06_06B, outdir = "../exercises"}
-library(ggplot2)
-library(Ecdat)
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(Ecdat)
+})
+
 ggplot(data = <<subset(BudgetFood, !is.na(sex))>>, 
        mapping = aes(x = <<sex>>,
                      y = <<age>>)) +
   geom_<<violin>>(<<aes(fill = sex)>>) +
   geom_<<boxplot>>(<<width>> = 0.1) 
+
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
 ```
 
-```{r plot6C, code = read_lines("../exercises/solution_06_06C.R"), echo = FALSE}
+```{r plot-06-06C, code = read_lines("../exercises/solution_06_06C.R"), echo = FALSE}
 ```
 ```{teachr 06_06C, outdir = "../exercises"}
-library(ggplot2)
-library(Ecdat)
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(Ecdat)
+})
+
 ggplot(data = <<subset(BudgetFood, size < 30)>>, 
        mapping = aes(x = <<size>>,
                      y = <<totexp>>)) +
@@ -253,25 +351,43 @@ ggplot(data = <<subset(BudgetFood, size < 30)>>,
   geom_<<smooth>>(color = "red",
                   method = loess,
                   formula = y ~ x)
+
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
 ```
-```{r plot6D, code = read_lines("../exercises/solution_06_06D.R"), echo = FALSE, cache = FALSE}
+```{r plot-06-06D, code = read_lines("../exercises/solution_06_06D.R"), echo = FALSE, cache = FALSE}
 ```
 ```{teachr 06_06D, outdir = "../exercises"}
-library(ggplot2)
-library(Ecdat)
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(Ecdat)
+})
+
 ggplot(data = <<subset(BudgetFood, !is.na(sex))>>, 
        mapping = aes(x = <<sex>>)) +
   geom_<<bar>>() +
   geom_<<text>>(aes(label = <<after_stat(count)>>),
                  vjust = -0.3,
                  stat = <<"count">>)
+
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
 ```
 
-```{r plot6E, code = read_lines("../exercises/solution_06_06E.R"), echo = FALSE, cache = FALSE}
+```{r plot-06-06E, code = read_lines("../exercises/solution_06_06E.R"), echo = FALSE, cache = FALSE}
 ```
 ```{teachr 06_06E, outdir = "../exercises"}
-library(tidyverse)
-library(Ecdat)
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(Ecdat)
+})
+
 dat <- BudgetFood %>% 
   filter(!is.na(sex)) %>% 
   group_by(town, sex) %>% 
@@ -286,6 +402,12 @@ dat <- BudgetFood %>%
                aes(x = <<factor(town)>>,
                    y = <<-totexp>>,
                   <<fill = "man">>))
+
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
 ```
 
 
@@ -306,9 +428,14 @@ dat <- BudgetFood %>%
 
 <exercise id="11" title="Practice making multiple subplots.">
 
-```{r plot7A, code = read_lines("../exercises/solution_06_10A.R"), echo = FALSE, cache = FALSE}
+```{r plot-06-11A, code = read_lines("../exercises/solution_06_11A.R"), echo = FALSE, cache = FALSE}
 ```
-```{teachr 06_10A, outdir = "../exercises"}
+```{teachr 06_11A, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(Ecdat)
+})
+
 ggplot(BudgetFood, aes(x = <<age>>)) + 
   geom_histogram(data = <<select(BudgetFood, -town)>>,
                  fill = "grey", binwidth = 1,
@@ -317,13 +444,24 @@ ggplot(BudgetFood, aes(x = <<age>>)) +
                  binwidth = 1) +
   geom_density(color = "red") +
   facet_<<wrap(~town)>>
+
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
 ```
 
 
 
-```{r plot7B, code = read_lines("../exercises/solution_06_10B.R"), echo = FALSE, cache = FALSE}
+```{r plot-06-11B, code = read_lines("../exercises/solution_06_11B.R"), echo = FALSE, cache = FALSE}
 ```
-```{teachr 06_10B, outdir = "../exercises"}
+```{teachr 06_11B, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(Ecdat)
+})
+
 ggplot(subset(BudgetFood, !is.na(sex)), aes(age)) +
   geom_histogram(aes(y = <<after_stat(density)>>)) +
   geom_text(x = 35, y = 0.035, 
@@ -332,14 +470,25 @@ ggplot(subset(BudgetFood, !is.na(sex)), aes(age)) +
               count(),
             aes(label = n)) +
   facet_<<grid(sex ~ town)>>
+
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
 ```
 
 
 
-```{r plot7C, code = read_lines("../exercises/solution_06_10C.R"), echo = FALSE, cache = FALSE}
+```{r plot-06-11C, code = read_lines("../exercises/solution_06_11C.R"), echo = FALSE, cache = FALSE}
 ```
-```{teachr 06_10C, outdir = "../exercises"}
-library(patchwork)
+```{teachr 06_11C, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(Ecdat)
+  library(patchwork)
+})
+
 g1 <- ggplot(BudgetFood, 
              aes(factor(size), wfood, color = sex)) +
   geom_boxplot() 
@@ -351,6 +500,12 @@ g2 <- ggplot(BudgetFood,
 
 # combine the plot as one figure 
 <<g1 / g2 + plot_layout(guides = "collect")>>
+
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
 ```
 
 
@@ -362,9 +517,14 @@ g2 <- ggplot(BudgetFood,
 
 <exercise id="13" title="Make pretty plots">
 
-```{r plot6, code = read_lines("../exercises/solution_06_10A.R"), echo = FALSE, cache = FALSE}
+```{r plot-06-13A, code = read_lines("../exercises/solution_06_13A.R"), echo = FALSE, cache = FALSE}
 ```
-```{teachr 06, outdir = "../exercises"}
+```{teachr 06_13A, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(Ecdat)
+})
+
 ggplot(BudgetFood, aes(x = <<age>>)) + 
   geom_histogram(data = <<select(BudgetFood, -town)>>,
                  fill = "grey", binwidth = 1,
@@ -373,6 +533,12 @@ ggplot(BudgetFood, aes(x = <<age>>)) +
                  binwidth = 1) +
   geom_density(color = "red") +
   facet_<<wrap(~town)>>
+
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
 ```
 
 </exercise>

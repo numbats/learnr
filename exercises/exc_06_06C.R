@@ -1,5 +1,8 @@
-library(ggplot2)
-library(Ecdat)
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(Ecdat)
+})
+
 ggplot(data = _____, 
        mapping = aes(x = _____,
                      y = _____)) +
@@ -7,3 +10,4 @@ ggplot(data = _____,
   geom______(color = "red",
                   method = loess,
                   formula = y ~ x)
+

@@ -5,8 +5,6 @@ suppressPackageStartupMessages({
 
 ggplot(data = _____, 
        mapping = aes(x = _____)) +
-  geom______() +
-  geom______(aes(label = _____),
-                 vjust = -0.3,
-                 stat = _____)
+  geom______(aes(y = after_stat(density))) +
+  geom______(color = "red")
 

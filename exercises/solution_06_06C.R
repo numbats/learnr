@@ -1,5 +1,8 @@
-library(ggplot2)
-library(Ecdat)
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(Ecdat)
+})
+
 ggplot(data = subset(BudgetFood, size < 30), 
        mapping = aes(x = size,
                      y = totexp)) +
@@ -7,3 +10,4 @@ ggplot(data = subset(BudgetFood, size < 30),
   geom_smooth(color = "red",
                   method = loess,
                   formula = y ~ x)
+

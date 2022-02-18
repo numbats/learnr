@@ -1,5 +1,8 @@
-library(tidyverse)
-library(Ecdat)
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(Ecdat)
+})
+
 dat <- BudgetFood %>% 
   filter(!is.na(sex)) %>% 
   group_by(town, sex) %>% 
@@ -14,3 +17,4 @@ ggplot() +
                aes(x = factor(town),
                    y = -totexp,
                   fill = "man"))
+
