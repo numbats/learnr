@@ -1,7 +1,7 @@
 suppressPackageStartupMessages({
   library(tidyverse)
   library(Ecdat)
-  library(patchwork)
+  library(_____)
 })
 
 g1 <- ggplot(BudgetFood, 
@@ -14,4 +14,5 @@ g2 <- ggplot(BudgetFood,
   scale_y_log10()
 
 # combine the plot as one figure 
+_____ + plot_layout(guides = "collect")
 

@@ -14,4 +14,5 @@ g2 <- ggplot(BudgetFood,
   scale_y_log10()
 
 # combine the plot as one figure 
+g1 / g2 + plot_layout(guides = "collect")
 

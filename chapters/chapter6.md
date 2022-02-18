@@ -19,7 +19,7 @@ id: 6
 
 Which of the following is a contributed R package?
 
-<choice id=0.656753362854943>
+<choice id=0.133051856420934>
 
 <opt text="ggplot2" correct="true">
 
@@ -50,7 +50,7 @@ No, this a core package and loads automatically when you launch R.
 
 Which R package actually renders the graphics in R?
 
-<choice id=0.70951616554521>
+<choice id=0.349675618810579>
 
 <opt text="ggplot2" >
 
@@ -81,7 +81,7 @@ Yes, that's right!
 Remember that there are two primary graphic models in R: the base and
 grid graphics. Which one is ggplot2 using?
 
-<choice id=0.884566962486133>
+<choice id=0.133780262898654>
 
 <opt text="base" >
 
@@ -331,17 +331,25 @@ Hint: Recall that scales are controlled by functions beginning with
 <slides source="chapter6_06_ggplot2facet"> </slides>
 </exercise>
 
-<exercise id="11" title="Practice making multiple subplots.">
+<exercise id="11" title="Practice making multiple subplots">
+
+In the following section, we won't give you much hints! Try to reach the
+target plots by seeing what's drawn in the target plot and complete the
+code needed to get to the target plot.
 
 <img src="ch6/plot-06-11A-1.png" width="432" style="display: block; margin: auto;" />
+
 <codeblock id="06_11A">
 
 </codeblock>
 
 <img src="ch6/plot-06-11B-1.png" width="432" style="display: block; margin: auto;" />
+
 <codeblock id="06_11B">
 
 </codeblock>
+
+<img src="ch6/plot-06-11C-1.png" width="432" style="display: block; margin: auto;" />
 
 <codeblock id="06_11C">
 
@@ -350,10 +358,15 @@ Hint: Recall that scales are controlled by functions beginning with
 </exercise>
 
 <exercise id="12" title="Customise the look with themes in ggplot2"  type="slides">
-<slides source="chapter6_06_ggplot2theme"> </slides>
+<slides source="chapter6_07_ggplot2theme"> </slides>
 </exercise>
 
 <exercise id="13" title="Make pretty plots">
+
+Well done getting to the last practice exercise!
+
+The next plot you're going to draw is the plot below -- or make the plot
+as pretty as you can!
 
 <img src="ch6/plot-06-13A-1.png" width="432" style="display: block; margin: auto;" />
 <codeblock id="06_13A">

@@ -522,10 +522,13 @@ test <- function() {
 `r slides("chapter6_06_ggplot2facet")`
 </exercise>
 
-<exercise id="11" title="Practice making multiple subplots.">
+<exercise id="11" title="Practice making multiple subplots">
+
+In the following section, we won't give you much hints! Try to reach the target plots by seeing what's drawn in the target plot and complete the code needed to get to the target plot.
 
 ```{r plot-06-11A, code = read_lines("../exercises/solution_06_11A.R"), echo = FALSE, cache = FALSE}
 ```
+
 ```{teachr 06_11A, outdir = "../exercises"}
 suppressPackageStartupMessages({
   library(tidyverse)
@@ -552,6 +555,8 @@ test <- function() {
 
 ```{r plot-06-11B, code = read_lines("../exercises/solution_06_11B.R"), echo = FALSE, cache = FALSE}
 ```
+
+
 ```{teachr 06_11B, outdir = "../exercises"}
 suppressPackageStartupMessages({
   library(tidyverse)
@@ -578,11 +583,13 @@ test <- function() {
 
 ```{r plot-06-11C, code = read_lines("../exercises/solution_06_11C.R"), echo = FALSE, cache = FALSE}
 ```
+
+
 ```{teachr 06_11C, outdir = "../exercises"}
 suppressPackageStartupMessages({
   library(tidyverse)
   library(Ecdat)
-  library(patchwork)
+  library(<<patchwork>>)
 })
 
 g1 <- ggplot(BudgetFood, 
@@ -595,7 +602,7 @@ g2 <- ggplot(BudgetFood,
   scale_y_log10()
 
 # combine the plot as one figure 
-<<g1 / g2 + plot_layout(guides = "collect")>>
+<<g1 / g2>> + plot_layout(guides = "collect")
 
 ???
   
@@ -608,10 +615,14 @@ test <- function() {
 </exercise>
 
 <exercise id="12" title="Customise the look with themes in ggplot2"  type="slides">
-`r slides("chapter6_06_ggplot2theme")`
+`r slides("chapter6_07_ggplot2theme")`
 </exercise>
 
 <exercise id="13" title="Make pretty plots">
+
+Well done getting to the last practice exercise! 
+
+The next plot you're going to draw is the plot below -- or make the plot as pretty as you can!
 
 ```{r plot-06-13A, code = read_lines("../exercises/solution_06_13A.R"), echo = FALSE, cache = FALSE}
 ```
@@ -621,14 +632,19 @@ suppressPackageStartupMessages({
   library(Ecdat)
 })
 
-ggplot(BudgetFood, aes(x = <<age>>)) + 
-  geom_histogram(data = <<select(BudgetFood, -town)>>,
-                 fill = "grey", binwidth = 1,
-                 aes(y = after_stat(density))) +
+ggplot(BudgetFood, aes(x = age)) + 
   geom_histogram(aes(y = after_stat(density)),
                  binwidth = 1) +
   geom_density(color = "red") +
-  facet_<<wrap(~town)>>
+  facet_wrap(~town, labeller = label_both) +
+  labs(x = "Age", y = "Density", title = "Age distribution by town size") +
+  theme(text = <<element_text>>(size = 14, family = "mono"),
+        plot.background = <<element_rect>>(fill = "grey80"),
+        <<strip.background>> = element_rect(fill = "black"),
+        <<strip.text>> = element_text(color = "white"),
+        panel.background = <<element_rect>>(fill = "white",
+                                        color = "black"),
+        panel.grid = element_blank())
 
 ???
   
