@@ -15,7 +15,7 @@ format:
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(fig.path = "images/chapter8-01/",
+knitr::opts_chunk$set(#fig.path = "images/chapter8-01/",
                       fig.align = "center",
                       fig.width = 10, 
                       fig.height = 4,
@@ -28,14 +28,21 @@ library(grid)
 library(patchwork)
 ```
 
+<style>
+.columns {
+  display: flex
+}
+</style>
+
 
 ## Simple linear regression
 
 * Simple linear regression refers to fitting a straight line $y = \beta_0 + \beta_1 x$ to a set of bivariate data.
 
-::: columns
+<div class="columns">
 
-::: {.column width="70%"}
+<div class="column" style="width:70%">
+
 ```{r slr-plot, eval = FALSE}
 ggplot(cars, aes(speed, dist)) +
   geom_point() + 
@@ -49,18 +56,18 @@ ggplot(cars, aes(speed, dist)) +
               slope = -3.5, size = 1.5,
               color = "seagreen")
 ```
-:::
+</div>
 
-::: {.column width="30%"}
+<div class="column" style="width:30%">
 
 ```{r slr-plot, echo = FALSE, fig.width = 4}
 ```
 
-:::
+</div>
 
-:::
+</div>
 
-<aside class="notes">
+Notes:
 
 * Three lines are shown in the plot: 
   * $y = -17 + 4x$
@@ -68,7 +75,7 @@ ggplot(cars, aes(speed, dist)) +
   * $y = 80 - 3.5x$
 * Which of these three lines do you think fits the best?
 
-</aside>
+
 
 ---
 
@@ -112,14 +119,14 @@ $$y = \beta_0 + \beta_1 x$$
 * **Residuals** = observed $-$ fitted value.
 * **Fitted value** = the predicted response $(y)$ value from the fitted model using predictors $(x)$ from the data
 
-::: notes
+Notes:
 
 * Unless stated otherwise, simple linear regression uses the **method of least squares** to estimate the model parameters.
 * Method of least squares estimates the model parameters by finding parameters that minimise the sum of the squares of the residual.
 * More formally, residuals are the difference of observed value from the fitted value.
 * Fitted values are the predicted response value under the fitted model for the predictors in the data.
 
-:::
+
 
 ---
 
@@ -156,14 +163,15 @@ g3 <- rss_plot("fit3", "y = 80 - 3.5x")
 g1 + g2 + g3
 ```
 
-::: notes
+Notes:
 
 * The sum of the red squares are the residual sum of squares (RSS) -- the actual RSS can be seen on top of the plot
 * It doesn't look like squares because the scale on the x- and y-axis differ
 * There is a closed-form solution to finding parameters that minimise the residual sum of the squares. 
-* You can use calculus to find this or consult any standard first year statsitics text book. 
+* You can use calculus to find this or consult any standard first year statistics text book. 
+* We expect you to know most of these results and focus on fitting linear models in R now.
 
-:::
+
 
 ---
 
@@ -174,7 +182,9 @@ g1 + g2 + g3
 * The input for `lm` is a **two-sided formula** that symbolically represents the linear model. 
 * For example, `y ~ 1 + x` corresponds to a linear model 
 
-$$\color{#006dae}{y_i} = \beta_0 \cdot \color{#006dae}{1} + \beta_1 \cdot \color{#006dae}{x_i} + e_i, \qquad\text{for } i = 1, ..., n.$$
+$$\color{#006dae}{y_i} = \beta_0 \cdot \color{#006dae}{1} + \beta_1 \cdot \color{#006dae}{x_i} + e_i, \qquad\text{for } i = 1, ..., n, \text{ and assuming }e_i \sim N(0, \sigma^2).$$
+
+Notes:
 
 * The intercept term `1` is included by default.
 * So `lm(y ~ 1 + x)` is the same as `lm(y ~ x)` . 
@@ -190,11 +200,30 @@ $$\color{#006dae}{y_i} = \beta_0 \cdot \color{#006dae}{1} + \beta_1 \cdot \color
 fit <- lm(dist ~  speed, data = cars)
 ```
 
-* To get the model parameter estimates, referred to also as **coefficients**, you can use `coef` function on the model object:
+---
+
+## Getting the model parameter estimates
+
+* To get the leqast squares estimates, referred to also as **coefficients**, you can use `coef` function on the model object:
 
 ```{r}
 coef(fit)
 ```
+
+* You can get an estimate of $\sigma$ by:
+
+```{r}
+sigma(fit)
+```
+
+---
+
+## Extracting residual
+
+```{r}
+residuals(fit)
+```
+
 
 ---
 
@@ -243,6 +272,8 @@ $$\widehat{\texttt{dist}} = -17.58 + 3.93\cdot \texttt{speed}$$
 predict(fit, data.frame(speed = c(5, 10)))
 ```
 
+Notes:
+
 ```{r predict-plot, echo = FALSE, fig.width = 5}
 pred <- data.frame(speed = c(5, 10), dist = predict(fit, data.frame(speed = c(5, 10))))
 ggplot(cars, aes(speed, dist)) +
@@ -259,3 +290,10 @@ ggplot(cars, aes(speed, dist)) +
   
 ```
 
+---
+
+## Summary 
+
+* You've seen how the `lm` function is used to fit linear models.
+* You can use functions like `summary`, `coef`, `sigma`, `broom::tidy`, `broom::glance`, and `broom::augment` to get information about the fitted model.
+* The `predict` function is useful get the prediction of the response for a new set of data. 

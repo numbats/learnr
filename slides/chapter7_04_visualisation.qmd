@@ -1,0 +1,29 @@
+---
+title: Visualising regression models
+#execute:
+#  keep-md: true
+format: 
+  #teachr::teachr_slides:
+  revealjs:
+    #self-contained: true
+    logo: images/monash-stacked-blue-rgb-transparent.png
+    slide-number: true
+    show-slide-number: all
+    controls: true
+    width: 1280
+    height: 720
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(fig.align = "center",
+                      fig.width = 10, 
+                      fig.height = 4,
+                      cache.path = "cache/",
+                      cache = FALSE,
+                      echo = TRUE)
+library(tidyverse)
+library(broom)
+library(grid)
+library(patchwork)
+```
+

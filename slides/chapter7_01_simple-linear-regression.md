@@ -3,13 +3,21 @@ title: Simple linear regression
 type: slides
 
 ---
+<style>
+.columns {
+  display: flex
+}
+</style>
+
 ## Simple linear regression
 
 -   Simple linear regression refers to fitting a straight line
     $y = \beta_0 + \beta_1 x$ to a set of bivariate data.
 
-::: columns
-::: {.column width="70%"}
+<div class="columns">
+
+<div class="column" style="width:70%">
+
 ``` r
 ggplot(cars, aes(speed, dist)) +
   geom_point() + 
@@ -23,25 +31,24 @@ ggplot(cars, aes(speed, dist)) +
               slope = -3.5, size = 1.5,
               color = "seagreen")
 ```
-:::
 
-::: {.column width="30%"}
-`<img src="images/chapter8-01/slr-plot-1.png" style="display: block; margin: auto;" />`{=html}
-:::
-:::
+</div>
 
-```{=html}
-<aside class="notes">
-```
+<div class="column" style="width:30%">
+
+<img src="chapter7_01_simple-linear-regression_files/figure-markdown/slr-plot-1.png" style="display: block; margin: auto;" />
+
+</div>
+
+</div>
+
+Notes:
+
 -   Three lines are shown in the plot:
     -   $y = -17 + 4x$
     -   $y = -5 + 3x$
     -   $y = 80 - 3.5x$
 -   Which of these three lines do you think fits the best?
-
-```{=html}
-</aside>
-```
 
 ---
 
@@ -52,7 +59,7 @@ ggplot(cars, aes(speed, dist)) +
 -   In simple linear regression, the **residuals** are the vertical
     distance of the observations from the fitted line.
 
-`<img src="images/chapter8-01/residuals-1.png" style="display: block; margin: auto;" />`{=html}
+<img src="chapter7_01_simple-linear-regression_files/figure-markdown/residuals-1.png" style="display: block; margin: auto;" />
 
 ---
 
@@ -68,7 +75,8 @@ $$y = \beta_0 + \beta_1 x$$
 -   **Fitted value** = the predicted response $(y)$ value from the
     fitted model using predictors $(x)$ from the data
 
-::: notes
+Notes:
+
 -   Unless stated otherwise, simple linear regression uses the **method
     of least squares** to estimate the model parameters.
 -   Method of least squares estimates the model parameters by finding
@@ -77,15 +85,15 @@ $$y = \beta_0 + \beta_1 x$$
     the fitted value.
 -   Fitted values are the predicted response value under the fitted
     model for the predictors in the data.
-:::
 
 ---
 
 ## Sum of the squares of the residuals
 
-`<img src="images/chapter8-01/plot-fits-1.png" style="display: block; margin: auto;" />`{=html}
+<img src="chapter7_01_simple-linear-regression_files/figure-markdown/plot-fits-1.png" style="display: block; margin: auto;" />
 
-::: notes
+Notes:
+
 -   The sum of the red squares are the residual sum of squares (RSS) --
     the actual RSS can be seen on top of the plot
 -   It doesn't look like squares because the scale on the x- and y-axis
@@ -93,8 +101,9 @@ $$y = \beta_0 + \beta_1 x$$
 -   There is a closed-form solution to finding parameters that minimise
     the residual sum of the squares.
 -   You can use calculus to find this or consult any standard first year
-    statsitics text book.
-:::
+    statistics text book.
+-   We expect you to know most of these results and focus on fitting
+    linear models in R now.
 
 ---
 
@@ -106,7 +115,9 @@ $$y = \beta_0 + \beta_1 x$$
     represents the linear model.
 -   For example, `y ~ 1 + x` corresponds to a linear model
 
-$$\color{#006dae}{y_i} = \beta_0 \cdot \color{#006dae}{1} + \beta_1 \cdot \color{#006dae}{x_i} + e_i, \qquad\text{for } i = 1, ..., n.$$
+$$\color{#006dae}{y_i} = \beta_0 \cdot \color{#006dae}{1} + \beta_1 \cdot \color{#006dae}{x_i} + e_i, \qquad\text{for } i = 1, ..., n, \text{ and assuming }e_i \sim N(0, \sigma^2).$$
+
+Notes:
 
 -   The intercept term `1` is included by default.
 -   So `lm(y ~ 1 + x)` is the same as `lm(y ~ x)` .
@@ -124,7 +135,11 @@ $$\color{#006dae}{y_i} = \beta_0 \cdot \color{#006dae}{1} + \beta_1 \cdot \color
 fit <- lm(dist ~  speed, data = cars)
 ```
 
--   To get the model parameter estimates, referred to also as
+---
+
+## Getting the model parameter estimates
+
+-   To get the leqast squares estimates, referred to also as
     **coefficients**, you can use `coef` function on the model object:
 
 ``` r
@@ -133,6 +148,39 @@ coef(fit)
 
     ## (Intercept)       speed 
     ##  -17.579095    3.932409
+
+-   You can get an estimate of $\sigma$ by:
+
+``` r
+sigma(fit)
+```
+
+    ## [1] 15.37959
+
+---
+
+## Extracting residual
+
+``` r
+residuals(fit)
+```
+
+    ##          1          2          3          4          5          6          7 
+    ##   3.849460  11.849460  -5.947766  12.052234   2.119825  -7.812584  -3.744993 
+    ##          8          9         10         11         12         13         14 
+    ##   4.255007  12.255007  -8.677401   2.322599 -15.609810  -9.609810  -5.609810 
+    ##         15         16         17         18         19         20         21 
+    ##  -1.609810  -7.542219   0.457781   0.457781  12.457781 -11.474628  -1.474628 
+    ##         22         23         24         25         26         27         28 
+    ##  22.525372  42.525372 -21.407036 -15.407036  12.592964 -13.339445  -5.339445 
+    ##         29         30         31         32         33         34         35 
+    ## -17.271854  -9.271854   0.728146 -11.204263   2.795737  22.795737  30.795737 
+    ##         36         37         38         39         40         41         42 
+    ## -21.136672 -11.136672  10.863328 -29.069080 -13.069080  -9.069080  -5.069080 
+    ##         43         44         45         46         47         48         49 
+    ##   2.930920  -2.933898 -18.866307  -6.798715  15.201285  16.201285  43.201285 
+    ##         50 
+    ##   4.268876
 
 ---
 
@@ -186,9 +234,10 @@ broom::glance(fit)
 ```
 
     ## # A tibble: 1 × 12
-    ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC deviance df.residual  nobs
-    ##       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>    <dbl>       <int> <int>
-    ## 1     0.651         0.644  15.4      89.6 1.49e-12     1  -207.  419.  425.   11354.          48    50
+    ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+    ##       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>
+    ## 1     0.651         0.644  15.4      89.6 1.49e-12     1  -207.  419.  425.
+    ## # … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 
 ---
 
@@ -232,4 +281,17 @@ predict(fit, data.frame(speed = c(5, 10)))
     ##         1         2 
     ##  2.082949 21.744993
 
-`<img src="images/chapter8-01/predict-plot-1.png" style="display: block; margin: auto;" />`{=html}
+Notes:
+
+<img src="chapter7_01_simple-linear-regression_files/figure-markdown/predict-plot-1.png" style="display: block; margin: auto;" />
+
+---
+
+## Summary
+
+-   You've seen how the `lm` function is used to fit linear models.
+-   You can use functions like `summary`, `coef`, `sigma`,
+    `broom::tidy`, `broom::glance`, and `broom::augment` to get
+    information about the fitted model.
+-   The `predict` function is useful get the prediction of the response
+    for a new set of data.
