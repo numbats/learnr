@@ -27,7 +27,7 @@ class Juniper extends React.Component {
         storageExpire: 60,
         debug: true,
         msgButton: 'run',
-        msgLoading: 'Loading...',
+        msgLoading: 'Attempting to run your code 🤖⚡',
         msgError: 'Connecting failed. Please reload and try again.',
         classNames: {
             cell: 'juniper-cell',
@@ -237,7 +237,7 @@ class Juniper extends React.Component {
         outputArea.model.add({
             output_type: 'stream',
             name: 'stdout',
-            text: `${action} Docker container on ${url}...`,
+            text: `${action} your very own cloud robot at ${url} 🤖\nThis could take a while but only needs to happen once!\nPlease be patient 🐢🦥🐌`,
         })
         new Promise((resolve, reject) =>
             this.getKernel()
