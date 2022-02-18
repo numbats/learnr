@@ -279,7 +279,7 @@ test <- function() {
 </exercise>
 
 
-<exercise id="6" title="Multiple layers in ggplot2"  type="slides">
+<exercise id="6" title="Multiple layers and attributes in ggplot2"  type="slides">
 `r slides("chapter6_04_ggplot2layers")`
 </exercise>
 
@@ -289,10 +289,11 @@ test <- function() {
 We are again going to use the `BudgetFood` data from the `Ecdat` package to make the plots.
 
 
-Try to recreate the scatter plot below. Is there anything that unusual that you notice about the plot?
+The plot below shows the histogram with the density plot overlaid on top of it. Try to recreate this figure.
 
 ```{r plot-06-07A, code = read_lines("../exercises/solution_06_07A.R"), echo = FALSE}
 ```
+
 ```{teachr 06_07A, outdir = "../exercises"}
 suppressPackageStartupMessages({
   library(ggplot2)
@@ -315,15 +316,18 @@ test <- function() {
 }
 ```
 
+In the next target plot, we are going to look at the distribution of the `age` by `sex`. There are not that many observations where sex information is missing so let's focus on `sex` levels for "man" and "woman".
+
 ```{r plot-06-7B, code = read_lines("../exercises/solution_06_07B.R"), echo = FALSE}
 ```
-```{teachr 06_06B, outdir = "../exercises"}
+
+```{teachr 06_07B, outdir = "../exercises"}
 suppressPackageStartupMessages({
-  library(ggplot2)
+  library(tidyverse)
   library(Ecdat)
 })
 
-ggplot(data = <<subset(BudgetFood, !is.na(sex))>>, 
+ggplot(data = <<filter(BudgetFood, !is.na(sex))>>, 
        mapping = aes(x = <<sex>>,
                      y = <<age>>)) +
   geom_<<violin>>(<<aes(fill = sex)>>) +
@@ -336,15 +340,20 @@ test <- function() {
 }
 ```
 
-```{r plot-06-06C, code = read_lines("../exercises/solution_06_06C.R"), echo = FALSE}
+In the next target plot, we want to draw a scatter plot between the size of the household and the total expenditure of the household. Then we want to overlay this with a loess curve in red color. You may not have seen how to fit a curve on `ggplot` yet so check out the hint if you don't know.
+
+
+```{r plot-06-07C, code = read_lines("../exercises/solution_06_07C.R"), echo = FALSE}
 ```
-```{teachr 06_06C, outdir = "../exercises"}
+
+
+```{teachr 06_07C, outdir = "../exercises"}
 suppressPackageStartupMessages({
-  library(ggplot2)
+  library(tidyverse)
   library(Ecdat)
 })
 
-ggplot(data = <<subset(BudgetFood, size < 30)>>, 
+ggplot(data = <<filter(BudgetFood, size < 30)>>, 
        mapping = aes(x = <<size>>,
                      y = <<totexp>>)) +
   geom_<<point>>() +
@@ -352,15 +361,25 @@ ggplot(data = <<subset(BudgetFood, size < 30)>>,
                   method = loess,
                   formula = y ~ x)
 
+---
+  
+Hint: `geom_smooth` can draw curves from a fitted model.
+
 ???
   
 test <- function() { 
   success("Check with the above target plot if the output matches!") 
 }
 ```
-```{r plot-06-06D, code = read_lines("../exercises/solution_06_06D.R"), echo = FALSE, cache = FALSE}
+
+In the next plot, try drawing a **barplot** by the different sexes with the total count written on top of the bar.
+
+```{r plot-06-07D, code = read_lines("../exercises/solution_06_07D.R"), echo = FALSE, cache = FALSE}
 ```
-```{teachr 06_06D, outdir = "../exercises"}
+
+
+
+```{teachr 06_07D, outdir = "../exercises"}
 suppressPackageStartupMessages({
   library(ggplot2)
   library(Ecdat)
@@ -380,9 +399,12 @@ test <- function() {
 }
 ```
 
-```{r plot-06-06E, code = read_lines("../exercises/solution_06_06E.R"), echo = FALSE, cache = FALSE}
+The next one might be tricky. You want to draw a bar plot showing the average total expenditure of by sex and town but the top blue bars show the average for women, while the bottome red bars show the average for men. 
+
+```{r plot-06-07E, code = read_lines("../exercises/solution_06_07E.R"), echo = FALSE, cache = FALSE}
 ```
-```{teachr 06_06E, outdir = "../exercises"}
+
+```{teachr 06_07E, outdir = "../exercises"}
 suppressPackageStartupMessages({
   library(tidyverse)
   library(Ecdat)
@@ -394,14 +416,18 @@ dat <- BudgetFood %>%
   summarise(totexp = mean(totexp))
 
 <<ggplot()>> +
-  geom_<<col>>(data = subset(dat, sex=="woman"),
+  geom_<<col>>(data = filter(dat, sex=="woman"),
                aes(x = <<factor(town)>>,
                    y = <<totexp>>,
                   <<fill = "woman">>)) +
-  geom_<<col>>(data = subset(dat, sex=="man"),
+  geom_<<col>>(data = filter(dat, sex=="man"),
                aes(x = <<factor(town)>>,
                    y = <<-totexp>>,
                   <<fill = "man">>))
+
+---
+  
+Hint: The legend shows the `fill` with a label "woman" and "man". In this case should `fill` be an attribute or aesthetic?
 
 ???
   

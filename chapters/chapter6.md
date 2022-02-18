@@ -19,7 +19,7 @@ id: 6
 
 Which of the following is a contributed R package?
 
-<choice id=0.860805812524632>
+<choice id=0.219933919841424>
 
 <opt text="ggplot2" correct="true">
 
@@ -50,7 +50,7 @@ No, this a core package and loads automatically when you launch R.
 
 Which R package actually renders the graphics in R?
 
-<choice id=0.928385889856145>
+<choice id=0.646088076988235>
 
 <opt text="ggplot2" >
 
@@ -81,7 +81,7 @@ Yes, that's right!
 Remember that there are two primary graphic models in R: the base and
 grid graphics. Which one is ggplot2 using?
 
-<choice id=0.832283258903772>
+<choice id=0.0832970391493291>
 
 <opt text="base" >
 
@@ -221,7 +221,7 @@ Hint: this is a density plot but the y-axis is showing counts. What did
 
 </exercise>
 
-<exercise id="6" title="Multiple layers in ggplot2"  type="slides">
+<exercise id="6" title="Multiple layers and attributes in ggplot2"  type="slides">
 <slides source="chapter6_04_ggplot2layers"> </slides>
 </exercise>
 
@@ -230,10 +230,11 @@ Hint: this is a density plot but the y-axis is showing counts. What did
 We are again going to use the `BudgetFood` data from the `Ecdat` package
 to make the plots.
 
-Try to recreate the scatter plot below. Is there anything that unusual
-that you notice about the plot?
+The plot below shows the histogram with the density plot overlaid on top
+of it. Try to recreate this figure.
 
 <img src="ch6/plot-06-07A-1.png" width="432" style="display: block; margin: auto;" />
+
 <codeblock id="06_07A">
 
 Hint: this is a density plot but the y-axis is showing counts. What did
@@ -241,21 +242,51 @@ Hint: this is a density plot but the y-axis is showing counts. What did
 
 </codeblock>
 
-<codeblock id="06_06B">
+In the next target plot, we are going to look at the distribution of the
+`age` by `sex`. There are not that many observations where sex
+information is missing so let's focus on `sex` levels for "man" and
+"woman".
+
+<img src="ch6/plot-06-7B-1.png" width="432" style="display: block; margin: auto;" />
+
+<codeblock id="06_07B">
 
 </codeblock>
 
-<img src="ch6/plot-06-06C-1.png" width="432" style="display: block; margin: auto;" />
-<codeblock id="06_06C">
+In the next target plot, we want to draw a scatter plot between the size
+of the household and the total expenditure of the household. Then we
+want to overlay this with a loess curve in red color. You may not have
+seen how to fit a curve on `ggplot` yet so check out the hint if you
+don't know.
+
+<img src="ch6/plot-06-07C-1.png" width="432" style="display: block; margin: auto;" />
+
+<codeblock id="06_07C">
+
+Hint: `geom_smooth` can draw curves from a fitted model.
 
 </codeblock>
-<img src="ch6/plot-06-06D-1.png" width="432" style="display: block; margin: auto;" />
-<codeblock id="06_06D">
+
+In the next plot, try drawing a **barplot** by the different sexes with
+the total count written on top of the bar.
+
+<img src="ch6/plot-06-07D-1.png" width="432" style="display: block; margin: auto;" />
+
+<codeblock id="06_07D">
 
 </codeblock>
 
-<img src="ch6/plot-06-06E-1.png" width="432" style="display: block; margin: auto;" />
-<codeblock id="06_06E">
+The next one might be tricky. You want to draw a bar plot showing the
+average total expenditure of by sex and town but the top blue bars show
+the average for women, while the bottome red bars show the average for
+men.
+
+<img src="ch6/plot-06-07E-1.png" width="432" style="display: block; margin: auto;" />
+
+<codeblock id="06_07E">
+
+Hint: The legend shows the `fill` with a label "woman" and "man". In
+this case should `fill` be an attribute or aesthetic?
 
 </codeblock>
 
