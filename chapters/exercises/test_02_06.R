@@ -1,8 +1,8 @@
 library(testthat)
 
 test <- function() {
-    S = matrix(c(1,0,0,1), byrow=TRUE, nrow=2)
-    T = matrix(c(2,2,4,3), byrow=TRUE, nrow=2)
+    S <- matrix(c(1,0,0,1), byrow=TRUE, nrow=2)
+    T <- matrix(c(2,2,4,3), byrow=TRUE, nrow=2)
     if (M != rbind(S,T)) {
         stop("This is incorrect. Are you using the function that we have introduced? Try the Hint!")
     }
