@@ -217,7 +217,7 @@ for $i = 1, ..., 50$ where:
 * $y_i$ is the stopping distance of the $i$-th car,
 * $x_i$ is the speed (in miles per gallon) of $i$-th car,
 * $\beta_0$ and $\beta_1$ are the intercept and slope, and 
-* we assume the error $e_i \sim N(0, \sigma^2)$. 
+* we assume the error $e_i \sim NID(0, \sigma^2)$. 
 
 ---
 
@@ -279,6 +279,26 @@ broom::augment(fit)
 
 ---
 
+## Transformations
+
+* You can apply transformations directly in the model formula:
+
+
+```{r}
+fit_transform <- lm(log10(dist) ~  sqrt(speed), data = cars)
+```
+
+$$\sqrt{\texttt{dist}} = \beta_0 + \beta_1 \log_{10}(\texttt{speed}).$$
+
+* Whether this model is sensible is another story.
+
+```{r}
+coef(fit_transform)
+```
+
+
+---
+
 ## Predictions from the fitted model
 
 
@@ -311,8 +331,54 @@ ggplot(cars, aes(speed, dist)) +
 
 ---
 
+## Predictions from the model with transformations
+
+
+$$\log_{10}(\widehat{\texttt{dist}}) = -4.42 + 9.23\cdot \sqrt{\texttt{speed}}$$
+
+
+* No need to transform the covariates with `predict`:
+
+```{r}
+predict(fit_transform, data.frame(speed = c(5, 10)))
+```
+
+* But the prediction is the response $\log_{10}({\widehat{\texttt{dist}}})$, so you need to apply the inverse transformation to get the value of $\widehat{\texttt{dist}}$.
+
+
+
+
+Notes:
+
+* Prediction of $\texttt{dist}$:
+
+```{r}
+10^predict(fit_transform, data.frame(speed = c(5, 10)))
+```
+
+
+```{r predict-plot-transform, echo = FALSE, fig.width = 5, warning = FALSE, message = FALSE}
+pred <- data.frame(speed = c(5, 10), dist = 10^predict(fit_transform, data.frame(speed = c(5, 10))))
+ggplot(cars, aes(speed, dist)) +
+  geom_smooth(method = lm, se = FALSE, color = "#006dae", size = 1.5, formula = y ~ sqrt(x)) +
+  geom_point() +
+  geom_point(data = pred, color = "indianred", size = 3, shape = 10) +
+  scale_y_log10() +
+  geom_segment(data = data.frame(x = c(5, -Inf, 10, -Inf),
+                                 xend = c(5, 5, 10, 10),
+                                 y = c(1, pred$dist[1], 1, pred$dist[2]),
+                                 yend = c(pred$dist[1], pred$dist[1], pred$dist[2], pred$dist[2])), 
+               aes(x = x, xend = xend, y = y, yend = yend),
+               color = "indianred", linetype = "dashed") +
+  coord_trans(y = scales::exp_trans(10))
+  
+```
+
+---
+
 ## Summary 
 
 * You've seen how the `lm` function is used to fit linear models.
 * You can use functions like `summary`, `coef`, `sigma`, `broom::tidy`, `broom::glance`, and `broom::augment` to get information about the fitted model.
+* Transformations can be applied directly in model formula.
 * The `predict` function is useful get the prediction of the response for a new set of data. 

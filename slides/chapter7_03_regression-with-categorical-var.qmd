@@ -59,32 +59,34 @@ ggplot(ToothGrowth, aes(supp, len, color = factor(dose))) +
 
 ---
 
-## Fitting a categorical variable in `lm`: illustration
+## Categorical variable in `lm`: illustration
 
 * `supp` is a factor with two levels: "VC" and "OJ"
 * What model are we fitting below?
 
 ```{r}
-fit1s <- lm(len ~ 1 + as.numeric(supp=="VC") + as.numeric(supp=="OJ") , 
+fit1s <- lm(len ~ 1 + as.numeric(supp=="VC"), 
             data = ToothGrowth)
 ```
 
-$$\color{#006dae}{y_{ij}} = \beta_0\cdot \color{#006dae}{1} + \beta_1 \color{#006dae}{x_{1i}}+ \beta_2 \color{#006dae}{x_{2i}} + e_{ij}, \qquad \text{for }i = 1, 2, j = 1, 2, 3$$
+$$\color{#006dae}{y_{ijk}} = \beta_0\cdot \color{#006dae}{1} + \beta_1 \color{#006dae}{x_{i}}+ e_{ijk},$$
+$$\text{for }i = 1, 2, j = 1, 2, 3, k = 1, ..., 10.$$
 Notes:
 
 where
 
 * $i$ corresponds to the level of the supplementary variable,
 * $j$ corresponds to the dose level,
-* $x_{1i} = \begin{cases}1\quad\text{if }i=1\\0\quad\text{if }i=2\end{cases},$
-* $x_{2i} = \begin{cases}1\quad\text{if }i=2\\0\quad\text{if }i=1\end{cases},$ and 
-* in this case the system is singular so the last term is dropped (same as $\beta_2 = 0$). 
+* $k$ corresponds to the replicate number,
+* $x_i = 0$ if $i = 1$ (OJ) and $x_i = 1$ if $i = 2$ (VC),
+* $y_{ijk}$ is the tooth length, and 
+* we assume $e_{ijk} \sim N(0, \sigma^2)$. 
 
 ---
 
-## Fitting a categorical variable in `lm`: convenient approach
+## Categorical variable in `lm`: actual
 
-* Instead of creating dummy variables, like $x_{1i}$ and $x_{2i}$, for every level of a categorical variable, it is more convenient to use the categorical variable directly in the symbolic formula like below:
+* Alternatively, we fit the categorical variable directly:
 
 ```{r}
 fit2s <- lm(len ~ supp, data = ToothGrowth)
@@ -99,7 +101,8 @@ coef(fit2s)
 
 Notes:
 
-* By default `lm` uses the treatment constraint (`?contr.treatment`), i.e. first level of the categorical is omitted (same as constraining the corresponding coefficient to zero).  
+* Instead of creating dummy variables, like $x_{1i}$, for a categorical variable, it is more convenient to use the categorical variable directly in the symbolic model formula.
+* By default `lm` uses the treatment constraint (`?contr.treatment`), i.e. first level of the categorical variable is omitted (which is the same as constraining the corresponding coefficient to zero).  
 
 ---
 
@@ -114,6 +117,10 @@ $$\widehat{\texttt{len}} = 20.66 - 3.7 \cdot \texttt{supp}_{\texttt{VC}}$$
 predict(fit2s, data.frame(supp = c("OJ", "VC")))
 ```
 
+* Under this model, the average tooth length of a guinea pig with orange juice supplement is 20.66 units and with vitamin C is 16.96 units. 
+
+
+Notes:
 
 ```{r toothgrowth-plot2, echo = FALSE, fig.width = 5}
 pred <- data.frame(supp = c("OJ", "VC"),
@@ -131,5 +138,37 @@ ggplot(ToothGrowth, aes(supp, len, color = factor(dose))) +
                color = "indianred", linetype = "dashed")
 ```
 
-* Is this a reasonable model?
+* Is this a reasonable model though?
 
+
+---
+
+## Numerical categorical variable
+
+* Recall that `dose` is coded as a *numerical* variable with three possible values: 0.5, 1, and 2.
+
+* Different encoding results in different fitted models:
+
+```{r}
+fit1 <- lm(len ~ dose, data = ToothGrowth)
+coef(fit1)
+```
+
+```{r}
+fit2 <- lm(len ~ dose, data = mutate(ToothGrowth, dose = factor(dose)))
+coef(fit2)
+```
+
+Notes:
+
+* It's the user's responsibility to be aware of what model is fitted and being able to interpret the models appropriately.
+* Please consult standard first year statistics text books for interpreting models -- we only teach you how to fit models in R but statistical theory is beyond the scope of these materials.
+
+
+
+---
+
+## Summary
+
+* You can add categorical variables in the symbolic model formulae instead of creating a set of dummy variables.
+* The fitted model changes based on whether the variable is encoded as numerical or factor/character -- as a user, you need to make sure you understand/check what model you are fitting.

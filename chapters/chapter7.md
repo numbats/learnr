@@ -65,9 +65,9 @@ Hint: What did functions `coef` and `residuals` do?
 
 </exercise>
 
-<exercise id="3" title="Regression with categorical variables" type="slides">
+<exercise id="3" title="Multiple linear regression" type="slides">
 
-<slides source="chapter7_02_regression-with-categorical-var">
+<slides source="chapter7_03_multiple-linear-regression">
 </slides>
 
 </exercise>
@@ -76,18 +76,29 @@ Hint: What did functions `coef` and `residuals` do?
 
 </exercise>
 
-<exercise id="5" title="Regression models with interaction effects" type="slides">
-<slides source="chapter7_03_interaction"> </slides>
+<exercise id="5" title="Regression with categorical variables" type="slides">
+
+<slides source="chapter7_04_regression-with-categorical-var">
+</slides>
+
 </exercise>
 
-<exercise id="6" title="Practice">
+<exercise id="6" title="Test your knoweldge">
 
 </exercise>
 
-<exercise id="7" title="Visualising regression models"  type="slides">
-<slides source="chapter7_04_visualisation"> </slides>
+<exercise id="7" title="Regression models with interaction effects" type="slides">
+<slides source="chapter7_04_interaction"> </slides>
 </exercise>
 
 <exercise id="8" title="Practice">
+
+</exercise>
+
+<exercise id="9" title="Visualising regression models"  type="slides">
+<slides source="chapter7_05_visualisation"> </slides>
+</exercise>
+
+<exercise id="10" title="Practice">
 
 </exercise>

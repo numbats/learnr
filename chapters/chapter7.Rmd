@@ -91,14 +91,11 @@ test <- function() {
 
 </exercise>
 
+<exercise id="3" title="Multiple linear regression" type="slides">
 
-
-<exercise id="3" title="Regression with categorical variables" type="slides">
-
-`r slides("chapter7_02_regression-with-categorical-var")`
+`r slides("chapter7_03_multiple-linear-regression")`
 
 </exercise>
-
 
 <exercise id="4" title="Test your knoweldge">
 
@@ -106,20 +103,34 @@ test <- function() {
 </exercise>
 
 
-<exercise id="5" title="Regression models with interaction effects" type="slides">
-`r slides("chapter7_03_interaction")`
-</exercise>
 
+<exercise id="5" title="Regression with categorical variables" type="slides">
 
-<exercise id="6" title="Practice">
+`r slides("chapter7_04_regression-with-categorical-var")`
 
 </exercise>
 
 
-<exercise id="7" title="Visualising regression models"  type="slides">
-`r slides("chapter7_04_visualisation")`
+<exercise id="6" title="Test your knoweldge">
+
+
 </exercise>
+
+
+<exercise id="7" title="Regression models with interaction effects" type="slides">
+`r slides("chapter7_04_interaction")`
+</exercise>
+
 
 <exercise id="8" title="Practice">
+
+</exercise>
+
+
+<exercise id="9" title="Visualising regression models"  type="slides">
+`r slides("chapter7_05_visualisation")`
+</exercise>
+
+<exercise id="10" title="Practice">
 
 </exercise>

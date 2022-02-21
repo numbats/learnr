@@ -1,5 +1,5 @@
 ---
-title: Simple linear regression
+title: Multiple linear regression
 output: 
   teachr::teachr_slides
 chapter: 7

@@ -1,0 +1,70 @@
+---
+title: Multiple linear regression
+#execute:
+#  keep-md: true
+format: 
+  #teachr::teachr_slides:
+  revealjs:
+    #self-contained: true
+    logo: images/monash-stacked-blue-rgb-transparent.png
+    slide-number: true
+    show-slide-number: all
+    controls: true
+    width: 1280
+    height: 720
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(fig.align = "center",
+                      fig.width = 10, 
+                      fig.height = 4,
+                      cache.path = "cache/",
+                      cache = FALSE,
+                      echo = TRUE)
+library(tidyverse)
+```
+
+
+## Assumptions for linear models
+
+For $i = 1, ..., n$, 
+
+
+$$y_i = \beta_0 + \beta_1 x_{i1} + ... +  \beta_kx_{ik} + e_i$$
+where we assume $\color{red}{e_i \sim NID(0, \sigma^2)}$ i.e. independent and (identically) normally distributed with mean 0 and variance $\sigma^2$.
+
+
+
+
+---
+
+## Illustrative data: marketing 
+
+```{r}
+data(marketing, package = "datarium")
+str(marketing)
+```
+
+???
+
+Notes: 
+
+* The data contains the impact of three advertising medias on sales.
+* The variables in the data are:
+  * `youtube`: the amount of advertising budget spent on youtube advertising (in $1000),
+  * `facebook`: the amount of advertising budget spent on facebook advertising (in $1000),
+  * `newspaper`: the amount of advertising budget spent on newspaper advertising (in $1000), and 
+  * `sales`: the amount of sales in ($1000).
+* Each observation corresponds to one particular trial period. 
+* There are 200 trial periods in total.
+
+---
+
+## Model diagnostics for linear models
+
+1. Plot $y_i$ vs $x_i$ to see if there is an approximate linear relationship between $y$ and $x$
+
+```{r ggpairs}
+GGallly::ggpairs(marketing)
+```
+

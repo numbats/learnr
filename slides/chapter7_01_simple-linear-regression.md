@@ -153,7 +153,7 @@ $$y_i = \beta_0 + \beta_1 x_i + e_i$$ for $i = 1, ..., 50$ where:
 -   $y_i$ is the stopping distance of the $i$-th car,
 -   $x_i$ is the speed (in miles per gallon) of $i$-th car,
 -   $\beta_0$ and $\beta_1$ are the intercept and slope, and
--   we assume the error $e_i \sim N(0, \sigma^2)$.
+-   we assume the error $e_i \sim NID(0, \sigma^2)$.
 
 ---
 
@@ -287,6 +287,27 @@ broom::augment(fit)
 
 ---
 
+## Transformations
+
+-   You can apply transformations directly in the model formula:
+
+``` r
+fit_transform <- lm(log10(dist) ~  sqrt(speed), data = cars)
+```
+
+$$\sqrt{\texttt{dist}} = \beta_0 + \beta_1 \log_{10}(\texttt{speed}).$$
+
+-   Whether this model is sensible is another story.
+
+``` r
+coef(fit_transform)
+```
+
+    ## (Intercept) sqrt(speed) 
+    ## 0.003713579 0.396943075
+
+---
+
 ## Predictions from the fitted model
 
 $$\widehat{\texttt{dist}} = -17.58 + 3.93\cdot \texttt{speed}$$
@@ -307,11 +328,45 @@ Notes:
 
 ---
 
+## Predictions from the model with transformations
+
+$$\log_{10}(\widehat{\texttt{dist}}) = -4.42 + 9.23\cdot \sqrt{\texttt{speed}}$$
+
+-   No need to transform the covariates with `predict`:
+
+``` r
+predict(fit_transform, data.frame(speed = c(5, 10)))
+```
+
+    ##         1         2 
+    ## 0.8913053 1.2589578
+
+-   But the prediction is the response
+    $\log_{10}({\widehat{\texttt{dist}}})$, so you need to apply the
+    inverse transformation to get the value of
+    $\widehat{\texttt{dist}}$.
+
+Notes:
+
+-   Prediction of $\texttt{dist}$:
+
+``` r
+10^predict(fit_transform, data.frame(speed = c(5, 10)))
+```
+
+    ##         1         2 
+    ##  7.785836 18.153392
+
+<img src="chapter7_01_simple-linear-regression_files/figure-markdown/predict-plot-transform-1.png" style="display: block; margin: auto;" />
+
+---
+
 ## Summary
 
 -   You've seen how the `lm` function is used to fit linear models.
 -   You can use functions like `summary`, `coef`, `sigma`,
     `broom::tidy`, `broom::glance`, and `broom::augment` to get
     information about the fitted model.
+-   Transformations can be applied directly in model formula.
 -   The `predict` function is useful get the prediction of the response
     for a new set of data.
