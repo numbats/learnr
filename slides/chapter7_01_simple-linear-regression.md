@@ -48,7 +48,8 @@ Notes:
     -   $y = -17 + 4x$
     -   $y = -5 + 3x$
     -   $y = 80 - 3.5x$
--   Which of these three lines do you think fits the best?
+-   Which of these three lines do you think explains the relationship
+    between $y$ and $x$ the best?
 
 ---
 
@@ -135,12 +136,31 @@ Notes:
 fit <- lm(dist ~  speed, data = cars)
 ```
 
+-   We'll denote the model like below:
+
+$$\texttt{dist} = \beta_0 + \beta_1 \texttt{speed}.$$
+
+Notes:
+
+$$\texttt{dist} = \beta_0 + \beta_1 \texttt{speed}.$$
+
+-   Above is not a mathematically rigorous representation .
+-   If you're representing the model mathematically, you should denote
+    the model like below
+
+$$y_i = \beta_0 + \beta_1 x_i + e_i$$ for $i = 1, ..., 50$ where:
+
+-   $y_i$ is the stopping distance of the $i$-th car,
+-   $x_i$ is the speed (in miles per gallon) of $i$-th car,
+-   $\beta_0$ and $\beta_1$ are the intercept and slope, and
+-   we assume the error $e_i \sim N(0, \sigma^2)$.
+
 ---
 
 ## Getting the model parameter estimates
 
 -   To get the leqast squares estimates, referred to also as
-    **coefficients**, you can use `coef` function on the model object:
+    **coefficients**, you can use `coef` function:
 
 ``` r
 coef(fit)
