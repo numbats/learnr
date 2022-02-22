@@ -31,7 +31,12 @@ For $i = 1, ..., n$,
 
 
 $$y_i = \beta_0 + \beta_1 x_{i1} + ... +  \beta_kx_{ik} + e_i$$
-where we assume $\color{red}{e_i \sim NID(0, \sigma^2)}$ i.e. independent and (identically) normally distributed with mean 0 and variance $\sigma^2$.
+where we assume <span style="color:red">$e_i$ are i.i.d. $NID(0, \sigma^2)$</span>.
+
+Notes:
+
+
+* i.i.d. =  independent and identically distributed 
 
 
 
@@ -45,7 +50,6 @@ data(marketing, package = "datarium")
 str(marketing)
 ```
 
-???
 
 Notes: 
 
@@ -62,9 +66,9 @@ Notes:
 
 ## Model diagnostics for linear models
 
-1. Plot $y_i$ vs $x_i$ to see if there is an approximate linear relationship between $y$ and $x$
+1. Plot scatter plot between pairs of continuous variables:
 
-```{r ggpairs}
-GGallly::ggpairs(marketing)
+```{r ggpairs, message = FALSE, warning = FALSE}
+GGally::ggpairs(marketing)
 ```
 

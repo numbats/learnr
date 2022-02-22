@@ -8,8 +8,12 @@ type: slides
 For $i = 1, ..., n$,
 
 $$y_i = \beta_0 + \beta_1 x_{i1} + ... +  \beta_kx_{ik} + e_i$$ where we
-assume $\color{red}{e_i \sim NID(0, \sigma^2)}$ i.e. independent and
-(identically) normally distributed with mean 0 and variance $\sigma^2$.
+assume <span style="color:red">$e_i$ are i.i.d.
+$NID(0, \sigma^2)$</span>.
+
+Notes:
+
+-   i.i.d. = independent and identically distributed
 
 ---
 
@@ -26,8 +30,6 @@ str(marketing)
     ##  $ newspaper: num  83 54.1 83.2 70.2 70.1 ...
     ##  $ sales    : num  26.5 12.5 11.2 22.2 15.5 ...
 
-???
-
 Notes:
 
 -   The data contains the impact of three advertising medias on sales.
@@ -41,3 +43,15 @@ Notes:
     -   `sales`: the amount of sales in (\$1000).
 -   Each observation corresponds to one particular trial period.
 -   There are 200 trial periods in total.
+
+---
+
+## Model diagnostics for linear models
+
+1.  Plot scatter plot between pairs of continuous variables:
+
+``` r
+GGally::ggpairs(marketing)
+```
+
+<img src="chapter7_02_multiple-linear-regression_files/figure-markdown/ggpairs-1.png" style="display: block; margin: auto;" />
