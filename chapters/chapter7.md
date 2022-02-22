@@ -67,7 +67,7 @@ Hint: What did functions `coef` and `residuals` do?
 
 <exercise id="3" title="Multiple linear regression" type="slides">
 
-<slides source="chapter7_03_multiple-linear-regression">
+<slides source="chapter7_02_multiple-linear-regression">
 </slides>
 
 </exercise>
@@ -78,7 +78,7 @@ Hint: What did functions `coef` and `residuals` do?
 
 <exercise id="5" title="Regression with categorical variables" type="slides">
 
-<slides source="chapter7_04_regression-with-categorical-var">
+<slides source="chapter7_03_regression-with-categorical-var">
 </slides>
 
 </exercise>

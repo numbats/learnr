@@ -93,7 +93,7 @@ test <- function() {
 
 <exercise id="3" title="Multiple linear regression" type="slides">
 
-`r slides("chapter7_03_multiple-linear-regression")`
+`r slides("chapter7_02_multiple-linear-regression")`
 
 </exercise>
 
@@ -106,7 +106,7 @@ test <- function() {
 
 <exercise id="5" title="Regression with categorical variables" type="slides">
 
-`r slides("chapter7_04_regression-with-categorical-var")`
+`r slides("chapter7_03_regression-with-categorical-var")`
 
 </exercise>
 
