@@ -217,7 +217,7 @@ for $i = 1, ..., 50$ where:
 * $y_i$ is the stopping distance of the $i$-th car,
 * $x_i$ is the speed (in miles per gallon) of $i$-th car,
 * $\beta_0$ and $\beta_1$ are the intercept and slope, and 
-* we assume the error $e_i \sim NID(0, \sigma^2)$. 
+* we assume the error $e_i$ are i.i.d. $N(0, \sigma^2)$. 
 
 ---
 
