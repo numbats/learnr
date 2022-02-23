@@ -1,7 +1,5 @@
-suppressPackageStartupMessages({
-  library(tidyverse)
-  library(Ecdat)
-})
+library(ggplot2)
+data(BudgetFood, package = "Ecdat")
 
 ggplot(subset(BudgetFood, !is.na(sex)), aes(age)) +
   geom_histogram(aes(y = _____)) +

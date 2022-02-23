@@ -116,10 +116,8 @@ Try to recreate the scatter plot below. Is there anything unusual that you notic
 Note: the **submit button doesn't check your answer** in this chapter. You will need to eyeball your output plot is the same as the target plots for all questions. 
 
 ```{teachr 06_05A, outdir = "../exercises"}
-suppressPackageStartupMessages({
-  library(ggplot2)
-  library(Ecdat)
-})
+library(ggplot2)
+data(BudgetFood, package = "Ecdat")
 
 ggplot(data = <<BudgetFood>>, 
        mapping = aes(x = <<size>>, 
@@ -144,10 +142,8 @@ You may have noticed that there is _overplotting_ in the previous plot for the b
 ```
 
 ```{teachr 06_05B, outdir = "../exercises"}
-suppressPackageStartupMessages({
-  library(ggplot2)
-  library(Ecdat)
-})
+library(ggplot2)
+data(BudgetFood, package = "Ecdat")
 
 ggplot(data = <<BudgetFood>>, 
        mapping = aes(x = <<size>>, 
@@ -172,10 +168,8 @@ This time let's have a look at some other variables in the `BudgetFood` data. Le
 ```
 
 ```{teachr 06_05C, outdir = "../exercises"}
-suppressPackageStartupMessages({
-  library(ggplot2)
-  library(Ecdat)
-})
+library(ggplot2)
+data(BudgetFood, package = "Ecdat")
 
 ggplot(data = <<BudgetFood>>, 
        mapping = aes(x = <<sex>>, 
@@ -200,10 +194,8 @@ Next study the distribution of the total expenditure of the household by size of
 ```
 
 ```{teachr 06_05D, outdir = "../exercises"}
-suppressPackageStartupMessages({
-  library(ggplot2)
-  library(Ecdat)
-})
+library(ggplot2)
+data(BudgetFood, package = "Ecdat")
 
 ggplot(data = <<BudgetFood>>, 
        mapping = aes(x = <<factor(town)>>, 
@@ -227,10 +219,8 @@ Let's have a look at the distribution of the percentage of total expenditure whi
 ```
 
 ```{teachr 06_05E, outdir = "../exercises"}
-suppressPackageStartupMessages({
-  library(ggplot2)
-  library(Ecdat)
-})
+library(ggplot2)
+data(BudgetFood, package = "Ecdat")
 
 ggplot(data = <<BudgetFood>>, 
        mapping = aes(x = <<wfood>>)) +
@@ -255,10 +245,8 @@ Finally, let's also draw a density plot but display the y-axis as counts instead
 ```
 
 ```{teachr 06_05F, outdir = "../exercises"}
-suppressPackageStartupMessages({
-  library(ggplot2)
-  library(Ecdat)
-})
+library(ggplot2)
+data(BudgetFood, package = "Ecdat")
 
 ggplot(data = <<BudgetFood>>, 
        mapping = aes(x = <<wfood>>))  +
@@ -295,10 +283,8 @@ The plot below shows the histogram with the density plot overlaid on top of it. 
 ```
 
 ```{teachr 06_07A, outdir = "../exercises"}
-suppressPackageStartupMessages({
-  library(ggplot2)
-  library(Ecdat)
-})
+library(ggplot2)
+data(BudgetFood, package = "Ecdat")
 
 ggplot(data = <<BudgetFood>>, 
        mapping = aes(x = <<totexp>>)) +
@@ -322,10 +308,8 @@ In the next target plot, we are going to look at the distribution of the `age` b
 ```
 
 ```{teachr 06_07B, outdir = "../exercises"}
-suppressPackageStartupMessages({
-  library(tidyverse)
-  library(Ecdat)
-})
+library(ggplot2)
+data(BudgetFood, package = "Ecdat")
 
 ggplot(data = <<filter(BudgetFood, !is.na(sex))>>, 
        mapping = aes(x = <<sex>>,
@@ -348,10 +332,8 @@ In the next target plot, we want to draw a scatter plot between the size of the 
 
 
 ```{teachr 06_07C, outdir = "../exercises"}
-suppressPackageStartupMessages({
-  library(tidyverse)
-  library(Ecdat)
-})
+library(ggplot2)
+data(BudgetFood, package = "Ecdat")
 
 ggplot(data = <<filter(BudgetFood, size < 30)>>, 
        mapping = aes(x = <<size>>,
@@ -380,10 +362,8 @@ In the next plot, try drawing a **barplot** by the different sexes with the tota
 
 
 ```{teachr 06_07D, outdir = "../exercises"}
-suppressPackageStartupMessages({
-  library(ggplot2)
-  library(Ecdat)
-})
+library(ggplot2)
+data(BudgetFood, package = "Ecdat")
 
 ggplot(data = <<subset(BudgetFood, !is.na(sex))>>, 
        mapping = aes(x = <<sex>>)) +
@@ -405,10 +385,8 @@ The next one might be tricky. You want to draw a bar plot showing the average to
 ```
 
 ```{teachr 06_07E, outdir = "../exercises"}
-suppressPackageStartupMessages({
-  library(tidyverse)
-  library(Ecdat)
-})
+library(ggplot2)
+data(BudgetFood, package = "Ecdat")
 
 dat <- BudgetFood %>% 
   filter(!is.na(sex)) %>% 
@@ -453,10 +431,8 @@ In the plot below, we show the age distribution by man and woman. Change the col
 
 
 ```{teachr 06_09A, outdir = "../exercises"}
-suppressPackageStartupMessages({
-  library(tidyverse)
-  library(Ecdat)
-})
+library(ggplot2)
+data(BudgetFood, package = "Ecdat")
 
 
 
@@ -488,10 +464,8 @@ In the next plot, let's have a look at the distribution of the total household e
 
 
 ```{teachr 06_09B, outdir = "../exercises"}
-suppressPackageStartupMessages({
-  library(tidyverse)
-  library(Ecdat)
-})
+library(ggplot2)
+data(BudgetFood, package = "Ecdat")
 
 
 ggplot(data = filter(BudgetFood, !is.na(sex)), 
@@ -530,10 +504,8 @@ In the following section, we won't give you much hints! Try to reach the target 
 ```
 
 ```{teachr 06_11A, outdir = "../exercises"}
-suppressPackageStartupMessages({
-  library(tidyverse)
-  library(Ecdat)
-})
+library(ggplot2)
+data(BudgetFood, package = "Ecdat")
 
 ggplot(BudgetFood, aes(x = <<age>>)) + 
   geom_histogram(data = <<select(BudgetFood, -town)>>,
@@ -558,10 +530,8 @@ test <- function() {
 
 
 ```{teachr 06_11B, outdir = "../exercises"}
-suppressPackageStartupMessages({
-  library(tidyverse)
-  library(Ecdat)
-})
+library(ggplot2)
+data(BudgetFood, package = "Ecdat")
 
 ggplot(subset(BudgetFood, !is.na(sex)), aes(age)) +
   geom_histogram(aes(y = <<after_stat(density)>>)) +
@@ -586,11 +556,10 @@ test <- function() {
 
 
 ```{teachr 06_11C, outdir = "../exercises"}
-suppressPackageStartupMessages({
-  library(tidyverse)
-  library(Ecdat)
-  library(<<patchwork>>)
-})
+library(tidyverse)
+library(<<patchwork>>)
+data(BudgetFood, package = "Ecdat")
+
 
 g1 <- ggplot(BudgetFood, 
              aes(factor(size), wfood, color = sex)) +
@@ -627,10 +596,8 @@ The next plot you're going to draw is the plot below -- or make the plot as pret
 ```{r plot-06-13A, code = read_lines("../exercises/solution_06_13A.R"), echo = FALSE, cache = FALSE}
 ```
 ```{teachr 06_13A, outdir = "../exercises"}
-suppressPackageStartupMessages({
-  library(tidyverse)
-  library(Ecdat)
-})
+library(tidyverse)
+data(BudgetFood, package = "Ecdat")
 
 ggplot(BudgetFood, aes(x = age)) + 
   geom_histogram(aes(y = after_stat(density)),

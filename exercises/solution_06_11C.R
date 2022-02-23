@@ -1,8 +1,7 @@
-suppressPackageStartupMessages({
-  library(tidyverse)
-  library(Ecdat)
-  library(patchwork)
-})
+library(tidyverse)
+library(patchwork)
+data(BudgetFood, package = "Ecdat")
+
 
 g1 <- ggplot(BudgetFood, 
              aes(factor(size), wfood, color = sex)) +

@@ -1,7 +1,5 @@
-suppressPackageStartupMessages({
-  library(tidyverse)
-  library(Ecdat)
-})
+library(ggplot2)
+data(BudgetFood, package = "Ecdat")
 
 
 
