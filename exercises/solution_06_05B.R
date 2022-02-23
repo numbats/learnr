@@ -1,7 +1,5 @@
-suppressPackageStartupMessages({
-  library(ggplot2)
-  library(Ecdat)
-})
+library(ggplot2)
+data(BudgetFood, package = "Ecdat")
 
 ggplot(data = BudgetFood, 
        mapping = aes(x = size, 
