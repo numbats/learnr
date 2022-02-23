@@ -104,7 +104,7 @@ test <- function() {
     # This function is defined in the testTemplate
     success("Well done!")
 }
-test()
+
 ```
 </exercise>
 
@@ -175,7 +175,7 @@ test <- function() {
     success("Well done!")
 }
 
-test()
+
 ```
 
 ## Missing Values
@@ -311,7 +311,7 @@ test <- function() {
     # This function is defined in the testTemplate
     success("Well done! You have mastered the basics of operating on matrices using R.")
 }
-test()
+
 
 ```
 
@@ -334,6 +334,12 @@ iris
 ---
 
 Hint: Just run the command!
+  
+???
+test <-function(){
+  success("Well done!")
+}
+
 
 ```
 
@@ -354,11 +360,18 @@ df <- ToothGrowth
 
 # Have a quick look at the first few observations of df
 
-<<head(df)>>
+<< >>
 
 ---
 
 Hint: Try `head(df)` .
+
+???
+
+test <-function(){
+  success("Well done!")
+}
+
 
 ```
 
@@ -411,7 +424,6 @@ test <- function() {
     success("Well done!")
 }
 
-test()
 
 ```
 
@@ -734,7 +746,7 @@ test <- function() {
     success("Well done!")
 }
 
-test()
+
 ```
 
 It is also possible to run a function without an input argument.
@@ -789,7 +801,7 @@ test <- function() {
     success("Well done!")
 }
 
-test()
+
 
 ```
 

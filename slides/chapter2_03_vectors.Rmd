@@ -24,10 +24,25 @@ A **vector** is an ordered finite list of numbers.
 
 A (column) vector x can be written as follow:
 
-$$ x = (4,7,6,3,2) = \begin{bmatrix}4\\7\\6\\3\\2 \end{bmatrix} $$
+$$ x = (4,7,6,3,2) = \begin{bmatrix}4 \\\\ 7 \\\\ 6 \\\\ 3 \\\\ 2 \end{bmatrix} $$
+Notes:
+
+Vectors (and matrices) are used a lot in equations, models, mathematical
+optimization problems. Learning how to read and use them allows you to
+(i) understand complex operations and (ii) express operations that you
+want to perform in a compact and elegant way.
+
+A **vector** is an ordered finite list of numbers.
+
+In R, vectors are one-dimension arrays that can hold numeric data,
+character data or logical data. You can create a vector in R with the
+combine function `c()`, where each element in the vector is separated by
+a comma `,`.
+
+---
 
 Note that a row vector (say, `y`) can be written as
-$y = (3\;4\;7\;4\;2)$ or $y = \begin{bmatrix} 3&4&7&4&2\end{bmatrix}$.
+$y = (3 \quad 4 \quad 7 \quad 4 \quad 2)$ or $y = \begin{bmatrix} 3&4&7&4&2\end{bmatrix}$.
 
 You can express the vector `x` above with the following R
 code:

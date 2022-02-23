@@ -205,7 +205,7 @@ Given the following vector `y` in R,
 
 which of the following is the output of `y-2`?
 
-<choice id=0.334737211931497>
+<choice id=0.745286168064922>
 
 <opt text="<code> 0  4  6  8  1  3  5  7 </code>" >
 
@@ -241,7 +241,7 @@ Given the following vector `y` in R,
 
 which of the following is the output of `y[4:7]`?
 
-<choice id=0.14839459117502>
+<choice id=0.176331315888092>
 
 <opt text="<code> 8 1 3 5 </code>" correct="true">
 
@@ -345,7 +345,7 @@ Hint: Try `head(df)` .
 
 What is the data type of the variable 'dose'?
 
-<choice id=0.538307231618091>
+<choice id=0.913346675690264>
 
 <opt text="numeric" correct="true">
 
@@ -489,7 +489,7 @@ Take a look at the following statements:
 
 Select the option that lists **all** the true statements.
 
-<choice id=0.978561880765483>
+<choice id=0.810627276310697>
 
 <opt text="(1) and (2)" >
 
@@ -632,7 +632,7 @@ variable `student_result`.
 Based on the output from the for-loop, which of the following is
 `student_result`?
 
-<choice id=0.371067217784002>
+<choice id=0.516562290256843>
 
 <opt text="<code>student_result <- c(99,77,35,97,67,85)</code>" >
 
@@ -792,21 +792,21 @@ flip_a_coin <- function(){
 flip_a_coin()
 ```
 
-    ## [1] "Head"
+    ## [1] "Tail"
 
 ``` r
 #Flip the coin second time
 flip_a_coin()
 ```
 
-    ## [1] "Tail"
+    ## [1] "Head"
 
 ``` r
 #Flip the coin once again
 flip_a_coin()
 ```
 
-    ## [1] "Head"
+    ## [1] "Tail"
 
 You will get a different outcome ("Head" or "Tail") every time when you
 call the function `flip_a_coin`.

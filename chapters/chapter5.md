@@ -71,7 +71,9 @@ how you think about the task: x - \> take log -\> add 3 -\> exponential,
 which is also the same order as the code will execute. It's like a
 recipe -- easy to read, easy to follow! This is very useful when we are
 performing complex operations on our data sets. We will start using them
-in the exercises. </exercise>
+in the exercises.
+
+</exercise>
 
 <exercise id="2" title="Introduction to dplyr" type="slides">
 
@@ -130,7 +132,7 @@ We would like to merge the tables so that the result looks like:
 
 Which of the following commands does the operation?
 
-<choice id=0.238996259402484>
+<choice id=0.936857939232141>
 
 <opt text="<code>inner_join(color, size)</code>" >
 
@@ -173,7 +175,7 @@ That's right!
 We have used `table1`, `table2` and `table3` as example in the slides.
 Which table is tidy?
 
-<choice id=0.567945376737043>
+<choice id=0.430694136302918>
 
 <opt text="Table 1 only" correct="true">
 
@@ -230,7 +232,7 @@ smoke <- tribble(
     3 no    employed             20
     4 no    unemployed           12
 
-<choice id=0.0499558339361101>
+<choice id=0.534205838106573>
 
 <opt text="Using <code>pivot_wider()</code> on smoke" >
 
@@ -263,7 +265,7 @@ Try again!
 Which is the best way to check if there are missing observations in your
 data?
 
-<choice id=0.0521996046882123>
+<choice id=0.545056455302984>
 
 <opt text="Eyeballing and look for blanks in my data" >
 
