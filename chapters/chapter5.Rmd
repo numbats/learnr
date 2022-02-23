@@ -79,6 +79,7 @@ x %>% log() %>%
 ```
 
 We start with a vector `x`. From there, we take log every element of, then we add 3 to each element. Finally we compute the exponential of each element of x. Note how the code is arranged in the logical order of how you think about the task: x - > take log -> add 3 -> exponential, which is also the same order as the code will execute. It’s like a recipe – easy to read, easy to follow! This is very useful when we are performing complex operations on our data sets. We will start using them in the exercises.
+
 </exercise>
 
 

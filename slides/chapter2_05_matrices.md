@@ -6,11 +6,11 @@ type: slides
 ## Matrices
 
 A **matrix** is a rectangular array of numbers written between
-rectangular brackets (or large parentheses).
+rectangular brackets (or large parentheses). For example, matrix `A` is
+defined as follow:
 
-For example, matrix `A` is defined as follow:
+$$A = \begin{bmatrix}4&3&2 \\\\ 7&4&2 \\\\ 6&3&4 \\\\ 3&0&0 \\\\ 2&-2&-3 \end{bmatrix}$$
 
-$$ A = \begin{bmatrix}4&3&2\\7&4&2\\6&3&4\\3&0&0\\2&-2&-3 \end{bmatrix} $$
 Note:
 
 Matrix `A` here is a $5 \times 3$ matrix (pronounced as `5 by 3`,

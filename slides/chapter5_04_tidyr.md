@@ -11,9 +11,9 @@ A tidy data format:
 -   each row should hold a single observation
 -   each cell should hold a single value.
 
-Examine `table1`, `table2` and `table3`.
+Examine `table1`, `table2`, `table3` and `Table5`.
 
-They show the same information in 3 different ways.
+They show the same information in 4 different ways.
 
 ---
 

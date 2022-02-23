@@ -12,5 +12,5 @@ test <- function() {
     # This function is defined in the testTemplate
     success("Well done! You have mastered the basics of operating on matrices using R.")
 }
-test()
+
 
