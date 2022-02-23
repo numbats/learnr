@@ -1,4 +1,4 @@
-library(ggplot2)
+library(tidyverse)
 data(BudgetFood, package = "Ecdat")
 
 ggplot(subset(BudgetFood, !is.na(sex)), aes(age)) +

@@ -1,4 +1,4 @@
-library(ggplot2)
+library(tidyverse)
 data(BudgetFood, package = "Ecdat")
 
 dat <- BudgetFood %>% 
@@ -11,7 +11,7 @@ ggplot() +
                aes(x = factor(town),
                    y = totexp,
                   fill = "woman")) +
-  geom_col(data = filter(dat, sex=="man"),
+  geom_col(data = subset(dat, sex=="man"),
                aes(x = factor(town),
                    y = -totexp,
                   fill = "man"))

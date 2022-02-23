@@ -1,4 +1,4 @@
-library(ggplot2)
+library(tidyverse)
 data(BudgetFood, package = "Ecdat")
 
 ggplot(BudgetFood, aes(x = age)) + 
@@ -9,4 +9,4 @@ ggplot(BudgetFood, aes(x = age)) +
                  binwidth = 1) +
   geom_density(color = "red") +
   facet_wrap(~town)
-
+  

@@ -1,4 +1,4 @@
-library(ggplot2)
+library(tidyverse)
 data(BudgetFood, package = "Ecdat")
 
 dat <- BudgetFood %>% 
@@ -11,7 +11,7 @@ _____ +
                aes(x = _____,
                    y = _____,
                   _____)) +
-  geom______(data = filter(dat, sex=="man"),
+  geom______(data = subset(dat, sex=="man"),
                aes(x = _____,
                    y = _____,
                   _____))

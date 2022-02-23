@@ -1,5 +1,5 @@
 ---
-title: 'Chapter 6: Data Visualisation with R'
+title: 'Chapter 6: Data visualisation with R'
 description: This chapter will give you an introduction to the R graphics system and
   teach you how to get started with using the ggplot2 package for drawing all kind
   of plots.
@@ -9,17 +9,17 @@ type: chapter
 id: 6
 
 ---
-<exercise id="1" title="R Graphics" type="slides">
+<exercise id="1" title="R graphics" type="slides">
 
 <slides source="chapter6_01_rgraphics"> </slides>
 
 </exercise>
 
-<exercise id="2" title="Test your knowledge of R Graphics">
+<exercise id="2" title="Test your knowledge of R graphics">
 
 Which of the following is a contributed R package?
 
-<choice id=0.30342702451162>
+<choice id=0.411007618065923>
 
 <opt text="ggplot2" correct="true">
 
@@ -50,7 +50,7 @@ No, this a core package and loads automatically when you launch R.
 
 Which R package actually renders the graphics in R?
 
-<choice id=0.249133271398023>
+<choice id=0.842165540670976>
 
 <opt text="ggplot2" >
 
@@ -81,7 +81,7 @@ Yes, that's right!
 Remember that there are two primary graphic models in R: the base and
 grid graphics. Which one is ggplot2 using?
 
-<choice id=0.182691867696121>
+<choice id=0.988478896673769>
 
 <opt text="base" >
 
@@ -341,6 +341,10 @@ code needed to get to the target plot.
 
 <codeblock id="06_11A">
 
+Hint: what variable is the data facetted by? If you want to see the grey
+shadow of the overall distribution for each panel, remember that the
+variable needs to be removed from the layer data.
+
 </codeblock>
 
 <img src="ch6/plot-06-11B-1.png" width="432" style="display: block; margin: auto;" />
@@ -379,6 +383,7 @@ as pretty as you can!
 
 -   [ggplot2: elegant graphics for data
     analysis](https://ggplot2-book.org/)
+-   [R Graphics Coobook](https://r-graphics.org/)
 -   [R for data science slack
     community](https://rfordatascience.slack.com/join/shared_invite/zt-13ohm2as3-k3Vl31J54zTOjw1h3wpAuQ#/shared-invite/email)
     has a channel on `ggplot2`
@@ -388,5 +393,9 @@ as pretty as you can!
     [Stackoverflow](https://stackoverflow.com/questions/tagged/ggplot2)
     or [RStudio Community](https://community.rstudio.com/tag/ggplot2)
     with `ggplot2` tag.
+-   [The R Graph Gallery](https://www.r-graph-gallery.com/)
+-   [Fundamentals of Data
+    Visualization](https://clauswilke.com/dataviz/) -- see code for this
+    book [here](https://github.com/clauswilke/dataviz).
 
 </exercise>

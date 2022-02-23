@@ -1,4 +1,4 @@
-library(ggplot2)
+library(tidyverse)
 data(BudgetFood, package = "Ecdat")
 
 ggplot(BudgetFood, aes(x = _____)) + 
@@ -9,4 +9,4 @@ ggplot(BudgetFood, aes(x = _____)) +
                  binwidth = 1) +
   geom_density(color = "red") +
   facet______
-
+  

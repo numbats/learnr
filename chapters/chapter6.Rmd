@@ -1,5 +1,5 @@
 ---
-title: 'Chapter 6: Data Visualisation with R'
+title: 'Chapter 6: Data visualisation with R'
 description:
   'This chapter will give you an introduction to the R graphics system and teach you how to get started with using the ggplot2 package for drawing all kind of plots.'
 prev: /chapter5
@@ -25,7 +25,7 @@ knitr::opts_chunk$set(fig.path = "ch6/",
                       message = FALSE,
                       warning = FALSE)
                       #error = TRUE)
-
+filter <- dplyr::filter
 read_lines <- function(x) {
   if(file.exists(x)) {
     readLines(x)
@@ -37,13 +37,13 @@ read_lines <- function(x) {
 ```
 
 
-<exercise id="1" title="R Graphics" type="slides">
+<exercise id="1" title="R graphics" type="slides">
 
 `r slides("chapter6_01_rgraphics")`
 
 </exercise>
 
-<exercise id="2" title="Test your knowledge of R Graphics">
+<exercise id="2" title="Test your knowledge of R graphics">
 
 Which of the following is a contributed R package?
 
@@ -311,7 +311,7 @@ In the next target plot, we are going to look at the distribution of the `age` b
 library(ggplot2)
 data(BudgetFood, package = "Ecdat")
 
-ggplot(data = <<filter(BudgetFood, !is.na(sex))>>, 
+ggplot(data = <<subset(BudgetFood, !is.na(sex))>>, 
        mapping = aes(x = <<sex>>,
                      y = <<age>>)) +
   geom_<<violin>>(<<aes(fill = sex)>>) +
@@ -335,7 +335,7 @@ In the next target plot, we want to draw a scatter plot between the size of the 
 library(ggplot2)
 data(BudgetFood, package = "Ecdat")
 
-ggplot(data = <<filter(BudgetFood, size < 30)>>, 
+ggplot(data = <<subset(BudgetFood, size < 30)>>, 
        mapping = aes(x = <<size>>,
                      y = <<totexp>>)) +
   geom_<<point>>() +
@@ -385,7 +385,7 @@ The next one might be tricky. You want to draw a bar plot showing the average to
 ```
 
 ```{teachr 06_07E, outdir = "../exercises"}
-library(ggplot2)
+library(tidyverse)
 data(BudgetFood, package = "Ecdat")
 
 dat <- BudgetFood %>% 
@@ -398,7 +398,7 @@ dat <- BudgetFood %>%
                aes(x = <<factor(town)>>,
                    y = <<totexp>>,
                   <<fill = "woman">>)) +
-  geom_<<col>>(data = filter(dat, sex=="man"),
+  geom_<<col>>(data = subset(dat, sex=="man"),
                aes(x = <<factor(town)>>,
                    y = <<-totexp>>,
                   <<fill = "man">>))
@@ -436,7 +436,7 @@ data(BudgetFood, package = "Ecdat")
 
 
 
-ggplot(data = filter(BudgetFood, !is.na(sex)), 
+ggplot(data = subset(BudgetFood, !is.na(sex)), 
        mapping = aes(x = sex,
                      y = age)) +
   geom_violin(aes(fill = sex)) + 
@@ -468,7 +468,7 @@ library(ggplot2)
 data(BudgetFood, package = "Ecdat")
 
 
-ggplot(data = filter(BudgetFood, !is.na(sex)), 
+ggplot(data = subset(BudgetFood, !is.na(sex)), 
        mapping = aes(x = totexp,
                      fill = sex)) +
   geom_histogram(bins = 40,
@@ -504,7 +504,7 @@ In the following section, we won't give you much hints! Try to reach the target 
 ```
 
 ```{teachr 06_11A, outdir = "../exercises"}
-library(ggplot2)
+library(tidyverse)
 data(BudgetFood, package = "Ecdat")
 
 ggplot(BudgetFood, aes(x = <<age>>)) + 
@@ -515,6 +515,10 @@ ggplot(BudgetFood, aes(x = <<age>>)) +
                  binwidth = 1) +
   geom_density(color = "red") +
   facet_<<wrap(~town)>>
+  
+---
+  
+Hint: what variable is the data facetted by? If you want to see the grey shadow of the overall distribution for each panel, remember that the variable needs to be removed from the layer data.  
 
 ???
   
@@ -530,7 +534,7 @@ test <- function() {
 
 
 ```{teachr 06_11B, outdir = "../exercises"}
-library(ggplot2)
+library(tidyverse)
 data(BudgetFood, package = "Ecdat")
 
 ggplot(subset(BudgetFood, !is.na(sex)), aes(age)) +
@@ -626,8 +630,12 @@ test <- function() {
 <exercise id="14" title="Resources">
 
 * [ggplot2: elegant graphics for data analysis](https://ggplot2-book.org/)
+* [R Graphics Coobook](https://r-graphics.org/)
 * [R for data science slack community](https://rfordatascience.slack.com/join/shared_invite/zt-13ohm2as3-k3Vl31J54zTOjw1h3wpAuQ#/shared-invite/email) has a channel on `ggplot2`
 * [Download](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf) the `ggplot2` cheatsheet
 * Ask or search questions at [Stackoverflow](https://stackoverflow.com/questions/tagged/ggplot2) or [RStudio Community](https://community.rstudio.com/tag/ggplot2) with `ggplot2` tag.
+* [The R Graph Gallery](https://www.r-graph-gallery.com/)
+* [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/) -- see code for this book [here](https://github.com/clauswilke/dataviz).
+
 
 </exercise>
