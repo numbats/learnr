@@ -1,6 +1,8 @@
 install.packages("tidyverse")
 install.packages("rjson")
 install.packages("Ecdat")
+install.packages("hexbin")
+install.packages("datarium")
 install.packages("testthat")
 install.packages("patchwork", repos = "https://cran.rstudio.com/")
 install.packages("broom")
