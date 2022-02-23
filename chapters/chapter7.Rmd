@@ -83,6 +83,7 @@ test <- function() {
   expect_equal(RSS, sum(residuals(fit)^2))
   expect_equal(beta0, coef(fit)[1])
   expect_equal(beta1, coef(fit)[2])
+  success("Well done!")
 }  
   
 ```
@@ -97,7 +98,32 @@ test <- function() {
 
 </exercise>
 
-<exercise id="4" title="Test your knoweldge">
+<exercise id="4" title="Test your knowledge">
+
+We extend the previous model for the average cigarette price by regressing it on the covariates:
+
+* average excise taxes for fiscal year and 
+* consumer price index.
+
+
+```{r, echo = TRUE}
+library(tidyverse)
+library(broom)
+data(Cigarette, package = "Ecdat")
+
+fit <- lm(avgprs ~ taxs + cpi, data = Cigarette)
+ggplot(augment(fit), aes(.fitted, .resid)) +
+  geom_hline(yintercept = 0) +
+  geom_point() 
+```
+
+Based on the above plot, do you think the fitted model is reasonable?
+
+```{r, echo = FALSE, results = "asis"}
+cat(mc_opts("Yes" = "Nope. Try again.",
+         "No" = "That's right! There's a clear curve in the residual vs fitted plot.",
+         correct = 1))
+```
 
 
 </exercise>
@@ -111,7 +137,44 @@ test <- function() {
 </exercise>
 
 
-<exercise id="6" title="Test your knoweldge">
+<exercise id="6" title="Practice modelling with categorical variables">
+
+
+Below we calculate the mean of the average cigarette prices across the years by state.
+
+```{r}
+Cigarette %>% 
+  group_by(state) %>% 
+  summarise(avg = mean(avgprs)) %>% 
+  deframe()
+```
+
+Model the average cigarette price on the categorical variable `state` with the intercept removed from the model. Assign the coefficients from your model to `betas`. Do you notice anything about the values printed?
+
+
+
+```{teachr 07_06A, outdir = "../exercises"}
+data(Cigarette, package = "Ecdat")
+
+fit <- lm(<<avgprs ~ -1 + state>>, data = Cigarette)
+  
+betas <- <<coef(fit)>>
+betas
+
+---
+
+Hint: Add `-1` or `0` to the right hand side of the model formula to remove the intercept.
+  
+???
+
+test <- function() {
+  fit <- lm(avgprs ~ -1 + state, data = Cigarette)
+  expect_equal(betas, coef(fit))
+  success("You got it right! Did you notice what the `betas` values are?")
+}  
+  
+```
+
 
 
 </exercise>
@@ -122,15 +185,8 @@ test <- function() {
 </exercise>
 
 
-<exercise id="8" title="Practice">
 
-</exercise>
-
-
-<exercise id="9" title="Visualising regression models"  type="slides">
+<exercise id="8" title="Visualising regression models"  type="slides">
 `r slides("chapter7_05_visualisation")`
 </exercise>
 
-<exercise id="10" title="Practice">
-
-</exercise>

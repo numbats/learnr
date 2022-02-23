@@ -5,6 +5,5 @@ test <- function() {
   expect_equal(RSS, sum(residuals(fit)^2))
   expect_equal(beta0, coef(fit)[1])
   expect_equal(beta1, coef(fit)[2])
-  success("Well done!")
 }  
   

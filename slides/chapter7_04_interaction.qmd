@@ -59,7 +59,7 @@ g1
 
 ## Proposed model 1
 
-$$ y_{ij} = \mu + \alpha_i + \beta x_{j} + e_{ij}, \qquad \text{for }i = 1, 2, j = 1, 2, 3$$
+$$ y_{ijk} = \mu + \alpha_i + \beta x_{j} + e_{ijk}, \qquad \text{for }i = 1, 2, j = 1, 2, 3, k = 1, ..., 10$$
 
 where:
 
@@ -71,7 +71,9 @@ fit1 <- lm(len ~ 1 + supp + dose, data = ToothGrowth)
 coef(fit1)
 ```
 
-* The above model results in two parallel lines: the same slope, different intercepts for different supplement:
+Notes:
+
+* This model results in two parallel lines: the same slope, different intercepts for different supplement:
 
 ```{r tooth-plot1, echo = FALSE, message=FALSE}
 pred <- broom::augment(fit1)
@@ -84,7 +86,7 @@ g1 +
 
 ## Proposed model 2A
 
-$$ y_{ij} = \mu + \alpha_i + \beta x_{j} + \beta_{i} x_{j} + e_{ij}, \qquad \text{for }i = 1, 2, j = 1, 2, 3$$
+$$ y_{ijk} = \mu + \alpha_i + \beta x_{j} + \beta_{i} x_{j} + e_{ijk}, \qquad \text{for }i = 1, 2, j = 1, 2, 3, k = 1, ..., 10$$
 
 
 
@@ -92,6 +94,8 @@ $$ y_{ij} = \mu + \alpha_i + \beta x_{j} + \beta_{i} x_{j} + e_{ij}, \qquad \tex
 fit2A <- lm(len ~ 1 + supp + dose + supp:dose, data = ToothGrowth)
 coef(fit2A)
 ```
+
+Notes:
 
 * `:` is used to fit an interaction of two variables, i.e. `A:B` is an interaction of `A` and `B`. 
 * `A*B` is used as a shorthand for `A + B + A:B` so `supp * dose` is equivalent to `supp + dose + supp:dose`.
@@ -108,13 +112,15 @@ g1 +
 
 ## Proposed model 2B
 
-$$ y_{ij} = \mu + \alpha_i + \gamma_{i} x_{j} + e_{ij}, \qquad \text{for }i = 1, 2, j = 1, 2, 3$$
+$$ y_{ijk} = \mu + \alpha_i + \gamma_{i} x_{j} + e_{ijk}, \qquad \text{for }i = 1, 2, j = 1, 2, 3, k = 1, ..., 10$$
 
 
 ```{r}
 fit2B <- lm(len ~ 1 + supp + supp:dose, data = ToothGrowth)
 coef(fit2B)
 ```
+
+Notes:
 
 * This model is equivalent to the previous model where $\gamma_i = \beta + \beta_i$.
 
@@ -129,13 +135,15 @@ g1 +
 
 ## Proposed model 3
 
-$$ y_{ij} = \mu +  \zeta_{i} x_{j} + e_{ij}, \qquad \text{for }i = 1, 2, j = 1, 2, 3$$
+$$ y_{ijk} = \mu +  \zeta_{i} x_{j} + e_{ijk}, \qquad \text{for }i = 1, 2, j = 1, 2, 3, k = 1, ..., 10$$
 
 
 ```{r}
 fit3 <- lm(len ~ 1 + supp:dose, data = ToothGrowth)
 coef(fit3)
 ```
+
+Notes:
 
 * This model results in two lines with the same intercept but different slopes for each supplement type
 
@@ -150,7 +158,7 @@ g1 +
 
 ## Proposed model 4A
 
-$$ y_{ij} = \mu_{ij} + e_{ij}, \qquad \text{for }i = 1, 2, j = 1, 2, 3$$
+$$ y_{ijk} = \mu_{ij} + e_{ijk}, \qquad \text{for }i = 1, 2, j = 1, 2, 3, k = 1, ..., 10$$
 
 
 ```{r}
@@ -160,6 +168,7 @@ fit4A <- lm(len ~ 0 + supp:dosef, data = df)
 coef(fit4A)
 ```
 
+Notes:
 
 ```{r tooth-plot4A, echo = FALSE, message=FALSE}
 pred <- broom::augment(fit4A)
@@ -176,7 +185,7 @@ ggplot(df, aes(dosef, len)) +
 
 ## Proposed model 4B
 
-$$ y_{ij} = \alpha_i + \beta_j  + (\alpha\beta)_{ij} + e_{ij}, \qquad \text{for }i = 1, 2, j = 1, 2, 3$$
+$$ y_{ijk} = \alpha_i + \beta_j  + (\alpha\beta)_{ij} + e_{ijk}, \qquad \text{for }i = 1, 2, j = 1, 2, 3, k = 1, ..., 10$$
 where
 
 * $\alpha_i$ and $\beta_j$ are **main effects** for `supp` and `dosef`, respectively,
@@ -184,6 +193,8 @@ where
 
 
 This model is the same as the previous model where $\mu_{ij} = \alpha_i + \beta_j + (\alpha\beta)_{ij}$. 
+
+Notes:
 
 
 ```{r}
@@ -207,7 +218,7 @@ ggplot(df, aes(dosef, len)) +
 
 ## Proposed model 4C
 
-$$ y_{ij} = \beta_0 + \alpha_i  + \beta_{1i} x_j +  \beta_{2i} x_j^2  + e_{ij}, \qquad \text{for }i = 1, 2, j = 1, 2, 3$$
+$$ y_{ijk} = \beta_0 + \alpha_i  + \beta_{1i} x_j +  \beta_{2i} x_j^2  + e_{ijk}, \qquad \text{for }i = 1, 2, j = 1, 2, 3, k = 1, ..., 10$$
 
 
 ```{r}
@@ -215,7 +226,9 @@ fit4C <- lm(len ~ supp * (1 + dose + I(dose^2)), data = ToothGrowth)
 coef(fit4C)
 ```
 
-* The above formula is the same as `len ~ supp * poly(dose, 2, raw = TRUE)`.
+Notes: 
+
+* `len ~ supp * (1 + dose + I(dose^2))` is the same as `len ~ supp * poly(dose, 2, raw = TRUE)`.
 * An equivalent model can be fitted with `len ~ supp * poly(dose, 2)` where orthogonal polynomials are used instead for the `dose`. 
 * This model is also equivalent to `fit4C`, but the advantage of this approach is that you can predict for other dose levels.
 
@@ -232,3 +245,12 @@ g1 +
   geom_point(data = fitdat, 
             color = "indianred", size = 3, shape = 10) 
 ```
+
+
+---
+
+
+## Summary
+
+* Interaction effects between variables `A` and `B` may be fitted by using `A:B` or `A*B` where the latter also fits the main effects `A` and `B`. 
+* The implied model if one of the variables is encoded as a `numeric` is different to when it is encoded as a `factor`.
