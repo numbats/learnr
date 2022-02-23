@@ -1,0 +1,666 @@
+---
+title: 'Chapter 6: Data Visualisation with R'
+description:
+  'This chapter will give you an introduction to the R graphics system and teach you how to get started with using the ggplot2 package for drawing all kind of plots.'
+prev: /chapter5
+next: /chapter6
+type: chapter
+id: 6
+output:
+  teachr::teachr_chapter:
+  # html_document:
+  #   self_contained: false
+  #md_document
+---
+
+```{r setup, include = FALSE}
+library(teachr)
+knitr::opts_chunk$set(fig.path = "ch6/",
+                      fig.retina = 2,
+                      fig.width = 6, 
+                      fig.height = 4,
+                      fig.align = "center",
+                      cache = FALSE,
+                      cache.path = "cache/",
+                      message = FALSE,
+                      warning = FALSE)
+                      #error = TRUE)
+
+read_lines <- function(x) {
+  if(file.exists(x)) {
+    readLines(x)
+  } else {
+    ""
+  }
+}
+  
+```
+
+
+<exercise id="1" title="R Graphics" type="slides">
+
+`r slides("chapter6_01_rgraphics")`
+
+</exercise>
+
+<exercise id="2" title="Test your knowledge of R Graphics">
+
+Which of the following is a contributed R package?
+
+```{r, echo = FALSE, results = "asis"}
+cat(mc_opts("ggplot2" = "That's correct! ggplot2 was developed by Hadley Wickham as part of his PhD.",
+         "grid" = "No, this is a core package so it's already installed.",
+         "graphics" = "No, this a core package and loads automatically when you launch R.",
+         "grDevices" = "No, this a core package and loads automatically when you launch R.",
+         correct = 1))
+```
+
+Which R package actually renders the graphics in R?
+
+```{r, echo = FALSE, results = "asis"}
+cat(mc_opts("ggplot2" = "No, that's incorrect.",
+         "grid" = "No, that's incorrect.",
+         "graphics" = "No, that's incorrect.",
+         "grDevices" = "Yes, that's right!",
+         correct = 4))
+```
+
+Remember that there are two primary graphic models in R: the base and grid graphics. Which one is ggplot2 using?
+
+```{r, echo = FALSE, results = "asis"}
+cat(mc_opts("base" = "No, that's incorrect.",
+         "grid" = "Yes that's right! Well done!",
+         correct = 2))
+```
+
+
+</exercise>
+
+
+
+<exercise id="3" title="Getting started with ggplot2" type="slides">
+
+`r slides("chapter6_02_ggplot2intro")`
+
+</exercise>
+
+<exercise id="4" title="Plotting two or more variables with ggplot2" type="slides">
+
+`r slides("chapter6_03_ggplot2next")`
+
+</exercise>
+
+
+<exercise id="5" title="Make basic plots with ggplot2">
+
+For the following questions we are going to use `BudgetFood` data from the `Ecdat` package which contains the budget share of food for Spanish households. You can load the dataset and see the structure of the data below.
+
+```{r, message = FALSE, warning = FALSE}
+library(Ecdat)
+str(BudgetFood)
+```
+The meaning of the variables are described below:
+
+* `wfood`: percentage of total expenditure which the household has spent on food
+* `totexp`: total expenditure of the household
+* `age`: age of reference person in the household
+* `size`: size of the household
+* `town`: size of the town where the household is placed categorized into 5 groups: 1 for small towns, 5 for big ones
+* `sex`: sex of reference person (man,woman)
+
+Try to recreate the scatter plot below. Is there anything unusual that you notice about the plot?
+
+```{r plot-06-05A, code = read_lines("../exercises/solution_06_05A.R"), echo = FALSE}
+```
+
+Note: the **submit button doesn't check your answer** in this chapter. You will need to eyeball your output plot is the same as the target plots for all questions. 
+
+```{teachr 06_05A, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(Ecdat)
+})
+
+ggplot(data = <<BudgetFood>>, 
+       mapping = aes(x = <<size>>, 
+                     y = <<totexp>>)) +
+  geom_<<point>>()
+
+---
+  
+Hint: The scatter plots are created using `geom_point`.
+
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
+
+```
+
+You may have noticed that there is _overplotting_ in the previous plot for the bottom left region. Let's try to create a **hex plot** like below this time.
+
+```{r plot-06-05B, code = read_lines("../exercises/solution_06_05B.R"), echo = FALSE}
+```
+
+```{teachr 06_05B, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(Ecdat)
+})
+
+ggplot(data = <<BudgetFood>>, 
+       mapping = aes(x = <<size>>, 
+                     y = <<totexp>>)) +
+  geom_<<hex>>()
+
+---
+  
+Hint: The hex plots are created using `geom_hex`.
+
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
+```
+
+This time let's have a look at some other variables in the `BudgetFood` data. Let's check the distribution of the age by sex using **boxplot** like below.
+
+
+```{r plot-06-05C, code = read_lines("../exercises/solution_06_05C.R"), echo = FALSE}
+```
+
+```{teachr 06_05C, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(Ecdat)
+})
+
+ggplot(data = <<BudgetFood>>, 
+       mapping = aes(x = <<sex>>, 
+                     y = <<age>>)) +
+  geom_<<boxplot>>()
+
+---
+  
+Hint: The five number summary is often graphically depicted by a boxplot. 
+
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
+```
+
+Next study the distribution of the total expenditure of the household by size of the town using a **violin plot** like below.
+
+
+```{r plot-06-05D, code = read_lines("../exercises/solution_06_05D.R"), echo = FALSE}
+```
+
+```{teachr 06_05D, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(Ecdat)
+})
+
+ggplot(data = <<BudgetFood>>, 
+       mapping = aes(x = <<factor(town)>>, 
+                     y = <<totexp>>)) +
+  geom_<<violin>>()
+
+---
+  
+Hint: what do you notice about the x-axis scale? Do you perhaps need to convert `town`?
+  
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
+```
+
+Let's have a look at the distribution of the percentage of total expenditure which the household has spent on food (`wfood`). We'll adjust the bin width of the **histogram** to 0.001. Do you notice the peak at 0?
+
+```{r plot-06-05E, code = read_lines("../exercises/solution_06_05E.R"), echo = FALSE}
+```
+
+```{teachr 06_05E, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(Ecdat)
+})
+
+ggplot(data = <<BudgetFood>>, 
+       mapping = aes(x = <<wfood>>)) +
+  geom_<<histogram>>(binwidth = 0.001)
+
+---
+  
+Hint: this plot is called a histogram.
+
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
+
+```
+
+Finally, let's also draw a density plot but display the y-axis as counts instead of density.
+
+
+```{r plot-06-05F, code = read_lines("../exercises/solution_06_05F.R"), echo = FALSE}
+```
+
+```{teachr 06_05F, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(Ecdat)
+})
+
+ggplot(data = <<BudgetFood>>, 
+       mapping = aes(x = <<wfood>>))  +
+  geom_density(aes(y = <<after_stat(count)>>))
+
+---
+
+Hint: this is a density plot but the y-axis is showing counts. What did `after_stat` function do?
+  
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
+    
+```
+
+</exercise>
+
+
+<exercise id="6" title="Multiple layers and attributes in ggplot2"  type="slides">
+`r slides("chapter6_04_ggplot2layers")`
+</exercise>
+
+
+<exercise id="7" title="Practice creating multiple layers">
+
+We are again going to use the `BudgetFood` data from the `Ecdat` package to make the plots.
+
+
+The plot below shows the histogram with the density plot overlaid on top of it. Try to recreate this figure.
+
+```{r plot-06-07A, code = read_lines("../exercises/solution_06_07A.R"), echo = FALSE}
+```
+
+```{teachr 06_07A, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(Ecdat)
+})
+
+ggplot(data = <<BudgetFood>>, 
+       mapping = aes(x = <<totexp>>)) +
+  geom_<<histogram>>(aes(y = after_stat(density))) +
+  geom_<<density>>(color = "red")
+
+---
+
+Hint: this is a density plot but the y-axis is showing counts. What did `after_stat` function do?
+  
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
+```
+
+In the next target plot, we are going to look at the distribution of the `age` by `sex`. There are not that many observations where sex information is missing so let's focus on `sex` levels for "man" and "woman".
+
+```{r plot-06-7B, code = read_lines("../exercises/solution_06_07B.R"), echo = FALSE}
+```
+
+```{teachr 06_07B, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(Ecdat)
+})
+
+ggplot(data = <<filter(BudgetFood, !is.na(sex))>>, 
+       mapping = aes(x = <<sex>>,
+                     y = <<age>>)) +
+  geom_<<violin>>(<<aes(fill = sex)>>) +
+  geom_<<boxplot>>(<<width>> = 0.1) 
+
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
+```
+
+In the next target plot, we want to draw a scatter plot between the size of the household and the total expenditure of the household. Then we want to overlay this with a loess curve in red color. You may not have seen how to fit a curve on `ggplot` yet so check out the hint if you don't know.
+
+
+```{r plot-06-07C, code = read_lines("../exercises/solution_06_07C.R"), echo = FALSE}
+```
+
+
+```{teachr 06_07C, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(Ecdat)
+})
+
+ggplot(data = <<filter(BudgetFood, size < 30)>>, 
+       mapping = aes(x = <<size>>,
+                     y = <<totexp>>)) +
+  geom_<<point>>() +
+  geom_<<smooth>>(color = "red",
+                  method = loess,
+                  formula = y ~ x)
+
+---
+  
+Hint: `geom_smooth` can draw curves from a fitted model.
+
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
+```
+
+In the next plot, try drawing a **barplot** by the different sexes with the total count written on top of the bar.
+
+```{r plot-06-07D, code = read_lines("../exercises/solution_06_07D.R"), echo = FALSE, cache = FALSE}
+```
+
+
+
+```{teachr 06_07D, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(Ecdat)
+})
+
+ggplot(data = <<subset(BudgetFood, !is.na(sex))>>, 
+       mapping = aes(x = <<sex>>)) +
+  geom_<<bar>>() +
+  geom_<<text>>(aes(label = <<after_stat(count)>>),
+                 vjust = -0.3,
+                 stat = <<"count">>)
+
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
+```
+
+The next one might be tricky. You want to draw a bar plot showing the average total expenditure of by sex and town but the top blue bars show the average for women, while the bottome red bars show the average for men. 
+
+```{r plot-06-07E, code = read_lines("../exercises/solution_06_07E.R"), echo = FALSE, cache = FALSE}
+```
+
+```{teachr 06_07E, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(Ecdat)
+})
+
+dat <- BudgetFood %>% 
+  filter(!is.na(sex)) %>% 
+  group_by(town, sex) %>% 
+  summarise(totexp = mean(totexp))
+
+<<ggplot()>> +
+  geom_<<col>>(data = filter(dat, sex=="woman"),
+               aes(x = <<factor(town)>>,
+                   y = <<totexp>>,
+                  <<fill = "woman">>)) +
+  geom_<<col>>(data = filter(dat, sex=="man"),
+               aes(x = <<factor(town)>>,
+                   y = <<-totexp>>,
+                  <<fill = "man">>))
+
+---
+  
+Hint: The legend shows the `fill` with a label "woman" and "man". In this case should `fill` be an attribute or aesthetic?
+
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
+```
+
+
+</exercise>
+
+<exercise id="8" title="Scales and guides in ggplot2"  type="slides">
+`r slides("chapter6_05_ggplot2scales")`
+</exercise>
+
+<exercise id="9" title="Practice changing scales">
+
+In the plot below, we show the age distribution by man and woman. Change the color so the violin plot for the man  colored as "violet" and woman as "royalblue".
+
+
+```{r plot-06-09A, code = read_lines("../exercises/solution_06_09A.R"), echo = FALSE, cache = FALSE}
+```
+
+
+```{teachr 06_09A, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(Ecdat)
+})
+
+
+
+ggplot(data = filter(BudgetFood, !is.na(sex)), 
+       mapping = aes(x = sex,
+                     y = age)) +
+  geom_violin(aes(fill = sex)) + 
+  <<scale_fill>>_manual(values = c("violet", "royalblue"))
+  
+
+---
+  
+Hint: Recall that scales are controlled by functions beginning with `scale_`. The second "word" in the scale function is the aesthetic. 
+
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
+```
+
+
+In the next plot, let's have a look at the distribution of the total household expenditure by sex using histograms. Since hte total household expenditure skewed to the right, take a log with base 10 transformation for the scale and change the colors like the target plot below.
+
+
+
+```{r plot-06-09B, code = read_lines("../exercises/solution_06_09B.R"), echo = FALSE, cache = FALSE}
+```
+
+
+```{teachr 06_09B, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(Ecdat)
+})
+
+
+ggplot(data = filter(BudgetFood, !is.na(sex)), 
+       mapping = aes(x = totexp,
+                     fill = sex)) +
+  geom_histogram(bins = 40,
+                 aes(color = sex)) + 
+  <<scale_x>>_log10() +
+  <<scale_color>>_discrete() +
+  <<scale_fill>>_brewer(palette = 10)
+  
+
+---
+  
+Hint: Recall that scales are controlled by functions beginning with `scale_`. The second "word" in the scale function is the aesthetic. 
+
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
+```
+
+
+</exercise>
+
+<exercise id="10" title="Multiple plots in one figure"  type="slides">
+`r slides("chapter6_06_ggplot2facet")`
+</exercise>
+
+<exercise id="11" title="Practice making multiple subplots">
+
+In the following section, we won't give you much hints! Try to reach the target plots by seeing what's drawn in the target plot and complete the code needed to get to the target plot.
+
+```{r plot-06-11A, code = read_lines("../exercises/solution_06_11A.R"), echo = FALSE, cache = FALSE}
+```
+
+```{teachr 06_11A, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(Ecdat)
+})
+
+ggplot(BudgetFood, aes(x = <<age>>)) + 
+  geom_histogram(data = <<select(BudgetFood, -town)>>,
+                 fill = "grey", binwidth = 1,
+                 aes(y = after_stat(density))) +
+  geom_histogram(aes(y = after_stat(density)),
+                 binwidth = 1) +
+  geom_density(color = "red") +
+  facet_<<wrap(~town)>>
+
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
+```
+
+
+
+```{r plot-06-11B, code = read_lines("../exercises/solution_06_11B.R"), echo = FALSE, cache = FALSE}
+```
+
+
+```{teachr 06_11B, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(Ecdat)
+})
+
+ggplot(subset(BudgetFood, !is.na(sex)), aes(age)) +
+  geom_histogram(aes(y = <<after_stat(density)>>)) +
+  geom_text(x = 35, y = 0.035, 
+            data = function(.data) .data %>% 
+              group_by(sex, town) %>% 
+              count(),
+            aes(label = n)) +
+  facet_<<grid(sex ~ town)>>
+
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
+```
+
+
+
+```{r plot-06-11C, code = read_lines("../exercises/solution_06_11C.R"), echo = FALSE, cache = FALSE}
+```
+
+
+```{teachr 06_11C, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(Ecdat)
+  library(<<patchwork>>)
+})
+
+g1 <- ggplot(BudgetFood, 
+             aes(factor(size), wfood, color = sex)) +
+  geom_boxplot() 
+
+g2 <- ggplot(BudgetFood, 
+             aes(factor(size), totexp, color = sex)) +
+  geom_boxplot() + 
+  scale_y_log10()
+
+# combine the plot as one figure 
+<<g1 / g2>> + plot_layout(guides = "collect")
+
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
+```
+
+
+</exercise>
+
+<exercise id="12" title="Customise the look with themes in ggplot2"  type="slides">
+`r slides("chapter6_07_ggplot2theme")`
+</exercise>
+
+<exercise id="13" title="Make pretty plots">
+
+Well done getting to the last practice exercise! 
+
+The next plot you're going to draw is the plot below -- or make the plot as pretty as you can!
+
+```{r plot-06-13A, code = read_lines("../exercises/solution_06_13A.R"), echo = FALSE, cache = FALSE}
+```
+```{teachr 06_13A, outdir = "../exercises"}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(Ecdat)
+})
+
+ggplot(BudgetFood, aes(x = age)) + 
+  geom_histogram(aes(y = after_stat(density)),
+                 binwidth = 1) +
+  geom_density(color = "red") +
+  facet_wrap(~town, labeller = label_both) +
+  labs(x = "Age", y = "Density", title = "Age distribution by town size") +
+  theme(text = <<element_text>>(size = 14, family = "mono"),
+        plot.background = <<element_rect>>(fill = "grey80"),
+        <<strip.background>> = element_rect(fill = "black"),
+        <<strip.text>> = element_text(color = "white"),
+        panel.background = <<element_rect>>(fill = "white",
+                                        color = "black"),
+        panel.grid = element_blank())
+
+???
+  
+test <- function() { 
+  success("Check with the above target plot if the output matches!") 
+}
+```
+
+</exercise>
+
+
+<exercise id="14" title="Resources">
+
+* [ggplot2: elegant graphics for data analysis](https://ggplot2-book.org/)
+* [R for data science slack community](https://rfordatascience.slack.com/join/shared_invite/zt-13ohm2as3-k3Vl31J54zTOjw1h3wpAuQ#/shared-invite/email) has a channel on `ggplot2`
+* [Download](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf) the `ggplot2` cheatsheet
+* Ask or search questions at [Stackoverflow](https://stackoverflow.com/questions/tagged/ggplot2) or [RStudio Community](https://community.rstudio.com/tag/ggplot2) with `ggplot2` tag.
+
+</exercise>

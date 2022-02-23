@@ -66,6 +66,19 @@ library(tidyverse)
 
 You can also load specific library separately, for example, `library(dplyr)`.
 
+**Pipes**
+
+`%>%` is a “pipe”-like operator with which you may pipe a value forward into an expression or function call; something along the lines of `x %>% f`, rather than `f(x)`. 
+It semantically changes your code in a way that makes it more intuitive to both read and write. For example, 
+
+```{r}
+x <- c(100,200,300)
+x %>% log() %>%
+    +3 %>%
+    exp()
+```
+
+We start with a vector `x`. From there, we take log every element of, then we add 3 to each element. Finally we compute the exponential of each element of x. Note how the code is arranged in the logical order of how you think about the task: x - > take log -> add 3 -> exponential, which is also the same order as the code will execute. It’s like a recipe – easy to read, easy to follow! This is very useful when we are performing complex operations on our data sets. We will start using them in the exercises.
 </exercise>
 
 

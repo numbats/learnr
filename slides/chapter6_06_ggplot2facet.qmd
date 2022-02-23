@@ -1,0 +1,243 @@
+---
+title: Multiple subplots in `ggplot2`
+format: 
+  revealjs:
+    #self-contained: true
+    logo: images/monash-stacked-blue-rgb-transparent.png
+    slide-number: true
+    show-slide-number: all
+    controls: true
+    width: 1280
+    height: 720
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(#fig.path = "images/chapter6-06/",
+                      fig.align = "center",
+                      fig.width = 10, 
+                      fig.height = 4,
+                      cache.path = "cache/",
+                      cache = FALSE,
+                      echo = TRUE)
+```
+
+
+## Facets 
+
+* Faceting in `ggplot2` refers to partitioning of the plot region to multiple panels each showing a different subset of the data.
+* There are three types of faceting:
+
+  * `facet_null()` (the default),
+  * `facet_wrap()`, and
+  * `facet_grid()`.
+  
+Notes: 
+
+* We don't really use `facet_null()` much.
+
+---
+
+## Illustrative data 🌱 growth of soybean
+
+```{r}
+data(davidian.soybean, package = "agridat")
+str(davidian.soybean)
+```
+
+Notes:
+
+* The data contains:
+  * `plot`: the plot code
+  * `variety`: the code (`F` = commercial and `P` = experimental) for which soybean variety
+  * `year`: the year it was grown (1988-1990)
+  * `day` days after planting
+  * `weight` weight of soybean leaves
+
+---
+
+## `facet_wrap()`
+
+* `facet_wrap()` divides the data into mutually exclusive subset based on the input variable and create subplots based on the data in the corresponding panel.
+
+```{r facet-wrap-demo, fig.height = 2}
+library(ggplot2)
+ggplot(davidian.soybean, aes(day, weight)) + 
+  geom_point() +
+  facet_wrap(~year)
+```
+
+---
+
+## Wrapping many panels
+
+* `facet_wrap` "wraps" the panels into 2d if you have many panels
+
+```{r facet-wrap-demo-wrap}
+ggplot(davidian.soybean, aes(day, weight)) + 
+  geom_point() +
+  facet_wrap(~plot)
+```
+
+---
+
+## Wrapping by a continuous variable
+
+* Discretize  continuous variable using `cut()`, `cut_width()`, `cut_interval()` or `cut_number()`.
+
+```{r facet-wrap-demo-cont, fig.height = 3}
+ggplot(davidian.soybean, aes(day, weight)) + 
+  geom_point() +
+  facet_wrap(~cut_number(day, 4))
+```
+
+Notes: 
+
+* The cut functions categorize the continuous variable into discrete levels.
+
+---
+
+## Changing the scales for each panel
+
+* By default the scales are shared across the panels but you can choose to have scales built independently for each panel:
+
+```{r facet-wrap-demo-cont-scales, fig.height = 3}
+ggplot(davidian.soybean, aes(day, weight)) + 
+  geom_point() +
+  facet_wrap(~cut_number(day, 4), scales = "free")
+```
+
+
+Note:
+
+* If you want the scale to be independent only in one dimension then you can use `scales = "free_x"` and `scales = "free_y"`.
+
+---
+
+## Wrapping with more than one variables
+
+* If you want to wrap the facet by more than one variable, you can combine the variables by using `+`:
+
+```{r facet-wrap-demo-interaction, fig.height = 3}
+ggplot(davidian.soybean, aes(day, weight)) + 
+  geom_point() +
+  facet_wrap(~ year + variety)
+```
+
+
+Notes:
+
+* Alternatively, you can use `vars()` instead of `+`.
+
+---
+
+## `facet_grid()`
+
+* Alternatively, you can use `facet_grid()` to lay out the panels in a 2d grid:
+
+```{r facet-grid-demo, fig.height = 3}
+ggplot(davidian.soybean, aes(day, weight)) + 
+  geom_point() +
+  facet_grid(variety ~ year)
+```
+
+---
+
+## Missing facet variables
+
+* If a layer data is missing the faceting variable(s), then the layer will be shown across all panels based on all of the layer data
+
+```{r facet-all, fig.height = 2.5}
+ggplot(davidian.soybean, aes(day, weight)) + 
+  geom_point(data = dplyr::select(davidian.soybean, -c(variety, year)),
+             color = "grey70") +
+  geom_point() +
+  facet_grid(variety ~ year)
+```
+
+Notes:
+
+* This is a nice way to creating a "shadow" across all panels.
+
+---
+
+## Combining plots with `patchwork`
+
+* We use the `patchwork` package for combining plots.
+
+```{r patchwork}
+library(patchwork)
+```
+* Combining multiple `ggplot` objects is then just a matter of using `+` (side-by-side) or `/` (top-to-bottom).
+
+
+---
+
+
+## Demo with `patchwork`
+
+```{r patchwork-demo, fig.height = 3}
+g1 <- ggplot(davidian.soybean, aes(day, weight)) +
+  geom_point(aes(color = as.factor(year))) 
+g2 <- ggplot(davidian.soybean, aes(as.factor(year), weight)) +
+  geom_jitter(aes(color = as.factor(year))) 
+g1 + g2
+```
+
+---
+
+### Combining plot layouts
+
+* `patchwork` can collect the same guides across the plots as well as automatically add tag labels
+
+```{r patchwork-layouts}
+g1 + g2 + 
+  plot_layout(guides = "collect") + 
+  plot_annotation(tag_levels = "A")
+```
+
+---
+
+### Plot layout
+
+* You can combine the use of `+` and `/` to layout plots horizontally or vertically using `(` to group rows or columns
+
+
+
+
+```{r patchwork-layout}
+(g1 + g2) / (g2 + g1) + 
+  plot_layout(guides = "collect")
+```
+
+---
+
+## Flexible plot layout
+
+* If you want even more control over the plot layout, then you can specify a strinng with the structure you want like below:
+
+```{r patchwork-design, eval = FALSE}
+design <- "
+ 11###
+ 11###
+ #2222"
+
+g1 + g2 + 
+  plot_layout(guides = "collect",
+              design = design)
+```
+
+Notes:
+
+* Notice the empty spots in this plot output.
+* How does it align the the `design`?
+
+```{r patchwork-design, echo = FALSE}
+```
+
+
+---
+
+## Summary
+
+* You can view multiple subplots for different partitions of the data using `facet_wrap()` or `facet_grid()`.
+* You can combine plots using `patchwork` package.

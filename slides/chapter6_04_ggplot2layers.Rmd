@@ -1,0 +1,12 @@
+---
+title: Multiple layers in `ggplot2`
+output: 
+  teachr::teachr_slides
+chapter: 6
+---
+
+
+
+```{r child=gsub("[.]Rmd", ".qmd", knitr::current_input())}
+```
+

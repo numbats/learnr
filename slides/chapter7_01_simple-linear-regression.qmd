@@ -1,0 +1,423 @@
+---
+title: Simple linear regression
+#execute:
+#  keep-md: true
+format: 
+  #teachr::teachr_slides:
+  revealjs:
+    #self-contained: true
+    logo: images/monash-stacked-blue-rgb-transparent.png
+    slide-number: true
+    show-slide-number: all
+    controls: true
+    width: 1280
+    height: 720
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(#fig.path = "images/chapter8-01/",
+                      fig.align = "center",
+                      fig.width = 10, 
+                      fig.height = 4,
+                      cache.path = "cache/",
+                      cache = FALSE,
+                      echo = TRUE)
+library(tidyverse)
+library(broom)
+library(grid)
+library(patchwork)
+```
+
+<style>
+.columns {
+  display: flex
+}
+</style>
+
+
+## Simple linear regression
+
+* Simple linear regression refers to fitting a straight line $y = \beta_0 + \beta_1 x$ to a set of bivariate data.
+
+<div class="columns">
+
+<div class="column" style="width:70%">
+
+```{r slr-plot, eval = FALSE}
+ggplot(cars, aes(speed, dist)) +
+  geom_point() + 
+  geom_abline(intercept = -17, 
+              slope = 4, size = 1.5,
+              color = "indianred") + 
+  geom_abline(intercept = -5, 
+              slope = 3, size = 1.5,
+              color = "cadetblue")  + 
+  geom_abline(intercept = 80, 
+              slope = -3.5, size = 1.5,
+              color = "seagreen")
+```
+</div>
+
+<div class="column" style="width:30%">
+
+```{r slr-plot, echo = FALSE, fig.width = 4}
+```
+
+</div>
+
+</div>
+
+Notes:
+
+* Three lines are shown in the plot: 
+  * $y = -17 + 4x$
+  * $y = -5 + 3x$
+  * $y = 80 - 3.5x$
+* Which of these three lines do you think explains the relationship between $y$ and $x$ the best?
+
+
+
+---
+
+## Residuals
+
+* A strategy to find the best line of fit is generally based on residuals.
+* In simple linear regression, the **residuals** are the vertical distance of the observations from the fitted line.
+
+```{r residuals, echo = FALSE, fig.width = 12}
+fit <- augment(lm(dist ~ speed, cars))
+g1 <- ggplot(fit, aes(speed, dist)) + 
+  geom_point() + 
+  geom_line(aes(y = .fitted), color = "#006dae", size = 1.5) +
+  geom_segment(aes(x = speed, xend = speed,
+                   y = .fitted, yend = dist), 
+               color = "indianred", size = 1.2)
+
+g2 <- ggplot() + theme_void() +
+  annotate("text", x = 0.5, y = 0.5, label = "Rotate and\nproject →", size = 10)
+
+g3 <- ggplot(fit, aes(speed, .resid)) + 
+  geom_point() + 
+  geom_hline(yintercept = 0, color = "#006dae", size = 1.5) +
+  geom_segment(aes(x = speed, xend = speed,
+                   y = .resid, yend = 0), 
+               color = "indianred", size = 1.2)
+
+g1 + g2 + g3
+```
+
+
+
+---
+
+## Least squares
+
+$$y = \beta_0 + \beta_1 x$$
+
+* **Method of least squares** to estimate the parameters, $\beta_0$ (intercept) and $\beta_1$ (slope).
+* Method of least squares estimate parameters such that it minimizes the residual sum of the squares (RSS).
+* **Residuals** = observed $-$ fitted value.
+* **Fitted value** = the predicted response $(y)$ value from the fitted model using predictors $(x)$ from the data
+
+Notes:
+
+* Unless stated otherwise, simple linear regression uses the **method of least squares** to estimate the model parameters.
+* Method of least squares estimates the model parameters by finding parameters that minimise the sum of the squares of the residual.
+* More formally, residuals are the difference of observed value from the fitted value.
+* Fitted values are the predicted response value under the fitted model for the predictors in the data.
+
+
+
+---
+
+## Sum of the squares of the residuals
+
+```{r plot-fits, echo = FALSE, fig.width = 12, fig.height = 6}
+df <- cars %>% 
+  mutate(fit1 = -17 + 4 * speed,
+         fit2 = -5 + 3 * speed,
+         fit3 = 80 - 3.5 * speed)
+
+rss_plot <- function(fit, label) {
+  df %>% 
+    mutate(res = dist - df[[fit]],
+           ind = res > 0) %>% 
+    ggplot(aes(speed, dist)) +
+    geom_rect(aes(xmin = ind * (speed - abs(res)) + 
+                         (1 - ind) * (speed + abs(res)), 
+                  xmax = speed,
+                  ymin = df[[fit]], ymax = dist), fill = "indianred",
+                 color = "indianred", size = 1.2, alpha = 0.2) +
+    geom_line(aes(y = df[[fit]]), color = "#006dae", size = 1.5) +
+    geom_point() + 
+    annotate("text", label = label, x = 10, y = 70, size = 6, color = "#006dae", fontface = "bold") +
+    ggtitle(paste0("RSS = ", scales::comma(sum((df[[fit]] - df$dist)^2)))) +
+    coord_cartesian(xlim = c(min(df$speed), max(df$speed)),
+                    ylim = c(min(df$fit3), max(df$fit1)))
+}
+
+g1 <- rss_plot("fit1", "y = -17 + 4x")
+g2 <- rss_plot("fit2", "y = -5 + 3x")
+g3 <- rss_plot("fit3", "y = 80 - 3.5x")
+
+g1 + g2 + g3
+```
+
+Notes:
+
+* The sum of the red squares are the residual sum of squares (RSS) -- the actual RSS can be seen on top of the plot
+* It doesn't look like squares because the scale on the x- and y-axis differ
+* There is a closed-form solution to finding parameters that minimise the residual sum of the squares. 
+* You can use calculus to find this or consult any standard first year statistics text book. 
+* We expect you to know most of these results and focus on fitting linear models in R now.
+
+
+
+---
+
+## Linear regression in R
+
+
+* In R, you can fit a linear regression using the method of least squares using the `lm()` function.
+* The input for `lm` is a **two-sided formula** that symbolically represents the linear model. 
+* For example, `y ~ 1 + x` corresponds to a linear model 
+
+$$\color{#006dae}{y_i} = \beta_0 \cdot \color{#006dae}{1} + \beta_1 \cdot \color{#006dae}{x_i} + e_i, \qquad\text{for } i = 1, ..., n, \text{ and assuming }e_i \sim N(0, \sigma^2).$$
+
+Notes:
+
+* The intercept term `1` is included by default.
+* So `lm(y ~ 1 + x)` is the same as `lm(y ~ x)` . 
+
+---
+
+## Fitting the linear regression with R
+
+* To fit a linear regression, it's best to parse the `data.frame` into the `data` argument.
+* The variables in the formula refers to the variables in the input data.
+
+```{r}
+fit <- lm(dist ~  speed, data = cars)
+```
+
+* We'll denote the model like below:
+
+$$\texttt{dist} = \beta_0 + \beta_1 \texttt{speed}.$$
+
+Notes:
+
+$$\texttt{dist} = \beta_0 + \beta_1 \texttt{speed}.$$
+
+* Above is not a mathematically rigorous representation . 
+* If you're representing the model mathematically, you should denote the model like below
+
+$$y_i = \beta_0 + \beta_1 x_i + e_i$$
+for $i = 1, ..., 50$ where: 
+
+* $y_i$ is the stopping distance of the $i$-th car,
+* $x_i$ is the speed (in miles per gallon) of $i$-th car,
+* $\beta_0$ and $\beta_1$ are the intercept and slope, and 
+* we assume the error $e_i$ are i.i.d. $N(0, \sigma^2)$. 
+
+---
+
+## Getting the model parameter estimates
+
+* To get the leqast squares estimates, referred to also as **coefficients**, you can use `coef` function:
+
+```{r}
+coef(fit)
+```
+
+* You can get an estimate of $\sigma$ by:
+
+```{r}
+sigma(fit)
+```
+
+---
+
+## Extracting residuals
+
+```{r}
+residuals(fit)
+```
+
+---
+
+## Extracting standardised residuals
+
+* Standardised residuals are residuals divided by its standard deviation.
+
+```{r}
+rstandard(fit)
+```
+
+Notes:
+
+* Standard deviation is not usually known in practice so the estimate is used instead. 
+* When residuals divided by an **_estimate_** of its standard deviation is referred to as *studentized residual*.
+* So in fact `rstandard()` is actually the **_internally studentized residuals_**.
+
+
+---
+
+## Extracting  (externally) studentized residuals
+
+* Externally studentized residuals are residuals divided by an estimate of its standard deviation, where the estimate is calculated by removing the corresponding observation.
+
+```{r}
+rstudent(fit)
+```
+
+
+---
+
+## Model summaries 
+
+```{r}
+summary(fit)
+```
+
+---
+
+## Exracting model summary data
+
+* You can see useful information from  `summary(fit)` but it is not easy to extract it as a tidy data. 
+
+* The package `broom` has handy functions to get the summary values out in a tidy format:
+
+```{r}
+broom::tidy(fit)
+```
+```{r}
+broom::glance(fit)
+```
+
+---
+
+## Augment data with model information
+
+* You can also easily augment the data with model information, e.g. fitted values and residuals.
+
+```{r}
+broom::augment(fit)
+```
+
+Notes:
+
+* `.cooksd`: Cooks distance.
+* `.fitted`: Fitted or predicted value.
+* `.hat`: Diagonal of the hat matrix.
+* `.lower`: Lower bound on interval for fitted values.
+* `.resid`: The difference between observed and fitted values.
+* `.se.fit`:	Standard errors of fitted values.
+* `.sigma`:	Estimated residual standard deviation when corresponding observation is dropped from model.
+* `.std.resid`:	Standardised residuals.
+* `.upper`:	Upper bound on interval for fitted values.
+
+---
+
+## Transformations
+
+* You can apply transformations directly in the model formula:
+
+
+```{r}
+fit_transform <- lm(log10(dist) ~  sqrt(speed), data = cars)
+```
+
+$$\sqrt{\texttt{dist}} = \beta_0 + \beta_1 \log_{10}(\texttt{speed}).$$
+
+* Whether this model is sensible is another story.
+
+```{r}
+coef(fit_transform)
+```
+
+
+---
+
+## Predictions from the fitted model
+
+
+$$\widehat{\texttt{dist}} = -17.58 + 3.93\cdot \texttt{speed}$$
+
+
+* The `predict` function can return predicted response values from a fitted model:
+
+```{r}
+predict(fit, data.frame(speed = c(5, 10)))
+```
+
+Notes:
+
+```{r predict-plot, echo = FALSE, fig.width = 5}
+pred <- data.frame(speed = c(5, 10), dist = predict(fit, data.frame(speed = c(5, 10))))
+ggplot(cars, aes(speed, dist)) +
+  geom_smooth(method = lm, se = FALSE, color = "#006dae", size = 1.5, formula = y ~ x) +
+  geom_point() +
+  geom_point(data = pred, color = "indianred", size = 3, shape = 10) +
+  scale_y_continuous(breaks = seq(0, 120, by = 20)) +
+  geom_segment(data = data.frame(x = c(5, -Inf, 10, -Inf),
+                                 xend = c(5, 5, 10, 10),
+                                 y = c(-Inf, pred$dist[1], -Inf, pred$dist[2]),
+                                 yend = c(pred$dist[1], pred$dist[1], pred$dist[2], pred$dist[2])), 
+               aes(x = x, xend = xend, y = y, yend = yend),
+               color = "indianred", linetype = "dashed")
+  
+```
+
+---
+
+## Predictions from the model with transformations
+
+
+$$\log_{10}(\widehat{\texttt{dist}}) = -4.42 + 9.23\cdot \sqrt{\texttt{speed}}$$
+
+
+* No need to transform the covariates with `predict`:
+
+```{r}
+predict(fit_transform, data.frame(speed = c(5, 10)))
+```
+
+* But the prediction is the response $\log_{10}({\widehat{\texttt{dist}}})$, so you need to apply the inverse transformation to get the value of $\widehat{\texttt{dist}}$.
+
+
+
+
+Notes:
+
+* Prediction of $\texttt{dist}$:
+
+```{r}
+10^predict(fit_transform, data.frame(speed = c(5, 10)))
+```
+
+
+```{r predict-plot-transform, echo = FALSE, fig.width = 5, warning = FALSE, message = FALSE}
+pred <- data.frame(speed = c(5, 10), dist = 10^predict(fit_transform, data.frame(speed = c(5, 10))))
+ggplot(cars, aes(speed, dist)) +
+  geom_smooth(method = lm, se = FALSE, color = "#006dae", size = 1.5, formula = y ~ sqrt(x)) +
+  geom_point() +
+  geom_point(data = pred, color = "indianred", size = 3, shape = 10) +
+  scale_y_log10() +
+  geom_segment(data = data.frame(x = c(5, -Inf, 10, -Inf),
+                                 xend = c(5, 5, 10, 10),
+                                 y = c(1, pred$dist[1], 1, pred$dist[2]),
+                                 yend = c(pred$dist[1], pred$dist[1], pred$dist[2], pred$dist[2])), 
+               aes(x = x, xend = xend, y = y, yend = yend),
+               color = "indianred", linetype = "dashed") +
+  coord_trans(y = scales::exp_trans(10))
+  
+```
+
+---
+
+## Summary 
+
+* You've seen how the `lm` function is used to fit linear models.
+* You can use functions like `summary`, `coef`, `sigma`, `broom::tidy`, `broom::glance`, and `broom::augment` to get information about the fitted model.
+* Transformations can be applied directly in model formula.
+* The `predict` function is useful get the prediction of the response for a new set of data. 

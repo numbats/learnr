@@ -86,6 +86,25 @@ Examine each of the table.
 
 ---
 
+Table 5
+
+```{r}
+table5
+
+```
+
+Note:
+
+Raw data that we acquired can often be messy and complicated. The tidyr package allows you to wrangle messy datasets into nice and tidy ones.
+
+A tidy data format has a rectangular shape which means it has columns, rows, and cells, just like in a spreadsheet. Each column should hold a single variable, each row should hold a single observation and each cell should hold a single value.
+
+The example below shows the same information (country, year, population, and number of cases) organised in 3 different ways.
+Examine each of the table.
+
+
+---
+
 R functions to tidy the data:
 
 - `separate()`: separating multiple variables in one column to different columns.
@@ -134,14 +153,20 @@ The `sep` argument here is what comes in between the values from different colum
 
 In table 6, there are multiple observations in the same cell in each row of `year` and `cases`.
 
-We would like to separate them.
-
 ```{r}
 
 table6 <- tibble(country = c("Afghanistan", "Brazil", "China"),
   year = c("1999,2000", "1999,2000", "1999,2000"),
   cases= c("745,2666", "37737,80488", "212258,213766"))
 
+table6
+```
+
+---
+
+We would like to separate them.
+
+```{r}
 table6 %>% separate_rows(cases, year, sep=',', convert = TRUE)
 ```
 

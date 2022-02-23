@@ -284,8 +284,8 @@ $$S = \begin{bmatrix}1&0\\0&1\end{bmatrix},\;\; T = \begin{bmatrix}2&2\\4&3\end{
 - Select a sub-matrix of $M$ with the data on the rows 1, 2, 3 and columns 2. Assign the result to the variable `part_of_M`.
 
 ```{teachr 02_06}
-S = matrix(c(1,0,0,1), byrow=TRUE, nrow=2)
-T = matrix(c(2,2,4,3), byrow=TRUE, nrow=2)
+S <- matrix(c(1,0,0,1), byrow=TRUE, nrow=2)
+T <- matrix(c(2,2,4,3), byrow=TRUE, nrow=2)
 # Construct a matrix M by stacking S on top of T
 M <- <<rbind(S,T)>>
 
@@ -300,8 +300,8 @@ Hint 2: For example, B[1,2] selects the element at the first row and second colu
 ???
 
 test <- function() {
-    S = matrix(c(1,0,0,1), byrow=TRUE, nrow=2)
-    T = matrix(c(2,2,4,3), byrow=TRUE, nrow=2)
+    S <- matrix(c(1,0,0,1), byrow=TRUE, nrow=2)
+    T <- matrix(c(2,2,4,3), byrow=TRUE, nrow=2)
     if (M != rbind(S,T)) {
         stop("This is incorrect. Are you using the function that we have introduced? Try the Hint!")
     }
@@ -327,7 +327,8 @@ A data frame has the variables of a dataset as columns and the observations as r
 Let's look at an example. Just run the code and you will see what a data frame looks like in R.
 
 ```{teachr 02_07_01}
-data("iris")
+iris
+
 << >>
 
 ---
@@ -349,7 +350,7 @@ Often it is useful to show only a small part of the entire dataset, especially w
 Investigate the structure of the example dataframe. Have a look at the first and last few observations!
 
 ```{teachr 02_07_02}
-df = data("ToothGrowth")
+df <- ToothGrowth
 
 # Have a quick look at the first few observations of df
 
@@ -357,7 +358,7 @@ df = data("ToothGrowth")
 
 ---
 
-Hint: Use the `head(df)` can help.
+Hint: Try `head(df)` .
 
 ```
 
@@ -390,7 +391,7 @@ element <- c('Nitrogen','Oxygen','Hydrogen','Helium','Boron','Carbon','Fluorine'
 chemical_group <- c('Nonmetal','Nonmetal','Nonmetal','Noble Gas','Metalloid','Nonmetal','Halogen','Noble Gas','Alkali Metal','Alkaline Earth Metal')
 atomic_no <- c(7,8,1,2,5,6,9,10,3,4)
 
-first_ten_elements <- <<<data.frame(symbol, element, chemical_group, atomic_no)>>>
+first_ten_elements <- <<data.frame(symbol, element, chemical_group, atomic_no)>>
 
 ---
   
@@ -404,7 +405,7 @@ test <- function() {
     element <- c('Nitrogen','Oxygen','Hydrogen','Helium','Boron','Carbon','Fluorine','Neon','Lithium','Beryllium')
     chemical_group <- c('Nonmetal','Nonmetal','Nonmetal','Noble Gas','Metalloid','Nonmetal','Halogen','Noble Gas','Alkali Metal','Alkaline Earth Metal')
     atomic_no <- c(7,8,1,2,5,6,9,10,3,4)
-    if first_ten_elements != data.frame(symbol, element, chemical_group, atomic_no){
+    if (first_ten_elements != data.frame(symbol, element, chemical_group, atomic_no)){
       stop("Did you follow the order of columns as stated in the instruction?" Try again.)
     }
     success("Well done!")
@@ -475,7 +476,7 @@ test <- function() {
     chemical_group <- c('Nonmetal','Nonmetal','Nonmetal','Noble Gas','Metalloid','Nonmetal','Halogen','Noble Gas','Alkali Metal','Alkaline Earth Metal')
     atomic_no <- c(7,8,1,2,5,6,9,10,3,4)
     first_ten_elements <- data.frame(symbol, element, chemical_group, atomic_no)
-    if sorted_df != first_ten_elements[order(first_ten_elements$atomic_no), ]{
+    if (sorted_df != first_ten_elements[order(first_ten_elements$atomic_no), ]){
       stop("Did you follow the order of columns as stated in the instruction?" Try again.)
     }
     success("Well done!")
@@ -587,7 +588,7 @@ Hint: To extract the i-th element of `nominalGDP_trilion_2017`, you can use `nom
 ???
   
 test <- function() {
-  if my_result[5] != 0.00198{
+  if (my_result[5] != 0.00198){
     stop("Try again.")
   }
   success("Well done!")
@@ -727,7 +728,7 @@ Fill in the `...`.
 ???
 
 test <- function() {
-    if power_three(20) != 20^3{
+    if (power_three(20) != 20^3){
       stop("Did you correctly define the function power_three()? Check the function body. Are you taking the input argument to the power three?")
     }
     success("Well done!")

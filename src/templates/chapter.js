@@ -33,6 +33,13 @@ const Template = ({ data, location }) => {
 
     //  Render MathJax syntax
     useEffect(() => {
+      window.MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'] ],
+          displayMath: [ ['$$','$$'] ],
+          processEscapes: true
+        }
+      });
       window.MathJax && window.MathJax.Hub.Queue(['Typeset', window.MathJax.Hub])
     })
 
