@@ -237,10 +237,37 @@ sigma(fit)
 
 ---
 
-## Extracting residual
+## Extracting residuals
 
 ```{r}
 residuals(fit)
+```
+
+---
+
+## Extracting standardised residuals
+
+* Standardised residuals are residuals divided by its standard deviation.
+
+```{r}
+rstandard(fit)
+```
+
+Notes:
+
+* Standard deviation is not usually known in practice so the estimate is used instead. 
+* When residuals divided by an **_estimate_** of its standard deviation is referred to as *studentized residual*.
+* So in fact `rstandard()` is actually the **_internally studentized residuals_**.
+
+
+---
+
+## Extracting  (externally) studentized residuals
+
+* Externally studentized residuals are residuals divided by an estimate of its standard deviation, where the estimate is calculated by removing the corresponding observation.
+
+```{r}
+rstudent(fit)
 ```
 
 
@@ -276,6 +303,18 @@ broom::glance(fit)
 ```{r}
 broom::augment(fit)
 ```
+
+Notes:
+
+* `.cooksd`: Cooks distance.
+* `.fitted`: Fitted or predicted value.
+* `.hat`: Diagonal of the hat matrix.
+* `.lower`: Lower bound on interval for fitted values.
+* `.resid`: The difference between observed and fitted values.
+* `.se.fit`:	Standard errors of fitted values.
+* `.sigma`:	Estimated residual standard deviation when corresponding observation is dropped from model.
+* `.std.resid`:	Standardised residuals.
+* `.upper`:	Upper bound on interval for fitted values.
 
 ---
 

@@ -179,7 +179,7 @@ sigma(fit)
 
 ---
 
-## Extracting residual
+## Extracting residuals
 
 ``` r
 residuals(fit)
@@ -201,6 +201,76 @@ residuals(fit)
     ##   2.930920  -2.933898 -18.866307  -6.798715  15.201285  16.201285  43.201285 
     ##         50 
     ##   4.268876
+
+---
+
+## Extracting standardised residuals
+
+-   Standardised residuals are residuals divided by its standard
+    deviation.
+
+``` r
+rstandard(fit)
+```
+
+    ##           1           2           3           4           5           6 
+    ##  0.26604155  0.81893273 -0.40134618  0.81326629  0.14216236 -0.52115255 
+    ##           7           8           9          10          11          12 
+    ## -0.24869180  0.28256008  0.81381197 -0.57409795  0.15366341 -1.02971654 
+    ##          13          14          15          16          17          18 
+    ## -0.63392061 -0.37005667 -0.10619272 -0.49644946  0.03013240  0.03013240 
+    ##          19          20          21          22          23          24 
+    ##  0.82000518 -0.75422016 -0.09692637  1.48057874  2.79516632 -1.40612757 
+    ##          25          26          27          28          29          30 
+    ## -1.01201579  0.82717256 -0.87627072 -0.35074918 -1.13552237 -0.60956963 
+    ##          31          32          33          34          35          36 
+    ##  0.04787130 -0.73777117  0.18409193  1.50103921  2.02781813 -1.39503525 
+    ##          37          38          39          40          41          42 
+    ## -0.73502818  0.71698735 -1.92452335 -0.86524066 -0.60041999 -0.33559931 
+    ##          43          44          45          46          47          48 
+    ##  0.19404203 -0.19590672 -1.26671228 -0.45938126  1.02713306  1.09470190 
+    ##          49          50 
+    ##  2.91906038  0.29053451
+
+Notes:
+
+-   Standard deviation is not usually known in practice so the estimate
+    is used instead.
+-   When residuals divided by an ***estimate*** of its standard
+    deviation is referred to as *studentized residual*.
+-   So in fact `rstandard()` is actually the ***internally studentized
+    residuals***.
+
+---
+
+## Extracting (externally) studentized residuals
+
+-   Externally studentized residuals are residuals divided by an
+    estimate of its standard deviation, where the estimate is calculated
+    by removing the corresponding observation.
+
+``` r
+rstudent(fit)
+```
+
+    ##           1           2           3           4           5           6 
+    ##  0.26345000  0.81607841 -0.39781154  0.81035256  0.14070334 -0.51716052 
+    ##           7           8           9          10          11          12 
+    ## -0.24624632  0.27983408  0.81090388 -0.57004675  0.15209173 -1.03037790 
+    ##          13          14          15          16          17          18 
+    ## -0.62992492 -0.36670509 -0.10509307 -0.49251696  0.02981715  0.02981715 
+    ##          19          20          21          22          23          24 
+    ##  0.81716230 -0.75078438 -0.09592079  1.49972043  3.02282876 -1.42097720 
+    ##          25          26          27          28          29          30 
+    ## -1.01227617  0.82440767 -0.87411459 -0.34752195 -1.13903469 -0.60553485 
+    ##          31          32          33          34          35          36 
+    ##  0.04737114 -0.73422040  0.18222855  1.52145888  2.09848208 -1.40929208 
+    ##          37          38          39          40          41          42 
+    ## -0.73145948  0.71330941 -1.98238877 -0.86293622 -0.59637646 -0.33247538 
+    ##          43          44          45          46          47          48 
+    ##  0.19208548 -0.19393283 -1.27493857 -0.45557342  1.02773460  1.09701943 
+    ##          49          50 
+    ##  3.18499284  0.28774529
 
 ---
 
@@ -284,6 +354,19 @@ broom::augment(fit)
     ##  9    34    10   21.7   12.3  0.0413   15.4 0.0143        0.814
     ## 10    17    11   25.7   -8.68 0.0341   15.5 0.00582      -0.574
     ## # … with 40 more rows
+
+Notes:
+
+-   `.cooksd`: Cooks distance.
+-   `.fitted`: Fitted or predicted value.
+-   `.hat`: Diagonal of the hat matrix.
+-   `.lower`: Lower bound on interval for fitted values.
+-   `.resid`: The difference between observed and fitted values.
+-   `.se.fit`: Standard errors of fitted values.
+-   `.sigma`: Estimated residual standard deviation when corresponding
+    observation is dropped from model.
+-   `.std.resid`: Standardised residuals.
+-   `.upper`: Upper bound on interval for fitted values.
 
 ---
 
