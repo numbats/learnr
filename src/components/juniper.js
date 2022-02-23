@@ -148,20 +148,40 @@ class Juniper extends React.Component {
      * @returns {Promise} - A promise that's resolved with the kernel.
      */
     requestKernel(settings) {
+        const serverSettings = ServerConnection.makeSettings(settings)
+        
         if (this.props.useStorage) {
             const timestamp = new Date().getTime() + this.props.storageExpire * 60 * 1000
-            const json = JSON.stringify({ settings, timestamp })
+            const json = JSON.stringify({ settings, timestamp})
             window.localStorage.setItem(this.props.storageKey, json)
         }
-        const serverSettings = ServerConnection.makeSettings(settings)
-        return Kernel.startNew({
-            type: this.props.kernelType,
-            name: this.props.kernelType,
-            serverSettings,
-        }).then(kernel => {
-            this.log(() => console.info('ready'))
-            return kernel
-        })
+        
+        // Check if a kernel is already running, and re-use it
+//         console.log('obtaining current kernels')
+        return Kernel.listRunning( serverSettings ).then(kernelModels => {
+            if (kernelModels.length!==0) {
+//                 console.log("reconnecting to existing kernel")
+//                 console.log(kernelModels[0].id)
+                
+                return new Promise((resolve, reject) =>
+                    resolve(Kernel.connectTo(kernelModels[0], serverSettings))
+                )
+                
+            } else {
+//                 console.log("could not find any running kernels, starting a new one")
+                
+                return Kernel.startNew({
+                    type: this.props.kernelType,
+                    name: this.props.kernelType,
+                    serverSettings,
+                }).then(kernel => {
+                    this.log(() => console.info('ready'))
+                    return kernel
+                })
+            }
+        });
+
+        
     }
 
     /**
@@ -175,12 +195,14 @@ class Juniper extends React.Component {
                 this.setState({ fromStorage: true })
                 const { settings, timestamp } = JSON.parse(stored)
                 if (timestamp && new Date().getTime() < timestamp) {
+//                     console.log('Re-using stored kernel')
                     return this.requestKernel(settings)
                 }
                 window.localStorage.removeItem(this.props.storageKey)
             }
         }
         if (this.props.useBinder) {
+//             console.log("requesting a new binder")
             return this.requestBinder(this.props.repo, this.props.branch, this.props.url).then(
                 settings => this.requestKernel(settings)
             )
