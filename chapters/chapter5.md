@@ -48,7 +48,30 @@ library(tidyverse)
 You can also load specific library separately, for example,
 `library(dplyr)`.
 
-</exercise>
+**Pipes**
+
+`%>%` is a "pipe"-like operator with which you may pipe a value forward
+into an expression or function call; something along the lines of
+`x %>% f`, rather than `f(x)`. It semantically changes your code in a
+way that makes it more intuitive to both read and write. For example,
+
+``` r
+x <- c(100,200,300)
+x %>% log() %>%
+    +3 %>%
+    exp()
+```
+
+    ## [1] 2008.554 4017.107 6025.661
+
+We start with a vector `x`. From there, we take log every element of,
+then we add 3 to each element. Finally we compute the exponential of
+each element of x. Note how the code is arranged in the logical order of
+how you think about the task: x - \> take log -\> add 3 -\> exponential,
+which is also the same order as the code will execute. It's like a
+recipe -- easy to read, easy to follow! This is very useful when we are
+performing complex operations on our data sets. We will start using them
+in the exercises. </exercise>
 
 <exercise id="2" title="Introduction to dplyr" type="slides">
 
@@ -107,7 +130,7 @@ We would like to merge the tables so that the result looks like:
 
 Which of the following commands does the operation?
 
-<choice id=0.79479358275421>
+<choice id=0.238996259402484>
 
 <opt text="<code>inner_join(color, size)</code>" >
 
@@ -150,7 +173,7 @@ That's right!
 We have used `table1`, `table2` and `table3` as example in the slides.
 Which table is tidy?
 
-<choice id=0.00416539935395122>
+<choice id=0.567945376737043>
 
 <opt text="Table 1 only" correct="true">
 
@@ -207,7 +230,7 @@ smoke <- tribble(
     3 no    employed             20
     4 no    unemployed           12
 
-<choice id=0.800078342668712>
+<choice id=0.0499558339361101>
 
 <opt text="Using <code>pivot_wider()</code> on smoke" >
 
@@ -240,7 +263,7 @@ Try again!
 Which is the best way to check if there are missing observations in your
 data?
 
-<choice id=0.36603415873833>
+<choice id=0.0521996046882123>
 
 <opt text="Eyeballing and look for blanks in my data" >
 

@@ -337,7 +337,7 @@ first and last few observations!
 
 <codeblock id="02_07_02">
 
-Hint: Use the `head(df)` can help.
+Hint: Try `head(df)` .
 
 </codeblock>
 

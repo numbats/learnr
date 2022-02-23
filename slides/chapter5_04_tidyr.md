@@ -119,6 +119,38 @@ table.
 
 ---
 
+Table 5
+
+``` r
+table5
+```
+
+    ## # A tibble: 6 × 4
+    ##   country     century year  rate             
+    ## * <chr>       <chr>   <chr> <chr>            
+    ## 1 Afghanistan 19      99    745/19987071     
+    ## 2 Afghanistan 20      00    2666/20595360    
+    ## 3 Brazil      19      99    37737/172006362  
+    ## 4 Brazil      20      00    80488/174504898  
+    ## 5 China       19      99    212258/1272915272
+    ## 6 China       20      00    213766/1280428583
+
+Note:
+
+Raw data that we acquired can often be messy and complicated. The tidyr
+package allows you to wrangle messy datasets into nice and tidy ones.
+
+A tidy data format has a rectangular shape which means it has columns,
+rows, and cells, just like in a spreadsheet. Each column should hold a
+single variable, each row should hold a single observation and each cell
+should hold a single value.
+
+The example below shows the same information (country, year, population,
+and number of cases) organised in 3 different ways. Examine each of the
+table.
+
+---
+
 R functions to tidy the data:
 
 -   `separate()`: separating multiple variables in one column to
@@ -197,13 +229,26 @@ different columns. If we don't want anything in between, we can use "".
 In table 6, there are multiple observations in the same cell in each row
 of `year` and `cases`.
 
-We would like to separate them.
-
 ``` r
 table6 <- tibble(country = c("Afghanistan", "Brazil", "China"),
   year = c("1999,2000", "1999,2000", "1999,2000"),
   cases= c("745,2666", "37737,80488", "212258,213766"))
 
+table6
+```
+
+    ## # A tibble: 3 × 3
+    ##   country     year      cases        
+    ##   <chr>       <chr>     <chr>        
+    ## 1 Afghanistan 1999,2000 745,2666     
+    ## 2 Brazil      1999,2000 37737,80488  
+    ## 3 China       1999,2000 212258,213766
+
+---
+
+We would like to separate them.
+
+``` r
 table6 %>% separate_rows(cases, year, sep=',', convert = TRUE)
 ```
 
