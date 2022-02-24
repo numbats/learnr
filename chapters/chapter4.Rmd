@@ -91,7 +91,7 @@ For each different type of data, we use different functions to import data files
 
 </exercise>
 
-<exercise id="4" title="Importing Data to RStudio" >
+<exercise id="4" title="Importing data to RStudio" >
 
 
 ## Importing data with base R 
@@ -129,7 +129,7 @@ head(penguins)
 
 </exercise>
 
-<exercise id="5" title="Importing Data with readr package" >
+<exercise id="5" title="Importing data with readr package" >
 
 ## Importing Data to RStudio with `readr`
 
@@ -228,7 +228,7 @@ When you save your data as `.RDS` and `.RData`, it can only be imported to a few
 
 </exercise>
 
-<exercise id="8" title="Additional Sources" >
+<exercise id="8" title="Additional Resources" >
 
 - [R for Data Science - chapter 8](https://r4ds.had.co.nz)
 

@@ -205,7 +205,7 @@ Given the following vector `y` in R,
 
 which of the following is the output of `y-2`?
 
-<choice id=0.745286168064922>
+<choice id=0.15358645748347>
 
 <opt text="<code> 0  4  6  8  1  3  5  7 </code>" >
 
@@ -679,8 +679,8 @@ less than `weekly_spending`. If you execute the R code, you will notice
 the loop stopped at the 7th iteration.
 
 ``` r
-bank_balance = 200
-weekly_spending = 28.5
+bank_balance <- 200
+weekly_spending <- 28.5
 while (bank_balance >= weekly_spending) {
   bank_balance = bank_balance - weekly_spending
   print(bank_balance)
@@ -705,10 +705,10 @@ For example, if we are to set up a early warning system when
 can do the following:
 
 ``` r
-bank_balance = 200
-weekly_spending = 28.5
+bank_balance <- 200
+weekly_spending <- 28.5
 while (bank_balance>= weekly_spending) {
-  bank_balance = bank_balance - weekly_spending
+  bank_balance <- bank_balance - weekly_spending
   print(bank_balance)
   if (bank_balance <= 4*weekly_spending){
   print("Find a job and cut weekly spending!")

@@ -588,7 +588,7 @@ population_million_2017 <- c(325, 1421, 127, 82, 1338)
 
 # Write a for loop that takes the nominal GDP (in trillion) for each country in 2017 and divided it by the population (in million) in the same year
 # Assign the result to the variable my_result
-my_result <- c(0,0,0,0)
+my_result <- c(0,0,0,0,0)
 for (i in 1:length(countries)) {
   my_result[i] <- <<nominalGDP_trilion_2017[i]/population_million_2017[i]>>
 }
@@ -600,7 +600,7 @@ Hint: To extract the i-th element of `nominalGDP_trilion_2017`, you can use `nom
 ???
   
 test <- function() {
-  if (my_result[5] != 0.00198){
+  if (abs(my_result[5] - 0.00198) >= 1e-4){
     stop("Try again.")
   }
   success("Well done!")
@@ -678,8 +678,8 @@ In the while loop, R will keep running the code between the brackets `{ }` repea
 For example, we create a while loop that will go on subtracting 28.5 (as weekly_spending) to the variable `bank_balance` until `bank_balance` is less than `weekly_spending`. If you execute the R code, you will notice the loop stopped at the 7th iteration.
 
 ```{r}
-bank_balance = 200
-weekly_spending = 28.5
+bank_balance <- 200
+weekly_spending <- 28.5
 while (bank_balance >= weekly_spending) {
   bank_balance = bank_balance - weekly_spending
   print(bank_balance)
@@ -692,10 +692,10 @@ There are occasions where breaking the loop during execution is a good idea. The
 
 For example, if we are to set up a early warning system when `bank_balance` is less than or equal to 4 times `weekly spending`, we can do the following:
 ```{r}
-bank_balance = 200
-weekly_spending = 28.5
+bank_balance <- 200
+weekly_spending <- 28.5
 while (bank_balance>= weekly_spending) {
-  bank_balance = bank_balance - weekly_spending
+  bank_balance <- bank_balance - weekly_spending
   print(bank_balance)
   if (bank_balance <= 4*weekly_spending){
   print("Find a job and cut weekly spending!")

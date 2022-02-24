@@ -216,7 +216,7 @@ You can select different `html` templates or you can use `pdf` outputs for your 
 
 
 
-<exercise id="5" title="Additional Sources">
+<exercise id="5" title="Additional Resources">
 
 - [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/)
 

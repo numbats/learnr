@@ -33,7 +33,7 @@ const Template = ({ data, location }) => {
 
     //  Render MathJax syntax
     useEffect(() => {
-      window.MathJax.Hub.Config({
+      window.MathJax && window.MathJax.Hub.Config({
         tex2jax: {
           inlineMath: [ ['$','$'] ],
           displayMath: [ ['$$','$$'] ],

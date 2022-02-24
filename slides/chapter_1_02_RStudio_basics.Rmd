@@ -3,9 +3,11 @@ title: RStudio basics
 output:
   teachr::teachr_slides
 type: slides
+chapter: 1
 ---
+
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(fig.path = "images/chapter1-02/",
+knitr::opts_chunk$set(fig.path = "chapter1-02/",
                       fig.align = "center",
                       fig.width = 2, 
                       fig.height = 2,
@@ -14,6 +16,8 @@ knitr::opts_chunk$set(fig.path = "images/chapter1-02/",
                       echo = TRUE)
 
 library(icons)
+# Allow knitr::include_graphics to point to missing files
+options("knitr.graphics.error" = FALSE)
 ```
 
 
@@ -21,8 +25,8 @@ library(icons)
 ### What does RStudo looks like? 
 
 
-```{r, echo=FALSE, out.width="80%"}
-knitr::include_graphics("images/chapter1-02/RStudio_interface_1.png")
+```{r, echo=FALSE}
+knitr::include_graphics("chapter1-02/RStudio_interface_1.png")
 ```
 
 Note: Once you open RStudio, you should see this interface. 
@@ -38,8 +42,8 @@ The window on the bottom right has a few different sessions including `Files`, `
 ### Adding a new R Script 
 
 
-```{r, echo=FALSE, out.width="80%"}
-knitr::include_graphics("images/chapter1-02/RStudio_Add_script.png")
+```{r, echo=FALSE}
+knitr::include_graphics("chapter1-02/RStudio_Add_script.png")
 ```
 
 Note: You can run r code in the `Console` but once you close RStudio, you loss your code in `Console`. 
@@ -51,8 +55,8 @@ To make your work reproducible, you can write and store all your code in a `R Sc
 ### R Script 
 
 
-```{r, echo=FALSE, out.width="80%"}
-knitr::include_graphics("images/chapter1-02/RStudio_rscript_1.png")
+```{r, echo=FALSE}
+knitr::include_graphics("chapter1-02/RStudio_rscript_1.png")
 ```
 
 Note: In an `R Script` you can write code and add comments. You can run each line by pressing `ctrl + enter/return`. 
@@ -79,8 +83,8 @@ After you run each line of the code, you can see the messages in your `Console`.
 
 ### R packages installation and loading 
 
-```{r, echo=FALSE, out.width="80%"}
-knitr::include_graphics("images/chapter1-02/RStudio_package.png")
+```{r, echo=FALSE}
+knitr::include_graphics("chapter1-02/RStudio_package.png")
 ```
 
 Note: To check what packages you already have, go to the `Packages` window on the bottom right. 
@@ -95,8 +99,8 @@ If you are not sure whether you have the packages or not, you could also type in
 There are two ways to install packages. 
 
 
-```{r, echo=FALSE, out.width="80%"}
-knitr::include_graphics("images/chapter1-02/RStudio_Install_pkg.png")
+```{r, echo=FALSE}
+knitr::include_graphics("chapter1-02/RStudio_Install_pkg.png")
 ```
 
 
@@ -114,8 +118,8 @@ Alternately, you can run `install.pakcages("")` with the package name inside `""
 ### Customised your RStudio - Changing Global Options 
 
 
-```{r, echo=FALSE, out.width="80%"}
-knitr::include_graphics("images/chapter1-02/RStudio_tools.png")
+```{r, echo=FALSE}
+knitr::include_graphics("chapter1-02/RStudio_tools.png")
 ```
 
 Note: Customise your RStudio, go `Tools` `r icons::fontawesome("arrow-circle-right", style = "solid")` `Global Options..`
@@ -126,7 +130,7 @@ Note: Customise your RStudio, go `Tools` `r icons::fontawesome("arrow-circle-rig
 
 
 ```{r, echo=FALSE, out.width="50%"}
-knitr::include_graphics("images/chapter1-02/RStudio_mirror.png")
+knitr::include_graphics("chapter1-02/RStudio_mirror.png")
 ```
 
 
@@ -142,8 +146,8 @@ Note: If you are having difficulty downloading packages in your country, you cou
 ### Customised your RStudio - Changing Global Options 
 
 
-```{r, echo=FALSE, out.width="80%"}
-knitr::include_graphics("images/chapter1-02/RStudio_apprenve.png")
+```{r, echo=FALSE}
+knitr::include_graphics("chapter1-02/RStudio_apprenve.png")
 ```
 
 Note: You can also change the appearance of your RStudio from the `Global Options...` `r icons::fontawesome("arrow-circle-right", style = "solid")` `Appearance`. 
