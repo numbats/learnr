@@ -175,7 +175,40 @@ please `set.seed()` so it provides consistent results.
 
 </exercise>
 
-<exercise id="4" title="Additional Sources ">
+<exercise id="4" title="Check lists">
+
+## This is a guidence checklists (not an exhaustive checklist)
+
+<input type="checkbox" unchecked> Is the problem clearly defined?
+</input>
+
+<input type="checkbox" unchecked> Is the expected solution or behaviour
+outlined? </input>
+
+<input type="checkbox" unchecked> Is the problem asked at the right
+place or person? </input>
+
+<input type="checkbox" unchecked> Can people who can answer your
+question find your question? E.g. does the post have appropriate tags or
+keywords to reach the right experts? </input>
+
+<input type="checkbox" unchecked> Can the problem be easily reproduced
+on other people’s system? E.g. use `sessionInfo()` to provide your
+system information. </input>
+
+<input type="checkbox" unchecked> Is the minimum reproducible code or
+steps supplied? </input>
+
+### If your questions involves a dataset
+
+<input type="checkbox" unchecked> Is the data supplied? </input>
+
+<input type="checkbox" unchecked> If the data is big, could you cull
+your data further to communicate or reproduce the problem? </input>
+
+</exercise>
+
+<exercise id="5" title="Additional Sources ">
 
 -   [How to create a Minimal, Reproducible Example -
     stackoverflow](https://stackoverflow.com/help/minimal-reproducible-example)
