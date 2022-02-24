@@ -30,21 +30,79 @@ knitr::opts_chunk$set(fig.retina = 2,
                       cache.path = "cache/",
                       message = FALSE,
                       warning = FALSE)
+library(icons)
 ```
 
 <exercise id="1" title="What do I do when I see error messages">
 
 ## What do I do when I see <span style="color: red;"> errors </span>
 
-When you first start working RStudio and sees <span style="color: red;">red errors </span>, you probably feel helpless. Don't worry, you are not alone. It is normal to feel overwhelmed by the  <span style="color: red;"> errors </span>.   
+When you first start working RStudio and sees <span style="color: red;">red errors </span>, don't panic! This chapter will guide you through this difficult time.     
 
 The first thing to do is to simply **read** the errors. It is important for you to read the errors to have a basic understanding of the error is telling you. This will help you communicate your question to others. 
 
 
+## How to interpret error message? 
+
+Run the example below and interpret the error message. What does it tell you? 
+
+When you run the code above, you show see error message: "Error in cars %>% mutate(total = dist * speed): could not find function "%>%" ". This is generally the case when you did not load in the required packages before trying to use this function. As we mentioned in chapter 1, when you want to use functions coming from packages, you need to first load in the package using `library()`. Now let's try to fix the error. 
+
+```{teachr 03_01}
+
+data(cars)
+
+total_dis <- cars %>%
+  mutate(total = dist*speed)
+
+total_dis %>% head()
+
+--- 
+Hint: %>% is an operater defined in magrittr package which is used in tidyverse and dplyr Try read in the package before using %>%. 
+
+???
+test <- function() {
+expect_true(
+  "dplyr" %in% loadedNamespaces())
+expect_true(
+  "tidyverse" %in% loadedNamespaces())
+  success("Well done!")
+}  
+```
+
+
+There are also times you mistyped some variables names. Try run the code below and have a look at the error code. 
+
+It fist tells you which function is causing the error. In this case is the `mutate` function. It then tells you what is causing the error in the `mutate` function which is "object 'sped' not found". This is also an common error people make where they mistyped their object names. When the error message says "object not found", first check whether you have correctly spelt the object's name. If you have correctly spelt the object's name and it still could not found the object, it could be the case that you haven't created the object yet. Make sure you run your code sequentially.  
+
+```{teachr 03_02}
+
+total_dis <- cars %>%
+  mutate(total = dist*sped)
+
+total_dis %>% head()
+
+--- 
+Hint: What is "sped"? Is there a typo? 
+test <- function() {
+ total_dis <- cars %>%
+  mutate(total = dist*speed)
+  success("Well done!")
+}  
+```
+
+Another common error is missing `()`. Sometime you might have incompleted brackets. See the example below:
+
+![text](missing.png)
+
+
+When you running to this situation, see on the left side of your R script, it shows an <span style="color: red;">  `r icons::fontawesome("times", style = "solid")` </span> on line 15. This is an indication that there is something wrong with this line of code. In this case we are missing half of the brackets. In the console, it shows <span style="color: red;">  `r icons::fontawesome("plus", style = "solid")` </span>. This help you located where your code is wrong. By adding `)`to compete the `mean()` function should fix this red error sign.  
+
+When it is showing `r icons::fontawesome("plus", style = "solid")` in your console, it suggests that your code is incompleted. To get yourself out from this situation, you can tap on the **esc** key. 
 
 ## I have no idea what my <span style="color: red;"> error </span> is telling me. 
 
-Sometime after read through the <span style="color: red;"> error messages </span>, you have no idea what might cause this <span style="color: red;"> error </span> or do not understand the <span style="color: red;"> error messages </span>. The simplest way is to **copy** all your <span style="color: red;"> error messages </span>  and **paste** it to `Google` (This is not the ideal way of searching for help but it is one of the ways).
+Sometime after read through the error messages, you have no idea what might cause this error </span> or do not understand the error messages. The simplest way is to **copy** all your error messages and **paste** it to **Google** (This is not the ideal way of searching for help but it is one of the ways).
 
 </exercise>
 
@@ -55,13 +113,16 @@ Sometime after read through the <span style="color: red;"> error messages </span
 R is an open source language and there are a lot of platform to seek for helps. 
 
 
-[stackoverflow](https://stackoverflow.com/questions/tagged/rstudio). This is a platform where you can search for solutions and ask for helps. Before you put a question on [stackoverflow](https://stackoverflow.com/questions/tagged/rstudio), you can search some key words from your understanding of your error messages. It is likely that people already asked similar question related to your error and you can try the solutions provided by others under the question. If you couldn't find any question or solutions that fix your problem, you can `Ask Questions`. Later in this chapter we will show you how to ask questions with minimal reproducible examples.  
+[Stack Overflow](https://stackoverflow.com/questions/tagged/rstudio). This is a platform where you can search for solutions and ask for helps. Before you put a question on [Stack Overflow](https://stackoverflow.com/questions/tagged/rstudio), you can search some key words from your understanding of your error messages. It is likely that people already asked similar question related to your error and you can try the solutions provided by others under the question. If you couldn't find any question or solutions that fix your problem, you can `Ask Questions`. Later in this chapter we will show you how to ask questions with minimal reproducible examples.  
 
 
 [RStudio Community](https://community.rstudio.com/#). This is a community channel for RStudio users. Similar to [stackoverflow](https://stackoverflow.com/questions/tagged/rstudio), you can ask questions and also find solutions.   
 
 
 [Github](https://github.com/). If you know your error really well and you think there might be a problem with the `package`, you can open an issue at the `package` repository.   
+
+
+Discussion forum on Moodle. There is discussion forum for each subject on Moodle. You can post your questions to there and your tutor and lecture will answers them. This is a good place for you to share your questions and you can also answer other students' questions. This way you can learn from other students and help each other out. 
 
 Ask your lectures and tutors. We are here to help. Don't be afraid to ask for helps. It might take you a few hours to figure out what is going on with your error and it might take us a few minutes to help you fix it because we have went through the debug process plenty of times.   
 
@@ -74,20 +135,20 @@ For all the above channels where you can seek for help, it is important to provi
 
 <exercise id="3" title="Minimal reproducible examples">
 
-## Decrible the problem 
+## Describe the problem 
 
 - Please avoid `it doesn't work` or `it shows errors` these generic terms when describing the problem. It doesn't help others to understand your question. Try to be more specific when communicating the problem. 
 
 - State what you want to achieve and what are the expected behaviours.  
 
-- Provide a copy of your error messages. This has to be excat words of your error messages. 
+- Provide a copy of your error messages. This has to be exact words of your error messages. 
 
 - Use a brief but descriptive summary of your problem as the title of your question. 
 
 
 ## Use `sessionInfo()`
 
-Sometime your error might be some conflicts with your R, RStudio and package versions. Provide your `sessionInfo()` is necessary for others to determine whether it is a version conflicts problem. Make sure you provide your `sessionInfo()` in your minimal reporducible examples for your error. You can run `sessionInfo()` in your console and it will shows all the session related information. 
+Sometime your error might be some conflicts with your R, RStudio and package versions. Provide your `sessionInfo()` is necessary for others to determine whether it is a version conflicts problem. Make sure you provide your `sessionInfo()` in your minimal reproducible examples for your error. You can run `sessionInfo()` in your console and it will shows all the session related information. 
 
 ## Providing a minimal dataset
 
@@ -110,7 +171,7 @@ If your original dataset is very large, you should subset your datasets to make 
 
 ## Provide minimal code
 
-When you are working in a large file, it is necessary for you to identify where the problem is raising from. Using `.Rmd` would be a good way to help you organise your code and identify where the problem is. You can organise your code in different code chunk and this would help you locate your errors. If one code chunk did not run successfully, you would know that it is this code chunk that is causing the problems. 
+When you are working in a large file, it is necessary for you to identify where the problem is raising from. Using `.Rmd` would be a good way to help you organise your code and identify where the problem is. You can organise your code in different code chunk and this would help you locate your errors. If one code chunk did not run successfully, you would know that it is this code chunk that is causing the problems.
 
 Read the error message, it would generally tell you which line of the code is producing this error. This would also help you locate your problematic codes. 
 
@@ -137,41 +198,61 @@ If your problem involves simulation or using any randomness functions, please `s
 </exercise>
 
 
-<exercise id="4" title="Check lists">
+<exercise id="4" title="Using `reprex` package to help you make a reproducible example">
 
-## This is a guidence checklists (not an exhaustive checklist)
 
-<input type="checkbox" unchecked> Is the problem clearly defined? </input>  
+## Using `reprex` to help you make a reproducible example
 
-<input type="checkbox" unchecked> Is the expected solution or behaviour outlined? </input>  
+The `reprex` package is an useful tool that help you make a reproducible example. If you have installed `tidyverse`  `tidyverse`, as part of the `tidyverse` family, `reprex` gets installed alongside with `tidyverse`. Make sure you are loaded in `library(reprex)` before using the `reprex()` function. 
 
-<input type="checkbox" unchecked> Is the problem asked at the right place or person? </input>  
+Once you have loaded in the `reprex` package, go to the **Addins**, you should be able to find the additional functions inducing "Render reprex..." and "Reprex Selection". 
 
-<input type="checkbox" unchecked> Can people who can answer your question find your question? E.g. does the
+
+Once you clicked on `Render reprex...`, it will show you a pop-up window: 
+
+![text](reprex_render.png)
+You can select which file contains your minimal reproducible example. You can also select the output formate. If you want to post this question to Github or [Stack Overflow](https://stackoverflow.com/questions/tagged/rstudio), you can select "GitHub or Stack Overflow".
+
+You can put all your minimal reproducible example code into this `reprex()` function to test whether it is actually an reproducible example. If you can run everything in this `reprex()` function successfully. it means that it is self-contained. From your **Viewer** window, it will show the what the reproducible example looks like. In your **Console**, you should see the message "Reprex output is on the clipboard."  You can paste the code directly to your question forum. 
+
+</exercise>
+
+<exercise id="5" title="Check-list">
+
+This is not an exhaustive check-list.
+
+- <input type="checkbox" unchecked> Is the problem clearly defined? </input>  
+
+- <input type="checkbox" unchecked> Is the expected solution or behaviour outlined? </input>  
+
+- <input type="checkbox" unchecked> Is the problem asked at the right place or person? </input>  
+
+- <input type="checkbox" unchecked> Can people who can answer your question find your question? E.g. does the
 post have appropriate tags or keywords to reach the right experts? </input>  
 
-<input type="checkbox" unchecked> Can the problem be easily reproduced on other people's system? E.g. use `sessionInfo()` to provide your system information. </input>  
+- <input type="checkbox" unchecked> Can the problem be easily reproduced on other people's system? E.g. use `sessionInfo()` to provide your system information. </input>  
 
-<input type="checkbox" unchecked> Is the minimum reproducible code or steps supplied? </input>  
+- <input type="checkbox" unchecked> Is the minimum reproducible code or steps supplied? </input>  
 
 ### If your questions involves a dataset
 
-<input type="checkbox" unchecked> Is the data supplied? </input>  
+- <input type="checkbox" unchecked> Is the data supplied? </input>  
 
-<input type="checkbox" unchecked> If the data is big, could you cull your data further to communicate or
+- <input type="checkbox" unchecked> If the data is big, could you cull your data further to communicate or
 reproduce the problem? </input>  
 
 
 </exercise>
 
-<exercise id="5" title="Additional Sources ">
+<exercise id="6" title="Additional Resources ">
 
 - [How to create a Minimal, Reproducible Example - stackoverflow](https://stackoverflow.com/help/minimal-reproducible-example)
 
 - [Posting Guide: How to ask good questions that prompt useful answers](https://www.r-project.org/posting-guide.html)
 
-
 - [How to make a great R reproducible example](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example)
+
+- [Get Help! How to use reprex package.](https://www.tidyverse.org/help/)
 
 - [Three tips for posting good questions to R-help and Stack Overflow](https://www.r-bloggers.com/2011/01/three-tips-for-posting-good-questions-to-r-help-and-stack-overflow/)
 
