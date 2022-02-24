@@ -6,6 +6,3 @@ install.packages("datarium")
 install.packages("testthat")
 install.packages("patchwork", repos = "https://cran.rstudio.com/")
 install.packages("broom")
-
-options(tidyverse.quiet = TRUE)
-Sys.setenv(`_R_S3_METHOD_REGISTRATION_NOTE_OVERWRITES_` = "false")
