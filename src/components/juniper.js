@@ -175,6 +175,7 @@ class Juniper extends React.Component {
                     name: this.props.kernelType,
                     serverSettings,
                 }).then(kernel => {
+                    kernel.requestExecute({ code: 'source("binder/setup.R")' })
                     this.log(() => console.info('ready'))
                     return kernel
                 })
