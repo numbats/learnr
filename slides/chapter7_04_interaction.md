@@ -146,7 +146,7 @@ Notes:
 
 ## Proposed model 4B
 
-$$ y_{ijk} = \alpha_i + \beta_j  + (\alpha\beta)_{ij} + e_{ijk}, \qquad \text{for }i = 1, 2, j = 1, 2, 3, k = 1, ..., 10$$
+$$y_{ijk} = \alpha_i + \beta_j  + (\alpha\beta)_{ij} + e_{ijk}, \qquad \text{for }i = 1, 2, j = 1, 2, 3, k = 1, ..., 10$$
 where
 
 -   $\alpha_i$ and $\beta_j$ are **main effects** for `supp` and
