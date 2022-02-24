@@ -48,7 +48,7 @@ One way to think about the relationship between R and RStudio is that R acts lik
 ### Download and Install R 
 
 
-```{r, echo=FALSE, out.width="80%"}
+```{r, echo=FALSE}
 knitr::include_graphics("chapter1-01/R_Install_CRAN.png")
 ```
 
@@ -60,7 +60,7 @@ Please select Download R for `your operating system`
 
 ### macOS users 
 
-```{r, echo=FALSE, out.width="80%"}
+```{r, echo=FALSE}
 knitr::include_graphics("chapter1-01/R_Install_Mac.png")
 ```
 
@@ -74,7 +74,7 @@ Click on `R-4.1.2.pkg` to start the download. (The top one will always be the mo
 
 ### macOS users 
 
-```{r, echo=FALSE, out.width="80%"}
+```{r, echo=FALSE}
 knitr::include_graphics("chapter1-01/R_Install_Mac_1.png")
 ```
 
@@ -88,7 +88,7 @@ Click `Continue`.
 
 
 
-```{r, echo=FALSE, out.width="80%"}
+```{r, echo=FALSE}
 knitr::include_graphics("chapter1-01/R_Install_Mac_2.png")
 ```
 
@@ -101,7 +101,7 @@ Click `Continue`.
 ### macOS users 
 
 
-```{r, echo=FALSE, out.width="80%"}
+```{r, echo=FALSE}
 knitr::include_graphics("chapter1-01/R_Install_Mac_3.png")
 ```
 
@@ -114,7 +114,7 @@ Click `Continue`.
 ### macOS users 
 
 
-```{r, echo=FALSE, out.width="80%"}
+```{r, echo=FALSE}
 knitr::include_graphics("chapter1-01/R_Install_Mac_4.png")
 ```
 
@@ -126,7 +126,7 @@ If you want to change the install location, click `Change Install Location`. Oth
 
 ### macOS users 
 
-```{r, echo=FALSE, out.width="80%"}
+```{r, echo=FALSE}
 knitr::include_graphics("chapter1-01/R_Install_Mac_5.png")
 ```
 
@@ -137,7 +137,7 @@ Note: Once you successfully installed R. You can click `Close` to exit the insta
 ### Install RStudio 
 
 
-```{r, echo=FALSE, out.width="80%"}
+```{r, echo=FALSE}
 knitr::include_graphics("chapter1-01/RStudio_Install.png")
 ```
 
@@ -151,7 +151,7 @@ Scroll down to `All Installers` and download the RStudio version for your operat
 
 
 
-```{r, echo=FALSE, out.width="80%"}
+```{r, echo=FALSE}
 knitr::include_graphics("chapter1-01/RStudio_Install_Mac_1.png")
 ```
 
