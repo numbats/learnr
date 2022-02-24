@@ -85,7 +85,7 @@ class Juniper extends React.Component {
             this.execute(outputArea, wrapper ? wrapper(value) : value)
         }
         const setValue = value => cm.setValue(value)
-        cm.setOption('extraKeys', { 'Shift-Enter': runCode })
+        // cm.setOption('extraKeys', { 'Shift-Enter': runCode })
         Widget.attach(outputArea, this.outputRef)
         this.setState({ runCode, setValue })
     }
