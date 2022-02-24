@@ -83,7 +83,7 @@ data files to RStudio.
 
 </exercise>
 
-<exercise id="4" title="Importing Data to RStudio" >
+<exercise id="4" title="Importing data to RStudio" >
 
 ## Importing data with base R
 
@@ -124,7 +124,7 @@ you put in `()` need to have double quotation `""`.
 
 </exercise>
 
-<exercise id="5" title="Importing Data with readr package" >
+<exercise id="5" title="Importing data with readr package" >
 
 ## Importing Data to RStudio with `readr`
 
@@ -220,7 +220,7 @@ dataset in other programs, you might want to save it as `.csv`.
 
 </exercise>
 
-<exercise id="8" title="Additional Sources" >
+<exercise id="8" title="Additional Resources" >
 
 -   [R for Data Science - chapter 8](https://r4ds.had.co.nz)
 

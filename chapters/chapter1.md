@@ -19,9 +19,9 @@ id: 1
 
 </exercise>
 
-<exercise id="3" title="Additional Sources">
+<exercise id="3" title="Additional Resources">
 
-## Additional Sources
+## Additional Resources
 
 -   [Introduction to R](https://cengel.github.io/R-intro/)
 

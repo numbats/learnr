@@ -11,14 +11,15 @@ type: slides
 -   <font size="6"> When you are learning with multiple subjects that
     all requires working in R but with totally different datasets and
     knowledge. Having an R project for each of the subject will help you
-    manage your datasets,analyses and learning materials. </font>
+    manage your datasets,(space is missing here)analyses and learning
+    materials. </font>
 
 ---
 
 ### Why do I want to start an R Project?
 
--   <font size="6"> This is similar process when you are organising your
-    word documents, PDFs, excel files and ect. </font>
+-   <font size="6"> This is similar to process of organising your word
+    documents, PDFs, excel files and ect. </font>
 
 -   <font size="6"> Having individual R project for different things you
     are working on keep your workflow and files organised. </font>
