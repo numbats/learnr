@@ -62,9 +62,11 @@ Hint: Let's say you would like to assign the result of summing from 1 to
 Now if you would like to divide `sum_to_five` by 5 and assign the result
 to `average`, you can do: `average <- sum_to_five/5`
 
-</codeblock> </exercise>
+</codeblock>
 
-<exercise id='2' title='Basic Data Types in R'>
+</exercise>
+
+<exercise id="2" title="Basic Data Types in R">
 
 ## Basic Data Types in R
 
@@ -90,7 +92,7 @@ double precision floating point numbers). "Integers" are whole numbers
 like `7`. "Double" are decimal values like `5.217`. R uses double
 precision numeric values by default.
 
-``` r
+``` {.r}
 db_var <- 7
 class(db_var)
 ```
@@ -99,7 +101,7 @@ class(db_var)
 
 To create integer values, you can add `L` after the number.
 
-``` r
+``` {.r}
 int_var <- 7L
 class(int_var)
 ```
@@ -108,10 +110,10 @@ class(int_var)
 
 Now, it's your turn to play around with different variable types!
 
-<codeblock id="02_02"> Hint: Replace the values in the R code
-with values that are provided in the instructions (the line with the
-comment `#`). For example, `weather <- "sunny"` assigns the string
-"sunny" to the variable `weather`.
+<codeblock id="02_02"> Hint: Replace the values in the R code with
+values that are provided in the instructions (the line with the comment
+`#`). For example, `weather <- "sunny"` assigns the string "sunny" to
+the variable `weather`.
 
 </codeblock>
 
@@ -130,7 +132,7 @@ integer class and so on.
 
 Most operations on an `NA` becomes an `NA`. For instance,
 
-``` r
+``` {.r}
 x <- c(1, 2, NA, 4)
 sum(x)
 ```
@@ -141,7 +143,7 @@ However, there is an exception - when we use the `paste()` function to
 concatenate `NA` with other strings. The operation will be performed
 with the `NA`.
 
-``` r
+``` {.r}
 some_string <- c("Apple","Banana", NA, "Orange")
 paste(some_string, " is good for you.")
 ```
@@ -153,7 +155,7 @@ We can use `is.na()` to test if a values is `NA`. The function is.na(x)
 returns a boolean vector of the same size as `x` with value TRUE if the
 corresponding element in `x` is `NA`.
 
-``` r
+``` {.r}
 is.na(x)
 ```
 
@@ -166,7 +168,7 @@ usually comes from arithmetic operations that create undefined values
 such as 0/0, hence `NaN` is numeric. You can also use `is.na()` to check
 if a value is `NaN`.
 
-``` r
+``` {.r}
 y <- c(4, 0/0, 3,5)
 is.na(y)
 ```
@@ -181,7 +183,7 @@ like 1/0 where the result is a very very large number (larger than other
 numeric). Note that `Inf` is not a type of `NA`. You can use
 `is.infinite()` to check if a value is `Inf`.
 
-``` r
+``` {.r}
 is.infinite(23/0)
 ```
 
@@ -205,7 +207,7 @@ Given the following vector `y` in R,
 
 which of the following is the output of `y-2`?
 
-<choice id=0.15358645748347>
+<choice id=0.830610267817974>
 
 <opt text="<code> 0  4  6  8  1  3  5  7 </code>" >
 
@@ -241,7 +243,7 @@ Given the following vector `y` in R,
 
 which of the following is the output of `y[4:7]`?
 
-<choice id=0.176331315888092>
+<choice id=0.138845026027411>
 
 <opt text="<code> 8 1 3 5 </code>" correct="true">
 
@@ -279,14 +281,14 @@ Try again! Check your calculation in R!
 
 <exercise id='6' title='Check Your Understanding on Matrices'>
 
-Consider the following matrices $S$ and $T$:
+Consider the following matrices S and T:
 
-$$S = \begin{bmatrix}1&0\\0&1\end{bmatrix},\;\; T = \begin{bmatrix}2&2\\4&3\end{bmatrix}$$
+$$S = \\begin{bmatrix}1&0\\\\0&1\\end{bmatrix}, T = \\begin{bmatrix}2&2\\\\4&3\\end{bmatrix}$$
 
--   Construct a matrix $M$ by stacking $S$ on top of $T$,
-    i.e. $M = \begin{bmatrix}S\\T\end{bmatrix}$. Assign your result to
-    the variable `M`.
--   Select a sub-matrix of $M$ with the data on the rows 1, 2, 3 and
+-   Construct a matrix M by stacking S on top of T. Assign your result
+    to the variable `M_mat`.
+
+-   Select a sub-matrix of M with the data on the rows 1, 2, 3 and
     columns 2. Assign the result to the variable `part_of_M`.
 
 <codeblock id="02_06">
@@ -337,7 +339,7 @@ first and last few observations!
 
 <codeblock id="02_07_02">
 
-Hint: Try `head(df)` .
+Hint: Try `head(df)`.
 
 </codeblock>
 
@@ -345,7 +347,7 @@ Hint: Try `head(df)` .
 
 What is the data type of the variable 'dose'?
 
-<choice id=0.913346675690264>
+<choice id=0.906263957498595>
 
 <opt text="numeric" correct="true">
 
@@ -420,7 +422,7 @@ in the dataset. In R, we can use the `order()` function which gives the
 ranked position of each element when it is applied on a variable. For
 example,
 
-``` r
+``` {.r}
 x <- c(100, -200,300)
 order(x)
 ```
@@ -430,7 +432,7 @@ order(x)
 The output above is the ranked positions and we can use that to sort the
 vector `x`.
 
-``` r
+``` {.r}
 x[order(x)]
 ```
 
@@ -455,8 +457,7 @@ order of the rows in the data frame.
 
 <exercise id='8' title='Conditional Statements' type="slides">
 
-<slides source="chapter2_08_conditionalstatements">
-</slides>
+<slides source="chapter2_08_conditionalstatements"> </slides>
 
 </exercise>
 
@@ -489,7 +490,7 @@ Take a look at the following statements:
 
 Select the option that lists **all** the true statements.
 
-<choice id=0.810627276310697>
+<choice id=0.588340152055025>
 
 <opt text="(1) and (2)" >
 
@@ -531,7 +532,7 @@ to repeat the operations until certain condition is satisfied
 
 A simple for loop in R looks like this:
 
-``` r
+``` {.r}
 sequence <- c(1,3,5)
 for (i in sequence) {
   print(i)
@@ -549,7 +550,7 @@ each iteration.
 
 The same loop can be written in another way:
 
-``` r
+``` {.r}
 sequence <- c(1,3,5)
 for (i in 1:length(sequence)) {
   print(sequence[i])
@@ -579,7 +580,7 @@ use `nominalGDP_trilion_2017[i]`. You can extract the i-th element of
 We can do a lot more than when we use for loop together with the control
 flow statements (if, else if, else) we learnt before. For example,
 
-``` r
+``` {.r}
 customer_rating <- c(2,3,1,5,5,5)
 
 for (rating in customer_rating) {
@@ -632,7 +633,7 @@ variable `student_result`.
 Based on the output from the for-loop, which of the following is
 `student_result`?
 
-<choice id=0.516562290256843>
+<choice id=0.177286447957158>
 
 <opt text="<code>student_result <- c(99,77,35,97,67,85)</code>" >
 
@@ -678,7 +679,7 @@ weekly_spending) to the variable `bank_balance` until `bank_balance` is
 less than `weekly_spending`. If you execute the R code, you will notice
 the loop stopped at the 7th iteration.
 
-``` r
+``` {.r}
 bank_balance <- 200
 weekly_spending <- 28.5
 while (bank_balance >= weekly_spending) {
@@ -704,7 +705,7 @@ For example, if we are to set up a early warning system when
 `bank_balance` is less than or equal to 4 times `weekly spending`, we
 can do the following:
 
-``` r
+``` {.r}
 bank_balance <- 200
 weekly_spending <- 28.5
 while (bank_balance>= weekly_spending) {
@@ -768,7 +769,7 @@ It is also possible to run a function without an input argument.
 In the following example, the function will print the statement "Hello
 World!" when the function is called without any inputs.
 
-``` r
+``` {.r}
 hello_world <- function(){
 print('Hello World!')
 }
@@ -780,7 +781,7 @@ we would like to draw a number from a particular range of values.
 
 For example:
 
-``` r
+``` {.r}
 flip_a_coin <- function(){
   outcome <- sample(1:2, size = 1)
   if (outcome == 1) {
@@ -792,16 +793,16 @@ flip_a_coin <- function(){
 flip_a_coin()
 ```
 
-    ## [1] "Tail"
+    ## [1] "Head"
 
-``` r
+``` {.r}
 #Flip the coin second time
 flip_a_coin()
 ```
 
     ## [1] "Head"
 
-``` r
+``` {.r}
 #Flip the coin once again
 flip_a_coin()
 ```

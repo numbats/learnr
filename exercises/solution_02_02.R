@@ -1,8 +1,8 @@
 # Change weather to be "sunny"
-weather <- "rainy"
+weather <- "sunny"
 
-# Change brolly_needed to be "FALSE"
-brolly_needed <- TRUE
+# Change brolly_needed to be FALSE
+brolly_needed <- FALSE
 
 # Change temperature to be 27
-temperature <- 13
+temperature <- 27

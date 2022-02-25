@@ -1,5 +1,5 @@
 # Create a function power_three()
-power_three <- _____
+power_three <- ___
 # Use the function
-power_three(_____)
+power_three(___)
 

@@ -3,5 +3,6 @@ element <- c('Nitrogen','Oxygen','Hydrogen','Helium','Boron','Carbon','Fluorine'
 chemical_group <- c('Nonmetal','Nonmetal','Nonmetal','Noble Gas','Metalloid','Nonmetal','Halogen','Noble Gas','Alkali Metal','Alkaline Earth Metal')
 atomic_no <- c(7,8,1,2,5,6,9,10,3,4)
 
-first_ten_elements <- _____
+first_ten_elements <- ___
+first_ten_elements
 

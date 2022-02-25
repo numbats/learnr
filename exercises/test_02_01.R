@@ -1,13 +1,4 @@
-library(testthat)
 
-test <- function() {
-    if (x != 25) {
-        stop("Are you using the correct numbers and symbols? Have you try the hint?")
-    }
-    if (y != 75) {
-      stop("Are you using the correct numbers and symbols? Have you try the hint?")
-    }
-    # This function is defined in the testTemplate
-    success("Well done!")
-}
-test()
+expect_equal(x, 25, info = "Are you using the correct numbers and symbols? Have you try the hint?")
+expect_equal(y, 75, info = "Are you using the correct numbers and symbols? Have you try the hint?")
+
