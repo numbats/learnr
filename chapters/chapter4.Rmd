@@ -1,5 +1,5 @@
 ---
-title: 'Chapter 4: Project Structure and importing data'
+title: 'Chapter 4: Project structure and importing data'
 description:
   'This chapter will teach you the basic project structure and good practice of project management in R. You will learn how to import data from different sources including csv files, excel files and files hosted online'
 prev: /chapter3
