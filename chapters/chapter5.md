@@ -210,6 +210,54 @@ That's right!
 We have used `table1`, `table2` and `table3` as example in the slides.
 Which table is tidy?
 
+``` r
+table1
+```
+
+    ## # A tibble: 6 × 4
+    ##   country      year  cases population
+    ##   <chr>       <int>  <int>      <int>
+    ## 1 Afghanistan  1999    745   19987071
+    ## 2 Afghanistan  2000   2666   20595360
+    ## 3 Brazil       1999  37737  172006362
+    ## 4 Brazil       2000  80488  174504898
+    ## 5 China        1999 212258 1272915272
+    ## 6 China        2000 213766 1280428583
+
+``` r
+table2
+```
+
+    ## # A tibble: 12 × 4
+    ##    country      year type            count
+    ##    <chr>       <int> <chr>           <int>
+    ##  1 Afghanistan  1999 cases             745
+    ##  2 Afghanistan  1999 population   19987071
+    ##  3 Afghanistan  2000 cases            2666
+    ##  4 Afghanistan  2000 population   20595360
+    ##  5 Brazil       1999 cases           37737
+    ##  6 Brazil       1999 population  172006362
+    ##  7 Brazil       2000 cases           80488
+    ##  8 Brazil       2000 population  174504898
+    ##  9 China        1999 cases          212258
+    ## 10 China        1999 population 1272915272
+    ## 11 China        2000 cases          213766
+    ## 12 China        2000 population 1280428583
+
+``` r
+table3
+```
+
+    ## # A tibble: 6 × 3
+    ##   country      year rate             
+    ## * <chr>       <int> <chr>            
+    ## 1 Afghanistan  1999 745/19987071     
+    ## 2 Afghanistan  2000 2666/20595360    
+    ## 3 Brazil       1999 37737/172006362  
+    ## 4 Brazil       2000 80488/174504898  
+    ## 5 China        1999 212258/1272915272
+    ## 6 China        2000 213766/1280428583
+
 <choice id=0.567945376737043>
 
 <opt text="Table 1 only" correct="true">

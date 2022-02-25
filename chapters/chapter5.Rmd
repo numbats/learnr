@@ -203,6 +203,19 @@ cat(mc_opts("<code>inner_join(color, size)</code>" = "Try again!",
 
 We have used `table1`, `table2` and `table3` as example in the slides. Which table is tidy?
 
+```{r}
+table1
+```
+
+```{r}
+table2
+```
+
+```{r}
+table3
+```
+
+
 ```{r, echo = FALSE, results = "asis"}
 cat(mc_opts("Table 1 only" = "That's correct!",
          "Table 3 only" = "Try again! Each cell in a tidy data format should hold only a single value. The column `rate` contains data with two values (one divided by the other) and is converted to characters.",
