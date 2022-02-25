@@ -1,5 +1,5 @@
 ---
-title: 'Chapter 8: R Markdown Basics'
+title: 'Chapter 8: R Markdown basics'
 description:
   'This chapter will teach you the basics of R Markdown and how it can make your student life easlier.'
 prev: /chapter7
