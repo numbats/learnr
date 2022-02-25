@@ -7,7 +7,7 @@ chapter: 1
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(fig.path = "chapter1-01/",
+knitr::opts_chunk$set(fig.path = "chapter1/chapter1-01/",
                       fig.align = "center",
                       fig.width = 2, 
                       fig.height = 2,
@@ -49,7 +49,7 @@ One way to think about the relationship between R and RStudio is that R acts lik
 
 
 ```{r, echo=FALSE}
-knitr::include_graphics("chapter1-01/R_Install_CRAN.png")
+knitr::include_graphics("chapter1/chapter1-01/R_Install_CRAN.png")
 ```
 
 Note: Download the latest version of R from: [The Comprehensive R Archive Network (CRAN)](https://cloud.r-project.org/).
@@ -61,7 +61,7 @@ Please select Download R for `your operating system`
 ### macOS users 
 
 ```{r, echo=FALSE}
-knitr::include_graphics("chapter1-01/R_Install_Mac.png")
+knitr::include_graphics("chapter1/chapter1-01/R_Install_Mac.png")
 ```
 
   
@@ -75,7 +75,7 @@ Click on `R-4.1.2.pkg` to start the download. (The top one will always be the mo
 ### macOS users 
 
 ```{r, echo=FALSE}
-knitr::include_graphics("chapter1-01/R_Install_Mac_1.png")
+knitr::include_graphics("chapter1/chapter1-01/R_Install_Mac_1.png")
 ```
 
 Note: After finishing the download of `R-4.1.2.pkg`, double click on it, you should see the message below.
@@ -89,7 +89,7 @@ Click `Continue`.
 
 
 ```{r, echo=FALSE}
-knitr::include_graphics("chapter1-01/R_Install_Mac_2.png")
+knitr::include_graphics("chapter1/chapter1-01/R_Install_Mac_2.png")
 ```
 
 Note: Read through the important information about R. 
@@ -102,7 +102,7 @@ Click `Continue`.
 
 
 ```{r, echo=FALSE}
-knitr::include_graphics("chapter1-01/R_Install_Mac_3.png")
+knitr::include_graphics("chapter1/chapter1-01/R_Install_Mac_3.png")
 ```
 
 Note: Read through the software licence agreement about R. 
@@ -115,7 +115,7 @@ Click `Continue`.
 
 
 ```{r, echo=FALSE}
-knitr::include_graphics("chapter1-01/R_Install_Mac_4.png")
+knitr::include_graphics("chapter1/chapter1-01/R_Install_Mac_4.png")
 ```
 
 Note: The default installation location for macOS is the `Macintosh HD`.
@@ -127,7 +127,7 @@ If you want to change the install location, click `Change Install Location`. Oth
 ### macOS users 
 
 ```{r, echo=FALSE}
-knitr::include_graphics("chapter1-01/R_Install_Mac_5.png")
+knitr::include_graphics("chapter1/chapter1-01/R_Install_Mac_5.png")
 ```
 
 Note: Once you successfully installed R. You can click `Close` to exit the installation process. 
@@ -138,7 +138,7 @@ Note: Once you successfully installed R. You can click `Close` to exit the insta
 
 
 ```{r, echo=FALSE}
-knitr::include_graphics("chapter1-01/RStudio_Install.png")
+knitr::include_graphics("chapter1/chapter1-01/RStudio_Install.png")
 ```
 
 Note: Download the latest version of RStudio from [RStudio](https://www.rstudio.com/products/rstudio/download/). 
@@ -152,7 +152,7 @@ Scroll down to `All Installers` and download the RStudio version for your operat
 
 
 ```{r, echo=FALSE}
-knitr::include_graphics("chapter1-01/RStudio_Install_Mac_1.png")
+knitr::include_graphics("chapter1/chapter1-01/RStudio_Install_Mac_1.png")
 ```
 
 Note: Drag RStudio.app into the `Applications` folder.

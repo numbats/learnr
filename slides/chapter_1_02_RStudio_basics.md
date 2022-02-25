@@ -5,7 +5,7 @@ type: slides
 ---
 ### What does RStudo looks like?
 
-<img src="chapter1-02/RStudio_interface_1.png" style="display: block; margin: auto;" />
+<img src="chapter1/chapter1-02/RStudio_interface_1.png" style="display: block; margin: auto;" />
 
 Note: Once you open RStudio, you should see this interface.
 
@@ -24,7 +24,7 @@ The window on the bottom right has a few different sessions including
 
 ### Adding a new R Script
 
-<img src="chapter1-02/RStudio_Add_script.png" style="display: block; margin: auto;" />
+<img src="chapter1/chapter1-02/RStudio_Add_script.png" style="display: block; margin: auto;" />
 
 Note: You can run r code in the `Console` but once you close RStudio,
 you loss your code in `Console`.
@@ -36,7 +36,7 @@ a `R Script`.
 
 ### R Script
 
-<img src="chapter1-02/RStudio_rscript_1.png" style="display: block; margin: auto;" />
+<img src="chapter1/chapter1-02/RStudio_rscript_1.png" style="display: block; margin: auto;" />
 
 Note: In an `R Script` you can write code and add comments. You can run
 each line by pressing `ctrl + enter/return`.
@@ -73,7 +73,7 @@ After you run each line of the code, you can see the messages in your
 
 ### R packages installation and loading
 
-<img src="chapter1-02/RStudio_package.png" style="display: block; margin: auto;" />
+<img src="chapter1/chapter1-02/RStudio_package.png" style="display: block; margin: auto;" />
 
 Note: To check what packages you already have, go to the `Packages`
 window on the bottom right.
@@ -88,11 +88,11 @@ downloaded that package or not.
 
 There are two ways to install packages.
 
-<img src="chapter1-02/RStudio_Install_pkg.png" style="display: block; margin: auto;" />
+<img src="chapter1/chapter1-02/RStudio_Install_pkg.png" style="display: block; margin: auto;" />
 
 Note: The first way is by clicking. Open the `Pacakges` window on the
 bottom right, click on `Install`
-![](/tmp/RtmpIVZd4l/file5de0b85a2af.png){height="0.7em"}.
+![](/tmp/RtmpMEBjXu/file50a9360e6d770.png){height="0.7em"}.
 
 You should see the pop-up below. You can type in the packages you want
 to install in and make sure that all the dependencies are also
@@ -108,22 +108,23 @@ inside `""`.
 
 ### Customised your RStudio - Changing Global Options
 
-<img src="chapter1-02/RStudio_tools.png" style="display: block; margin: auto;" />
+<img src="chapter1/chapter1-02/RStudio_tools.png" style="display: block; margin: auto;" />
 
 Note: Customise your RStudio, go `Tools`
-![](/tmp/RtmpIVZd4l/file5de016d35081.png){height="0.7em"}
+![](/tmp/RtmpMEBjXu/file50a937dcb225.png){height="0.7em"}
 `Global Options..`
 
 ---
 
 ### Customised your RStudio - Changing Global Options
 
-<img src="chapter1-02/RStudio_mirror.png" width="50%" style="display: block; margin: auto;" />
+<img src="chapter1/chapter1-02/RStudio_mirror.png" width="50%" style="display: block; margin: auto;" />
 
 -   If you are not able to download package from this sources, go to
     `Global Options...`
-    ![](/tmp/RtmpIVZd4l/file5de04a093f8b.png){height="0.7em"} `Packages`
-    ![](/tmp/RtmpIVZd4l/file5de04ec7a415.png){height="0.7em"}
+    ![](/tmp/RtmpMEBjXu/file50a937b445361.png){height="0.7em"}
+    `Packages`
+    ![](/tmp/RtmpMEBjXu/file50a9319820bcc.png){height="0.7em"}
     `Primary CRAN repositor`. You can select the mirror that is
     physically close to you which might be easier for you to connect to.
 
@@ -136,8 +137,8 @@ from the CRAN RStudio Cloud.
 
 ### Customised your RStudio - Changing Global Options
 
-<img src="chapter1-02/RStudio_apprenve.png" style="display: block; margin: auto;" />
+<img src="chapter1/chapter1-02/RStudio_apprenve.png" style="display: block; margin: auto;" />
 
 Note: You can also change the appearance of your RStudio from the
 `Global Options...`
-![](/tmp/RtmpIVZd4l/file5de01f5566c7.png){height="0.7em"} `Appearance`.
+![](/tmp/RtmpMEBjXu/file50a93447ec697.png){height="0.7em"} `Appearance`.
