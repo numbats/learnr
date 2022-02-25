@@ -1,5 +1,5 @@
 ---
-title: 'Chapter 4: Project Structure and importing data'
+title: 'Chapter 4: Project structure and importing data'
 description: This chapter will teach you the basic project structure and good practice
   of project management in R. You will learn how to import data from different sources
   including csv files, excel files and files hosted online
@@ -88,7 +88,7 @@ data files to RStudio.
 ## Importing data with base R
 
 There are a few different packages that help you read in data to
-RStudio. First, let’s meet the `read` family from base R.
+RStudio. First, let's meet the `read` family from base R.
 
 -   `read.table()`: can be used for general-purpose.
 
@@ -120,6 +120,9 @@ you put in `()` need to have double quotation `""`.
 
 <codeblock id="04_01">
 
+Hint: Just run this code and view the first six rows for this penguins
+dataset
+
 </codeblock>
 
 </exercise>
@@ -133,11 +136,14 @@ you put in `()` need to have double quotation `""`.
 -   `read_csv()` and `read_csv2()` read in **csv** files. When read in
     data, it will automatically take the first row as column names.
 
-<codeblock id="05_03">
+<codeblock id="04_03">
+
+Hint: Run the code.
 
 </codeblock>
 
-<codeblock id="05_04">
+<codeblock id="04_04"> Hint: Use the read_csv() function to load in the
+penguins dataset.
 
 </codeblock>
 
@@ -179,7 +185,9 @@ The example dataset we will be using is from the
 The data we will try to import from website is the [Australian Fires
 Data](https://github.com/rfordatascience/tidytuesday/tree/master/data/2020/2020-01-07).
 
-<codeblock id="05_05">
+<codeblock id="04_05">
+
+Hint: Read this dataset in from the web
 
 </codeblock>
 

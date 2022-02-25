@@ -118,11 +118,18 @@ In order to successfully import data to your RStudio environment, you will need 
 
 ```{teachr 04_01}
 # Let's try read in a dataset 
-# Just run this code and view the first six rows for this penguins dataset
-
 penguins <- read.csv("data/penguins.csv")
 
 head(penguins)
+
+---
+  
+Hint: Just run this code and view the first six rows for this penguins dataset
+
+???
+  
+solution <- read.csv("data/penguins.csv")
+expect_equal(penguins, solution, info = "Have you read in the correct file using read.csv()?")
 
 ```
 
@@ -138,25 +145,40 @@ head(penguins)
 
 - `read_csv()` and `read_csv2()` read in **csv** files. When read in data, it will automatically take the first row as column names. 
 
-```{teachr 05_03}
+```{teachr 04_03}
 library(readr)
 # This is an example for read_csv function from readr package 
 # You can put in an inline csv file for the read_csv function like this 
 
-read_csv("x,y,z,
-         1,2,3,
+read_csv("x,y,z
+         1,2,3
          4,5,6")
 
+---
+
+Hint: Run the code.
+
+???
+  
+expect_true(TRUE)
 ```
 
-```{teachr 05_04}
+```{teachr 04_04}
 # Let's try use read_csv to import penguins dataset
 
 library(readr)
 
-penguins_readr <- read_csv("data/penguins.csv")
+penguins_readr <- {<read_csv>}("data/penguins.csv")
 
 head(penguins_readr)
+
+---
+Hint: Use the read_csv() function to load in the penguins dataset.
+
+???
+
+solution <- read_csv("data/penguins.csv")
+expect_identical(penguins_readr, solution, info = "Have you used the correct function to read in the data?")
 
 ```
 
@@ -189,15 +211,23 @@ Depending on the online data source you are getting, you can use `read_csv()` to
 The example dataset we will be using is from the [TidyTuesday](https://github.com/rfordatascience/tidytuesday) project. The data we will try to import from website is the [Australian Fires Data](https://github.com/rfordatascience/tidytuesday/tree/master/data/2020/2020-01-07).
 
 
-```{teachr 05_05}
+```{teachr 04_05}
 # Let's try use read_csv to import the Australian Fires dataset from Github
 # The url for this file is 'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-07/rainfall.csv'
 
 library(readr)
 
-rainfall<- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-07/rainfall.csv')
+rainfall <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-07/rainfall.csv')
 
-head(rainfall)
+rainfall
+
+---
+
+Hint: Read this dataset in from the web
+
+???
+  
+expect_true(nrow(rainfall) > 100000, info = "Have you read in the correct dataset?")
 
 ```
 
