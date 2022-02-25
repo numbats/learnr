@@ -264,7 +264,7 @@ apple %>%
 
 ---
 
-Then, we will try to drop the `NA`s in the return in `apple`.
+Alternatively, we can try to drop the `NA`s in the return in `apple`.
 
 ```{r}
 apple %>%
@@ -273,8 +273,11 @@ apple %>%
  
 --- 
  
-Finally, we will also replace the `NA`s with the value `999`.
+In some cases, it may make sense if we replace the `NA`s with a certain value. 
+
+For example, suppose we found out that all missing values are actually 0 and not recorded correctly
+
 ```{r}
 apple %>%
-  replace_na(list(return=999))
+  replace_na(list(return=0))
 ```

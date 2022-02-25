@@ -13,8 +13,9 @@ id: 5
 ## Introduction to tidyverse
 
 The tidyverse is a collection of R packages that transform and visualize
-data. All packages of the tidyverse share very similar syntax and
-ideologies.
+data. They aim to be cohesive with each other and provide simple
+building block functions for you to use in complex applications. All
+packages of the tidyverse share very similar syntax and ideologies.
 
 Tidyverse includes the following packages:
 
@@ -31,10 +32,12 @@ There are many other packages with more specialized functions in the
 tidyverse. In this chapter, we focuses on two packages: **tidyr** and
 **dplyr**.
 
-**dplyr** is used for grammar of data manipulation. **tidyr** helps you
-to create tidy data or data where each variable is in a column, each
-observation is a row and each value is a cell. You can use them to solve
-the most common data manipulation challenges.
+**dplyr** makes manipulating data easy. **tidyr** helps you to create
+"tidy data" (data where each variable is in a column, each observation
+is a row and each value is a cell). It helps with adding, renaming, and
+removing columns, computing new variables, joining data sets together
+and summarising your data. You can use them to solve the most common
+data manipulation challenges.
 
 You can install the core tidyverse packages with:
 `install.packages("tidyverse")`
@@ -53,7 +56,8 @@ You can also load specific library separately, for example,
 `%>%` is a "pipe"-like operator with which you may pipe a value forward
 into an expression or function call; something along the lines of
 `x %>% f`, rather than `f(x)`. It semantically changes your code in a
-way that makes it more intuitive to both read and write. For example,
+way that makes it more intuitive to both read and write. To illustrate
+the idea, below is a simplified example with mathematical opeations:
 
 ``` r
 x <- c(100,200,300)
@@ -69,9 +73,32 @@ then we add 3 to each element. Finally we compute the exponential of
 each element of x. Note how the code is arranged in the logical order of
 how you think about the task: x - \> take log -\> add 3 -\> exponential,
 which is also the same order as the code will execute. It's like a
-recipe -- easy to read, easy to follow! This is very useful when we are
-performing complex operations on our data sets. We will start using them
-in the exercises.
+recipe -- easy to read, easy to follow!
+
+In practice, we don't usually write a sequence of mathematical
+operations using pipes. (Because you could have just typed
+`exp(log(x) + 3)`.
+
+Rather, we use pipes when we want to chain a number of operations to
+manipulate our data. For example,
+
+    # Read in data using readr
+    read_csv("market.csv") %>%
+      # Create a new column called revenue using dplyr
+      mutate(revenue = sales * price) %>%
+      # Plot the data using ggplot2
+      ggplot(aes(y = revenue, x = product)) + 
+      geom_col()
+
+You will be introduced to the functionality of these commands in this
+chapter and in data visualization. So don't worry too much if you don't
+know what does each of these command do.
+
+The benefit of using pipes here is that we can add layers of operations
+on top of one another. This is very useful when we are performing
+complex operations on our data sets.
+
+We will start using pipes in the exercises.
 
 </exercise>
 
@@ -96,6 +123,14 @@ called `petal_area` containing a value that approximates the area of the
 petal. (`Petal.Length` times `Petal.Width`). Only the rows where
 `petal_area` is greater than 5 should be shown in the final dataframe.
 The final dataframe should be called `new_iris`.
+
+You would want to perform the following tasks in this particular order:
+
+(1) Add the new column called `petal_area`
+
+(2) Filter the variable based on the condition stated above
+
+(3) Select only the relevant variables in the final dataframe
 
 <codeblock id="05_03_01">
 
@@ -132,7 +167,7 @@ We would like to merge the tables so that the result looks like:
 
 Which of the following commands does the operation?
 
-<choice id=0.936857939232141>
+<choice id=0.238996259402484>
 
 <opt text="<code>inner_join(color, size)</code>" >
 
@@ -175,7 +210,7 @@ That's right!
 We have used `table1`, `table2` and `table3` as example in the slides.
 Which table is tidy?
 
-<choice id=0.430694136302918>
+<choice id=0.567945376737043>
 
 <opt text="Table 1 only" correct="true">
 
@@ -232,7 +267,7 @@ smoke <- tribble(
     3 no    employed             20
     4 no    unemployed           12
 
-<choice id=0.534205838106573>
+<choice id=0.0499558339361101>
 
 <opt text="Using <code>pivot_wider()</code> on smoke" >
 
@@ -262,10 +297,10 @@ Try again!
 
 **Problem 3**
 
-Which is the best way to check if there are missing observations in your
-data?
+Which of the following is an appropriate way to check if there are
+missing observations in your data?
 
-<choice id=0.545056455302984>
+<choice id=0.0521996046882123>
 
 <opt text="Eyeballing and look for blanks in my data" >
 
@@ -281,7 +316,7 @@ That's not very effective nor efficient. Use R command to help you!
 
 <opt text="Using <code> is.na() </code> on my data" correct="true">
 
-Try again!
+That's correct!
 
 </opt>
 

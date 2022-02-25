@@ -105,7 +105,9 @@ For example, if you do `3+a`:
 
 This is, however, **NOT** a standard mathematical notation.
 
-(In mathematical notations, we should use this as, e.g. $a + c \mathbf{1}$, where $a$ is a vector and $c$ is a scalar.)
+(In mathematical notations, we should use this as, e.g. $a + c \mathbf{1}$,
+
+where $a$ is a (column) vector, $c$ is a scalar and $\mathbf{1}$ here is a column vector of ones.)
 
 ---
 

@@ -6,7 +6,23 @@ type: slides
 ## Data Transformation and Aggregation
 
 `dplyr` provides a selection of tools for the most common data wrangling
-tasks.
+tasks. We will start with introducing a few simple yet handy functions.
+
+-   `select()` and an array of selection helpers
+-   `filter()`
+-   `arrange()`
+-   `mutate()`
+-   `group_by()` and `ungroup()`
+-   `count()`
+-   `case_when()`
+
+Note:
+
+This is a very big topic and we will not be able to cover **all** the
+useful commands in this chapter. Please feel free to research online
+other useful commands from `dplyr`.
+
+---
 
 -   `select()`: pick particular variables from your data.
 
