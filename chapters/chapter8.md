@@ -1,5 +1,5 @@
 ---
-title: 'Chapter 8: R Markdown Basics'
+title: 'Chapter 8: R Markdown basics'
 description: This chapter will teach you the basics of R Markdown and how it can make
   your student life easlier.
 prev: /chapter7
@@ -36,7 +36,7 @@ id: 8
 
 ## Introduction to R Chunk
 
-```` markdown
+```` {.markdown}
 ```{r, this-is-an-r-chunk}
 ```
 ````
@@ -48,14 +48,14 @@ include breaks.
 
 ### `include`
 
-```` markdown
+```` {.markdown}
 ```{r, this-is-an-r-chunk,include = TRUE}
 ggplot(mpg, aes(displ, hwy, colour = class)) + 
   geom_point()
 ```
 ````
 
-``` r
+``` {.r}
 ggplot(mpg, aes(displ, hwy, colour = class)) + 
   geom_point()
 ```
@@ -70,7 +70,7 @@ results from this code chunk in other chunks.
 
 ### `echo`
 
-```` markdown
+```` {.markdown}
 ```{r, this-is-an-r-chunk,echo = FALSE}
 ggplot(mpg, aes(displ, hwy, colour = class)) + 
   geom_point()
@@ -86,13 +86,13 @@ figures.
 
 ### `eval`
 
-The defult setting is `eval = TRUE`. If you only want to print out the
+The default setting is `eval = TRUE`. If you only want to print out the
 code but not run the code, you can set `eval = FALSE`. This is helpful
 when you are
 
 ### `message`, `warning`. `error`
 
-```` markdown
+```` {.markdown}
 ```{r, this-is-an-r-chunk,messge = FALSE, warning = FALSE, error =  FALSE}
 ggplot(mpg, aes(displ, hwy, colour = class)) + 
   geom_point()
@@ -110,7 +110,7 @@ and `warning` will also be displayed in the console.
 
 ### `cache`
 
-```` markdown
+```` {.markdown}
 ```{r, this-is-an-r-chunk,cache = TRUE}
 ggplot(mpg, aes(displ, hwy, colour = class)) + 
   geom_point()
@@ -120,21 +120,21 @@ ggplot(mpg, aes(displ, hwy, colour = class)) +
 The default setting is `cach = FALSE`. Everytime when you `Knit` a R
 Markdown document, it will run through all the code chunks. When some of
 your code chunk takes too much time to run or you don't need to re-run
-the code everytime when you knit the document, you can set
-`cache = TRUE` to loaded from previously saved databases (.rdb and .rdx
-files). This means that this code chunk will only be evealuted the first
-time you knit the document.
+the code every time when you knit the document, you can set
+`cache = TRUE` to loaded from previously saved databases (`.rdb` and
+`.rdx` files). This means that this code chunk will only be evaluated
+the first time you knit the document.
 
 ### `fig.width` and `fig.height`
 
-```` markdown
+```` {.markdown}
 ```{r, this-is-an-r-chunk,fig.width = 4, fig.height =4}
 ggplot(mpg, aes(displ, hwy, colour = class)) + 
   geom_point()
 ```
 ````
 
-``` r
+``` {.r}
 ggplot(mpg, aes(displ, hwy, colour = class)) + 
   geom_point()
 ```
@@ -143,18 +143,18 @@ ggplot(mpg, aes(displ, hwy, colour = class)) +
 
 The default setting is `fig.width =7,fig.height =7`. The figures are
 defined in inches. `fig.width` defines the figure's width where
-`fig.hight` defines the figure's hight.
+`fig.height` defines the figure's hight.
 
 ### `out.width` and `out.height`
 
-```` markdown
+```` {.markdown}
 ```{r, this-is-an-r-chunk,out.width = '50%'}
 ggplot(mpg, aes(displ, hwy, colour = class)) + 
   geom_point()
 ```
 ````
 
-``` r
+``` {.r}
 ggplot(mpg, aes(displ, hwy, colour = class)) + 
   geom_point()
 ```
@@ -169,9 +169,9 @@ also scale by `out.height = '50%'` which means 50% of the page height.
 
 <exercise id="4" title="Other useful tips for R Markdown">
 
-## Insert webiste links to your R Markdown
+## Insert website links to your R Markdown
 
-You can add website links in your R Markdown using sytex:
+You can add website links in your R Markdown using syntax:
 `[Text](link)`. Inside `[]` is the text you want to display for the
 hyperlink and the actual link goes into `()`.
 
@@ -186,13 +186,13 @@ file.
 
 -   You could also use code chunk to include images.
 
-```` markdown
+```` {.markdown}
 ```{r, echo=FALSE, out.width="50%"}
 knitr::include_graphics("images/rmarkdown.png")
 ```
 ````
 
-## You can make presention slides using `R Markdown`
+## You can make presentation slides using `R Markdown`
 
 <img src="slides.png" width="50%" style="display: block; margin: auto;" />
 
@@ -201,7 +201,7 @@ for your presentations.
 
 </exercise>
 
-<exercise id="5" title="Additional Sources">
+<exercise id="5" title="Additional Resources">
 
 -   [R Markdown
     Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/)

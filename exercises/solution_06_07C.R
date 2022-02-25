@@ -4,7 +4,7 @@ BudgetFood %>%
     mapping = aes(x = size, y = totexp)
   ) +
   geom_point() +
-  geom_smooth(color = "red",
+  geom_smooth(colour = "red",
                   method = loess,
                   formula = y ~ x)
 

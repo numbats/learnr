@@ -42,8 +42,8 @@ id: 4
 
 -   `/results` folder will contain your analysis results.
 
--   You could also have other folders to store all the relevent
-    docutments as you like.
+-   You could also have other folders to store all the relevant
+    documents as you like.
 
 ## Naming
 
@@ -197,9 +197,9 @@ Hint: Read this dataset in from the web
 
 ## Save your data as `.csv`
 
-Once you have done some cleaning and data mulptipultion, you can save
-the new dataset as a new **csv** file using `write.csv()` function. You
-can put the file path and file name inside `()`.
+Once you have done some cleaning and data manipulation, you can save the
+new dataset as a new **csv** file using `write.csv()` function. You can
+put the file path and file name inside `()`.
 
 ## Save your data as `.RDS`
 

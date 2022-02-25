@@ -17,7 +17,7 @@ data. They aim to be cohesive with each other and provide simple
 building block functions for you to use in complex applications. All
 packages of the tidyverse share very similar syntax and ideologies.
 
-Tidyverse includes the following packages:
+The tidyverse includes the following packages:
 
 -   `dplyr`: grammar of data manipulation
 -   `tidyr`: reshape your data
@@ -57,7 +57,7 @@ You can also load specific library separately, for example,
 into an expression or function call; something along the lines of
 `x %>% f`, rather than `f(x)`. It semantically changes your code in a
 way that makes it more intuitive to both read and write. To illustrate
-the idea, below is a simplified example with mathematical opeations:
+the idea, below is a simplified example with mathematical operations:
 
 ``` {.r}
 x <- c(100,200,300)
@@ -167,7 +167,7 @@ We would like to merge the tables so that the result looks like:
 
 Which of the following commands does the operation?
 
-<choice id=0.88623077981174>
+<choice id=0.679033899214119>
 
 <opt text="<code>inner_join(color, size)</code>" >
 

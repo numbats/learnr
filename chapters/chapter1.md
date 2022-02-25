@@ -1,5 +1,5 @@
 ---
-title: 'Chapter 1: Getting started'
+title: 'Chapter 1: Getting started with R & RStudio IDE'
 description: This chapter will teach you about many cool things about R and RStuduo
   and help you get start with RStudio.
 next: /chapter2
@@ -25,7 +25,7 @@ id: 1
 
 -   [Introduction to R](https://cengel.github.io/R-intro/)
 
--   [RStudio Eduction for
+-   [RStudio Education for
     Beginners](https://education.rstudio.com/learn/beginner/)
 
 -   [R for Data Science](https://r4ds.had.co.nz)

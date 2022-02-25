@@ -40,7 +40,7 @@ knitr::opts_chunk$set(fig.retina = 2,
 
 The tidyverse is a collection of R packages that transform and visualize data. They aim to be cohesive with each other and provide simple building block functions for you to use in complex applications. All packages of the tidyverse share very similar syntax and ideologies.
 
-Tidyverse includes the following packages:
+The tidyverse includes the following packages:
 
 - `dplyr`: grammar of data manipulation
 - `tidyr`: reshape your data
@@ -69,7 +69,7 @@ You can also load specific library separately, for example, `library(dplyr)`.
 **Pipes**
 
 `%>%` is a "pipe"-like operator with which you may pipe a value forward into an expression or function call; something along the lines of `x %>% f`, rather than `f(x)`. 
-It semantically changes your code in a way that makes it more intuitive to both read and write. To illustrate the idea, below is a simplified example with mathematical opeations:
+It semantically changes your code in a way that makes it more intuitive to both read and write. To illustrate the idea, below is a simplified example with mathematical operations:
 
 ```{r}
 x <- c(100,200,300)

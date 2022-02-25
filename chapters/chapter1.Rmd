@@ -53,7 +53,7 @@ knitr::opts_chunk$set(fig.path = "ch1/",
 
 - [Introduction to R](https://cengel.github.io/R-intro/)
 
-- [RStudio Eduction for Beginners](https://education.rstudio.com/learn/beginner/)
+- [RStudio Education for Beginners](https://education.rstudio.com/learn/beginner/)
 
 - [R for Data Science](https://r4ds.had.co.nz)
 

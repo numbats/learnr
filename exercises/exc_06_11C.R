@@ -3,11 +3,11 @@ library(___)
 
 
 g1 <- ggplot(BudgetFood, 
-             aes(factor(size), wfood, color = sex)) +
+             aes(factor(size), wfood, colour = sex)) +
   geom_boxplot() 
 
 g2 <- ggplot(BudgetFood, 
-             aes(factor(size), totexp, color = sex)) +
+             aes(factor(size), totexp, colour = sex)) +
   geom_boxplot() + 
   scale_y_log10()
 

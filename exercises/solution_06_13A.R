@@ -1,7 +1,7 @@
 ggplot(BudgetFood, aes(x = age)) + 
   geom_histogram(aes(y = after_stat(density)),
                  binwidth = 1) +
-  geom_density(color = "red") +
+  geom_density(colour = "red") +
   facet_wrap(~town, labeller = label_both) +
   labs(x = "Age", y = "Density", title = "Age distribution by town size") +
   theme(text = element_text(size = 14, family = "mono"),

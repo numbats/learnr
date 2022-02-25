@@ -376,12 +376,12 @@ copy it all and then run `reprex::reprex()` in your console.
 Alternatively, if you're using RStudio you can use the "Render
 reprex..." option from the "Addins" dropdown.
 
-![Reprex RStudio addin](addin.png)
+![reprex RStudio addin](addin.png)
 
 Once you clicked on `Render reprex...`, it will show you a pop-up
 window:
 
-![Reprex addin options pop-up](reprex_render.png)
+![reprex addin options pop-up](reprex_render.png)
 
 As you've copied the example entirely, you can use the 'on the
 clipboard' source. Choose a venue for where you're planning to post the
@@ -439,7 +439,7 @@ most questions.
     errors](https://www.youtube.com/watch?v=vgYS-F8opgE)
 
 -   [How to create a Minimal, Reproducible Example -
-    stackoverflow](https://stackoverflow.com/help/minimal-reproducible-example)
+    StackOverflow](https://stackoverflow.com/help/minimal-reproducible-example)
 
 -   [Posting Guide: How to ask good questions that prompt useful
     answers](https://www.r-project.org/posting-guide.html)

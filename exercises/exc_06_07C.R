@@ -4,7 +4,7 @@ BudgetFood %>%
     mapping = aes(x = ___, y = ___)
   ) +
   geom____() +
-  geom____(color = "red",
+  geom____(colour = "red",
                   method = loess,
                   formula = y ~ x)
 

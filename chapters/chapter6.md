@@ -19,7 +19,7 @@ id: 6
 
 Which of the following is a contributed R package?
 
-<choice id=0.444977660896257>
+<choice id=0.839984179008752>
 
 <opt text="ggplot2" correct="true">
 
@@ -50,7 +50,7 @@ No, this a core package and loads automatically when you launch R.
 
 Which R package actually renders the graphics in R?
 
-<choice id=0.71046157926321>
+<choice id=0.335230989847332>
 
 <opt text="ggplot2" >
 
@@ -81,7 +81,7 @@ Yes, that's right!
 Remember that there are two primary graphic models in R: the base and
 grid graphics. Which one is ggplot2 using?
 
-<choice id=0.618992363568395>
+<choice id=0.222490198444575>
 
 <opt text="base" >
 
@@ -252,7 +252,7 @@ Hint: Use the `width` argument to change the width of the boxplot.
 
 In the next target plot, we want to draw a scatter plot between the size
 of the household and the total expenditure of the household. Then we
-want to overlay this with a loess curve in red color. You may not have
+want to overlay this with a loess curve in red colour. You may not have
 seen how to fit a curve on `ggplot` yet so check out the hint if you
 don't know.
 
@@ -298,7 +298,7 @@ this case should `fill` be an attribute or aesthetic?
 <exercise id="9" title="Practice changing scales">
 
 In the plot below, we show the age distribution by man and woman. Change
-the color so the violin plot for the man colored as "violet" and woman
+the colour so the violin plot for the man coloured as "violet" and woman
 as "royalblue".
 
 <img src="ch6/plot-06-09A-1.png" width="432" style="display: block; margin: auto;" />
@@ -311,9 +311,9 @@ Hint: Recall that scales are controlled by functions beginning with
 </codeblock>
 
 In the next plot, let's have a look at the distribution of the total
-household expenditure by sex using histograms. Since hte total household
+household expenditure by sex using histograms. Since the total household
 expenditure skewed to the right, take a log with base 10 transformation
-for the scale and change the colors like the target plot below.
+for the scale and change the colours like the target plot below.
 
 <img src="ch6/plot-06-09B-1.png" width="432" style="display: block; margin: auto;" />
 
@@ -390,14 +390,14 @@ appropriate `element_*()` function.
 
 -   [ggplot2: elegant graphics for data
     analysis](https://ggplot2-book.org/)
--   [R Graphics Coobook](https://r-graphics.org/)
+-   [R Graphics Cookbook](https://r-graphics.org/)
 -   [R for data science slack
     community](https://rfordatascience.slack.com/join/shared_invite/zt-13ohm2as3-k3Vl31J54zTOjw1h3wpAuQ#/shared-invite/email)
     has a channel on `ggplot2`
 -   [Download](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf)
-    the `ggplot2` cheatsheet
+    the `ggplot2` cheat sheet
 -   Ask or search questions at
-    [Stackoverflow](https://stackoverflow.com/questions/tagged/ggplot2)
+    [StackOverflow](https://stackoverflow.com/questions/tagged/ggplot2)
     or [RStudio Community](https://community.rstudio.com/tag/ggplot2)
     with `ggplot2` tag.
 -   [The R Graph Gallery](https://www.r-graph-gallery.com/)

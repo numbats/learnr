@@ -4,6 +4,6 @@ ggplot(BudgetFood, aes(x = ___)) +
                  aes(y = after_stat(density))) +
   geom_histogram(aes(y = after_stat(density)),
                  binwidth = 1) +
-  geom_density(color = "red") +
+  geom_density(colour = "red") +
   facet____
   

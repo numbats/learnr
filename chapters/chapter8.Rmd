@@ -110,7 +110,7 @@ The default setting is `echo = TRUE`. When you set `echo = FALSE`, it will only 
 ### `eval` 
 
 
-The defult setting is `eval = TRUE`. If you only want to print out the code but not run the code, you can set `eval = FALSE`. This is helpful when you are  
+The default setting is `eval = TRUE`. If you only want to print out the code but not run the code, you can set `eval = FALSE`. This is helpful when you are  
 
 
 ### `message`,  ` warning`. `error`
@@ -136,7 +136,7 @@ ggplot(mpg, aes(displ, hwy, colour = class)) +
 ```
 ````
 
-The default setting is `cach = FALSE`. Everytime when you `Knit` a R Markdown document, it will run through all the code chunks. When some of your code chunk takes too much time to run or you don't need to re-run the code everytime when you knit the document, you can set `cache = TRUE` to loaded from previously saved databases (.rdb and .rdx files). This means that this code chunk will only be evealuted the first time you knit the document. 
+The default setting is `cach = FALSE`. Everytime when you `Knit` a R Markdown document, it will run through all the code chunks. When some of your code chunk takes too much time to run or you don't need to re-run the code every time when you knit the document, you can set `cache = TRUE` to loaded from previously saved databases (`.rdb` and `.rdx` files). This means that this code chunk will only be evaluated the first time you knit the document. 
 
 
 ### `fig.width` and `fig.height`
@@ -154,7 +154,7 @@ ggplot(mpg, aes(displ, hwy, colour = class)) +
 ```
 
 
-The default setting is `fig.width =7,fig.height =7`. The figures are defined in inches.  `fig.width` defines the figure's width where `fig.hight` defines the figure's hight. 
+The default setting is `fig.width =7,fig.height =7`. The figures are defined in inches.  `fig.width` defines the figure's width where `fig.height` defines the figure's hight. 
 
 ### `out.width` and `out.height`
 
@@ -179,9 +179,9 @@ You can also scale your output figures with `out.width` and `out.height`. `out.w
 
 <exercise id="4" title="Other useful tips for R Markdown">
 
-## Insert webiste links to your R Markdown 
+## Insert website links to your R Markdown 
 
-You can add website links in your R Markdown using sytex: `[Text](link)`. Inside `[]` is the text you want to display for the hyperlink and the actual link goes into `()`. 
+You can add website links in your R Markdown using syntax: `[Text](link)`. Inside `[]` is the text you want to display for the hyperlink and the actual link goes into `()`. 
 
 
 ## Insert pictures 
@@ -200,7 +200,7 @@ knitr::include_graphics("images/rmarkdown.png")
 ```
 ````
 
-## You can make presention slides using `R Markdown`
+## You can make presentation slides using `R Markdown`
 
 ```{r, echo=FALSE, out.width="50%"}
 knitr::include_graphics("slides.png", error = FALSE)
