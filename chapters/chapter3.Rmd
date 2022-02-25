@@ -115,7 +115,11 @@ There are a few reasons this might work. It allows you to re-run your code from 
 
 Run the example below and interpret the error message. What does it tell you? 
 
-When you run the code above, you show see error message: "Error in cars %>% mutate(total = dist * speed): could not find function "%>%" ". This is generally the case when you did not load in the required packages before trying to use this function. Try searching for this error and see which packages you need to load in at the top of the code to fix the error.
+When you run the code above, you show see error message: 
+
+> Error in cars %>% mutate(total = dist * speed): could not find function "%>%"
+
+This is generally the case when you did not load in the required packages before trying to use this function. Try searching for this error and see which packages you need to load in at the top of the code to fix the error.
 
 ```{teachr 03_01}
 {<library(dplyr)🎯>}
@@ -157,6 +161,7 @@ Check that all variables used in computing total exist in the dataset. Is there 
 ???
 library(dplyr)
 answer <- cars %>% mutate(total = dist*speed)
+expect_match(.solution, "library", info = "You should load the required packages in using the library() function.")
 expect_equal(
   total_dis,
   answer,
@@ -184,7 +189,7 @@ A good question consists of a clear and concise description of your problem, and
 
 A good description provides some context to your question. What are you doing and what are you trying to achieve?
 
-* Write more information than `it doesn't work` or `it shows errors`. These generic phrases don't describe the problem.
+* Write more information than *'it doesn't work'* or *'it shows errors'*. These generic phrases don't describe the problem.
 * State what you want to achieve and the output you expected to get.  
 * Provide a copy of your error messages. This has to be exact words of your error messages. 
 * Write a specific descriptive title that summarises your problem in a few words.

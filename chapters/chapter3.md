@@ -138,8 +138,11 @@ for, no extra objects in your environment that might be hanging around.
 Run the example below and interpret the error message. What does it tell
 you?
 
-When you run the code above, you show see error message: "Error in cars
-%\>% mutate(total = dist \* speed): could not find function"%\>%\" \".
+When you run the code above, you show see error message:
+
+> Error in cars %\>% mutate(total = dist \* speed): could not find
+> function "%\>%"
+
 This is generally the case when you did not load in the required
 packages before trying to use this function. Try searching for this
 error and see which packages you need to load in at the top of the code
@@ -201,8 +204,8 @@ problem, and a small example that can be used to reproduce the issue.
 A good description provides some context to your question. What are you
 doing and what are you trying to achieve?
 
--   Write more information than `it doesn't work` or `it shows errors`.
-    These generic phrases don't describe the problem.
+-   Write more information than *'it doesn't work'* or *'it shows
+    errors'*. These generic phrases don't describe the problem.
 -   State what you want to achieve and the output you expected to get.\
 -   Provide a copy of your error messages. This has to be exact words of
     your error messages.
