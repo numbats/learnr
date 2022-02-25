@@ -19,7 +19,7 @@ library(ggplot2)
 * A layer is comprised of:
    - `data` 
    - `mapping` 
-   - statistical tranformation (`stat`)
+   - statistical transformation (`stat`)
    - geometric object (`geom`)
    - position adjustment (`position`)
 * `data` and `mapping` are often inherited from `ggplot`
@@ -204,5 +204,5 @@ Notes:
 
 * We've seen how you can add multiple layers in `ggplot`.
 * You can define layer-specific data or mappings. 
-* An attribute of a graphical parameter must be placed outside of `aes()` in the correpsonding layer. 
+* An attribute of a graphical parameter must be placed outside of `aes()` in the corresponding layer. 
 * You can add the annotation layer using `annotate()`.

@@ -91,7 +91,7 @@ ggplot(cars, aes(dist, speed)) +
 
 ## Back-transforming with `geom_smooth()`
 
-* We add the inverse transformation for `y` below to get back the original scale before the `log10` tranformation:
+* We add the inverse transformation for `y` below to get back the original scale before the `log10` transformation:
 
 ```{r smooth-lm4, eval = FALSE}
 ggplot(cars, aes(dist, speed)) + 

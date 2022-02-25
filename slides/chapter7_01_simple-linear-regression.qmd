@@ -223,7 +223,7 @@ for $i = 1, ..., 50$ where:
 
 ## Getting the model parameter estimates
 
-* To get the leqast squares estimates, referred to also as **coefficients**, you can use `coef` function:
+* To get the least squares estimates, referred to also as **coefficients**, you can use `coef` function:
 
 ```{r}
 coef(fit)
@@ -281,7 +281,7 @@ summary(fit)
 
 ---
 
-## Exracting model summary data
+## Extracting model summary data
 
 * You can see useful information from  `summary(fit)` but it is not easy to extract it as a tidy data. 
 

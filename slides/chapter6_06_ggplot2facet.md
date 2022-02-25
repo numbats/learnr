@@ -22,7 +22,7 @@ Notes:
 
 ## Illustrative data 🌱 growth of soybean
 
-``` r
+``` {.r}
 data(davidian.soybean, package = "agridat")
 str(davidian.soybean)
 ```
@@ -52,8 +52,14 @@ Notes:
     on the input variable and create subplots based on the data in the
     corresponding panel.
 
-``` r
+``` {.r}
 library(ggplot2)
+```
+
+    ## Warning in register(): Can't find generic `scale_type` in package ggplot2 to
+    ## register S3 method.
+
+``` {.r}
 ggplot(davidian.soybean, aes(day, weight)) + 
   geom_point() +
   facet_wrap(~year)
@@ -67,7 +73,7 @@ ggplot(davidian.soybean, aes(day, weight)) +
 
 -   `facet_wrap` "wraps" the panels into 2d if you have many panels
 
-``` r
+``` {.r}
 ggplot(davidian.soybean, aes(day, weight)) + 
   geom_point() +
   facet_wrap(~plot)
@@ -82,7 +88,7 @@ ggplot(davidian.soybean, aes(day, weight)) +
 -   Discretize continuous variable using `cut()`, `cut_width()`,
     `cut_interval()` or `cut_number()`.
 
-``` r
+``` {.r}
 ggplot(davidian.soybean, aes(day, weight)) + 
   geom_point() +
   facet_wrap(~cut_number(day, 4))
@@ -102,7 +108,7 @@ Notes:
 -   By default the scales are shared across the panels but you can
     choose to have scales built independently for each panel:
 
-``` r
+``` {.r}
 ggplot(davidian.soybean, aes(day, weight)) + 
   geom_point() +
   facet_wrap(~cut_number(day, 4), scales = "free")
@@ -122,7 +128,7 @@ Note:
 -   If you want to wrap the facet by more than one variable, you can
     combine the variables by using `+`:
 
-``` r
+``` {.r}
 ggplot(davidian.soybean, aes(day, weight)) + 
   geom_point() +
   facet_wrap(~ year + variety)
@@ -141,7 +147,7 @@ Notes:
 -   Alternatively, you can use `facet_grid()` to lay out the panels in a
     2d grid:
 
-``` r
+``` {.r}
 ggplot(davidian.soybean, aes(day, weight)) + 
   geom_point() +
   facet_grid(variety ~ year)
@@ -156,7 +162,7 @@ ggplot(davidian.soybean, aes(day, weight)) +
 -   If a layer data is missing the faceting variable(s), then the layer
     will be shown across all panels based on all of the layer data
 
-``` r
+``` {.r}
 ggplot(davidian.soybean, aes(day, weight)) + 
   geom_point(data = dplyr::select(davidian.soybean, -c(variety, year)),
              color = "grey70") +
@@ -176,7 +182,7 @@ Notes:
 
 -   We use the `patchwork` package for combining plots.
 
-``` r
+``` {.r}
 library(patchwork)
 ```
 
@@ -187,7 +193,7 @@ library(patchwork)
 
 ## Demo with `patchwork`
 
-``` r
+``` {.r}
 g1 <- ggplot(davidian.soybean, aes(day, weight)) +
   geom_point(aes(color = as.factor(year))) 
 g2 <- ggplot(davidian.soybean, aes(as.factor(year), weight)) +
@@ -204,7 +210,7 @@ g1 + g2
 -   `patchwork` can collect the same guides across the plots as well as
     automatically add tag labels
 
-``` r
+``` {.r}
 g1 + g2 + 
   plot_layout(guides = "collect") + 
   plot_annotation(tag_levels = "A")
@@ -219,7 +225,7 @@ g1 + g2 +
 -   You can combine the use of `+` and `/` to layout plots horizontally
     or vertically using `(` to group rows or columns
 
-``` r
+``` {.r}
 (g1 + g2) / (g2 + g1) + 
   plot_layout(guides = "collect")
 ```
@@ -231,9 +237,9 @@ g1 + g2 +
 ## Flexible plot layout
 
 -   If you want even more control over the plot layout, then you can
-    specify a strinng with the structure you want like below:
+    specify a string with the structure you want like below:
 
-``` r
+``` {.r}
 design <- "
  11###
  11###

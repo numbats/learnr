@@ -8,7 +8,7 @@ type: slides
 -   You can easily plot the fitted model for a bivariate data using
     `geom_smooth()` from `ggplot2`.
 
-``` r
+``` {.r}
 ggplot(cars, aes(dist, speed)) + 
   geom_point() +
   geom_smooth(method = lm, se = FALSE, formula = y ~ x)
@@ -26,7 +26,7 @@ Notes:
 
 -   You can modify formula on the left hand side based on `x`
 
-``` r
+``` {.r}
 ggplot(cars, aes(dist, speed)) + 
   geom_point() +
   geom_smooth(method = lm, se = FALSE, formula = y ~ poly(x, 3))
@@ -40,7 +40,7 @@ ggplot(cars, aes(dist, speed)) +
 
 -   But it's not the same for the right hand side!
 
-``` r
+``` {.r}
 ggplot(cars, aes(dist, speed)) + 
   geom_point() +
   geom_smooth(method = lm, se = FALSE, formula = log10(y) ~ poly(x, 3))
@@ -60,7 +60,7 @@ Notes:
 
 -   Below is actually showing `lm(log10(speed) ~ dist, data = cars)`:
 
-``` r
+``` {.r}
 ggplot(cars, aes(dist, speed)) + 
   geom_point() +
   geom_smooth(method = lm, se = FALSE, formula = y ~ x) +
@@ -74,9 +74,9 @@ ggplot(cars, aes(dist, speed)) +
 ## Back-transforming with `geom_smooth()`
 
 -   We add the inverse transformation for `y` below to get back the
-    original scale before the `log10` tranformation:
+    original scale before the `log10` transformation:
 
-``` r
+``` {.r}
 ggplot(cars, aes(dist, speed)) + 
   geom_point() +
   geom_smooth(method = lm, se = FALSE, formula = y ~ x) +

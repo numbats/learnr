@@ -25,7 +25,7 @@ knitr::opts_chunk$set(fig.path = "images/chapter4/",
 
 ### Why do I want to start an R Project? 
 
-* <font size="6"> This is similar to process of organising your word documents, PDFs, excel files and ect. </font>
+* <font size="6"> This is similar to process of organising your word documents, PDFs, excel files and etc. </font>
 
 * <font size="6"> Having individual R project for different things you are working on keep your workflow and files organised. </font>
 

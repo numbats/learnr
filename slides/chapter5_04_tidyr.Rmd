@@ -248,7 +248,7 @@ Notes:
 
 There are various ways to handle missing values (the `NA`s) in your data set.
 
-Tidyr has three functions:
+The tidyr package has three functions:
 
 - `fill()`: fill the missing values using the last observation carried forward. It has a `.direction` argument that you can pass `up` or `down`.
 - `drop_na()`: drop the rows with observations that are `NA`

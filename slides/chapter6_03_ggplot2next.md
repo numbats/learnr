@@ -26,7 +26,7 @@ Let's consider looking at more layers, now with two or more variables.
 -   Let's have a look at the `diamonds` data which contains information
     about different attributes of diamonds
 
-``` r
+``` {.r}
 data(diamonds, package = "ggplot2")
 diamonds
 ```
@@ -50,7 +50,7 @@ diamonds
 
 ## A scatterplot with `geom_point()`
 
-``` r
+``` {.r}
 ggplot(data = diamonds,
        mapping = aes(x = carat, y = price)) +
   geom_point()
@@ -59,7 +59,7 @@ ggplot(data = diamonds,
 <img src="chapter6_03_ggplot2next_files/figure-markdown/geom-point-1.png" style="display: block; margin: auto;" />
 
 -   Scatter plot of price vs carat of diamonds
--   Each point correponds to a dimaond
+-   Each point corresponds to a diamaond
 
 Notes:
 
@@ -74,7 +74,7 @@ Notes:
 
 ## A hexagonal 2D heatmap with `geom_hex()`
 
-``` r
+``` {.r}
 ggplot(data = diamonds,
        mapping = aes(x = carat, y = price)) +
   geom_hex()
@@ -101,7 +101,7 @@ Notes:
 
 ## A rectangular 2D heatmap with `geom_bin_2d()`
 
-``` r
+``` {.r}
 ggplot(data = diamonds,
        mapping = aes(x = carat, y = price)) +
   geom_bin_2d()
@@ -118,7 +118,7 @@ Notes:
 
 ## Count of overlapping points with `geom_count()`
 
-``` r
+``` {.r}
 ggplot(data = diamonds,
        mapping = aes(x = carat, y = price)) +
   geom_count()
@@ -135,7 +135,7 @@ Notes:
 
 ## Contour of a 2D density with `geom_density_2d()`
 
-``` r
+``` {.r}
 ggplot(data = diamonds,
        mapping = aes(x = carat, y = price)) +
   geom_density_2d()
@@ -154,7 +154,7 @@ Notes:
 
 ## Contour of a 2D density with `geom_density_2d_filled()`
 
-``` r
+``` {.r}
 ggplot(data = diamonds,
        mapping = aes(x = carat, y = price)) +
   geom_density_2d_filled()
@@ -174,7 +174,7 @@ Notes:
 -   The data contains topographic information on Auckland's Maunga Whau
     Volcano
 
-``` r
+``` {.r}
 volcanod <- data.frame(row = as.vector(row(volcano)),
                        col = as.vector(col(volcano)),
                        value = as.vector(volcano))
@@ -5500,7 +5500,7 @@ Notes:
 
 ## A 2D contour plot with `geom_contour()`
 
-``` r
+``` {.r}
 ggplot(data = volcanod, 
        mapping = aes(x = col, y = row, z = value)) + 
   geom_contour()
@@ -5512,7 +5512,7 @@ ggplot(data = volcanod,
 
 ## A 2D contour plot with `geom_contour_filled()`
 
-``` r
+``` {.r}
 ggplot(data = volcanod, 
        mapping = aes(x = col, y = row, z = value)) + 
   geom_contour_filled()
@@ -5524,7 +5524,7 @@ ggplot(data = volcanod,
 
 ## Tile plots with `geom_tile()`
 
-``` r
+``` {.r}
 ggplot(volcanod, aes(col, row, fill = value)) +
  geom_tile()
 ```
@@ -5535,7 +5535,7 @@ ggplot(volcanod, aes(col, row, fill = value)) +
 
 ## Raster plots with `geom_raster()`
 
-``` r
+``` {.r}
 ggplot(volcanod, aes(col, row, fill = value)) +
  geom_raster()
 ```
@@ -5549,7 +5549,7 @@ ggplot(volcanod, aes(col, row, fill = value)) +
 
 ## Rectangular plots with `geom_rect()`
 
-``` r
+``` {.r}
 ggplot(volcanod, aes(xmin = col - 0.5, xmax = col + 0.5,
                      ymin = row - 0.5, ymax = row + 0.5, fill = value)) +
  geom_rect()
@@ -5563,7 +5563,7 @@ ggplot(volcanod, aes(xmin = col - 0.5, xmax = col + 0.5,
 
 ## Illustrative data 📈 economics
 
-``` r
+``` {.r}
 data(economics, package = "ggplot2")
 economics
 ```
@@ -5587,7 +5587,7 @@ economics
 
 ## Line plot with `geom_line()`
 
-``` r
+``` {.r}
 ggplot(economics, aes(date, unemploy)) + 
   geom_line()
 ```
@@ -5598,7 +5598,7 @@ ggplot(economics, aes(date, unemploy)) +
 
 ## `geom_path()`
 
-``` r
+``` {.r}
 ggplot(economics, aes(unemploy/pop, psavert)) +
   geom_path()
 ```
@@ -5609,7 +5609,7 @@ ggplot(economics, aes(unemploy/pop, psavert)) +
 
 ## `geom_step()`
 
-``` r
+``` {.r}
 ggplot(economics, aes(unemploy/pop, psavert)) +
   geom_step()
 ```
@@ -5622,7 +5622,7 @@ ggplot(economics, aes(unemploy/pop, psavert)) +
 
 -   Drawing maps require the map data
 
-``` r
+``` {.r}
 world <- map_data("world")
 world
 ```
@@ -38967,7 +38967,7 @@ world
 
 ## Drawing world map with `geom_polygon()`
 
-``` r
+``` {.r}
 world <- map_data("world")
 ggplot(world, aes(long, lat, group = group)) +
   geom_polygon()
@@ -38998,9 +38998,9 @@ ggplot(world, aes(long, lat, group = group)) +
 
 ---
 
-## Illusrative data 🚢 ship accidents
+## Illustrative data 🚢 ship accidents
 
-``` r
+``` {.r}
 data(Accident, package = "Ecdat")
 str(Accident)
 ```
@@ -39024,7 +39024,7 @@ Notes:
 
 ## A stacked barplot with `geom_col()`
 
-``` r
+``` {.r}
 ggplot(Accident, aes(type, acc, fill = constr, group = operate)) +
   geom_col(color = "black", position = "stack")
 ```
@@ -39045,7 +39045,7 @@ Notes:
 
 ## A grouped barplot with `geom_col()`
 
-``` r
+``` {.r}
 ggplot(Accident, aes(type, acc, fill = constr)) +
   geom_col(color = "black", position = "dodge")
 ```
@@ -39063,7 +39063,7 @@ Notes:
 
 ## Another grouped barplot with `geom_col()`
 
-``` r
+``` {.r}
 ggplot(Accident, aes(type, acc, fill = constr, group = operate)) +
   geom_col(color = "black", position = "dodge2")
 ```
@@ -39081,7 +39081,7 @@ Notes:
 
 ## Stacked percentage barplot with `geom_col()`
 
-``` r
+``` {.r}
 ggplot(Accident, aes(type, acc, fill = constr, group = operate)) +
   geom_col(color = "black", position = "fill")
 ```
@@ -39103,4 +39103,4 @@ Notes:
 -   It's perfectly normal that you need to google how to use `ggplot`
     for certain plots (we all do in the beginning).
 -   We also saw how to use the different `position` adjustments for
-    batplots.
+    barplots.

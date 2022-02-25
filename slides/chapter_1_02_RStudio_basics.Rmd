@@ -22,7 +22,7 @@ options("knitr.graphics.error" = FALSE)
 
 
 
-### What does RStudo looks like? 
+### What does RStudio looks like? 
 
 
 ```{r, echo=FALSE}

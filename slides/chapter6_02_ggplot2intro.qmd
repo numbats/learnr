@@ -231,7 +231,7 @@ theme_xaxis <- theme(axis.line.x = element_line(color = "black", size = 1),
 
 ```{r catalogue-single, fig.width = 3, fig.height = 3, echo = FALSE, fig.show='hide'}
 ggplot(faithful, aes(eruptions)) +
-  geom_histogram(fill = green, bins = 10, color = "white") +
+  geom_histogram(fill = green, bins = 10, colour = "white") +
   theme_dist +
   theme_xaxis +
   theme_yaxis +
@@ -239,7 +239,7 @@ ggplot(faithful, aes(eruptions)) +
   theme_border
 
 ggplot(faithful, aes(eruptions)) +
-  geom_density(fill = green, color = NA) +
+  geom_density(fill = green, colour = NA) +
   theme_dist +
   theme_xaxis +
   theme_yaxis +
@@ -247,7 +247,7 @@ ggplot(faithful, aes(eruptions)) +
   ggtitle("DENSITY/FREQUENCY PLOT")
 
 ggplot(faithful, aes(eruptions, "")) +
-  geom_boxplot(fill = "white", color = green, width = 0.3) +
+  geom_boxplot(fill = "white", colour = green, width = 0.3) +
   theme_dist +
   theme_xaxis +
   theme_border +
@@ -308,7 +308,7 @@ ggplot(data = CPSch3,
 Note:
 
 * By default `ggplot2` uses 30 bins (`bins = 30`) when drawing histograms. 
-* It is often a good idea to try different number of bins (`bins`) or different bin widths (`bindwidth`) to see how the **shape** of the histogram changes. 
+* It is often a good idea to try different number of bins (`bins`) or different bin widths (`binwidth`) to see how the **shape** of the histogram changes. 
 * Here we can see that the distribution for the average hourly earnings are slightly right skewed.
 * The mode average hourly earning looks like it's about US$14. 
 * To find more about how to change parameters of the layer, have a look at the corresponding documentation (`?geom_histogram`).
@@ -342,7 +342,7 @@ ggplot(data = CPSch3,
 
 Note: 
 
-* In this plot, the y-axis is showing density intead of count. 
+* In this plot, the y-axis is showing density instead of count. 
 * This is signalled by using `y = after_stat(density)`. 
 * This syntax is equivalent to `y = stat(density)` or `y = ..density..`, which was the old syntax to refer to computed statistics. 
 
@@ -360,7 +360,7 @@ ggplot(data = CPSch3,
 Note: 
 
 * A density plot is like a histogram where it reveals the distribution of a (continuous) numerical variable. 
-* The y-axis is showing the density, which is esimated using a particular kernel function. 
+* The y-axis is showing the density, which is estimated using a particular kernel function. 
 * The estimated density can oversmooth or have problems in the tails -- so don't only rely on density plots to tell you the full picture of the data. 
 
 
@@ -418,7 +418,7 @@ Note:
 
 
 * A dummy is required for `y` here!
-* A violin plot depicts a density estimate of a continous variable.
+* A violin plot depicts a density estimate of a continuous variable.
 
 ---
 
@@ -495,7 +495,7 @@ Note:
 * Sometimes your input data may already contain pre-computed counts. 
 * In this case, you don't need `stat = "count"` to do the counting for you. 
 * You can use `geom_col()` instead.
-* This is essential a short hand for `geom_bar(stat = "identity")` where `stat = "identity"` means that you will take the value as supplied without any statistical tranformation.
+* This is essential a short hand for `geom_bar(stat = "identity")` where `stat = "identity"` means that you will take the value as supplied without any statistical transformation.
 
 
 ---

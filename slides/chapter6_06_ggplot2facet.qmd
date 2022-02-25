@@ -213,7 +213,7 @@ g1 + g2 +
 
 ## Flexible plot layout
 
-* If you want even more control over the plot layout, then you can specify a strinng with the structure you want like below:
+* If you want even more control over the plot layout, then you can specify a string with the structure you want like below:
 
 ```{r patchwork-design, eval = FALSE}
 design <- "

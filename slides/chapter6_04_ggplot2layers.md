@@ -8,7 +8,7 @@ type: slides
 -   A layer is comprised of:
     -   `data`
     -   `mapping`
-    -   statistical tranformation (`stat`)
+    -   statistical transformation (`stat`)
     -   geometric object (`geom`)
     -   position adjustment (`position`)
 -   `data` and `mapping` are often inherited from `ggplot`
@@ -23,7 +23,7 @@ Notes:
 
 ## The violin plot layer
 
-``` r
+``` {.r}
 ggplot(data = diamonds,
        mapping = aes(x = cut, y = price)) +
   geom_violin()
@@ -46,7 +46,7 @@ Notes:
 
 ## You can add more than one layer
 
-``` r
+``` {.r}
 ggplot(data = diamonds,
        mapping = aes(x = cut, y = price)) +
   geom_violin() + 
@@ -63,7 +63,7 @@ Notes:
 
 ## The order of the layer matters
 
-``` r
+``` {.r}
 ggplot(data = diamonds,
        mapping = aes(x = cut, y = price)) +
   geom_boxplot(width = 0.1) +
@@ -100,7 +100,7 @@ Notes:
 
 ## Overwriting data and aesthetic
 
-``` r
+``` {.r}
 library(dplyr) # needed for data wrangling
 ggplot(data = diamonds, aes(x = cut, y = price)) +
   geom_violin(aes(fill = cut)) + 
@@ -130,7 +130,7 @@ Notes:
 
 *Not* what you want:
 
-``` r
+``` {.r}
 ggplot(diamonds, aes(carat, price)) +
   geom_point(aes(color = "dodgerblue"))
 ```
@@ -150,7 +150,7 @@ Notes:
 
 Don't put attributes inside `aes()`!
 
-``` r
+``` {.r}
 ggplot(diamonds, aes(carat, price)) +
   geom_point(color = "dodgerblue")
 ```
@@ -163,7 +163,7 @@ ggplot(diamonds, aes(carat, price)) +
 
 -   Use `I()` operator to mean "as-is" in aesthetic mapping.
 
-``` r
+``` {.r}
 ggplot(diamonds, aes(carat, price)) +
   geom_point(aes(color = I("dodgerblue")))
 ```
@@ -176,7 +176,7 @@ ggplot(diamonds, aes(carat, price)) +
 
 -   Attributes should be defined in specific layers.
 
-``` r
+``` {.r}
 ggplot(diamonds, aes(carat, price),
        color = "dodgerblue") +
   geom_point()
@@ -197,7 +197,7 @@ Notes:
 -   `annotate()` allows you to add elements to plots without a
     `data.frame`
 
-``` r
+``` {.r}
 ggplot(diamonds, aes(color, fill = cut)) +
   geom_bar(color = "black") + 
   annotate("text", x = "I", y = 9000, 
@@ -218,5 +218,5 @@ Notes:
 -   We've seen how you can add multiple layers in `ggplot`.
 -   You can define layer-specific data or mappings.
 -   An attribute of a graphical parameter must be placed outside of
-    `aes()` in the correpsonding layer.
+    `aes()` in the corresponding layer.
 -   You can add the annotation layer using `annotate()`.

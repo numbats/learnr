@@ -3,6 +3,7 @@ title: Getting start with R Markdown
 output:
   teachr::teachr_slides
 type: slides
+chapter: 8
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(fig.path = "images/chapter9-01/",
@@ -79,9 +80,9 @@ knitr::include_graphics("images/chapter9/demo-knit-pdf.png")
 
 ---
 
-### Behind the sceen 
+### Behind the screen 
 
-`Knitr` covers `.Rmd` to `.md`. `rmarkdown` prepare the `.md` file and use [Pandoc](https://pandoc.org) to convert `.md` to our destinate file output such as `.pdf` and `.html`.
+`Knitr` covers `.Rmd` to `.md`. `rmarkdown` prepare the `.md` file and use [Pandoc](https://pandoc.org) to convert `.md` to our destination file output such as `.pdf` and `.html`.
 
 
 

@@ -18,7 +18,7 @@ type: slides
 
 <div class="column" style="width:70%">
 
-``` r
+``` {.r}
 ggplot(cars, aes(speed, dist)) +
   geom_point() + 
   geom_abline(intercept = -17, 
@@ -132,7 +132,7 @@ Notes:
 -   The variables in the formula refers to the variables in the input
     data.
 
-``` r
+``` {.r}
 fit <- lm(dist ~  speed, data = cars)
 ```
 
@@ -159,10 +159,10 @@ $$y_i = \beta_0 + \beta_1 x_i + e_i$$ for $i = 1, ..., 50$ where:
 
 ## Getting the model parameter estimates
 
--   To get the leqast squares estimates, referred to also as
+-   To get the least squares estimates, referred to also as
     **coefficients**, you can use `coef` function:
 
-``` r
+``` {.r}
 coef(fit)
 ```
 
@@ -171,7 +171,7 @@ coef(fit)
 
 -   You can get an estimate of $\sigma$ by:
 
-``` r
+``` {.r}
 sigma(fit)
 ```
 
@@ -181,7 +181,7 @@ sigma(fit)
 
 ## Extracting residuals
 
-``` r
+``` {.r}
 residuals(fit)
 ```
 
@@ -209,7 +209,7 @@ residuals(fit)
 -   Standardised residuals are residuals divided by its standard
     deviation.
 
-``` r
+``` {.r}
 rstandard(fit)
 ```
 
@@ -249,7 +249,7 @@ Notes:
     estimate of its standard deviation, where the estimate is calculated
     by removing the corresponding observation.
 
-``` r
+``` {.r}
 rstudent(fit)
 ```
 
@@ -276,7 +276,7 @@ rstudent(fit)
 
 ## Model summaries
 
-``` r
+``` {.r}
 summary(fit)
 ```
 
@@ -301,7 +301,7 @@ summary(fit)
 
 ---
 
-## Exracting model summary data
+## Extracting model summary data
 
 -   You can see useful information from `summary(fit)` but it is not
     easy to extract it as a tidy data.
@@ -309,7 +309,7 @@ summary(fit)
 -   The package `broom` has handy functions to get the summary values
     out in a tidy format:
 
-``` r
+``` {.r}
 broom::tidy(fit)
 ```
 
@@ -319,7 +319,7 @@ broom::tidy(fit)
     ## 1 (Intercept)   -17.6      6.76      -2.60 1.23e- 2
     ## 2 speed           3.93     0.416      9.46 1.49e-12
 
-``` r
+``` {.r}
 broom::glance(fit)
 ```
 
@@ -336,7 +336,7 @@ broom::glance(fit)
 -   You can also easily augment the data with model information,
     e.g. fitted values and residuals.
 
-``` r
+``` {.r}
 broom::augment(fit)
 ```
 
@@ -374,7 +374,7 @@ Notes:
 
 -   You can apply transformations directly in the model formula:
 
-``` r
+``` {.r}
 fit_transform <- lm(log10(dist) ~  sqrt(speed), data = cars)
 ```
 
@@ -382,7 +382,7 @@ $$\sqrt{\texttt{dist}} = \beta_0 + \beta_1 \log_{10}(\texttt{speed}).$$
 
 -   Whether this model is sensible is another story.
 
-``` r
+``` {.r}
 coef(fit_transform)
 ```
 
@@ -398,7 +398,7 @@ $$\widehat{\texttt{dist}} = -17.58 + 3.93\cdot \texttt{speed}$$
 -   The `predict` function can return predicted response values from a
     fitted model:
 
-``` r
+``` {.r}
 predict(fit, data.frame(speed = c(5, 10)))
 ```
 
@@ -417,7 +417,7 @@ $$\log_{10}(\widehat{\texttt{dist}}) = -4.42 + 9.23\cdot \sqrt{\texttt{speed}}$$
 
 -   No need to transform the covariates with `predict`:
 
-``` r
+``` {.r}
 predict(fit_transform, data.frame(speed = c(5, 10)))
 ```
 
@@ -433,7 +433,7 @@ Notes:
 
 -   Prediction of $\texttt{dist}$:
 
-``` r
+``` {.r}
 10^predict(fit_transform, data.frame(speed = c(5, 10)))
 ```
 

@@ -20,8 +20,7 @@ journey with R Markdown.
 ### Start your very first R Markdown
 
 You should see `R Markdown` when you click on
-<svg viewBox="0 0 448 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg">
-<path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg>.
+![](/tmp/Rtmp2PwGJ7/file5e2da77a85f61.png){height="0.7em"}.
 
 <img src="images/chapter9/adding_rmd.png" width="70%" style="display: block; margin: auto;" />
 
@@ -64,8 +63,8 @@ will generate an html output file.
 
 ---
 
-### Behind the sceen
+### Behind the screen
 
 `Knitr` covers `.Rmd` to `.md`. `rmarkdown` prepare the `.md` file and
-use [Pandoc](https://pandoc.org) to convert `.md` to our destinate file
-output such as `.pdf` and `.html`.
+use [Pandoc](https://pandoc.org) to convert `.md` to our destination
+file output such as `.pdf` and `.html`.

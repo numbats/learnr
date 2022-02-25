@@ -208,7 +208,7 @@ ggplot(data = diamonds,
 ```
 
 * Scatter plot of price vs carat of diamonds
-* Each point correponds to a dimaond
+* Each point corresponds to a diamaond
 
 Notes:
 
@@ -475,7 +475,7 @@ ggplot(sumdf2, aes(g1, y, fill = g2)) +
 
 ---
 
-## Illusrative data 🚢 ship accidents
+## Illustrative data 🚢 ship accidents
 
 ```{r}
 data(Accident, package = "Ecdat")
@@ -558,4 +558,4 @@ Notes:
 * We looked at more layers in `ggplot2`. 
 * There are other layers available beyond `ggplot2` in [extension packages](https://github.com/tidyverse/ggplot2/blob/main/NEWS.md). 
 * It's perfectly normal that you need to google how to use `ggplot` for certain plots (we all do in the beginning).
-* We also saw how to use the different `position` adjustments for batplots.
+* We also saw how to use the different `position` adjustments for barplots.

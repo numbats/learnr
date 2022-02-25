@@ -3,6 +3,7 @@ title: R Chunk Settings
 output:
   teachr::teachr_slides
 type: slides
+chapter: 8
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(fig.path = "images/chapter9/",

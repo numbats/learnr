@@ -3,7 +3,7 @@ title: RStudio basics
 type: slides
 
 ---
-### What does RStudo looks like?
+### What does RStudio looks like?
 
 <img src="chapter1/chapter1-02/RStudio_interface_1.png" style="display: block; margin: auto;" />
 
@@ -48,26 +48,23 @@ After you run each line of the code, you can see the messages in your
 
 ### R packages installation and loading
 
--   <font size="6"> The previous example showed how to load in
-    the packages using `library()`. However, before you can use
-    `library()` to load the package you need to first have it
-    **installed**. </font>
+-   <font size="6"> The previous example showed how to load in the
+    packages using `library()`. However, before you can use `library()`
+    to load the package you need to first have it **installed**. </font>
 
--   <font size="6"> Think about the package installation
-    process as purchasing a book (package) and store it on a bookshelf
-    (in the library folder). </font>
+-   <font size="6"> Think about the package installation process as
+    purchasing a book (package) and store it on a bookshelf (in the
+    library folder). </font>
 
 ---
 
 ### R packages installation and loading
 
--   <font size="6"> Loading the package using `library()` is
-    like bring out the book (package) to your current working
-    environment. </font>
+-   <font size="6"> Loading the package using `library()` is like bring
+    out the book (package) to your current working environment. </font>
 
--   <font size="6"> Therefore, before you could load in
-    packages you need to make sure that you have that package
-    installed.</font>
+-   <font size="6"> Therefore, before you could load in packages you
+    need to make sure that you have that package installed.</font>
 
 ---
 
@@ -92,7 +89,7 @@ There are two ways to install packages.
 
 Note: The first way is by clicking. Open the `Pacakges` window on the
 bottom right, click on `Install`
-![](/tmp/RtmpMEBjXu/file50a9360e6d770.png){height="0.7em"}.
+![](/tmp/RtmpaUlBQk/file5d7cf6b356d84.png){height="0.7em"}.
 
 You should see the pop-up below. You can type in the packages you want
 to install in and make sure that all the dependencies are also
@@ -111,7 +108,7 @@ inside `""`.
 <img src="chapter1/chapter1-02/RStudio_tools.png" style="display: block; margin: auto;" />
 
 Note: Customise your RStudio, go `Tools`
-![](/tmp/RtmpMEBjXu/file50a937dcb225.png){height="0.7em"}
+![](/tmp/RtmpaUlBQk/file5d7cf6bdc9a1.png){height="0.7em"}
 `Global Options..`
 
 ---
@@ -122,9 +119,8 @@ Note: Customise your RStudio, go `Tools`
 
 -   If you are not able to download package from this sources, go to
     `Global Options...`
-    ![](/tmp/RtmpMEBjXu/file50a937b445361.png){height="0.7em"}
-    `Packages`
-    ![](/tmp/RtmpMEBjXu/file50a9319820bcc.png){height="0.7em"}
+    ![](/tmp/RtmpaUlBQk/file5d7cf849c20a.png){height="0.7em"} `Packages`
+    ![](/tmp/RtmpaUlBQk/file5d7cf7a0e9f38.png){height="0.7em"}
     `Primary CRAN repositor`. You can select the mirror that is
     physically close to you which might be easier for you to connect to.
 
@@ -141,4 +137,4 @@ from the CRAN RStudio Cloud.
 
 Note: You can also change the appearance of your RStudio from the
 `Global Options...`
-![](/tmp/RtmpMEBjXu/file50a93447ec697.png){height="0.7em"} `Appearance`.
+![](/tmp/RtmpaUlBQk/file5d7cfa31b5e6.png){height="0.7em"} `Appearance`.

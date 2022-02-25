@@ -32,7 +32,7 @@ World Health Organization Global Tuberculosis Report
 
 Table 1
 
-``` r
+``` {.r}
 table1
 ```
 
@@ -65,7 +65,7 @@ Examine each of the table.
 
 Table 2
 
-``` r
+``` {.r}
 table2
 ```
 
@@ -104,7 +104,7 @@ Examine each of the table.
 
 Table 3
 
-``` r
+``` {.r}
 table3
 ```
 
@@ -137,7 +137,7 @@ Examine each of the table.
 
 Table 5
 
-``` r
+``` {.r}
 table5
 ```
 
@@ -193,7 +193,7 @@ size of the populations.
 We want to separate the `rate` variable into variables `cases` and
 `population`.
 
-``` r
+``` {.r}
 table3 %>%
   separate(rate, into = c("cases", "population"), sep = "/", convert = TRUE)
 ```
@@ -221,7 +221,7 @@ Note:
 In table 5, the `century` and `year` column can be combined to give a
 `year_new` column.
 
-``` r
+``` {.r}
 table5 %>%
   unite(new_year,century, year, sep = "")
 ```
@@ -239,14 +239,15 @@ table5 %>%
 Note:
 
 The `sep` argument here is what comes in between the values from
-different columns. If we don't want anything in between, we can use "".
+different columns. If we don't want anything in between, we can use
+\"\".
 
 ---
 
 In table 6, there are multiple observations in the same cell in each row
 of `year` and `cases`.
 
-``` r
+``` {.r}
 table6 <- tibble(country = c("Afghanistan", "Brazil", "China"),
   year = c("1999,2000", "1999,2000", "1999,2000"),
   cases= c("745,2666", "37737,80488", "212258,213766"))
@@ -265,7 +266,7 @@ table6
 
 We would like to separate them.
 
-``` r
+``` {.r}
 table6 %>% separate_rows(cases, year, sep=',', convert = TRUE)
 ```
 
@@ -301,7 +302,7 @@ To tackle these problems, you will need `pivot_longer()` and/or
 Here you see that the case count of each country is separated into two
 columns because they are from different years.
 
-``` r
+``` {.r}
 table4a
 ```
 
@@ -314,7 +315,7 @@ table4a
 
 ---
 
-``` r
+``` {.r}
 table4a %>% 
   pivot_longer(c(`1999`, `2000`), names_to = "year", values_to = "cases")
 ```
@@ -347,7 +348,7 @@ In table 2, each observation is a certain country in a certain year.
 However, the observation is spread across two rows since there are
 `cases` and `population`.
 
-``` r
+``` {.r}
 table2
 ```
 
@@ -369,7 +370,7 @@ table2
 
 ---
 
-``` r
+``` {.r}
 table2 %>%
   pivot_wider(names_from = type, values_from = count)
 ```
@@ -398,7 +399,7 @@ Notes:
 There are various ways to handle missing values (the `NA`s) in your data
 set.
 
-Tidyr has three functions:
+The tidyr package has three functions:
 
 -   `fill()`: fill the missing values using the last observation carried
     forward. It has a `.direction` argument that you can pass `up` or
@@ -415,7 +416,7 @@ in the `up` direction, then we will impute in the `down` direction.
 
 Can you spot the difference?
 
-``` r
+``` {.r}
 apple <- tibble(
   year   = c(2020, 2020, 2020, 2020, 2021, 2021, 2021),
   qtr    = c(   1,    2,    3,    4,    2,    3,    4),
@@ -437,7 +438,7 @@ apple %>%
     ## 6  2021     3   0.07
     ## 7  2021     4   1.88
 
-``` r
+``` {.r}
 apple %>%
   fill(return, .direction = "down")
 ```
@@ -457,7 +458,7 @@ apple %>%
 
 Alternatively, we can try to drop the `NA`s in the return in `apple`.
 
-``` r
+``` {.r}
 apple %>%
   drop_na(return)
 ```
@@ -480,7 +481,7 @@ value.
 For example, suppose we found out that all missing values are actually 0
 and not recorded correctly
 
-``` r
+``` {.r}
 apple %>%
   replace_na(list(return=0))
 ```

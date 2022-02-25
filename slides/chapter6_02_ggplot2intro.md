@@ -32,20 +32,20 @@ Note:
 
 -   To use `ggplot2`, you first have to install the package
 
-``` r
+``` {.r}
 install.packages("ggplot2")
 ```
 
 -   Once you have installed it, you can load the package:
 
-``` r
+``` {.r}
 library(ggplot2)
 ```
 
 -   `ggplot2` is part of the `tidyverse` family so if you load
     `tidyverse`, you don't need to load `ggplot2` like above
 
-``` r
+``` {.r}
 library(tidyverse)
 ```
 
@@ -85,7 +85,7 @@ Note:
 -   Let's look at a survey of average hourly earnings in United States
     where each observation is an individual.
 
-``` r
+``` {.r}
 data(CPSch3, package = "Ecdat")
 str(CPSch3)
 ```
@@ -107,7 +107,7 @@ Note:
 
 ## Initialising the plot
 
-``` r
+``` {.r}
 ggplot(data = CPSch3) 
 ```
 
@@ -124,7 +124,7 @@ This graph isn't really useful.
 
 ## Mapping data variables to aesthetics
 
-``` r
+``` {.r}
 ggplot(data = CPSch3,
        mapping = aes(x = sex, y = ahe)) 
 ```
@@ -181,7 +181,7 @@ Note:
 
 ## A histogram with `geom_histogram()`
 
-``` r
+``` {.r}
 ggplot(data = CPSch3, 
        mapping = aes(x = ahe)) +
   geom_histogram() +
@@ -195,7 +195,7 @@ Note:
 -   By default `ggplot2` uses 30 bins (`bins = 30`) when drawing
     histograms.
 -   It is often a good idea to try different number of bins (`bins`) or
-    different bin widths (`bindwidth`) to see how the **shape** of the
+    different bin widths (`binwidth`) to see how the **shape** of the
     histogram changes.
 -   Here we can see that the distribution for the average hourly
     earnings are slightly right skewed.
@@ -207,7 +207,7 @@ Note:
 
 ## Layer data
 
-``` r
+``` {.r}
 g <- ggplot(data = CPSch3, 
        mapping = aes(x = ahe)) +
   geom_histogram() 
@@ -318,7 +318,7 @@ Note:
 
 ## Layer data
 
-``` r
+``` {.r}
 ggplot(data = CPSch3, 
        mapping = aes(x = ahe)) +
   geom_histogram(aes(y = after_stat(density))) 
@@ -328,7 +328,7 @@ ggplot(data = CPSch3,
 
 Note:
 
--   In this plot, the y-axis is showing density intead of count.
+-   In this plot, the y-axis is showing density instead of count.
 -   This is signalled by using `y = after_stat(density)`.
 -   This syntax is equivalent to `y = stat(density)` or
     `y = ..density..`, which was the old syntax to refer to computed
@@ -338,7 +338,7 @@ Note:
 
 ## A density plot with `geom_density()`
 
-``` r
+``` {.r}
 ggplot(data = CPSch3, 
        mapping = aes(x = ahe)) +
   geom_density() +
@@ -351,7 +351,7 @@ Note:
 
 -   A density plot is like a histogram where it reveals the distribution
     of a (continuous) numerical variable.
--   The y-axis is showing the density, which is esimated using a
+-   The y-axis is showing the density, which is estimated using a
     particular kernel function.
 -   The estimated density can oversmooth or have problems in the tails
     -- so don't only rely on density plots to tell you the full picture
@@ -361,7 +361,7 @@ Note:
 
 ## A frequency polygon with `geom_freqpoly()`
 
-``` r
+``` {.r}
 ggplot(data = CPSch3, 
        mapping = aes(x = ahe)) +
   geom_freqpoly() +
@@ -381,7 +381,7 @@ Note:
 
 ## A boxplot with `geom_boxplot()`
 
-``` r
+``` {.r}
 ggplot(data = CPSch3, 
        mapping = aes(x = ahe)) +
   geom_boxplot() +
@@ -404,7 +404,7 @@ Note:
 
 ## A violin plot with `geom_violin()`
 
-``` r
+``` {.r}
 ggplot(data = CPSch3, 
        mapping = aes(x = ahe, y = "")) +
   geom_violin() +
@@ -416,13 +416,13 @@ ggplot(data = CPSch3,
 Note:
 
 -   A dummy is required for `y` here!
--   A violin plot depicts a density estimate of a continous variable.
+-   A violin plot depicts a density estimate of a continuous variable.
 
 ---
 
 ## A dotplot with `geom_dotplot()`
 
-``` r
+``` {.r}
 ggplot(data = dplyr::sample_n(CPSch3, 200), 
        mapping = aes(x = ahe)) +
   geom_dotplot() +
@@ -440,7 +440,7 @@ Note:
 
 ## A barplot with `geom_bar()` with categorical variables
 
-``` r
+``` {.r}
 ggplot(data = CPSch3, 
        mapping = aes(x = sex)) +
   geom_bar()
@@ -459,7 +459,7 @@ Note:
 
 ## A barplot with `geom_bar()` with discrete variables
 
-``` r
+``` {.r}
 ggplot(data = filter(CPSch3, year!=1994), 
        mapping = aes(x = year)) +
   geom_bar()
@@ -488,7 +488,7 @@ Note:
 
 ## A barplot with `geom_col()`
 
-``` r
+``` {.r}
 dfsum <- CPSch3 %>% group_by(sex) %>% tally()
 dfsum
 ```
@@ -499,7 +499,7 @@ dfsum
     ## 1 male    5956
     ## 2 female  5174
 
-``` r
+``` {.r}
 ggplot(data = dfsum, 
        mapping = aes(x = sex, y = n)) +
   geom_col()
@@ -516,7 +516,7 @@ Note:
 -   You can use `geom_col()` instead.
 -   This is essential a short hand for `geom_bar(stat = "identity")`
     where `stat = "identity"` means that you will take the value as
-    supplied without any statistical tranformation.
+    supplied without any statistical transformation.
 
 ---
 
