@@ -1,6 +1,5 @@
 library(tidyverse)
-library(_____)
-data(BudgetFood, package = "Ecdat")
+library(___)
 
 
 g1 <- ggplot(BudgetFood, 
@@ -13,5 +12,5 @@ g2 <- ggplot(BudgetFood,
   scale_y_log10()
 
 # combine the plot as one figure 
-_____ + plot_layout(guides = "collect")
+___ + plot_layout(guides = "collect")
 

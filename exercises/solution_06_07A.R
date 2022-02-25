@@ -1,6 +1,3 @@
-library(ggplot2)
-data(BudgetFood, package = "Ecdat")
-
 ggplot(data = BudgetFood, 
        mapping = aes(x = totexp)) +
   geom_histogram(aes(y = after_stat(density))) +

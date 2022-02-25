@@ -113,27 +113,30 @@ Try to recreate the scatter plot below. Is there anything unusual that you notic
 ```{r plot-06-05A, code = read_lines("../exercises/solution_06_05A.R"), echo = FALSE}
 ```
 
-Note: the **submit button doesn't check your answer** in this chapter. You will need to eyeball your output plot is the same as the target plots for all questions. 
-
 ```{teachr 06_05A, outdir = "../exercises"}
 library(ggplot2)
 data(BudgetFood, package = "Ecdat")
 
-ggplot(data = <<BudgetFood>>, 
-       mapping = aes(x = <<size>>, 
-                     y = <<totexp>>)) +
-  geom_<<point>>()
+ggplot(data = {<BudgetFood>}, 
+       mapping = aes(x = {<size>}, 
+                     y = {<totexp>})) +
+  geom_{<point>}()
 
 ---
   
 Hint: The scatter plots are created using `geom_point`.
 
 ???
-  
-test <- function() { 
-  success("Check with the above target plot if the output matches!") 
-}
 
+plot <- last_plot()
+plot_has_point <- any(vapply(plot$layers, function(x) inherits(x$geom, "GeomPoint"), logical(1L)))
+expect_true(
+  plot_has_point, info = "Your plot is missing the appropriate geom for a scatter plot."
+)
+plot_mapping <- aes(x = size, y = totexp)
+expect_equal(
+  plot$mapping, plot_mapping, info = "The variables on your x and/or y axis are incorrect."
+)
 ```
 
 You may have noticed that there is _overplotting_ in the previous plot for the bottom left region. Let's try to create a **hex plot** like below this time.
@@ -142,23 +145,26 @@ You may have noticed that there is _overplotting_ in the previous plot for the b
 ```
 
 ```{teachr 06_05B, outdir = "../exercises"}
-library(ggplot2)
-data(BudgetFood, package = "Ecdat")
-
-ggplot(data = <<BudgetFood>>, 
-       mapping = aes(x = <<size>>, 
-                     y = <<totexp>>)) +
-  geom_<<hex>>()
+ggplot(data = {<BudgetFood>}, 
+       mapping = aes(x = {<size>}, 
+                     y = {<totexp>})) +
+  geom_{<hex>}()
 
 ---
   
 Hint: The hex plots are created using `geom_hex`.
 
 ???
-  
-test <- function() { 
-  success("Check with the above target plot if the output matches!") 
-}
+
+plot <- last_plot()
+plot_has_hex <- any(vapply(plot$layers, function(x) inherits(x$geom, "GeomHex"), logical(1L)))
+expect_true(
+  plot_has_hex, info = "Your plot is missing the appropriate geom for a hex plot."
+)
+plot_mapping <- aes(x = size, y = totexp)
+expect_equal(
+  plot$mapping, plot_mapping, info = "The variables on your x and/or y axis are incorrect."
+)  
 ```
 
 This time let's have a look at some other variables in the `BudgetFood` data. Let's check the distribution of the age by sex using **boxplot** like below.
@@ -168,23 +174,26 @@ This time let's have a look at some other variables in the `BudgetFood` data. Le
 ```
 
 ```{teachr 06_05C, outdir = "../exercises"}
-library(ggplot2)
-data(BudgetFood, package = "Ecdat")
-
-ggplot(data = <<BudgetFood>>, 
-       mapping = aes(x = <<sex>>, 
-                     y = <<age>>)) +
-  geom_<<boxplot>>()
+ggplot(data = {<BudgetFood>}, 
+       mapping = aes(x = {<sex>}, 
+                     y = {<age>})) +
+  geom_{<boxplot>}()
 
 ---
   
 Hint: The five number summary is often graphically depicted by a boxplot. 
 
 ???
-  
-test <- function() { 
-  success("Check with the above target plot if the output matches!") 
-}
+
+plot <- last_plot()
+plot_has_boxplot <- any(vapply(plot$layers, function(x) inherits(x$geom, "GeomBoxplot"), logical(1L)))
+expect_true(
+  plot_has_boxplot, info = "Your plot is missing the appropriate geom for a boxplot."
+)
+plot_mapping <- aes(x = sex, y = age)
+expect_equal(
+  plot$mapping, plot_mapping, info = "The variables on your x and/or y axis are incorrect."
+)  
 ```
 
 Next study the distribution of the total expenditure of the household by size of the town using a **violin plot** like below.
@@ -194,13 +203,10 @@ Next study the distribution of the total expenditure of the household by size of
 ```
 
 ```{teachr 06_05D, outdir = "../exercises"}
-library(ggplot2)
-data(BudgetFood, package = "Ecdat")
-
-ggplot(data = <<BudgetFood>>, 
-       mapping = aes(x = <<factor(town)>>, 
-                     y = <<totexp>>)) +
-  geom_<<violin>>()
+ggplot(data = {<BudgetFood>}, 
+       mapping = aes(x = {<factor(town)>}, 
+                     y = {<totexp>})) +
+  geom_{<violin>}()
 
 ---
   
@@ -208,9 +214,15 @@ Hint: what do you notice about the x-axis scale? Do you perhaps need to convert 
   
 ???
   
-test <- function() { 
-  success("Check with the above target plot if the output matches!") 
-}
+plot <- last_plot()
+plot_has_violin <- any(vapply(plot$layers, function(x) inherits(x$geom, "GeomViolin"), logical(1L)))
+expect_true(
+  plot_has_violin, info = "Your plot is missing the appropriate geom for a violin plot."
+)
+plot_mapping <- aes(x = factor(town), y = totexp)
+expect_equal(
+  plot$mapping, plot_mapping, info = "The variables on your x and/or y axis are incorrect."
+)
 ```
 
 Let's have a look at the distribution of the percentage of total expenditure which the household has spent on food (`wfood`). We'll adjust the bin width of the **histogram** to 0.001. Do you notice the peak at 0?
@@ -219,12 +231,9 @@ Let's have a look at the distribution of the percentage of total expenditure whi
 ```
 
 ```{teachr 06_05E, outdir = "../exercises"}
-library(ggplot2)
-data(BudgetFood, package = "Ecdat")
-
-ggplot(data = <<BudgetFood>>, 
-       mapping = aes(x = <<wfood>>)) +
-  geom_<<histogram>>(binwidth = 0.001)
+ggplot(data = {<BudgetFood>}, 
+       mapping = aes(x = {<wfood>})) +
+  geom_{<histogram>}(binwidth = 0.001)
 
 ---
   
@@ -232,10 +241,15 @@ Hint: this plot is called a histogram.
 
 ???
   
-test <- function() { 
-  success("Check with the above target plot if the output matches!") 
-}
-
+plot <- last_plot()
+plot_has_hist <- any(vapply(plot$layers, function(x) inherits(x$geom, "GeomBar"), logical(1L)))
+expect_true(
+  plot_has_hist, info = "Your plot is missing the appropriate geom for a scatter plot."
+)
+plot_mapping <- aes(x = wfood)
+expect_equal(
+  plot$mapping, plot_mapping, info = "The variables on your x axis are incorrect."
+)
 ```
 
 Finally, let's also draw a density plot but display the y-axis as counts instead of density.
@@ -245,23 +259,29 @@ Finally, let's also draw a density plot but display the y-axis as counts instead
 ```
 
 ```{teachr 06_05F, outdir = "../exercises"}
-library(ggplot2)
-data(BudgetFood, package = "Ecdat")
-
-ggplot(data = <<BudgetFood>>, 
-       mapping = aes(x = <<wfood>>))  +
-  geom_density(aes(y = <<after_stat(count)>>))
+ggplot(data = {<BudgetFood>}, 
+       mapping = aes(x = {<wfood>}))  +
+  geom_density(aes(y = {<after_stat(count)>}))
 
 ---
 
 Hint: this is a density plot but the y-axis is showing counts. What did `after_stat` function do?
   
 ???
-  
-test <- function() { 
-  success("Check with the above target plot if the output matches!") 
-}
-    
+plot <- last_plot()
+plot_has_density <- vapply(plot$layers, function(x) inherits(x$geom, "GeomDensity"), logical(1L))
+expect_true(
+  any(plot_has_density), info = "Your plot is missing the appropriate geom for a density plot."
+)
+plot_mapping <- aes(x = wfood)
+expect_equal(
+  plot$mapping, plot_mapping, info = "The variables on your x axis is incorrect."
+)
+density_mapping <- plot$layers[[which(plot_has_density)[1]]]$mapping
+geom_mapping <- aes(y = after_stat(count))
+expect_equal(
+  density_mapping, geom_mapping, info = "The variable on your y axis is incorrect. Have you tried using the after_stat() function to show the computed count variable?"
+)
 ```
 
 </exercise>
@@ -283,13 +303,10 @@ The plot below shows the histogram with the density plot overlaid on top of it. 
 ```
 
 ```{teachr 06_07A, outdir = "../exercises"}
-library(ggplot2)
-data(BudgetFood, package = "Ecdat")
-
-ggplot(data = <<BudgetFood>>, 
-       mapping = aes(x = <<totexp>>)) +
-  geom_<<histogram>>(aes(y = after_stat(density))) +
-  geom_<<density>>(color = "red")
+ggplot(data = {<BudgetFood>}, 
+       mapping = aes(x = {<totexp>})) +
+  geom_{<histogram>}(aes(y = after_stat(density))) +
+  geom_{<density>}(color = "red")
 
 ---
 
@@ -297,9 +314,30 @@ Hint: this is a density plot but the y-axis is showing counts. What did `after_s
   
 ???
   
-test <- function() { 
-  success("Check with the above target plot if the output matches!") 
-}
+plot <- last_plot()
+plot_has_density <- vapply(plot$layers, function(x) inherits(x$geom, "GeomDensity"), logical(1L))
+expect_true(
+  any(plot_has_density), info = "Your plot is missing the appropriate geom for a density plot."
+)
+plot_has_hist <- vapply(plot$layers, function(x) inherits(x$geom, "GeomBar"), logical(1L))
+expect_true(
+  any(plot_has_hist), info = "Your plot is missing the appropriate geom for a histogram plot."
+)
+plot_mapping <- aes(x = totexp)
+expect_equal(
+  plot$mapping, plot_mapping, info = "The variables on your x axis is incorrect."
+)
+hist_mapping <- plot$layers[[which(plot_has_hist)[1]]]$mapping
+geom_mapping <- aes(y = after_stat(density))
+expect_equal(
+  hist_mapping, geom_mapping, info = "The variable on your y axis is incorrect. Have you tried using the after_stat() function to show the computed density variable for the histogram?"
+)
+
+density_aes <- plot$layers[[which(plot_has_density)[[1]]]]$aes_params
+density_colour <- rlang::`%||%`(density_aes$color, density_aes$colour)
+expect_equal(
+  density_colour, "red", info = "The colour of the density line geometry is not red."
+)
 ```
 
 In the next target plot, we are going to look at the distribution of the `age` by `sex`. There are not that many observations where sex information is missing so let's focus on `sex` levels for "man" and "woman".
@@ -308,20 +346,48 @@ In the next target plot, we are going to look at the distribution of the `age` b
 ```
 
 ```{teachr 06_07B, outdir = "../exercises"}
-library(ggplot2)
-data(BudgetFood, package = "Ecdat")
+library(tidyverse)
+BudgetFood %>%
+  {<filter>}({<!is.na(sex)>}) %>%
+  ggplot(
+    mapping = aes(x = {<sex>}, y = {<age>})
+  ) +
+  geom_{<violin>}({<aes(fill = sex)>}) +
+  geom_{<boxplot>}({<width>} = 0.1) 
 
-ggplot(data = <<subset(BudgetFood, !is.na(sex))>>, 
-       mapping = aes(x = <<sex>>,
-                     y = <<age>>)) +
-  geom_<<violin>>(<<aes(fill = sex)>>) +
-  geom_<<boxplot>>(<<width>> = 0.1) 
+---
+  
+Hint: Use the `width` argument to change the width of the boxplot.
 
 ???
-  
-test <- function() { 
-  success("Check with the above target plot if the output matches!") 
-}
+
+plot <- last_plot()
+
+solution_data <- dplyr::filter(BudgetFood, !is.na(sex))
+expect_equal(plot$data, solution_data, info = "The data has not been correctly filtered to look at only data where `sex` is 'man' or 'woman'.")
+
+plot_has_violin <- vapply(plot$layers, function(x) inherits(x$geom, "GeomViolin"), logical(1L))
+expect_true(
+  any(plot_has_violin), info = "Your plot is missing the appropriate geom for a violin plot."
+)
+plot_has_boxplot <- vapply(plot$layers, function(x) inherits(x$geom, "GeomBoxplot"), logical(1L))
+expect_true(
+  any(plot_has_boxplot), info = "Your plot is missing the appropriate geom for a boxplot."
+)
+plot_mapping <- aes(x = sex, y = age)
+expect_equal(
+  plot$mapping, plot_mapping, info = "The variables on your x and/or y axis is incorrect."
+)
+violin_mapping <- plot$layers[[which(plot_has_violin)[1]]]$mapping
+geom_mapping <- aes(fill = sex)
+expect_equal(
+  violin_mapping, geom_mapping, info = "The variable used to fill the violins is incorrect."
+)
+
+boxplot_width <- plot$layers[[which(plot_has_boxplot)[[1]]]]$geom_params$width
+expect_equal(
+  boxplot_width, 0.1, info = "The boxplot width has not been correctly specified."
+)
 ```
 
 In the next target plot, we want to draw a scatter plot between the size of the household and the total expenditure of the household. Then we want to overlay this with a loess curve in red color. You may not have seen how to fit a curve on `ggplot` yet so check out the hint if you don't know.
@@ -332,14 +398,13 @@ In the next target plot, we want to draw a scatter plot between the size of the 
 
 
 ```{teachr 06_07C, outdir = "../exercises"}
-library(ggplot2)
-data(BudgetFood, package = "Ecdat")
-
-ggplot(data = <<subset(BudgetFood, size < 30)>>, 
-       mapping = aes(x = <<size>>,
-                     y = <<totexp>>)) +
-  geom_<<point>>() +
-  geom_<<smooth>>(color = "red",
+BudgetFood %>%
+  filter({<size < 30>}) %>%
+  ggplot(
+    mapping = aes(x = {<size>}, y = {<totexp>})
+  ) +
+  geom_{<point>}() +
+  geom_{<smooth>}(color = "red",
                   method = loess,
                   formula = y ~ x)
 
@@ -349,9 +414,29 @@ Hint: `geom_smooth` can draw curves from a fitted model.
 
 ???
   
-test <- function() { 
-  success("Check with the above target plot if the output matches!") 
-}
+plot <- last_plot()
+
+solution_data <- dplyr::filter(BudgetFood, size < 30)
+expect_equal(plot$data, solution_data, info = "The data has not been correctly filtered to look at only data size is less than 30.")
+
+plot_has_point <- vapply(plot$layers, function(x) inherits(x$geom, "GeomPoint"), logical(1L))
+expect_true(
+  any(plot_has_point), info = "Your plot is missing the appropriate geom for a scatter plot."
+)
+plot_has_smooth <- vapply(plot$layers, function(x) inherits(x$geom, "GeomSmooth"), logical(1L))
+expect_true(
+  any(plot_has_smooth), info = "Your plot is missing the appropriate geom for a smooth fitted model through the data."
+)
+plot_mapping <- aes(x = size, y = totexp)
+expect_equal(
+  plot$mapping, plot_mapping, info = "The variables on your x and/or y axis is incorrect."
+)
+
+smooth_aes <- plot$layers[[which(plot_has_smooth)[[1]]]]$aes_params
+smooth_colour <- rlang::`%||%`(smooth_aes$color, smooth_aes$colour)
+expect_equal(
+  smooth_colour, "red", info = "The colour of the smooth line geometry is not red."
+)
 ```
 
 In the next plot, try drawing a **barplot** by the different sexes with the total count written on top of the bar.
@@ -360,48 +445,74 @@ In the next plot, try drawing a **barplot** by the different sexes with the tota
 ```
 
 
-
 ```{teachr 06_07D, outdir = "../exercises"}
-library(ggplot2)
-data(BudgetFood, package = "Ecdat")
+BudgetFood %>% 
+  filter({<!is.na(sex)>}) %>% 
+  ggplot(mapping = aes(x = {<sex>})) +
+  geom_{<bar>}() +
+  geom_{<text>}(
+    aes(label = {<after_stat(count)>}),
+    vjust = -0.3,
+    stat = {<"count">}
+  )
 
-ggplot(data = <<subset(BudgetFood, !is.na(sex))>>, 
-       mapping = aes(x = <<sex>>)) +
-  geom_<<bar>>() +
-  geom_<<text>>(aes(label = <<after_stat(count)>>),
-                 vjust = -0.3,
-                 stat = <<"count">>)
+---
+  
+Hint: change the stat of one of the geometry used to write the count to compute the total count to be used on the y axis.
 
 ???
   
-test <- function() { 
-  success("Check with the above target plot if the output matches!") 
-}
+plot <- last_plot()
+
+solution_data <- dplyr::filter(BudgetFood, !is.na(sex))
+expect_equal(plot$data[colnames(solution_data)], solution_data, info = "The data has not been correctly filtered to look at only data where `sex` is 'man' or 'woman'.")
+
+plot_has_bar <- vapply(plot$layers, function(x) inherits(x$geom, "GeomBar"), logical(1L))
+expect_true(
+  any(plot_has_bar), info = "Your plot is missing the appropriate geom for a bar plot."
+)
+plot_has_text <- vapply(plot$layers, function(x) inherits(x$geom, "GeomText"), logical(1L))
+expect_true(
+  any(plot_has_text), info = "Your plot is missing the appropriate geom for a text shown above the bars."
+)
+plot_mapping <- aes(x = sex)
+expect_equal(
+  plot$mapping, plot_mapping, info = "The variable on your x axis is incorrect."
+)
+
+text_aes <- plot$layers[[which(plot_has_text)[[1]]]]$mapping
+text_aes_solution <- aes(label = after_stat(count))
+expect_equal(
+  text_aes, text_aes_solution, info = "The aesthetics for your text labels are incorrect. Hint: this can be computed with after_stat()."
+)
+
+has_text_stat <- inherits(plot$layers[[which(plot_has_text)[[1]]]]$stat, "StatCount")
+expect_true(
+  has_text_stat, info = "Your text geometry is missng the stat used to compute the appropriate position on the y-axis."
+)
 ```
 
-The next one might be tricky. You want to draw a bar plot showing the average total expenditure of by sex and town but the top blue bars show the average for women, while the bottome red bars show the average for men. 
+The next one might be tricky. You want to draw a bar plot showing the average total expenditure of by sex and town but the top blue bars show the average for women, while the bottom red bars show the average for men. 
 
 ```{r plot-06-07E, code = read_lines("../exercises/solution_06_07E.R"), echo = FALSE, cache = FALSE}
 ```
 
 ```{teachr 06_07E, outdir = "../exercises"}
 library(tidyverse)
-data(BudgetFood, package = "Ecdat")
-
 dat <- BudgetFood %>% 
   filter(!is.na(sex)) %>% 
   group_by(town, sex) %>% 
   summarise(totexp = mean(totexp))
 
-<<ggplot()>> +
-  geom_<<col>>(data = filter(dat, sex=="woman"),
-               aes(x = <<factor(town)>>,
-                   y = <<totexp>>,
-                  <<fill = "woman">>)) +
-  geom_<<col>>(data = subset(dat, sex=="man"),
-               aes(x = <<factor(town)>>,
-                   y = <<-totexp>>,
-                  <<fill = "man">>))
+{<ggplot()>} +
+  geom_{<col>}(data = filter(dat, sex=="woman"),
+               aes(x = {<factor(town)>},
+                   y = {<totexp>},
+                  {<fill = "woman">})) +
+  geom_{<col>}(data = subset(dat, sex=="man"),
+               aes(x = {<factor(town)>},
+                   y = {<-totexp>},
+                  {<fill = "man">}))
 
 ---
   
@@ -409,9 +520,23 @@ Hint: The legend shows the `fill` with a label "woman" and "man". In this case s
 
 ???
   
-test <- function() { 
-  success("Check with the above target plot if the output matches!") 
-}
+plot <- last_plot()
+
+plot_has_cols <- vapply(plot$layers, function(x) inherits(x$geom, "GeomCol"), logical(1L))
+expect_true(
+  all(plot_has_cols), info = "Your is using the incorrect geometry type."
+)
+
+col_aes <- plot$layers[[which(plot_has_cols)[[1]]]]$mapping
+col_aes_solution <- aes(x = factor(town), y = totexp, fill = "woman")
+expect_equal(
+  col_aes, col_aes_solution, info = "The aesthetics for your geometry plotting `sex==\"woman\"` is incorrect. Have you set the fill aethetic correctly?"
+)
+col_aes <- plot$layers[[which(plot_has_cols)[[2]]]]$mapping
+col_aes_solution <- aes(x = factor(town), y = -totexp, fill = "man")
+expect_equal(
+  col_aes, col_aes_solution, info = "The aesthetics for your geometry plotting `sex==\"man\"` is incorrect. Have you set the fill aethetic correctly?"
+)
 ```
 
 
@@ -431,16 +556,11 @@ In the plot below, we show the age distribution by man and woman. Change the col
 
 
 ```{teachr 06_09A, outdir = "../exercises"}
-library(ggplot2)
-data(BudgetFood, package = "Ecdat")
-
-
-
 ggplot(data = subset(BudgetFood, !is.na(sex)), 
        mapping = aes(x = sex,
                      y = age)) +
   geom_violin(aes(fill = sex)) + 
-  <<scale_fill>>_manual(values = c("violet", "royalblue"))
+  {<scale_fill>}_manual(values = c("violet", "royalblue"))
   
 
 ---
@@ -449,9 +569,9 @@ Hint: Recall that scales are controlled by functions beginning with `scale_`. Th
 
 ???
   
-test <- function() { 
-  success("Check with the above target plot if the output matches!") 
-}
+plot <- last_plot()
+plot_scale <- vapply(plot$scales$scales, function(x) x$aesthetics == "fill", logical(1L))
+expect_true(plot_scale, info = "The scale function has been incorrectly specified.")
 ```
 
 
@@ -464,29 +584,32 @@ In the next plot, let's have a look at the distribution of the total household e
 
 
 ```{teachr 06_09B, outdir = "../exercises"}
-library(ggplot2)
-data(BudgetFood, package = "Ecdat")
-
-
 ggplot(data = subset(BudgetFood, !is.na(sex)), 
        mapping = aes(x = totexp,
                      fill = sex)) +
   geom_histogram(bins = 40,
                  aes(color = sex)) + 
-  <<scale_x>>_log10() +
-  <<scale_color>>_discrete() +
-  <<scale_fill>>_brewer(palette = 10)
+  {<scale_x>}_log10() +
+  {<scale_color>}_discrete() +
+  {<scale_fill>}_brewer(palette = 10)
   
 
 ---
-  
+
 Hint: Recall that scales are controlled by functions beginning with `scale_`. The second "word" in the scale function is the aesthetic. 
 
 ???
-  
-test <- function() { 
-  success("Check with the above target plot if the output matches!") 
-}
+
+plot <- last_plot()
+log10_scale <- vapply(plot$scales$scales, function(x) "x" %in% x$aesthetics, logical(1L))
+discrete_scale <- vapply(plot$scales$scales, function(x) any(c("color", "colour") %in% x$aesthetics), logical(1L))
+brewer_scale <- vapply(plot$scales$scales, function(x) "fill" %in% x$aesthetics, logical(1L))
+log10_answer <- which(log10_scale) == 1L
+discrete_answer <- which(discrete_scale) == 2L
+brewer_answer <- which(brewer_scale) == 3L
+expect_true(log10_answer, info = "The answer for the *_log10() scale is incorrect.")
+expect_true(discrete_answer, info = "The answer for the *_discrete() scale is incorrect.")
+expect_true(brewer_answer, info = "The answer for the *_brewer() scale is incorrect.")
 ```
 
 
@@ -504,17 +627,14 @@ In the following section, we won't give you much hints! Try to reach the target 
 ```
 
 ```{teachr 06_11A, outdir = "../exercises"}
-library(tidyverse)
-data(BudgetFood, package = "Ecdat")
-
-ggplot(BudgetFood, aes(x = <<age>>)) + 
-  geom_histogram(data = <<select(BudgetFood, -town)>>,
+ggplot(BudgetFood, aes(x = {<age>})) + 
+  geom_histogram(data = {<select(BudgetFood, -town)>},
                  fill = "grey", binwidth = 1,
                  aes(y = after_stat(density))) +
   geom_histogram(aes(y = after_stat(density)),
                  binwidth = 1) +
   geom_density(color = "red") +
-  facet_<<wrap(~town)>>
+  facet_{<wrap(~town)>}
   
 ---
   
@@ -522,9 +642,14 @@ Hint: what variable is the data facetted by? If you want to see the grey shadow 
 
 ???
   
-test <- function() { 
-  success("Check with the above target plot if the output matches!") 
-}
+  
+plot <- last_plot()
+answer_mapping <- aes(x = age)
+expect_equal(plot$mapping, answer_mapping, info = "The plot's mapping variables are incorrect.")
+facet_type <- inherits(plot$facet, "FacetWrap")
+expect_true(facet_type, info = "The facet type is incorrect.")
+facet_vars <- identical(names(plot$facet$params$facets), "town")
+expect_true(facet_type, info = "The variable facetting the plot is incorrect.")
 ```
 
 
@@ -534,23 +659,38 @@ test <- function() {
 
 
 ```{teachr 06_11B, outdir = "../exercises"}
-library(tidyverse)
-data(BudgetFood, package = "Ecdat")
-
 ggplot(subset(BudgetFood, !is.na(sex)), aes(age)) +
-  geom_histogram(aes(y = <<after_stat(density)>>)) +
+  geom_histogram(aes(y = {<after_stat(density)>})) +
   geom_text(x = 35, y = 0.035, 
             data = function(.data) .data %>% 
               group_by(sex, town) %>% 
               count(),
             aes(label = n)) +
-  facet_<<grid(sex ~ town)>>
+  facet_{<grid(sex ~ town)>}
+
+---
+
+Hint: A different style of facet is required to arrange the subplots in both x and y directions.
 
 ???
-  
-test <- function() { 
-  success("Check with the above target plot if the output matches!") 
-}
+
+plot <- last_plot()
+answer_mapping <- aes(x = age)
+expect_equal(plot$mapping, answer_mapping, info = "The plot's mapping variables are incorrect.")
+facet_type <- inherits(plot$facet, "FacetGrid")
+expect_true(facet_type, info = "The facet type is incorrect.")
+facet_rows <- identical(names(plot$facet$params$rows), "sex")
+facet_cols <- identical(names(plot$facet$params$cols), "town")
+expect_true(facet_rows, info = "The variable row facetting the plot is incorrect.")  
+expect_true(facet_cols, info = "The variable column facetting the plot is incorrect.")  
+
+plot_has_hist <- vapply(plot$layers, function(x) inherits(x$geom, "GeomBar"), logical(1L))
+
+hist_aes <- plot$layers[[which(plot_has_hist)[[1]]]]$mapping
+hist_aes_solution <- aes(y = after_stat(density))
+expect_equal(
+  hist_aes, hist_aes_solution, info = "The aesthetics for your histogram are incorrect. Note that you'll need to use after_stat() to use the variables computed by the histogram stat."
+)
 ```
 
 
@@ -561,8 +701,7 @@ test <- function() {
 
 ```{teachr 06_11C, outdir = "../exercises"}
 library(tidyverse)
-library(<<patchwork>>)
-data(BudgetFood, package = "Ecdat")
+library({<patchwork>})
 
 
 g1 <- ggplot(BudgetFood, 
@@ -575,13 +714,22 @@ g2 <- ggplot(BudgetFood,
   scale_y_log10()
 
 # combine the plot as one figure 
-<<g1 / g2>> + plot_layout(guides = "collect")
+{<g1 / g2>} + plot_layout(guides = "collect")
+
+---
+  
+Hint: The patchwork package allows you to arbitrarily combine multiple separate plots.
 
 ???
   
-test <- function() { 
-  success("Check with the above target plot if the output matches!") 
-}
+  
+expect_true(
+  "patchwork" %in% loadedNamespaces(),
+  info = "You haven't loaded a package which allows you to combine g1 and g2."
+)
+
+plot <- last_plot()
+expect_true(inherits(plot, "patchwork"), info = "The plot outputted does not use the patchwork package to produce it.")
 ```
 
 
@@ -600,28 +748,36 @@ The next plot you're going to draw is the plot below -- or make the plot as pret
 ```{r plot-06-13A, code = read_lines("../exercises/solution_06_13A.R"), echo = FALSE, cache = FALSE}
 ```
 ```{teachr 06_13A, outdir = "../exercises"}
-library(tidyverse)
-data(BudgetFood, package = "Ecdat")
-
 ggplot(BudgetFood, aes(x = age)) + 
   geom_histogram(aes(y = after_stat(density)),
                  binwidth = 1) +
   geom_density(color = "red") +
   facet_wrap(~town, labeller = label_both) +
   labs(x = "Age", y = "Density", title = "Age distribution by town size") +
-  theme(text = <<element_text>>(size = 14, family = "mono"),
-        plot.background = <<element_rect>>(fill = "grey80"),
-        <<strip.background>> = element_rect(fill = "black"),
-        <<strip.text>> = element_text(color = "white"),
-        panel.background = <<element_rect>>(fill = "white",
+  theme(text = {<element_text>}(size = 14, family = "mono"),
+        plot.background = {<element_rect>}(fill = "grey80"),
+        {<strip.background>} = element_rect(fill = "black"),
+        {<strip.text>} = element_text(color = "white"),
+        panel.background = {<element_rect>}(fill = "white",
                                         color = "black"),
         panel.grid = element_blank())
 
+---
+  
+Hint: Theme options for ggplot2 are customised in the theme() function. You specify how a particular target (say the text) is shown using the appropriate `element_*()` function.
+
 ???
   
-test <- function() { 
-  success("Check with the above target plot if the output matches!") 
-}
+plot <- last_plot()
+theme_answer <- theme(text = element_text(size = 14, family = "mono"),
+        plot.background = element_rect(fill = "grey80"),
+        strip.background = element_rect(fill = "black"),
+        strip.text = element_text(color = "white"),
+        panel.background = element_rect(fill = "white",
+                                        color = "black"),
+        panel.grid = element_blank())
+
+expect_equivalent(plot$theme, theme_answer, info = "The theme specified does not exactly match the plot shown above. Check that you are targeting the correct element for each customisation.")
 ```
 
 </exercise>

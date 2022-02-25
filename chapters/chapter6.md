@@ -19,7 +19,7 @@ id: 6
 
 Which of the following is a contributed R package?
 
-<choice id=0.411007618065923>
+<choice id=0.430458033457398>
 
 <opt text="ggplot2" correct="true">
 
@@ -50,7 +50,7 @@ No, this a core package and loads automatically when you launch R.
 
 Which R package actually renders the graphics in R?
 
-<choice id=0.842165540670976>
+<choice id=0.278310371330008>
 
 <opt text="ggplot2" >
 
@@ -81,7 +81,7 @@ Yes, that's right!
 Remember that there are two primary graphic models in R: the base and
 grid graphics. Which one is ggplot2 using?
 
-<choice id=0.988478896673769>
+<choice id=0.24475941201672>
 
 <opt text="base" >
 
@@ -118,7 +118,7 @@ the `Ecdat` package which contains the budget share of food for Spanish
 households. You can load the dataset and see the structure of the data
 below.
 
-``` r
+``` {.r}
 library(Ecdat)
 str(BudgetFood)
 ```
@@ -146,10 +146,6 @@ Try to recreate the scatter plot below. Is there anything unusual that
 you notice about the plot?
 
 <img src="ch6/plot-06-05A-1.png" width="432" style="display: block; margin: auto;" />
-
-Note: the **submit button doesn't check your answer** in this chapter.
-You will need to eyeball your output plot is the same as the target
-plots for all questions.
 
 <codeblock id="06_05A">
 
@@ -222,8 +218,7 @@ Hint: this is a density plot but the y-axis is showing counts. What did
 </exercise>
 
 <exercise id="6" title="Multiple layers and attributes in ggplot2"  type="slides">
-<slides source="chapter6_04_ggplot2layers"> </slides>
-</exercise>
+<slides source="chapter6_04_ggplot2layers"> </slides> </exercise>
 
 <exercise id="7" title="Practice creating multiple layers">
 
@@ -251,6 +246,8 @@ information is missing so let's focus on `sex` levels for "man" and
 
 <codeblock id="06_07B">
 
+Hint: Use the `width` argument to change the width of the boxplot.
+
 </codeblock>
 
 In the next target plot, we want to draw a scatter plot between the size
@@ -274,11 +271,14 @@ the total count written on top of the bar.
 
 <codeblock id="06_07D">
 
+Hint: change the stat of one of the geometry used to write the count to
+compute the total count to be used on the y axis.
+
 </codeblock>
 
 The next one might be tricky. You want to draw a bar plot showing the
 average total expenditure of by sex and town but the top blue bars show
-the average for women, while the bottome red bars show the average for
+the average for women, while the bottom red bars show the average for
 men.
 
 <img src="ch6/plot-06-07E-1.png" width="432" style="display: block; margin: auto;" />
@@ -293,8 +293,7 @@ this case should `fill` be an attribute or aesthetic?
 </exercise>
 
 <exercise id="8" title="Scales and guides in ggplot2"  type="slides">
-<slides source="chapter6_05_ggplot2scales"> </slides>
-</exercise>
+<slides source="chapter6_05_ggplot2scales"> </slides> </exercise>
 
 <exercise id="9" title="Practice changing scales">
 
@@ -328,8 +327,7 @@ Hint: Recall that scales are controlled by functions beginning with
 </exercise>
 
 <exercise id="10" title="Multiple plots in one figure"  type="slides">
-<slides source="chapter6_06_ggplot2facet"> </slides>
-</exercise>
+<slides source="chapter6_06_ggplot2facet"> </slides> </exercise>
 
 <exercise id="11" title="Practice making multiple subplots">
 
@@ -351,19 +349,24 @@ variable needs to be removed from the layer data.
 
 <codeblock id="06_11B">
 
+Hint: A different style of facet is required to arrange the subplots in
+both x and y directions.
+
 </codeblock>
 
 <img src="ch6/plot-06-11C-1.png" width="432" style="display: block; margin: auto;" />
 
 <codeblock id="06_11C">
 
+Hint: The patchwork package allows you to arbitrarily combine multiple
+separate plots.
+
 </codeblock>
 
 </exercise>
 
 <exercise id="12" title="Customise the look with themes in ggplot2"  type="slides">
-<slides source="chapter6_07_ggplot2theme"> </slides>
-</exercise>
+<slides source="chapter6_07_ggplot2theme"> </slides> </exercise>
 
 <exercise id="13" title="Make pretty plots">
 
@@ -374,6 +377,10 @@ as pretty as you can!
 
 <img src="ch6/plot-06-13A-1.png" width="432" style="display: block; margin: auto;" />
 <codeblock id="06_13A">
+
+Hint: Theme options for ggplot2 are customised in the theme() function.
+You specify how a particular target (say the text) is shown using the
+appropriate `element_*()` function.
 
 </codeblock>
 

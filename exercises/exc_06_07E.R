@@ -1,18 +1,16 @@
 library(tidyverse)
-data(BudgetFood, package = "Ecdat")
-
 dat <- BudgetFood %>% 
   filter(!is.na(sex)) %>% 
   group_by(town, sex) %>% 
   summarise(totexp = mean(totexp))
 
-_____ +
-  geom______(data = filter(dat, sex=="woman"),
-               aes(x = _____,
-                   y = _____,
-                  _____)) +
-  geom______(data = subset(dat, sex=="man"),
-               aes(x = _____,
-                   y = _____,
-                  _____))
+___ +
+  geom____(data = filter(dat, sex=="woman"),
+               aes(x = ___,
+                   y = ___,
+                  ___)) +
+  geom____(data = subset(dat, sex=="man"),
+               aes(x = ___,
+                   y = ___,
+                  ___))
 

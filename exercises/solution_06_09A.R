@@ -1,8 +1,3 @@
-library(ggplot2)
-data(BudgetFood, package = "Ecdat")
-
-
-
 ggplot(data = subset(BudgetFood, !is.na(sex)), 
        mapping = aes(x = sex,
                      y = age)) +

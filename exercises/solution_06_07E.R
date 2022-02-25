@@ -1,6 +1,4 @@
 library(tidyverse)
-data(BudgetFood, package = "Ecdat")
-
 dat <- BudgetFood %>% 
   filter(!is.na(sex)) %>% 
   group_by(town, sex) %>% 

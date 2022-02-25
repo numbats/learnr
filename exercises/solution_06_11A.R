@@ -1,6 +1,3 @@
-library(tidyverse)
-data(BudgetFood, package = "Ecdat")
-
 ggplot(BudgetFood, aes(x = age)) + 
   geom_histogram(data = select(BudgetFood, -town),
                  fill = "grey", binwidth = 1,

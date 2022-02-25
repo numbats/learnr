@@ -1,6 +1,5 @@
 library(tidyverse)
 library(patchwork)
-data(BudgetFood, package = "Ecdat")
 
 
 g1 <- ggplot(BudgetFood, 

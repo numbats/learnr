@@ -1,6 +1,3 @@
-library(tidyverse)
-data(BudgetFood, package = "Ecdat")
-
 ggplot(subset(BudgetFood, !is.na(sex)), aes(age)) +
   geom_histogram(aes(y = after_stat(density))) +
   geom_text(x = 35, y = 0.035, 

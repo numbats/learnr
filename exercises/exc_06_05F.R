@@ -1,7 +1,4 @@
-library(ggplot2)
-data(BudgetFood, package = "Ecdat")
-
-ggplot(data = _____, 
-       mapping = aes(x = _____))  +
-  geom_density(aes(y = _____))
+ggplot(data = ___, 
+       mapping = aes(x = ___))  +
+  geom_density(aes(y = ___))
 
