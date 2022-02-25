@@ -11,9 +11,22 @@ A tidy data format:
 -   each row should hold a single observation
 -   each cell should hold a single value.
 
-Examine `table1`, `table2`, `table3` and `Table5`.
+Examine `table1`, `table2`, `table3` and `table5`.
+
+They all display the number of TB cases documented by the World Health
+Organization in Afghanistan, Brazil, and China between 1999 and 2000.
 
 They show the same information in 4 different ways.
+
+Note:
+
+table1, table2, table3, table4a, table4b, and table5 in `tidyr` all
+display the number of TB cases documented by the World Health
+Organization in Afghanistan, Brazil, and China between 1999 and 2000.
+The data contains values associated with four variables (country, year,
+cases, and population), but each table organizes the values in a
+different layout. The data is a subset of the data contained in the
+World Health Organization Global Tuberculosis Report
 
 ---
 
@@ -44,8 +57,9 @@ single variable, each row should hold a single observation and each cell
 should hold a single value.
 
 The example on the left shows the same information (country, year,
-population, and number of cases) organised in 3 different ways. Examine
-each of the table.
+population, and number of cases) organised in 3 different ways.
+
+Examine each of the table.
 
 ---
 
@@ -82,8 +96,9 @@ single variable, each row should hold a single observation and each cell
 should hold a single value.
 
 The example on the left shows the same information (country, year,
-population, and number of cases) organised in 3 different ways. Examine
-each of the table.
+population, and number of cases) organised in 3 different ways.
+
+Examine each of the table.
 
 ---
 
@@ -114,8 +129,9 @@ single variable, each row should hold a single observation and each cell
 should hold a single value.
 
 The example below shows the same information (country, year, population,
-and number of cases) organised in 3 different ways. Examine each of the
-table.
+and number of cases) organised in 3 different ways.
+
+Examine each of the table.
 
 ---
 
@@ -146,8 +162,9 @@ single variable, each row should hold a single observation and each cell
 should hold a single value.
 
 The example below shows the same information (country, year, population,
-and number of cases) organised in 3 different ways. Examine each of the
-table.
+and number of cases) organised in 3 different ways.
+
+Examine each of the table.
 
 ---
 
@@ -295,6 +312,8 @@ table4a
     ## 2 Brazil       37737  80488
     ## 3 China       212258 213766
 
+---
+
 ``` r
 table4a %>% 
   pivot_longer(c(`1999`, `2000`), names_to = "year", values_to = "cases")
@@ -347,6 +366,8 @@ table2
     ## 10 China        1999 population 1272915272
     ## 11 China        2000 cases          213766
     ## 12 China        2000 population 1280428583
+
+---
 
 ``` r
 table2 %>%
