@@ -4,7 +4,7 @@ description: This chapter will give you an introduction to the R graphics system
   teach you how to get started with using the ggplot2 package for drawing all kind
   of plots.
 prev: /chapter5
-next: /chapter6
+next: /chapter7
 type: chapter
 id: 6
 
@@ -19,7 +19,7 @@ id: 6
 
 Which of the following is a contributed R package?
 
-<choice id=0.430458033457398>
+<choice id=0.444977660896257>
 
 <opt text="ggplot2" correct="true">
 
@@ -50,7 +50,7 @@ No, this a core package and loads automatically when you launch R.
 
 Which R package actually renders the graphics in R?
 
-<choice id=0.278310371330008>
+<choice id=0.71046157926321>
 
 <opt text="ggplot2" >
 
@@ -81,7 +81,7 @@ Yes, that's right!
 Remember that there are two primary graphic models in R: the base and
 grid graphics. Which one is ggplot2 using?
 
-<choice id=0.24475941201672>
+<choice id=0.618992363568395>
 
 <opt text="base" >
 
