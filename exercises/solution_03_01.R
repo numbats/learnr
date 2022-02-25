@@ -1,4 +1,4 @@
-
+library(dplyr)
 data(cars)
 
 total_dis <- cars %>%

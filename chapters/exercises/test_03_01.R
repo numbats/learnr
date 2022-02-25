@@ -1,8 +1,6 @@
 library(testthat)
-test <- function() {
+test_that(03_01{
 expect_true(
-  "dplyr" %in% loadedNamespaces())
-expect_true(
-  "tidyverse" %in% loadedNamespaces())
-  success("Well done!")
-}  
+  "magrittr" %in% loadedNamespaces()
+)
+})

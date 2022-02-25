@@ -1,6 +1,6 @@
 
 total_dis <- cars %>%
-  mutate(total = dist*speed??sped)
+  mutate(total = dist*sped)
 
 total_dis %>% head()
 
