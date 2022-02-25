@@ -1,7 +1,7 @@
 ---
 title: 'Chapter 7: Linear regression with R'
 description: |
-  This chapter demonstrates how to fit linear models in R using the `lm` function. You'll learn about how to fitting simple linear regression, models with categorical variables and interaction effects, and visualising models with `ggplot2`.
+  This chapter demonstrates how to fit linear models in R. You'll learn about how to fitting simple linear regression, models with categorical variables and interaction effects, and visualising models with ggplot2.
 prev: /chapter6
 next: /chapter7
 type: chapter
