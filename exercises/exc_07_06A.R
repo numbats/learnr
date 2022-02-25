@@ -1,7 +1,7 @@
 data(Cigarette, package = "Ecdat")
 
-fit <- lm(_____, data = Cigarette)
+fit <- lm(___, data = Cigarette)
   
-betas <- _____
+betas <- ___
 betas
 

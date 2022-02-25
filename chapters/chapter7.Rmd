@@ -66,25 +66,25 @@ Fit the model using least squares approach and calculate:
 ```{teachr 07_02A, outdir = "../exercises"}
 data(Cigarette, package = "Ecdat")
 
-fit <- lm(<<avgprs ~ taxs>>, data = Cigarette)
+fit <- lm({<avgprs ~ taxs>}, data = Cigarette)
   
-RSS <- <<sum(residuals(fit)^2)>>
-beta0 <- <<coef(fit)[1]>>
-beta1 <- <<coef(fit)[2]>>
+RSS <- {<sum(residuals(fit)^2)>}
+beta0 <- {<coef(fit)[1]>}
+beta1 <- {<coef(fit)[2]>}
 
 ---
 
-Hint: What did functions `coef` and `residuals` do?
+Hint: What did functions `coef()` and `residuals()` do?
   
 ???
 
-test <- function() {
-  fit <- lm(avgprs ~ taxs, data = Cigarette)
-  expect_equal(RSS, sum(residuals(fit)^2))
-  expect_equal(beta0, coef(fit)[1])
-  expect_equal(beta1, coef(fit)[2])
-  success("Well done!")
-}  
+fit_correct <- lm(avgprs ~ taxs, data = Cigarette)
+RSS_correct <- sum(residuals(fit_correct)^2)
+expect_equal(RSS, RSS_correct, info = "Your RSS is incorrectly calculated.")
+beta0_correct <- coef(fit_correct)[1]
+expect_equal(beta0, beta0_correct, info = "Extract the beta0 coefficient using `coef()`")
+beta1_correct <- coef(fit_correct)[2]
+expect_equal(beta1, beta1_correct, info = "Extract the beta0 coefficient using `coef()`")
   
 ```
 
@@ -156,9 +156,9 @@ Model the average cigarette price on the categorical variable `state` with the i
 ```{teachr 07_06A, outdir = "../exercises"}
 data(Cigarette, package = "Ecdat")
 
-fit <- lm(<<avgprs ~ -1 + state>>, data = Cigarette)
+fit <- lm({<avgprs ~ -1 + state>}, data = Cigarette)
   
-betas <- <<coef(fit)>>
+betas <- {<coef(fit)>}
 betas
 
 ---
@@ -167,11 +167,10 @@ Hint: Add `-1` or `0` to the right hand side of the model formula to remove the 
   
 ???
 
-test <- function() {
-  fit <- lm(avgprs ~ -1 + state, data = Cigarette)
-  expect_equal(betas, coef(fit))
-  success("You got it right! Did you notice what the `betas` values are?")
-}  
+fit_answer <- lm(avgprs ~ -1 + state, data = Cigarette)
+expect_equal(fit$residuals, fit_answer$residuals, info = "Your model does not correctly model what was described above.")
+
+expect_equal(betas, coef(fit_answer), info = "The coefficients in the betas variable are incorrect.")
   
 ```
 
