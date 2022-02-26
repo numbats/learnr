@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { graphql } from 'gatsby'
 
 import Layout from '../components/layout'
 import { Link } from '../components/link'
 import Logo from '../../static/logo.svg'
+import lottie from "lottie-web";
 
 import classes from '../styles/index.module.sass'
 
@@ -14,9 +15,21 @@ export default ({ data }) => {
         title: node.frontmatter.title,
         description: node.frontmatter.description,
     }))
+    
+    //  Render MathJax syntax
+    useEffect(() => {
+      lottie.loadAnimation({
+        container: document.getElementById('lottie-logo'), // the dom element that will contain the animation
+        renderer: 'svg',
+        loop: false,
+        autoplay: true,
+        path: 'lottie/logo.json' // the path to the animation json
+      });
+    })
+    
     return (
         <Layout isHome>
-            <Logo className={classes.logo} aria-label={siteMetadata.title} />
+            <div class={classes.logo} id="lottie-logo"> </div>
             <section>
                 <h1 className={classes.subtitle}>An interactive introduction to data analysis with R</h1>
                 <div className={classes.introduction}>
