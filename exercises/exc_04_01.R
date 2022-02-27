@@ -1,5 +1,7 @@
-# Let's try read in a dataset 
-penguins <- read.csv("data/penguins.csv")
+library(___)
+
+# Read in this dataset using the appropriate function 
+penguins <- ___("data/penguins.csv")
 
 head(penguins)
 
