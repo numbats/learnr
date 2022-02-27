@@ -35,19 +35,25 @@ knitr::opts_chunk$set(fig.path = "ch1/",
 # install latest at https://github.com/numbats/teachr
 ```
 
-<exercise id="1" title="Install guide for R and RStudio IDE" type="slides">
+<exercise id="1" title="Windows: Installing R and RStudio" type="slides">
+
+`r slides("chapter1_01_windows")`
+
+</exercise>
+
+<exercise id="2" title="macOS: Installing R and RStudio" type="slides">
 
 `r slides("chapter1_01_Install")`
 
 </exercise>
 
-<exercise id="2" title="RStudio basics" type="slides">
+<exercise id="3" title="RStudio basics" type="slides">
 
 `r slides("chapter_1_02_RStudio_basics")`
 
 </exercise>
 
-<exercise id="3" title="Additional Resources">
+<exercise id="4" title="Additional Resources">
 
 ## Additional Resources 
 

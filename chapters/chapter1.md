@@ -7,19 +7,25 @@ type: chapter
 id: 1
 
 ---
-<exercise id="1" title="Install guide for R and RStudio IDE" type="slides">
+<exercise id="1" title="Windows: Installing R and RStudio" type="slides">
+
+<slides source="chapter1_01_windows"> </slides>
+
+</exercise>
+
+<exercise id="2" title="macOS: Installing R and RStudio" type="slides">
 
 <slides source="chapter1_01_Install"> </slides>
 
 </exercise>
 
-<exercise id="2" title="RStudio basic" type="slides">
+<exercise id="3" title="RStudio basics" type="slides">
 
 <slides source="chapter_1_02_RStudio_basics"> </slides>
 
 </exercise>
 
-<exercise id="3" title="Additional Resources">
+<exercise id="4" title="Additional Resources">
 
 ## Additional Resources
 
