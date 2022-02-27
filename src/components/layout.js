@@ -62,9 +62,13 @@ const Layout = ({ isHome, title, description, children }) => {
 
                                     <section className={classes.footerSection}>
                                         <H3>About us</H3>
+                                        <img
+                                            src="/monash.svg"
+                                            alt="Monash University Logo"
+                                        />
                                         {meta.showProfileImage && (
                                             <img
-                                                src="/profile.jpg"
+                                                src="/profile.png"
                                                 alt=""
                                                 className={classes.profile}
                                             />

@@ -30,6 +30,7 @@
         "gatsby-transformer-remark": "^2.2.5",
         "gatsby-transformer-sharp": "^2.1.17",
         "juniper-js": "^0.1.0",
+        "lottie-web": "^5.8.1",
         "node-sass": "^4.11.0",
         "prismjs": "^1.26.0",
         "react": "^16.8.2",
@@ -40,7 +41,7 @@
         "reveal.js": "^3.8.0"
     },
     "scripts": {
-        "build": "gatsby build --prefix-paths",
+        "build": "gatsby build",
         "dev": "gatsby develop",
         "lint": "eslint **",
         "clear": "rm -rf .cache",

@@ -1,0 +1,223 @@
+---
+title: Getting started with R and RStudio IDE
+type: slides
+
+---
+### Why do we want to learn and use R and RStudio?
+
+-   R and RStudio are powerful tools for statistical analysis
+
+-   It is user friendly and open sourced
+
+-   Provide reproducible code
+
+-   Easy data cleaning and data visualisation
+
+-   And many more for you to explore
+
+---
+
+### What is R and RStudio?
+
+R is a free software environment for statistical computing and graphics.
+RStudio is an integrated development environment (IDE) for R. Before you
+download and install RStudio, you must first downloaded and install R.
+
+---
+
+### What is R and RStudio?
+
+One way to think about the relationship between R and RStudio is that R
+acts like the CPU of a computer where RStudio acts like your computer
+which provides easy-to-work-with interface.
+
+---
+
+### Download and Install R
+
+![Install R windows](cran_windows_1.png)
+
+Note: Download the latest version of R from: [The Comprehensive R
+Archive Network (CRAN)](https://cloud.r-project.org/).
+
+Please select Download R for `your operating system`
+
+---
+
+### Install R on Windows
+
+![Install R windows](cran_windows_2.png)
+
+Note: Select base distribution binaries.
+
+---
+
+### Install R on Windows
+
+![Install R windows](cran_windows_3.png)
+
+Note: Download the latest version of R for Windows.
+
+---
+
+### Install R on Windows
+
+![Install R windows](cran_windows_4.png)
+
+Note: Run the downloaded executable file.
+
+---
+
+### Install R on Windows
+
+![Install R windows](cran_windows_5.png)
+
+Note: Allow the installer to change your device.
+
+---
+
+### Install R on Windows
+
+![Install R windows](cran_windows_6.png)
+
+Note: Follow the prompts.
+
+---
+
+### Install R on Windows
+
+![Install R windows](cran_windows_7.png)
+
+Note: Follow the prompts.
+
+---
+
+### Install R on Windows
+
+![Install R windows](cran_windows_8.png)
+
+Note: Follow the prompts.
+
+---
+
+### Install R on Windows
+
+![Install R windows](cran_windows_9.png)
+
+Note: Follow the prompts.
+
+---
+
+### Install R on Windows
+
+![Install R windows](cran_windows_10.png)
+
+Note: Follow the prompts.
+
+---
+
+### Install R on Windows
+
+![Install R windows](cran_windows_11.png)
+
+Note: Follow the prompts.
+
+---
+
+### Install R on Windows
+
+![Install R windows](cran_windows_12.png)
+
+Note: Follow the prompts.
+
+---
+
+### Install RStudio on Windows
+
+![Install RStudio windows](rstudio_windows_1.png)
+
+Note: Download the latest version of RStudio from
+[RStudio](https://www.rstudio.com/products/rstudio/download/).
+
+Scroll down to `All Installers` and download the RStudio version for
+your operating system.
+
+---
+
+### Install RStudio on Windows
+
+![Install RStudio windows](rstudio_windows_2.png)
+
+Note: Save the installer on your computer
+
+---
+
+### Install RStudio on Windows
+
+![Install RStudio windows](rstudio_windows_3.png)
+
+Note: Run the executable file to install RStudio
+
+---
+
+### Install RStudio on Windows
+
+![Install RStudio windows](rstudio_windows_4.png)
+
+Note: Allow the installer to make changes on your computer.
+
+---
+
+### Install RStudio on Windows
+
+![Install RStudio windows](rstudio_windows_5.png)
+
+Note: Follow the prompts.
+
+---
+
+### Install RStudio on Windows
+
+![Install RStudio windows](rstudio_windows_6.png)
+
+Note: Follow the prompts.
+
+---
+
+### Install RStudio on Windows
+
+![Install RStudio windows](rstudio_windows_7.png)
+
+Note: Follow the prompts.
+
+---
+
+### Install RStudio on Windows
+
+![Install RStudio windows](rstudio_windows_8.png)
+
+Note: Follow the prompts.
+
+---
+
+### Install RStudio on Windows
+
+![Install RStudio windows](rstudio_windows_9.png)
+
+Note: Follow the prompts.
+
+---
+
+### Open RStudio on Windows
+
+![Open RStudio windows](rstudio_windows_10.png)
+
+Note: Search for RStudio on your computer, and open it.
+
+---
+
+### RStudio is ready!
+
+![RStudio on windows](rstudio_windows_11.png)
+
+Note: Time to learn R!

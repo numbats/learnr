@@ -1,117 +1,180 @@
 ---
-title: "Getting start with an R project"
-output:
-  revealjs::revealjs_presentation:
-     css: [reveal.css, slide.css]
-     transition: slide
-     keep_md: true
-     lib_dir: libs/
-     self_contained: false
+title: Getting start with an R project
+type: slides
+
 ---
+### Why should you use R projects?
 
+-   Allows quick switching between projects within the RStudio IDE.
 
+-   Opening a project restores your open tabs from last use.
 
-## Why do I want to start an R Project? 
+-   Enables features specific to that project type, such as testing
+    packages or building a website.
 
-* It is good project management practice which help you get all your data, scripts and RMarkdown file organised. 
-
-* When you are learning with multiple subjects that all requires working in R but with totally different datasets and knowledge. Having an R project for each of the subject will help you manage your datasets,analyses and learning materials. 
-
-* This is similar process when you are organising your word documents, PDFs, excel files and ect. 
-
-* Having individual R project for different things you are working on keep your workflow and files organised. 
+-   Encourages organised file structure practices, notably a project
+    should contain all files used by that project.
 
 ---
 
-## Starting an R project 
+![project selector](project_1.png)
 
-On the right top corner, click on the blue project icon, you will see the pop-up window below.  
-
-<img src="images/chapter4/project_1.png" width="50%" />
-
----
-
-## Starting an R project 
-
-Click on `New Project...` you will see the window below. If you want to start a new R project in a new location on your computer, select `New Directory`. If you want to start a new R project in a location where you have other R projects, select `Existing Directory`. For you very first R project, please select `New Directory`. 
-
-<img src="images/chapter4/project_2.png" width="50%" />
+Note: Create a new project by clicking the project selector in the top
+right corner. This will show you your most recent R projects, and is
+great for quickly switching between them. To create a new project,
+select "New Project...".
 
 ---
 
-## Starting an R project 
+![new project](project_2.png)
 
-There are a few different R project including `New project`, `R Package` and `Shiny Application`. If you want to start writing an R package, you can choose `R Package`. If you want to start a shiny app, you can choose `Shiny Application`. For genernal R project, click `New Project`. 
+Note: If you want to start a new R project in a new location on your
+computer, select 'New Directory'.
 
-<img src="images/chapter4/project_3.png" width="50%" />
+If you want to start a new R project in a location where you have other
+R projects, select 'Existing Directory'.
 
----
-
-## Starting an R project 
-
-You can name the under `Directory name` and choose the project location under `Create project as subdirectory of:`. You can also `Browse...` for locations on your computer. 
-
-<img src="images/chapter4/project_4.png" width="50%" />
+For you very first R project, please select 'New Directory'.
 
 ---
 
-## Setting working directory 
+![project directories](project_3.png)
 
-* After getting your R project, you current working directory is where the R project located on your computer.
+Note: There are many different types of R projects that you can create.
+For a data analysis project we would typically start from an empty 'New
+Project'. Have a scroll through to see all of the different project
+types you can create. If you've installed some packages like I have,
+you'll see some package specific project types too.
 
-* When you open up your R project, on the `Console` window, it shows your current working directory. 
-
-* To double check your current working directory use function `getwd()`. After running this function in `Console`, you should have your current working directory printed out. 
-
-
-<img src="images/chapter4/getwd.png" width="50%" />
-
----
-
-## Setting working directory 
-
-* If you are not working in a R project, you can still set up an working directory for your analyses. 
-
-* Go to the right bottom window, click on `More`. You can click on `Set As working Directory`. This will set the current location you are in showing on the `Files` window as the current working directory.   
-
-<img src="images/chapter4/RStudo_setwd.png" width="50%" />
-
-* Alternatively, use function `setwd()` to set your working directory. Noted that the path you are putting in `setwd()` need to be double quoted `""`. For example, `setwd("~/Desktop/Tutoring /data vis")`. 
+For an empty R project, click 'New Project'.
 
 ---
 
-## Relative path vs Absolute path
+![project types](project_4.png)
 
-* Relative path means that the file path you use is relative to your current working directory.
+Note: Give your project (and the folder that will contain it) a name
+using the 'Directory name' field. You can also choose where the project
+will exist on your computer by clicking the 'Browse...' button.
 
-* Absolute path means that the file path is the path on your personal computer which you should never use. Using absolute path would create problem when you trying to communicate your project to others. They might not have the same absolute path you used in this project.
+The checkboxes can be left unticked, if you want these features you can
+add them later.
 
-* Make sure that all your data and scripts are all packed in one R project and use the relative path to direct where are the files located. 
-
-* For example, an relative path to the `data vis` project would be `\data\cars.csv`
-
---- 
-
-## Let's not store any past information in the R environment 
-
-* Every time you run some R code and read in datasets, they will be automatically stored in the `Environment` which is the top right window. 
-
-* When you quite RStudio session, the data you read in, the functions you created will be stored in this `Environment`. So later on, you can come back and continue from where you left. 
-
-* However, this could create problems. It is hard to communicate your code and analyses to others as they might not have the same variables or data stored in their environment. 
-
-* The better project management way is to disable this function. This way you will keep all your analysis steps in one script and it is reproducible by others. 
-
+Click 'Create Project' to create the project.
 
 ---
 
-## Let's not store any past information in the R environment 
+![project name](project_5.png)
 
-* To disable this function in RStudio, go to `Tools`  <svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg">  <path d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zm-28.9 143.6l75.5 72.4H120c-13.3 0-24 10.7-24 24v16c0 13.3 10.7 24 24 24h182.6l-75.5 72.4c-9.7 9.3-9.9 24.8-.4 34.3l11 10.9c9.4 9.4 24.6 9.4 33.9 0L404.3 273c9.4-9.4 9.4-24.6 0-33.9L271.6 106.3c-9.4-9.4-24.6-9.4-33.9 0l-11 10.9c-9.5 9.6-9.3 25.1.4 34.4z"></path></svg>  `Global Options` <svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg">  <path d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zm-28.9 143.6l75.5 72.4H120c-13.3 0-24 10.7-24 24v16c0 13.3 10.7 24 24 24h182.6l-75.5 72.4c-9.7 9.3-9.9 24.8-.4 34.3l11 10.9c9.4 9.4 24.6 9.4 33.9 0L404.3 273c9.4-9.4 9.4-24.6 0-33.9L271.6 106.3c-9.4-9.4-24.6-9.4-33.9 0l-11 10.9c-9.5 9.6-9.3 25.1.4 34.4z"></path></svg>  `General` 
+Note: There you have it! You're brand new R project. You can see just
+below the 'Console' tab selector that we are now in the
+'\~/my-awesome-project/' folder. This is exactly where we created our
+project, and all scripts and data should also be stored here (more on
+that later).
 
-* Unselected `Rstore .RData into workspace at startup` and change `Save workspace to .RData on exit` to `Never`
+You can also see that the project selector in the top right now
+indicates that we are in the 'my-awesome-project' project.
 
-<img src="images/chapter4/disable_store.png" width="50%" />
+---
 
+### Keeping projects self contained
 
+Projects should be self contained, meaning that all files and data exist
+within the project.
 
+This is useful for if you're sharing your project with others, as you
+can directly share the project folder and all of its contents.
+
+---
+
+### Storing some data in the project
+
+Let's create a dataset in our project. To do this I first create a
+'data' folder using a 'New Folder' from the Files tab.
+
+Then, I save the `mtcars` dataset in that folder using by running this
+code in the 'Console'.
+
+    readr::write_csv(mtcars, "data/mtcars.csv")
+
+---
+
+![mtcars data](project_data.png)
+
+---
+
+### Relative paths
+
+Note that the file path used to save the dataset (`"data/mtcars.csv"`)
+is a relative path.
+
+As we are in the 'my-awesome-project', any file paths we use are
+'relative' to that project folder.
+
+That is to say `"data"` refers to the project's "data" folder, and
+`"data/mtcars.csv"` is the "mtcars.csv" file in the "data" folder.
+
+Relative paths are great, as it allows anyone who has your project to
+run the code without changing file paths.
+
+---
+
+### Absolute paths
+
+An absolute path describes exactly where on your computer the file
+should be saved.
+
+Absolute paths should never be used in projects, as others will not be
+able to run the code you provide.
+
+This is because absolute paths to a project vary with operating systems,
+and where the project is stored.
+
+---
+
+### Absolute paths on different computers
+
+The absolute path to the dataset on my computer (macOS/Linux) is
+
+    /home/learnr/my-awesome-project/data/mtcars.csv
+
+The equivalent location on someone else's Windows computer is
+
+    C:\Users\learnr\Documents\my-awesome-project\data\mtcars.csv
+
+The **relative path** to the dataset on all computers is
+
+    data/mtcars.csv
+
+Much better!
+
+---
+
+### Don't save your workspace image
+
+When closing RStudio you might be greeted with this popup:
+
+![save workspace](save_workspace.png)
+
+You should select `Don't Save`!
+
+---
+
+### Don't save your workspace image
+
+Saving the workspace stores all of the objects you've created for next
+time you open the project.
+
+Sounds great, but it's bad for reproducibility. All objects in the
+environment should be produced with code, and that code should be saved
+in the project.
+
+This helps to ensure that others are able to run your code and produce
+the results you have.
+
+---
+
+### Don't save your workspace image
+
+You can also prevent saving workspaces in the 'Global Options':
+
+![save workspace setting](save_workspace_preference.png)

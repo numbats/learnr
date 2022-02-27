@@ -20,14 +20,14 @@ class Juniper extends React.Component {
         kernelType: 'python3',
         lang: 'python',
         theme: 'default',
-        isolateCells: true,
+        isolateCells: false,
         useBinder: true,
         storageKey: 'juniper',
         useStorage: true,
         storageExpire: 60,
         debug: true,
         msgButton: 'run',
-        msgLoading: 'Loading...',
+        msgLoading: 'Attempting to run your code 🤖⚡',
         msgError: 'Connecting failed. Please reload and try again.',
         classNames: {
             cell: 'juniper-cell',
@@ -85,7 +85,7 @@ class Juniper extends React.Component {
             this.execute(outputArea, wrapper ? wrapper(value) : value)
         }
         const setValue = value => cm.setValue(value)
-        cm.setOption('extraKeys', { 'Shift-Enter': runCode })
+        // cm.setOption('extraKeys', { 'Shift-Enter': runCode })
         Widget.attach(outputArea, this.outputRef)
         this.setState({ runCode, setValue })
     }
@@ -148,20 +148,41 @@ class Juniper extends React.Component {
      * @returns {Promise} - A promise that's resolved with the kernel.
      */
     requestKernel(settings) {
+        const serverSettings = ServerConnection.makeSettings(settings)
+        
         if (this.props.useStorage) {
             const timestamp = new Date().getTime() + this.props.storageExpire * 60 * 1000
-            const json = JSON.stringify({ settings, timestamp })
+            const json = JSON.stringify({ settings, timestamp})
             window.localStorage.setItem(this.props.storageKey, json)
         }
-        const serverSettings = ServerConnection.makeSettings(settings)
-        return Kernel.startNew({
-            type: this.props.kernelType,
-            name: this.props.kernelType,
-            serverSettings,
-        }).then(kernel => {
-            this.log(() => console.info('ready'))
-            return kernel
-        })
+        
+        // Check if a kernel is already running, and re-use it
+//         console.log('obtaining current kernels')
+        return Kernel.listRunning( serverSettings ).then(kernelModels => {
+            if (kernelModels.length!==0) {
+//                 console.log("reconnecting to existing kernel")
+//                 console.log(kernelModels[0].id)
+                
+                return new Promise((resolve, reject) =>
+                    resolve(Kernel.connectTo(kernelModels[0], serverSettings))
+                )
+                
+            } else {
+//                 console.log("could not find any running kernels, starting a new one")
+                
+                return Kernel.startNew({
+                    type: this.props.kernelType,
+                    name: this.props.kernelType,
+                    serverSettings,
+                }).then(kernel => {
+                    kernel.requestExecute({ code: 'source("binder/setup.R")' })
+                    this.log(() => console.info('ready'))
+                    return kernel
+                })
+            }
+        });
+
+        
     }
 
     /**
@@ -175,12 +196,14 @@ class Juniper extends React.Component {
                 this.setState({ fromStorage: true })
                 const { settings, timestamp } = JSON.parse(stored)
                 if (timestamp && new Date().getTime() < timestamp) {
+//                     console.log('Re-using stored kernel')
                     return this.requestKernel(settings)
                 }
                 window.localStorage.removeItem(this.props.storageKey)
             }
         }
         if (this.props.useBinder) {
+//             console.log("requesting a new binder")
             return this.requestBinder(this.props.repo, this.props.branch, this.props.url).then(
                 settings => this.requestKernel(settings)
             )
@@ -237,7 +260,7 @@ class Juniper extends React.Component {
         outputArea.model.add({
             output_type: 'stream',
             name: 'stdout',
-            text: `${action} Docker container on ${url}...`,
+            text: `${action} your very own cloud robot at ${url} 🤖\nThis could take a while but only needs to happen once!\nPlease be patient 🦥`,
         })
         new Promise((resolve, reject) =>
             this.getKernel()

@@ -24,6 +24,7 @@ module.exports = {
             options: {
                 name: `chapters`,
                 path: `${__dirname}/chapters`,
+                ignore: [`**/*knit\.md`],
             },
         },
         {

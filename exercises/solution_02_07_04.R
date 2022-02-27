@@ -8,7 +8,9 @@ first_ten_elements <- data.frame(symbol, element, chemical_group, atomic_no)
 
 # Use order() to create positions
 positions <- order(first_ten_elements$atomic_no)
+positions
 
 # Use positions to create a sort the first_ten_elements
 sorted_df <- first_ten_elements[positions, ]
+sorted_df
 

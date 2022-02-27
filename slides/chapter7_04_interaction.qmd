@@ -1,0 +1,256 @@
+---
+title: Linear regression with interaction effects
+#execute:
+#  keep-md: true
+format: 
+  #teachr::teachr_slides:
+  revealjs:
+    #self-contained: true
+    logo: images/monash-stacked-blue-rgb-transparent.png
+    slide-number: true
+    show-slide-number: all
+    controls: true
+    width: 1280
+    height: 720
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(#fig.path = "images/chapter8-03/",
+                      fig.align = "center",
+                      fig.width = 10, 
+                      fig.height = 4,
+                      cache.path = "cache/",
+                      cache = FALSE,
+                      echo = TRUE)
+library(tidyverse)
+library(broom)
+library(grid)
+library(patchwork)
+```
+
+
+
+## Tooth growth data
+
+* We'll again use the `ToothGrowth` data:
+
+```{r}
+str(ToothGrowth)
+```
+
+* `ToothGrowth` contains observations on 60 guinea pigs with variables:
+  * `len`: the tooth length
+  * `supp`: supplement type (VC = vitamin C, OJ = orange juice)
+  * `dose`: dose of supplement in milligrams/days
+  
+
+```{r tooth-plot0, echo = FALSE}
+g1 <- ggplot(ToothGrowth, aes(dose, len)) +
+  ggbeeswarm::geom_quasirandom(alpha = 0.8, aes(color = supp)) + 
+  labs(x = "Dose (mg/day)", y = "Tooth length", color = "Supplement") +
+  scale_color_viridis_d()
+g1
+```
+
+
+* We can see that tooth length appears to be determined by both the supplement and its dose level
+
+---
+
+## Proposed model 1
+
+$$ y_{ijk} = \mu + \alpha_i + \beta x_{j} + e_{ijk}, \qquad \text{for }i = 1, 2, j = 1, 2, 3, k = 1, ..., 10$$
+
+where:
+
+* $i$ corresponds to the level of the supplementary variable,
+* $j$ corresponds to the dose level.
+
+```{r}
+fit1 <- lm(len ~ 1 + supp + dose, data = ToothGrowth)
+coef(fit1)
+```
+
+Notes:
+
+* This model results in two parallel lines: the same slope, different intercepts for different supplement:
+
+```{r tooth-plot1, echo = FALSE, message=FALSE}
+pred <- broom::augment(fit1)
+g1 + 
+  geom_line(data = pred, aes(y = .fitted, color = supp),
+            size = 1.2) 
+```
+
+---
+
+## Proposed model 2A
+
+$$ y_{ijk} = \mu + \alpha_i + \beta x_{j} + \beta_{i} x_{j} + e_{ijk}, \qquad \text{for }i = 1, 2, j = 1, 2, 3, k = 1, ..., 10$$
+
+
+
+```{r}
+fit2A <- lm(len ~ 1 + supp + dose + supp:dose, data = ToothGrowth)
+coef(fit2A)
+```
+
+Notes:
+
+* `:` is used to fit an interaction of two variables, i.e. `A:B` is an interaction of `A` and `B`. 
+* `A*B` is used as a shorthand for `A + B + A:B` so `supp * dose` is equivalent to `supp + dose + supp:dose`.
+* The above model fits a linear model with different intercepts and slopes for the different supplement:
+
+```{r tooth-plot2A, echo = FALSE, message=FALSE}
+pred <- broom::augment(fit2A)
+g1 + 
+  geom_line(data = pred, aes(y = .fitted, color = supp),
+            size = 1.2) 
+```
+
+---
+
+## Proposed model 2B
+
+$$ y_{ijk} = \mu + \alpha_i + \gamma_{i} x_{j} + e_{ijk}, \qquad \text{for }i = 1, 2, j = 1, 2, 3, k = 1, ..., 10$$
+
+
+```{r}
+fit2B <- lm(len ~ 1 + supp + supp:dose, data = ToothGrowth)
+coef(fit2B)
+```
+
+Notes:
+
+* This model is equivalent to the previous model where $\gamma_i = \beta + \beta_i$.
+
+```{r tooth-plot2B, echo = FALSE, message=FALSE}
+pred <- broom::augment(fit2B)
+g1 + 
+  geom_line(data = pred, aes(y = .fitted, color = supp),
+            size = 1.2) 
+```
+
+---
+
+## Proposed model 3
+
+$$ y_{ijk} = \mu +  \zeta_{i} x_{j} + e_{ijk}, \qquad \text{for }i = 1, 2, j = 1, 2, 3, k = 1, ..., 10$$
+
+
+```{r}
+fit3 <- lm(len ~ 1 + supp:dose, data = ToothGrowth)
+coef(fit3)
+```
+
+Notes:
+
+* This model results in two lines with the same intercept but different slopes for each supplement type
+
+```{r tooth-plot3, echo = FALSE, message=FALSE}
+pred <- broom::augment(fit3)
+g1 + 
+  geom_line(data = pred, aes(y = .fitted, color = supp),
+            size = 1.2) 
+```
+
+---
+
+## Proposed model 4A
+
+$$ y_{ijk} = \mu_{ij} + e_{ijk}, \qquad \text{for }i = 1, 2, j = 1, 2, 3, k = 1, ..., 10$$
+
+
+```{r}
+df <- ToothGrowth
+df$dosef <- factor(df$dose)
+fit4A <- lm(len ~ 0 + supp:dosef, data = df)
+coef(fit4A)
+```
+
+Notes:
+
+```{r tooth-plot4A, echo = FALSE, message=FALSE}
+pred <- broom::augment(fit4A)
+
+ggplot(df, aes(dosef, len)) +
+  ggbeeswarm::geom_quasirandom(alpha = 0.8, aes(color = supp)) + 
+  labs(x = "Dose (mg/day)", y = "Tooth length", color = "Supplement") +
+  scale_color_viridis_d() + 
+  geom_point(data = pred, aes(y = .fitted, color = supp),
+            color = "indianred", size = 3, shape = 10) 
+```
+
+---
+
+## Proposed model 4B
+
+$$y_{ijk} = \alpha_i + \beta_j  + (\alpha\beta)_{ij} + e_{ijk}, \qquad \text{for }i = 1, 2, j = 1, 2, 3, k = 1, ..., 10$$
+where
+
+* $\alpha_i$ and $\beta_j$ are **main effects** for `supp` and `dosef`, respectively,
+* $(\alpha\beta)_{ij}$ are the **interaction effects** between `supp` and `dosef`,
+
+
+This model is the same as the previous model where $\mu_{ij} = \alpha_i + \beta_j + (\alpha\beta)_{ij}$. 
+
+Notes:
+
+
+```{r}
+fit4B <- lm(len ~ 0 + supp * dosef, data = df)
+coef(fit4B)
+```
+
+
+```{r tooth-plot4B, echo = FALSE, message=FALSE}
+pred <- broom::augment(fit4B)
+
+ggplot(df, aes(dosef, len)) +
+  ggbeeswarm::geom_quasirandom(alpha = 0.8, aes(color = supp)) + 
+  labs(x = "Dose (mg/day)", y = "Tooth length", color = "Supplement") +
+  scale_color_viridis_d() + 
+  geom_point(data = pred, aes(y = .fitted, color = supp),
+            color = "indianred", size = 3, shape = 10) 
+```
+
+---
+
+## Proposed model 4C
+
+$$ y_{ijk} = \beta_0 + \alpha_i  + \beta_{1i} x_j +  \beta_{2i} x_j^2  + e_{ijk}, \qquad \text{for }i = 1, 2, j = 1, 2, 3, k = 1, ..., 10$$
+
+
+```{r}
+fit4C <- lm(len ~ supp * (1 + dose + I(dose^2)), data = ToothGrowth)
+coef(fit4C)
+```
+
+Notes: 
+
+* `len ~ supp * (1 + dose + I(dose^2))` is the same as `len ~ supp * poly(dose, 2, raw = TRUE)`.
+* An equivalent model can be fitted with `len ~ supp * poly(dose, 2)` where orthogonal polynomials are used instead for the `dose`. 
+* This model is also equivalent to `fit4C`, but the advantage of this approach is that you can predict for other dose levels.
+
+
+```{r tooth-plot4C, echo = FALSE, message=FALSE}
+dat <- expand.grid(dose = seq(0.5, 2, 0.1), supp = c("OJ", "VC"))
+dat$pred <- predict(fit4C, dat)
+fitdat <- expand.grid(dose = c(0.5, 1, 2), supp = c("OJ", "VC"))
+fitdat$len <- predict(fit4C, fitdat)
+
+g1 + 
+  geom_line(data = dat, aes(y = pred, color = supp),
+            size = 1.2)  + 
+  geom_point(data = fitdat, 
+            color = "indianred", size = 3, shape = 10) 
+```
+
+
+---
+
+
+## Summary
+
+* Interaction effects between variables `A` and `B` may be fitted by using `A:B` or `A*B` where the latter also fits the main effects `A` and `B`. 
+* The implied model if one of the variables is encoded as a `numeric` is different to when it is encoded as a `factor`.

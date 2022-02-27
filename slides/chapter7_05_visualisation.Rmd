@@ -1,0 +1,11 @@
+---
+title: Visualising regression models
+output: 
+  teachr::teachr_slides
+chapter: 7
+---
+
+
+```{r child=gsub("[.]Rmd", ".qmd", knitr::current_input())}
+```
+

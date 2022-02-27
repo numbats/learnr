@@ -31,6 +31,18 @@ const Template = ({ data, location }) => {
         }
     }, [location.hash])
 
+    //  Render MathJax syntax
+    useEffect(() => {
+      window.MathJax && window.MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'] ],
+          displayMath: [ ['$$','$$'] ],
+          processEscapes: true
+        }
+      });
+      window.MathJax && window.MathJax.Hub.Queue(['Typeset', window.MathJax.Hub])
+    })
+
     return (
         <ChapterContext.Provider
             value={{ activeExc, setActiveExc: handleSetActiveExc, completed, setCompleted }}

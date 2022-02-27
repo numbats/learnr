@@ -1,11 +1,6 @@
-library(testthat)
-  
-test <- function() {
-    if ((class(roll_a_die()) != "integer")|(roll_a_die()> 6)|(roll_a_die()<1)) {
-      stop("Is your function returning integers from 1 to 6 ? Check the body of the function.")
-    }
-    success("Well done!")
-}
 
-test()
+expect_true(inherits(roll_a_die(), "integer"), info = "Your function should return an integer")
+rolls <- vapply(seq_len(1000), function(x) roll_a_die(), integer(1L))
+expect_true(min(rolls) >= 1L, info = "Your function returns dice numbers less than 1.")
+expect_true(max(rolls) <= 6L, info = "Your function returns dice numbers more than 6.")
 

@@ -1,10 +1,5 @@
-library(testthat)
   
-test <- function() {
-  if my_result[5] != 0.00198{
-    stop("Try again.")
-  }
-  success("Well done!")
-}
-
+solution <- c(0.0599538461538461, 0.00861224489795918, 0.0383622047244094, 
+0.0450365853658537, 0.0019813153961136)
+expect_equal(my_result, solution, tolerance = 0.01)
 

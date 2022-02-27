@@ -1,17 +1,4 @@
-library(testthat)
 
-test <- function() {
-    if (weather != "sunny") {
-        stop("Have you spelt the string correctly? Have you try the hint?")
-    }
-    if (brolly_needed != FALSE) {
-      stop("Have you spelt the logical value correctly? Note that logical values should be all capital letter (i.e. `TRUE` not `true`).")
-    }
-    if (temperature != 27) {
-      stop("Have you assign the numeric correctly?")
-    }
-    # This function is defined in the testTemplate
-    success("Well done!")
-}
-
-test()
+expect_equal(weather, "sunny", info = "Have you spelt the string correctly? Have you try the hint?")
+expect_false(brolly_needed, info = "Have you spelt the logical value correctly? Note that logical values should be all capital letter (i.e. `TRUE` not `true`).")
+expect_equal(temperature, 27, info = "Have you assign the numeric correctly?")

@@ -12,7 +12,7 @@ const SEO = ({ title, description }) => (
                 ? `${title} · ${siteMetadata.title}`
                 : `${siteMetadata.title} · ${siteMetadata.slogan}`
             const pageDesc = description || siteMetadata.description
-            const image = `${siteMetadata.siteUrl}/social.jpg`
+            const image = `${siteMetadata.siteUrl}/social.png`
             const meta = [
                 {
                     name: 'description',
@@ -63,9 +63,13 @@ const SEO = ({ title, description }) => (
                     content: pageDesc,
                 },
             ]
+            const script = [{
+                    type: 'text/javascript',
+                    src:'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML',
+            }]
 
             return (
-                <Helmet defer={false} htmlAttributes={{ lang }} title={pageTitle} meta={meta}>
+                <Helmet defer={false} htmlAttributes={{ lang }} title={pageTitle} meta={meta} script={script}>
                     {siteMetadata.fonts && (
                         <link
                             href={`https://fonts.googleapis.com/css?family=${siteMetadata.fonts}`}

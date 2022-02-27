@@ -1,0 +1,11 @@
+---
+title: R Graphics
+chapter: 6
+output: 
+  teachr::teachr_slides
+---
+
+
+```{r child=gsub("[.]Rmd", ".qmd", knitr::current_input())}
+```
+

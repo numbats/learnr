@@ -1,6 +1,7 @@
-library(ggplot2)
-library(Ecdat)
-ggplot(data = BudgetFood, 
-       mapping = aes(x = totexp)) +
-  geom_histogram(aes(y = after_stat(density))) +
-  geom_density(color = "red")
+data(Cigarette, package = "Ecdat")
+
+fit <- lm(avgprs ~ -1 + state, data = Cigarette)
+  
+betas <- coef(fit)
+betas
+
