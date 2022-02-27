@@ -1,5 +1,5 @@
 ---
-title: 'Chapter 3: How to ask for help'
+title: 'Chapter 3: Troubleshooting and asking for help'
 description:
   'With coding comes bugs and errors that need troubleshooting. In this chapter, you will learn how to decipher errors, find help for fixing them, and practice asking clear questions with minimally reproducible examples.'
 prev: /chapter2

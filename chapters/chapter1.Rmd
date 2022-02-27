@@ -1,5 +1,5 @@
 ---
-title: 'Chapter 1: Getting started with R & RStudio IDE'
+title: 'Chapter 1: Getting started with R & RStudio'
 description:
   'This chapter will teach you about many cool things about R and RStuduo and help you get start with RStudio.'
 next: /chapter2
@@ -41,7 +41,7 @@ knitr::opts_chunk$set(fig.path = "ch1/",
 
 </exercise>
 
-<exercise id="2" title="RStudio basic" type="slides">
+<exercise id="2" title="RStudio basics" type="slides">
 
 `r slides("chapter_1_02_RStudio_basics")`
 
