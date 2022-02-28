@@ -7,8 +7,7 @@ chapter: 1
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(fig.path = "chapter1-01/",
-                      fig.align = "center",
+knitr::opts_chunk$set(fig.align = "center",
                       fig.width = 2, 
                       fig.height = 2,
                       cache.path = "cache/",
