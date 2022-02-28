@@ -17,7 +17,7 @@ type: slides
 
 ---
 
-![project selector](project_1.png)
+![project selector](chapter4/project_1.png)
 
 Note: Create a new project by clicking the project selector in the top
 right corner. This will show you your most recent R projects, and is
@@ -26,7 +26,7 @@ select "New Project...".
 
 ---
 
-![new project](project_2.png)
+![new project](chapter4/project_2.png)
 
 Note: If you want to start a new R project in a new location on your
 computer, select 'New Directory'.
@@ -38,7 +38,7 @@ For you very first R project, please select 'New Directory'.
 
 ---
 
-![project directories](project_3.png)
+![project directories](chapter4/project_3.png)
 
 Note: There are many different types of R projects that you can create.
 For a data analysis project we would typically start from an empty 'New
@@ -50,7 +50,7 @@ For an empty R project, click 'New Project'.
 
 ---
 
-![project types](project_4.png)
+![project types](chapter4/project_4.png)
 
 Note: Give your project (and the folder that will contain it) a name
 using the 'Directory name' field. You can also choose where the project
@@ -63,7 +63,7 @@ Click 'Create Project' to create the project.
 
 ---
 
-![project name](project_5.png)
+![project name](chapter4/project_5.png)
 
 Note: There you have it! You're brand new R project. You can see just
 below the 'Console' tab selector that we are now in the
@@ -98,7 +98,7 @@ code in the 'Console'.
 
 ---
 
-![mtcars data](project_data.png)
+![mtcars data](chapter4/project_data.png)
 
 ---
 
@@ -153,7 +153,7 @@ Much better!
 
 When closing RStudio you might be greeted with this popup:
 
-![save workspace](save_workspace.png)
+![save workspace](chapter4/save_workspace.png)
 
 You should select `Don't Save`!
 
@@ -177,4 +177,4 @@ the results you have.
 
 You can also prevent saving workspaces in the 'Global Options':
 
-![save workspace setting](save_workspace_preference.png)
+![save workspace setting](chapter4/save_workspace_preference.png)
