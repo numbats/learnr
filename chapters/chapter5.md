@@ -54,33 +54,15 @@ You can also load specific library separately, for example,
 **Pipes**
 
 `%>%` is a "pipe"-like operator with which you may pipe a value forward
-into an expression or function call; something along the lines of
-`x %>% f`, rather than `f(x)`. It semantically changes your code in a
-way that makes it more intuitive to both read and write. To illustrate
-the idea, below is a simplified example with mathematical operations:
+into the next function. Instead of writing `f(x)`, it allows you to
+instead write `x %>% f()`.
 
-``` {.r}
-x <- c(100,200,300)
-x %>% log() %>%
-    +3 %>%
-    exp()
-```
+Packages in the tidyverse are designed around this pipe, which
+semantically changes your code in a way that makes it more intuitive to
+both read and write.
 
-    ## [1] 2008.554 4017.107 6025.661
-
-We start with a vector `x`. From there, we take log every element of,
-then we add 3 to each element. Finally we compute the exponential of
-each element of x. Note how the code is arranged in the logical order of
-how you think about the task: x - \> take log -\> add 3 -\> exponential,
-which is also the same order as the code will execute. It's like a
-recipe -- easy to read, easy to follow!
-
-In practice, we don't usually write a sequence of mathematical
-operations using pipes. (Because you could have just typed
-`exp(log(x) + 3)`.
-
-Rather, we use pipes when we want to chain a number of operations to
-manipulate our data. For example,
+We use pipes when we want to chain a number of operations to manipulate
+our data. For example,
 
     # Read in data using readr
     read_csv("market.csv") %>%
@@ -96,9 +78,49 @@ know what does each of these command do.
 
 The benefit of using pipes here is that we can add layers of operations
 on top of one another. This is very useful when we are performing
-complex operations on our data sets.
+complex operations on our data sets. The equivalent code for this
+without the pipe would be:
 
-We will start using pipes in the exercises.
+``` {.r}
+ggplot(
+  mutate(
+    read_csv("market.csv"), 
+    revenue = sales * price
+  ),
+  aes(y = revenue, x = product)
+) + 
+  geom_col()
+```
+
+You can see how the pipe simplifies both our writing, reading, and
+understanding of this sequence of code. It is much more natural to think
+of the code first reading in the data, computing a new column called
+revenue, and then plotting revenue over time with a column chart in
+ggplot. The alternative reading (without pipes) is to plot the computed
+revenue column of the read in data with a column chart.
+
+All code in R can be written using a pipe, but in some circumstances it
+doesn't make sense to do so. For example, mathematical notation is
+typically written in a single line, rather than in a sequence of steps.
+Suppose you had a numerical vector `x <- c(100, 200, 300)` and wanted to
+do some mathematical calculations on it: `(log(x) + 3)^2`. The
+equivalent code using pipes would be `x %>% log() %>% {.+3} %>% {.^2}` -
+you first log the vector `x`, then add 3, and square the result. It
+gives the same result, but is harder to read and write for this
+circumstance.
+
+``` {.r}
+x <- c(100,200,300)
+(log(x) + 3)^2
+```
+
+    ## [1] 57.83861 68.86207 75.75583
+
+``` {.r}
+x %>% log() %>% {.+3} %>% {.^2}
+```
+
+    ## [1] 57.83861 68.86207 75.75583
 
 </exercise>
 
@@ -167,7 +189,7 @@ We would like to merge the tables so that the result looks like:
 
 Which of the following commands does the operation?
 
-<choice id=0.679033899214119>
+<choice id=0.536885833600536>
 
 <opt text="<code>inner_join(color, size)</code>" >
 
@@ -258,7 +280,7 @@ table3
     ## 5 China        1999 212258/1272915272
     ## 6 China        2000 213766/1280428583
 
-<choice id=0.209606231423095>
+<choice id=0.771973018301651>
 
 <opt text="Table 1 only" correct="true">
 
@@ -315,7 +337,7 @@ smoke <- tribble(
     3 no    employed             20
     4 no    unemployed           12
 
-<choice id=0.165278085740283>
+<choice id=0.221865599276498>
 
 <opt text="Using <code>pivot_wider()</code> on smoke" >
 
@@ -348,7 +370,7 @@ Try again!
 Which of the following is an appropriate way to check if there are
 missing observations in your data?
 
-<choice id=0.458527856040746>
+<choice id=0.715103336144239>
 
 <opt text="Eyeballing and look for blanks in my data" >
 
