@@ -7,7 +7,7 @@ chapter: 1
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(fig.path = "chapter1/chapter1-01/",
+knitr::opts_chunk$set(fig.path = "chapter1-01/",
                       fig.align = "center",
                       fig.width = 2, 
                       fig.height = 2,
@@ -58,7 +58,7 @@ Please select Download R for `your operating system`
 
 ### Install R on Windows
 
-![Install R windows](chapter1/chapter1/cran_windows_2.png)
+![Install R windows](chapter1/cran_windows_2.png)
   
 Note: Select base distribution binaries.
 
