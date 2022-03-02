@@ -1,7 +1,7 @@
 ---
 title: 'Chapter 1: Getting started with R & RStudio'
 description:
-  'This chapter will teach you about many cool things about R and RStuduo and help you get start with RStudio.'
+  'This chapter will teach you about many cool things about R and RStudio and help you get start with RStudio.'
 next: /chapter2
 type: chapter
 id: 1
