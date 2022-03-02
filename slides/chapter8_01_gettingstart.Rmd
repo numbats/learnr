@@ -6,7 +6,7 @@ type: slides
 chapter: 8
 ---
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(fig.path = "images/chapter9-01/",
+knitr::opts_chunk$set(fig.path = "images/chapter8-01/",
                       fig.align = "center",
                       fig.width = 2, 
                       fig.height = 2,
@@ -33,13 +33,13 @@ Note: Once you finish installing packages, you are ready to start your journey w
 You should see `R Markdown` when you click on `r icons::fontawesome("plus", style = "solid")`. 
 
 ```{r, echo=FALSE, out.width="70%"}
-knitr::include_graphics("images/chapter9/adding_rmd.png")
+knitr::include_graphics("images/chapter8/adding_rmd.png")
 ```
 
 ---
 
 ```{r, echo=FALSE, out.width="70%"}
-knitr::include_graphics("images/chapter9/naming.png")
+knitr::include_graphics("images/chapter8/naming.png")
 ```
 
 Note: Once you clicked on `R Markdown`, you should see this pop-up window. You can put in the title for your R Markdown and state the author. You can also change this later. There are three default formate for R Markdown including html,pdf and word. You can also change the output file later. 
@@ -48,7 +48,7 @@ Note: Once you clicked on `R Markdown`, you should see this pop-up window. You c
 ---
 
 ```{r, echo=FALSE, out.width="70%"}
-knitr::include_graphics("images/chapter9/rmd-demo.png")
+knitr::include_graphics("images/chapter8/rmd-demo.png")
 ```
 
 
@@ -59,7 +59,7 @@ Note: Once you clicked on `OK`, it will automatically generate an Rmd (R Markdow
 ### R Markdown Basics 
 
 ```{r, echo=FALSE, out.width="80%"}
-knitr::include_graphics("images/chapter9/demo-first-rmd.png")
+knitr::include_graphics("images/chapter8/demo-first-rmd.png")
 ```
 
 ---
@@ -67,7 +67,7 @@ knitr::include_graphics("images/chapter9/demo-first-rmd.png")
 ### Knitting: from `.Rmd` to `.html`
 
 ```{r, echo=FALSE, out.width="80%"}
-knitr::include_graphics("images/chapter9/demo-knit-html.png")
+knitr::include_graphics("images/chapter8/demo-knit-html.png")
 ```
 
 ---
@@ -75,7 +75,7 @@ knitr::include_graphics("images/chapter9/demo-knit-html.png")
 ### Knitting: from `.Rmd` to `.pdf`
 
 ```{r, echo=FALSE, out.width="80%"}
-knitr::include_graphics("images/chapter9/demo-knit-pdf.png")
+knitr::include_graphics("images/chapter8/demo-knit-pdf.png")
 ```
 
 ---
