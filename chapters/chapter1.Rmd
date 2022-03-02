@@ -6,22 +6,12 @@ next: /chapter2
 type: chapter
 id: 1
 output:
-  teachr::teachr_chapter:
-  # html_document:
-  #   self_contained: false
-  #   keep_md: true
+  teachr::teachr_chapter
 ---
 
 
 ```{r setup, include = FALSE}
 library(teachr)
-knitr::knit_hooks$set(class = function(before, options, envir) {
-  if(before) {
-    sprintf("<div class='%s'>", options$class)
-  } else {
-    "</div>"
-  }
-})
 knitr::opts_chunk$set(fig.path = "ch1/",
                       fig.retina = 2,
                       fig.width = 6, 
@@ -31,9 +21,8 @@ knitr::opts_chunk$set(fig.path = "ch1/",
                       cache.path = "cache/",
                       message = FALSE,
                       warning = FALSE)
-# `slides` and `opts` (now called `mc_opts` functions now live in the `teachr` package
-# install latest at https://github.com/numbats/teachr
 ```
+
 
 <exercise id="1" title="Windows: Installing R and RStudio" type="slides">
 
