@@ -400,6 +400,16 @@ test <- function() {
 The string answer is available as `.solution`, and the test also has access to
 the solution code.
 
+### Viewing the website in local server
+
+1. Navigate to the local repo folder 
+1. Install brew (if not already available) https://brew.sh/
+1. Install node v14 (https://formulae.brew.sh/formula/node@14)
+1. Install gatsby with `npm install -g gatsby-cli`
+1. Install website dependencies with `npm install`
+1. Install lottie web `npm install lottie-web` (https://www.npmjs.com/package/lottie-web)
+1. Serve the website with `npm run dev`
+
 ---
 
 For more details on how it all works behind the scenes, see
