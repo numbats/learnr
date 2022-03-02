@@ -53,7 +53,7 @@ knitr::opts_chunk$set(fig.retina = 2,
 <exercise id="2" title="Getting start with R Markdown" type = "slides">
 
 
-`r slides("chapter9_01_gettingstart")`
+`r slides("chapter8_01_gettingstart")`
 
 </exercise>
 

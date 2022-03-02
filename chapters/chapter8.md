@@ -28,7 +28,7 @@ id: 8
 
 <exercise id="2" title="Getting start with R Markdown" type = "slides">
 
-<slides source="chapter9_01_gettingstart"> </slides>
+<slides source="chapter8_01_gettingstart"> </slides>
 
 </exercise>
 
@@ -36,10 +36,8 @@ id: 8
 
 ## Introduction to R Chunk
 
-```` {.markdown}
-```{r, this-is-an-r-chunk}
-```
-````
+    ```{r, this-is-an-r-chunk}
+    ```
 
 Here is an example for R chunk. An R chunk starts with three
 ```` ```{r} ```` and ends with ```` ``` ````. After `r,` is where you
@@ -48,19 +46,15 @@ include breaks.
 
 ### `include`
 
-```` {.markdown}
-```{r, this-is-an-r-chunk,include = TRUE}
-ggplot(mpg, aes(displ, hwy, colour = class)) + 
-  geom_point()
-```
-````
+    ```{r, this-is-an-r-chunk,include = TRUE}
+    ggplot(mpg, aes(displ, hwy, colour = class)) + 
+      geom_point()
+    ```
 
-``` {.r}
-ggplot(mpg, aes(displ, hwy, colour = class)) + 
-  geom_point()
-```
+    ggplot(mpg, aes(displ, hwy, colour = class)) + 
+      geom_point()
 
-<img src="chapter8_files/figure-markdown/includeture-1.png" width="432" style="display: block; margin: auto;" />
+<img src="chapter8_files/figure-markdown_strict/includeture-1.png" width="432" style="display: block; margin: auto;" />
 
 The default setting is `include = FALSE`. When you set `include = TRUE`,
 it will print out both code and results. Alternatively, if you wish not
@@ -70,14 +64,12 @@ results from this code chunk in other chunks.
 
 ### `echo`
 
-```` {.markdown}
-```{r, this-is-an-r-chunk,echo = FALSE}
-ggplot(mpg, aes(displ, hwy, colour = class)) + 
-  geom_point()
-```
-````
+    ```{r, this-is-an-r-chunk,echo = FALSE}
+    ggplot(mpg, aes(displ, hwy, colour = class)) + 
+      geom_point()
+    ```
 
-<img src="chapter8_files/figure-markdown/unnamed-chunk-1-1.png" width="432" style="display: block; margin: auto;" />
+<img src="chapter8_files/figure-markdown_strict/unnamed-chunk-1-1.png" width="432" style="display: block; margin: auto;" />
 
 The default setting is `echo = TRUE`. When you set `echo = FALSE`, it
 will only print out the results from this code chunk but prevents code
@@ -92,12 +84,10 @@ when you are
 
 ### `message`, `warning`. `error`
 
-```` {.markdown}
-```{r, this-is-an-r-chunk,messge = FALSE, warning = FALSE, error =  FALSE}
-ggplot(mpg, aes(displ, hwy, colour = class)) + 
-  geom_point()
-```
-````
+    ```{r, this-is-an-r-chunk,messge = FALSE, warning = FALSE, error =  FALSE}
+    ggplot(mpg, aes(displ, hwy, colour = class)) + 
+      geom_point()
+    ```
 
 The defult setting is `message = TRUE, warning = TRUE, error = FALSE`.
 When you are generating an assignment or report, you would not want to
@@ -110,16 +100,14 @@ and `warning` will also be displayed in the console.
 
 ### `cache`
 
-```` {.markdown}
-```{r, this-is-an-r-chunk,cache = TRUE}
-ggplot(mpg, aes(displ, hwy, colour = class)) + 
-  geom_point()
-```
-````
+    ```{r, this-is-an-r-chunk,cache = TRUE}
+    ggplot(mpg, aes(displ, hwy, colour = class)) + 
+      geom_point()
+    ```
 
 The default setting is `cach = FALSE`. Everytime when you `Knit` a R
 Markdown document, it will run through all the code chunks. When some of
-your code chunk takes too much time to run or you don't need to re-run
+your code chunk takes too much time to run or you don’t need to re-run
 the code every time when you knit the document, you can set
 `cache = TRUE` to loaded from previously saved databases (`.rdb` and
 `.rdx` files). This means that this code chunk will only be evaluated
@@ -127,39 +115,31 @@ the first time you knit the document.
 
 ### `fig.width` and `fig.height`
 
-```` {.markdown}
-```{r, this-is-an-r-chunk,fig.width = 4, fig.height =4}
-ggplot(mpg, aes(displ, hwy, colour = class)) + 
-  geom_point()
-```
-````
+    ```{r, this-is-an-r-chunk,fig.width = 4, fig.height =4}
+    ggplot(mpg, aes(displ, hwy, colour = class)) + 
+      geom_point()
+    ```
 
-``` {.r}
-ggplot(mpg, aes(displ, hwy, colour = class)) + 
-  geom_point()
-```
+    ggplot(mpg, aes(displ, hwy, colour = class)) + 
+      geom_point()
 
-<img src="chapter8_files/figure-markdown/this-is-an-r-chunk-1.png" width="288" style="display: block; margin: auto;" />
+<img src="chapter8_files/figure-markdown_strict/this-is-an-r-chunk-1.png" width="288" style="display: block; margin: auto;" />
 
 The default setting is `fig.width =7,fig.height =7`. The figures are
-defined in inches. `fig.width` defines the figure's width where
-`fig.height` defines the figure's hight.
+defined in inches. `fig.width` defines the figure’s width where
+`fig.height` defines the figure’s hight.
 
 ### `out.width` and `out.height`
 
-```` {.markdown}
-```{r, this-is-an-r-chunk,out.width = '50%'}
-ggplot(mpg, aes(displ, hwy, colour = class)) + 
-  geom_point()
-```
-````
+    ```{r, this-is-an-r-chunk,out.width = '50%'}
+    ggplot(mpg, aes(displ, hwy, colour = class)) + 
+      geom_point()
+    ```
 
-``` {.r}
-ggplot(mpg, aes(displ, hwy, colour = class)) + 
-  geom_point()
-```
+    ggplot(mpg, aes(displ, hwy, colour = class)) + 
+      geom_point()
 
-<img src="chapter8_files/figure-markdown/this-is-an-r-chunk-fig-1.png" width="50%" style="display: block; margin: auto;" />
+<img src="chapter8_files/figure-markdown_strict/this-is-an-r-chunk-fig-1.png" width="50%" style="display: block; margin: auto;" />
 
 You can also scale your output figures with `out.width` and
 `out.height`. `out.width = '50%'` means 50% of the page width. You can
@@ -186,11 +166,11 @@ file.
 
 -   You could also use code chunk to include images.
 
-```` {.markdown}
-```{r, echo=FALSE, out.width="50%"}
-knitr::include_graphics("images/rmarkdown.png")
-```
-````
+<!-- -->
+
+    ```{r, echo=FALSE, out.width="50%"}
+    knitr::include_graphics("images/rmarkdown.png")
+    ```
 
 ## You can make presentation slides using `R Markdown`
 
