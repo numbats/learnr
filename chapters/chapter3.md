@@ -33,7 +33,7 @@ quickly based on the message alone!
 
 Here's an error you'll probably encounter in your own code someday.
 
-``` {.r}
+``` r
 library(dplyr)
 mtcars %>% 
   summarise(mean(mpg)))
@@ -72,7 +72,7 @@ Take this [notoriously confusing
 error](https://www.youtube.com/watch?v=vgYS-F8opgE) for example. In this
 code, I wanted to see the first few values of my `sample` object.
 
-``` {.r}
+``` r
 sample[1:3]
 ```
 
@@ -300,7 +300,7 @@ in on the issue, you can convert your minimal data object to code for
 producing it using the `dput()` function. For example, you can provide
 the first 6 rows of the `iris` dataset with:
 
-``` {.r}
+``` r
 dput(head(iris))
 ```
 
@@ -376,12 +376,12 @@ copy it all and then run `reprex::reprex()` in your console.
 Alternatively, if you're using RStudio you can use the "Render
 reprex..." option from the "Addins" dropdown.
 
-![reprex RStudio addin](addin.png)
+![reprex RStudio addin](chapter3/addin.png)
 
 Once you clicked on `Render reprex...`, it will show you a pop-up
 window:
 
-![reprex addin options pop-up](reprex_render.png)
+![reprex addin options pop-up](chapter3/reprex_render.png)
 
 As you've copied the example entirely, you can use the 'on the
 clipboard' source. Choose a venue for where you're planning to post the
