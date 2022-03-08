@@ -17,7 +17,6 @@ knitr::opts_chunk$set(fig.path = "ch1/",
                       fig.width = 6, 
                       fig.height = 4,
                       fig.align = "center",
-                      cache = TRUE,
                       cache.path = "cache/",
                       message = FALSE,
                       warning = FALSE)

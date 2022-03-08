@@ -44,7 +44,7 @@ You can install the core tidyverse packages with:
 
 Then, to load the package:
 
-``` {.r}
+``` r
 library(tidyverse)
 ```
 
@@ -81,7 +81,7 @@ on top of one another. This is very useful when we are performing
 complex operations on our data sets. The equivalent code for this
 without the pipe would be:
 
-``` {.r}
+``` r
 ggplot(
   mutate(
     read_csv("market.csv"), 
@@ -109,14 +109,14 @@ you first log the vector `x`, then add 3, and square the result. It
 gives the same result, but is harder to read and write for this
 circumstance.
 
-``` {.r}
+``` r
 x <- c(100,200,300)
 (log(x) + 3)^2
 ```
 
     ## [1] 57.83861 68.86207 75.75583
 
-``` {.r}
+``` r
 x %>% log() %>% {.+3} %>% {.^2}
 ```
 
@@ -165,7 +165,7 @@ task.
 
 Consider the data sets `size` and `color`.
 
-``` {.r}
+``` r
 size <- tibble(
   product_name = c('mini', 'pro', 'maxi'),
   diameter = c(23, 27, 32)
@@ -189,7 +189,7 @@ We would like to merge the tables so that the result looks like:
 
 Which of the following commands does the operation?
 
-<choice id=0.536885833600536>
+<choice id=0.824570241151378>
 
 <opt text="<code>inner_join(color, size)</code>" >
 
@@ -232,7 +232,7 @@ That's right!
 We have used `table1`, `table2` and `table3` as example in the slides.
 Which table is tidy?
 
-``` {.r}
+``` r
 table1
 ```
 
@@ -246,7 +246,7 @@ table1
     ## 5 China        1999 212258 1272915272
     ## 6 China        2000 213766 1280428583
 
-``` {.r}
+``` r
 table2
 ```
 
@@ -266,7 +266,7 @@ table2
     ## 11 China        2000 cases          213766
     ## 12 China        2000 population 1280428583
 
-``` {.r}
+``` r
 table3
 ```
 
@@ -280,7 +280,7 @@ table3
     ## 5 China        1999 212258/1272915272
     ## 6 China        2000 213766/1280428583
 
-<choice id=0.771973018301651>
+<choice id=0.779665192821994>
 
 <opt text="Table 1 only" correct="true">
 
@@ -320,7 +320,7 @@ two variables under the same column 'type'.
 Consider the following simple table `smoke`, which command do I need to
 transform `smoke` to `smoke2`?
 
-``` {.r}
+``` r
 smoke <- tribble(
   ~smoke, ~employed, ~unemployed,
   "yes", 23, 10,
@@ -337,7 +337,7 @@ smoke <- tribble(
     3 no    employed             20
     4 no    unemployed           12
 
-<choice id=0.221865599276498>
+<choice id=0.0953130233101547>
 
 <opt text="Using <code>pivot_wider()</code> on smoke" >
 
@@ -370,7 +370,7 @@ Try again!
 Which of the following is an appropriate way to check if there are
 missing observations in your data?
 
-<choice id=0.715103336144239>
+<choice id=0.495485041756183>
 
 <opt text="Eyeballing and look for blanks in my data" >
 
