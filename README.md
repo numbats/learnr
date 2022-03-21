@@ -408,6 +408,7 @@ the solution code.
 1. Install gatsby with `npm install -g gatsby-cli`
 1. Install website dependencies with `npm install`
 1. Install lottie web `npm install lottie-web` (https://www.npmjs.com/package/lottie-web)
+1. Install google analytics plugin for Gatsby `npm install gatsby-plugin-google-gtag`
 1. Serve the website with `npm run dev`
 
 ---
