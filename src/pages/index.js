@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { graphql } from 'gatsby'
+import { OutboundLink } from "gatsby-plugin-google-gtag"
 
 import Layout from '../components/layout'
 import { Link } from '../components/link'
@@ -15,7 +16,7 @@ export default ({ data }) => {
         title: node.frontmatter.title,
         description: node.frontmatter.description,
     }))
-    
+
     //  Render MathJax syntax
     useEffect(() => {
       lottie.loadAnimation({
@@ -26,7 +27,7 @@ export default ({ data }) => {
         path: 'lottie/logo.json' // the path to the animation json
       });
     })
-    
+
     return (
         <Layout isHome>
             <div class={classes.logo} id="lottie-logo"> </div>
