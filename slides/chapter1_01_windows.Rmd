@@ -156,7 +156,7 @@ Note: Follow the prompts.
 
 ![Install RStudio windows](chapter1/rstudio_windows_1.png)
 
-Note: Download the latest version of RStudio from [RStudio](chapter1/https://www.rstudio.com/products/rstudio/download/). 
+Note: Download the latest version of RStudio from [RStudio](https://www.rstudio.com/products/rstudio/download/). 
 
 Scroll down to `All Installers` and download the RStudio version for your operating system. 
 
