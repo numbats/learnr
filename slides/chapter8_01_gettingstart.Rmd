@@ -14,7 +14,6 @@ knitr::opts_chunk$set(fig.path = "images/chapter8-01/",
                       cache = FALSE,
                       echo = TRUE)
 
-library(icons)
 ```
 
 ### Installing packages 
@@ -30,7 +29,7 @@ Note: Once you finish installing packages, you are ready to start your journey w
 
 ### Start your very first R Markdown 
 
-You should see `R Markdown` when you click on `r icons::fontawesome("plus", style = "solid")`. 
+You should see `R Markdown` when you click on <i class="fas fa-plus"></i>. 
 
 ```{r, echo=FALSE, out.width="70%"}
 knitr::include_graphics("images/chapter8/adding_rmd.png")
