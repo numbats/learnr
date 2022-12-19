@@ -400,7 +400,29 @@ test <- function() {
 The string answer is available as `.solution`, and the test also has access to
 the solution code.
 
-### Viewing the website in local server
+---
+
+For more details on how it all works behind the scenes, see
+[the original course repo](https://github.com/ines/spacy-course).
+
+
+---
+
+# For developers
+
+## Making changes to content
+
+* You need to install the [`teachr` package](https://github.com/numbats/teachr)
+
+```r
+devtools::install_github("numbats/teachr")
+```
+
+* For adding a new chapter, add the chapter Rmd in the `chapters` folder. See for example `chapters/chapter1.Rmd`.
+* For adding new slides to be referred to in the chapter Rmd, add the slides Rmd in `slides` folder. Name your slides so the prefix is `chapterX` where `X` is the chapter number. See for example `slides/chapter1_01_windows.Rmd`. 
+
+
+## Viewing the website in local server
 
 1. Navigate to the local repo folder 
 1. Install brew (if not already available) https://brew.sh/
@@ -411,7 +433,3 @@ the solution code.
 1. Install google analytics plugin for Gatsby `npm install gatsby-plugin-google-gtag`
 1. Serve the website with `npm run dev`
 
----
-
-For more details on how it all works behind the scenes, see
-[the original course repo](https://github.com/ines/spacy-course).
