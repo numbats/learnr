@@ -32,13 +32,13 @@ Note: Once you finish installing packages, you are ready to start your journey w
 You should see `R Markdown` when you click on <i class="fas fa-plus"></i>. 
 
 ```{r, echo=FALSE, out.width="70%"}
-knitr::include_graphics("images/chapter8/adding_rmd.png")
+knitr::include_graphics("adding_rmd.png", error = FALSE)
 ```
 
 ---
 
 ```{r, echo=FALSE, out.width="70%"}
-knitr::include_graphics("images/chapter8/naming.png")
+knitr::include_graphics("naming.png", error = FALSE)
 ```
 
 Note: Once you clicked on `R Markdown`, you should see this pop-up window. You can put in the title for your R Markdown and state the author. You can also change this later. There are three default formate for R Markdown including html,pdf and word. You can also change the output file later. 
@@ -47,7 +47,7 @@ Note: Once you clicked on `R Markdown`, you should see this pop-up window. You c
 ---
 
 ```{r, echo=FALSE, out.width="70%"}
-knitr::include_graphics("images/chapter8/rmd-demo.png")
+knitr::include_graphics("rmd-demo.png", error = FALSE)
 ```
 
 
@@ -58,7 +58,7 @@ Note: Once you clicked on `OK`, it will automatically generate an Rmd (R Markdow
 ### R Markdown Basics 
 
 ```{r, echo=FALSE, out.width="80%"}
-knitr::include_graphics("images/chapter8/demo-first-rmd.png")
+knitr::include_graphics("demo-first-rmd.png", error = FALSE)
 ```
 
 ---
@@ -66,7 +66,7 @@ knitr::include_graphics("images/chapter8/demo-first-rmd.png")
 ### Knitting: from `.Rmd` to `.html`
 
 ```{r, echo=FALSE, out.width="80%"}
-knitr::include_graphics("images/chapter8/demo-knit-html.png")
+knitr::include_graphics("demo-knit-html.png", error = FALSE)
 ```
 
 ---
@@ -74,7 +74,7 @@ knitr::include_graphics("images/chapter8/demo-knit-html.png")
 ### Knitting: from `.Rmd` to `.pdf`
 
 ```{r, echo=FALSE, out.width="80%"}
-knitr::include_graphics("images/chapter8/demo-knit-pdf.png")
+knitr::include_graphics("demo-knit-pdf.png", error = FALSE)
 ```
 
 ---

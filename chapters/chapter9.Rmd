@@ -1,0 +1,39 @@
+---
+title: 'Chapter 9: Quarto basics'
+description:
+  'Quarto is the next generation R Markdown. This chapter teaches the difference between Quarto and R Markdown, and the basic use of Quarto.'
+prev: /chapter8
+type: chapter
+id: 9
+output:
+  teachr::teachr_chapter:
+  # html_document:
+  #   self_contained: false
+  #   keep_md: true
+---
+
+```{r setup, include = FALSE}
+library(teachr)
+library(tidyverse)
+knitr::knit_hooks$set(class = function(before, options, envir) {
+  if(before) {
+    sprintf("<div class='%s'>", options$class)
+  } else {
+    "</div>"
+  }
+})
+knitr::opts_chunk$set(fig.retina = 2,
+                      fig.width = 6, 
+                      fig.height = 4,
+                      fig.align = "center",
+                      cache = TRUE,
+                      cache.path = "cache/",
+                      message = FALSE,
+                      warning = FALSE)
+```
+
+<exercise id="1" title="How is Quarto different to R Markdown?">
+
+## How R Markdown make your life easier 
+
+</exercise>

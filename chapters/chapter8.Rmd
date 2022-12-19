@@ -3,6 +3,7 @@ title: 'Chapter 8: R Markdown basics'
 description:
   'This chapter will teach you the basics of R Markdown and how it can make your student life easlier.'
 prev: /chapter7
+next: /chapter9
 type: chapter
 id: 8
 output:
@@ -22,7 +23,8 @@ knitr::knit_hooks$set(class = function(before, options, envir) {
     "</div>"
   }
 })
-knitr::opts_chunk$set(fig.retina = 2,
+knitr::opts_chunk$set(fig.path = "ch8/",
+                      fig.retina = 2,
                       fig.width = 6, 
                       fig.height = 4,
                       fig.align = "center",

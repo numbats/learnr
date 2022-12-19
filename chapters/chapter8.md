@@ -3,6 +3,7 @@ title: 'Chapter 8: R Markdown basics'
 description: This chapter will teach you the basics of R Markdown and how it can make
   your student life easlier.
 prev: /chapter7
+next: /chapter9
 type: chapter
 id: 8
 
@@ -60,7 +61,7 @@ ggplot(mpg, aes(displ, hwy, colour = class)) +
   geom_point()
 ```
 
-<img src="chapter8_files/figure-markdown/includeture-1.png" width="432" style="display: block; margin: auto;" />
+<img src="ch8/includeture-1.png" width="432" style="display: block; margin: auto;" />
 
 The default setting is `include = FALSE`. When you set `include = TRUE`,
 it will print out both code and results. Alternatively, if you wish not
@@ -77,7 +78,7 @@ ggplot(mpg, aes(displ, hwy, colour = class)) +
 ```
 ````
 
-<img src="chapter8_files/figure-markdown/unnamed-chunk-1-1.png" width="432" style="display: block; margin: auto;" />
+<img src="ch8/unnamed-chunk-1-1.png" width="432" style="display: block; margin: auto;" />
 
 The default setting is `echo = TRUE`. When you set `echo = FALSE`, it
 will only print out the results from this code chunk but prevents code
@@ -139,7 +140,7 @@ ggplot(mpg, aes(displ, hwy, colour = class)) +
   geom_point()
 ```
 
-<img src="chapter8_files/figure-markdown/this-is-an-r-chunk-1.png" width="288" style="display: block; margin: auto;" />
+<img src="ch8/this-is-an-r-chunk-1.png" width="288" style="display: block; margin: auto;" />
 
 The default setting is `fig.width =7,fig.height =7`. The figures are
 defined in inches. `fig.width` defines the figure's width where
@@ -159,7 +160,7 @@ ggplot(mpg, aes(displ, hwy, colour = class)) +
   geom_point()
 ```
 
-<img src="chapter8_files/figure-markdown/this-is-an-r-chunk-fig-1.png" width="50%" style="display: block; margin: auto;" />
+<img src="ch8/this-is-an-r-chunk-fig-1.png" width="50%" style="display: block; margin: auto;" />
 
 You can also scale your output figures with `out.width` and
 `out.height`. `out.width = '50%'` means 50% of the page width. You can
