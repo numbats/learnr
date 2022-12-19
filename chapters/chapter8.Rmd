@@ -205,7 +205,7 @@ knitr::include_graphics("images/rmarkdown.png")
 ## You can make presentation slides using `R Markdown`
 
 ```{r, echo=FALSE, out.width="50%"}
-knitr::include_graphics("slides.png", error = FALSE)
+knitr::include_graphics("images/chapter8/slides.png", error = FALSE)
 ```
 
 You can select different `html` templates or you can use `pdf` outputs for your presentations. 
