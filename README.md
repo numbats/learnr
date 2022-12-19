@@ -433,3 +433,6 @@ devtools::install_github("numbats/teachr")
 1. Install google analytics plugin for Gatsby `npm install gatsby-plugin-google-gtag`
 1. Serve the website with `npm run dev`
 
+
+NOTE: the reference to image is relative to the chapter for local view but on the deployed website, it is the base url. This means that if your image reference is `myfolder/myimage.png` within `chapterx` then you need to refer to as like `chapterx/myfolder/myimage.png`. This will not show up on the local preview which needs the reference to be `myfolder/myimage.png`. How very annoying.
+
