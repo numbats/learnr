@@ -122,7 +122,7 @@ Based on the above plot, do you think the fitted model is reasonable?
 ```{r, echo = FALSE, results = "asis"}
 cat(mc_opts("Yes" = "Nope. Try again.",
          "No" = "That's right! There's a clear curve in the residual vs fitted plot.",
-         correct = 1))
+         correct = 2))
 ```
 
 

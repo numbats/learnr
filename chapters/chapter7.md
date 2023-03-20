@@ -10,13 +10,14 @@ id: 7
 ---
 <exercise id="1" title="Simple linear regression" type="slides">
 
-<slides source="chapter7_01_simple-linear-regression"> </slides>
+<slides source="chapter7_01_simple-linear-regression">
+</slides>
 
 </exercise>
 
 <exercise id="2" title="Practice extracting model estimates">
 
-``` {.r}
+``` r
 library(Ecdat)
 str(Cigarette)
 ```
@@ -66,7 +67,8 @@ Hint: What did functions `coef()` and `residuals()` do?
 
 <exercise id="3" title="Multiple linear regression" type="slides">
 
-<slides source="chapter7_02_multiple-linear-regression"> </slides>
+<slides source="chapter7_02_multiple-linear-regression">
+</slides>
 
 </exercise>
 
@@ -78,7 +80,7 @@ regressing it on the covariates:
 -   average excise taxes for fiscal year and
 -   consumer price index.
 
-``` {.r}
+``` r
 library(tidyverse)
 library(broom)
 data(Cigarette, package = "Ecdat")
@@ -93,15 +95,15 @@ ggplot(augment(fit), aes(.fitted, .resid)) +
 
 Based on the above plot, do you think the fitted model is reasonable?
 
-<choice id=0.350873241433874>
+<choice id=0.677027905359864>
 
-<opt text="Yes" correct="true">
+<opt text="Yes" >
 
 Nope. Try again.
 
 </opt>
 
-<opt text="No" >
+<opt text="No" correct="true">
 
 That's right! There's a clear curve in the residual vs fitted plot.
 
@@ -113,7 +115,8 @@ That's right! There's a clear curve in the residual vs fitted plot.
 
 <exercise id="5" title="Regression with categorical variables" type="slides">
 
-<slides source="chapter7_03_regression-with-categorical-var"> </slides>
+<slides source="chapter7_03_regression-with-categorical-var">
+</slides>
 
 </exercise>
 
@@ -122,7 +125,7 @@ That's right! There's a clear curve in the residual vs fitted plot.
 Below we calculate the mean of the average cigarette prices across the
 years by state.
 
-``` {.r}
+``` r
 Cigarette %>% 
   group_by(state) %>% 
   summarise(avg = mean(avgprs)) %>% 
@@ -156,7 +159,9 @@ remove the intercept.
 </exercise>
 
 <exercise id="7" title="Regression models with interaction effects" type="slides">
-<slides source="chapter7_04_interaction"> </slides> </exercise>
+<slides source="chapter7_04_interaction"> </slides>
+</exercise>
 
 <exercise id="8" title="Visualising regression models"  type="slides">
-<slides source="chapter7_05_visualisation"> </slides> </exercise>
+<slides source="chapter7_05_visualisation"> </slides>
+</exercise>
