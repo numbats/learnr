@@ -21,8 +21,7 @@ id: 1
 
 <exercise id="3" title="RStudio basics" type="slides">
 
-<slides source="chapter_1_02_RStudio_basics">
-</slides>
+<slides source="chapter_1_02_RStudio_basics"> </slides>
 
 </exercise>
 

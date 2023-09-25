@@ -37,8 +37,10 @@ which provides easy-to-work-with interface.
 
 <img src="chapter1/chapter1-01/R_Install_CRAN.png" style="display: block; margin: auto;" />
 
-Note: Download the latest version of R from: [The Comprehensive R
-Archive Network (CRAN)](https://cloud.r-project.org/).
+Notess:
+
+Download the latest version of R from The Comprehensive R Archive
+Network (CRAN): <https://cloud.r-project.org/>.
 
 Please select Download R for `your operating system`
 
@@ -48,8 +50,9 @@ Please select Download R for `your operating system`
 
 <img src="chapter1/chapter1-01/R_Install_Mac.png" style="display: block; margin: auto;" />
 
-Note: You should see this webpage once you click on
-`Download R for macOS`.
+Notess:
+
+You should see this webpage once you click on `Download R for macOS`.
 
 Click on `R-4.1.2.pkg` to start the download. (The top one will always
 be the most recent version. During the first development of this short
@@ -61,8 +64,10 @@ course, 4.1.2 is the latest version of R.)
 
 <img src="chapter1/chapter1-01/R_Install_Mac_1.png" style="display: block; margin: auto;" />
 
-Note: After finishing the download of `R-4.1.2.pkg`, double click on it,
-you should see the message below.
+Notes:
+
+After finishing the download of `R-4.1.2.pkg`, double click on it, you
+should see the message below.
 
 Click `Continue`.
 
@@ -72,7 +77,9 @@ Click `Continue`.
 
 <img src="chapter1/chapter1-01/R_Install_Mac_2.png" style="display: block; margin: auto;" />
 
-Note: Read through the important information about R.
+Notes:
+
+Read through the important information about R.
 
 Click `Continue`.
 
@@ -82,7 +89,9 @@ Click `Continue`.
 
 <img src="chapter1/chapter1-01/R_Install_Mac_3.png" style="display: block; margin: auto;" />
 
-Note: Read through the software licence agreement about R.
+Notes:
+
+Read through the software licence agreement about R.
 
 Click `Continue`.
 
@@ -92,7 +101,9 @@ Click `Continue`.
 
 <img src="chapter1/chapter1-01/R_Install_Mac_4.png" style="display: block; margin: auto;" />
 
-Note: The default installation location for macOS is the `Macintosh HD`.
+Notes:
+
+The default installation location for macOS is the `Macintosh HD`.
 
 If you want to change the install location, click
 `Change Install Location`. Otherwise, click `Install`.
@@ -103,8 +114,10 @@ If you want to change the install location, click
 
 <img src="chapter1/chapter1-01/R_Install_Mac_5.png" style="display: block; margin: auto;" />
 
-Note: Once you successfully installed R. You can click `Close` to exit
-the installation process.
+Notes:
+
+Once you successfully installed R. You can click `Close` to exit the
+installation process.
 
 ---
 
@@ -112,8 +125,10 @@ the installation process.
 
 <img src="chapter1/chapter1-01/RStudio_Install.png" style="display: block; margin: auto;" />
 
-Note: Download the latest version of RStudio from
-[RStudio](https://www.rstudio.com/products/rstudio/download/).
+Notes:
+
+Download the latest version of RStudio from:
+<https://www.rstudio.com/products/rstudio/download/>.
 
 Scroll down to `All Installers` and download the RStudio version for
 your operating system.
@@ -124,6 +139,8 @@ your operating system.
 
 <img src="chapter1/chapter1-01/RStudio_Install_Mac_1.png" style="display: block; margin: auto;" />
 
-Note: Drag RStudio.app into the `Applications` folder.
+Notes:
+
+Drag RStudio.app into the `Applications` folder.
 
 After this step, you should have RStudio ready to explore!

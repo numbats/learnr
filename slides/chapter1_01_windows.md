@@ -48,7 +48,9 @@ Please select Download R for `your operating system`
 
 ![Install R windows](chapter1/cran_windows_2.png)
 
-Note: Select base distribution binaries.
+Notes:
+
+Select base distribution binaries.
 
 ---
 
@@ -56,7 +58,9 @@ Note: Select base distribution binaries.
 
 ![Install R windows](chapter1/cran_windows_3.png)
 
-Note: Download the latest version of R for Windows.
+Notes:
+
+Download the latest version of R for Windows.
 
 ---
 
@@ -64,7 +68,9 @@ Note: Download the latest version of R for Windows.
 
 ![Install R windows](chapter1/cran_windows_4.png)
 
-Note: Run the downloaded executable file.
+Notes:
+
+Run the downloaded executable file.
 
 ---
 
@@ -72,7 +78,9 @@ Note: Run the downloaded executable file.
 
 ![Install R windows](chapter1/cran_windows_5.png)
 
-Note: Allow the installer to change your device.
+Notes:
+
+Allow the installer to change your device.
 
 ---
 
@@ -80,7 +88,9 @@ Note: Allow the installer to change your device.
 
 ![Install R windows](chapter1/cran_windows_6.png)
 
-Note: Follow the prompts.
+Notes:
+
+Follow the prompts.
 
 ---
 
@@ -88,7 +98,9 @@ Note: Follow the prompts.
 
 ![Install R windows](chapter1/cran_windows_7.png)
 
-Note: Follow the prompts.
+Notes:
+
+Follow the prompts.
 
 ---
 
@@ -96,7 +108,9 @@ Note: Follow the prompts.
 
 ![Install R windows](chapter1/cran_windows_8.png)
 
-Note: Follow the prompts.
+Notes:
+
+Follow the prompts.
 
 ---
 
@@ -104,7 +118,9 @@ Note: Follow the prompts.
 
 ![Install R windows](chapter1/cran_windows_9.png)
 
-Note: Follow the prompts.
+Notes:
+
+Follow the prompts.
 
 ---
 
@@ -112,7 +128,9 @@ Note: Follow the prompts.
 
 ![Install R windows](chapter1/cran_windows_10.png)
 
-Note: Follow the prompts.
+Notes:
+
+Follow the prompts.
 
 ---
 
@@ -120,7 +138,9 @@ Note: Follow the prompts.
 
 ![Install R windows](chapter1/cran_windows_11.png)
 
-Note: Follow the prompts.
+Notes:
+
+Follow the prompts.
 
 ---
 
@@ -128,7 +148,9 @@ Note: Follow the prompts.
 
 ![Install R windows](chapter1/cran_windows_12.png)
 
-Note: Follow the prompts.
+Notes:
+
+Follow the prompts.
 
 ---
 
@@ -136,8 +158,10 @@ Note: Follow the prompts.
 
 ![Install RStudio windows](chapter1/rstudio_windows_1.png)
 
-Note: Download the latest version of RStudio from
-[RStudio](chapter1/https://www.rstudio.com/products/rstudio/download/).
+Notes:
+
+Download the latest version of RStudio from
+[RStudio](https://www.rstudio.com/products/rstudio/download/).
 
 Scroll down to `All Installers` and download the RStudio version for
 your operating system.
@@ -148,7 +172,9 @@ your operating system.
 
 ![Install RStudio windows](chapter1/rstudio_windows_2.png)
 
-Note: Save the installer on your computer
+Notes:
+
+Save the installer on your computer
 
 ---
 
@@ -156,7 +182,9 @@ Note: Save the installer on your computer
 
 ![Install RStudio windows](chapter1/rstudio_windows_3.png)
 
-Note: Run the executable file to install RStudio
+Notes:
+
+Run the executable file to install RStudio
 
 ---
 
@@ -164,7 +192,9 @@ Note: Run the executable file to install RStudio
 
 ![Install RStudio windows](chapter1/rstudio_windows_4.png)
 
-Note: Allow the installer to make changes on your computer.
+Notes:
+
+Allow the installer to make changes on your computer.
 
 ---
 
@@ -172,7 +202,9 @@ Note: Allow the installer to make changes on your computer.
 
 ![Install RStudio windows](chapter1/rstudio_windows_5.png)
 
-Note: Follow the prompts.
+Notes:
+
+Follow the prompts.
 
 ---
 
@@ -180,7 +212,9 @@ Note: Follow the prompts.
 
 ![Install RStudio windows](chapter1/rstudio_windows_6.png)
 
-Note: Follow the prompts.
+Notes:
+
+Follow the prompts.
 
 ---
 
@@ -188,7 +222,9 @@ Note: Follow the prompts.
 
 ![Install RStudio windows](chapter1/rstudio_windows_7.png)
 
-Note: Follow the prompts.
+Notes:
+
+Follow the prompts.
 
 ---
 
@@ -196,7 +232,9 @@ Note: Follow the prompts.
 
 ![Install RStudio windows](chapter1/rstudio_windows_8.png)
 
-Note: Follow the prompts.
+Notes:
+
+Follow the prompts.
 
 ---
 
@@ -204,7 +242,9 @@ Note: Follow the prompts.
 
 ![Install RStudio windows](chapter1/rstudio_windows_9.png)
 
-Note: Follow the prompts.
+Notes:
+
+Follow the prompts.
 
 ---
 
@@ -212,7 +252,9 @@ Note: Follow the prompts.
 
 ![Open RStudio windows](chapter1/rstudio_windows_10.png)
 
-Note: Search for RStudio on your computer, and open it.
+Notes:
+
+Search for RStudio on your computer, and open it.
 
 ---
 
@@ -220,4 +262,6 @@ Note: Search for RStudio on your computer, and open it.
 
 ![RStudio on windows](chapter1/rstudio_windows_11.png)
 
-Note: Time to learn R!
+Notes:
+
+Time to learn R!

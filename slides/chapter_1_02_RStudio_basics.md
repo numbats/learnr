@@ -7,7 +7,9 @@ type: slides
 
 <img src="chapter1/chapter1-02/RStudio_interface_1.png" style="display: block; margin: auto;" />
 
-Note: Once you open RStudio, you should see this interface.
+Notes:
+
+Once you open RStudio, you should see this interface.
 
 On the left-hand side, you have `Console` which is the place where
 commands written in the R language can be typed and executed immediately
@@ -26,8 +28,10 @@ The window on the bottom right has a few different sessions including
 
 <img src="chapter1/chapter1-02/RStudio_Add_script.png" style="display: block; margin: auto;" />
 
-Note: You can run r code in the `Console` but once you close RStudio,
-you loss your code in `Console`.
+Notes:
+
+You can run r code in the `Console` but once you close RStudio, you loss
+your code in `Console`.
 
 To make your work reproducible, you can write and store all your code in
 a `R Script`.
@@ -38,8 +42,10 @@ a `R Script`.
 
 <img src="chapter1/chapter1-02/RStudio_rscript_1.png" style="display: block; margin: auto;" />
 
-Note: In an `R Script` you can write code and add comments. You can run
-each line by pressing `ctrl + enter/return`.
+Notes:
+
+In an `R Script` you can write code and add comments. You can run each
+line by pressing `ctrl + enter/return`.
 
 After you run each line of the code, you can see the messages in your
 `Console`.
@@ -72,8 +78,10 @@ After you run each line of the code, you can see the messages in your
 
 <img src="chapter1/chapter1-02/RStudio_package.png" style="display: block; margin: auto;" />
 
-Note: To check what packages you already have, go to the `Packages`
-window on the bottom right.
+Notes:
+
+To check what packages you already have, go to the `Packages` window on
+the bottom right.
 
 If you are not sure whether you have the packages or not, you could also
 type in the package name in the search bar to see if you have already
@@ -87,9 +95,11 @@ There are two ways to install packages.
 
 <img src="chapter1/chapter1-02/RStudio_Install_pkg.png" style="display: block; margin: auto;" />
 
-Note: The first way is by clicking. Open the `Pacakges` window on the
-bottom right, click on `Install`
-![](/tmp/RtmpaUlBQk/file5d7cf6b356d84.png){height="0.7em"}.
+Notes:
+
+The first way is by clicking. Open the `Pacakges` window on the bottom
+right, click on `Install`
+![](/var/folders/6f/164qv59n4lvb177221c445zh0000gr/T//Rtmpf0y7um/file11e617d86cb82.png){height="0.7em"}.
 
 You should see the pop-up below. You can type in the packages you want
 to install in and make sure that all the dependencies are also
@@ -107,8 +117,10 @@ inside `""`.
 
 <img src="chapter1/chapter1-02/RStudio_tools.png" style="display: block; margin: auto;" />
 
-Note: Customise your RStudio, go `Tools`
-![](/tmp/RtmpaUlBQk/file5d7cf6bdc9a1.png){height="0.7em"}
+Notes:
+
+Customise your RStudio, go `Tools`
+![](/var/folders/6f/164qv59n4lvb177221c445zh0000gr/T//Rtmpf0y7um/file11e6152ff9fc.png){height="0.7em"}
 `Global Options..`
 
 ---
@@ -119,15 +131,18 @@ Note: Customise your RStudio, go `Tools`
 
 -   If you are not able to download package from this sources, go to
     `Global Options...`
-    ![](/tmp/RtmpaUlBQk/file5d7cf849c20a.png){height="0.7em"} `Packages`
-    ![](/tmp/RtmpaUlBQk/file5d7cf7a0e9f38.png){height="0.7em"}
+    ![](/var/folders/6f/164qv59n4lvb177221c445zh0000gr/T//Rtmpf0y7um/file11e617a241c14.png){height="0.7em"}
+    `Packages`
+    ![](/var/folders/6f/164qv59n4lvb177221c445zh0000gr/T//Rtmpf0y7um/file11e6158afa3b1.png){height="0.7em"}
     `Primary CRAN repositor`. You can select the mirror that is
     physically close to you which might be easier for you to connect to.
 
-Note: If you are having difficulty downloading packages in your country,
-you could change where you download your packages. The default
-downloading mirror is `Global-RStudio` which is downloading packages
-from the CRAN RStudio Cloud.
+Notes:
+
+If you are having difficulty downloading packages in your country, you
+could change where you download your packages. The default downloading
+mirror is `Global-RStudio` which is downloading packages from the CRAN
+RStudio Cloud.
 
 ---
 
@@ -135,6 +150,9 @@ from the CRAN RStudio Cloud.
 
 <img src="chapter1/chapter1-02/RStudio_apprenve.png" style="display: block; margin: auto;" />
 
-Note: You can also change the appearance of your RStudio from the
+Notes:
+
+You can also change the appearance of your RStudio from the
 `Global Options...`
-![](/tmp/RtmpaUlBQk/file5d7cfa31b5e6.png){height="0.7em"} `Appearance`.
+![](/var/folders/6f/164qv59n4lvb177221c445zh0000gr/T//Rtmpf0y7um/file11e613a0f9693.png){height="0.7em"}
+`Appearance`.

@@ -29,7 +29,9 @@ options("knitr.graphics.error" = FALSE)
 knitr::include_graphics("chapter1/chapter1-02/RStudio_interface_1.png")
 ```
 
-Note: Once you open RStudio, you should see this interface. 
+Notes: 
+
+Once you open RStudio, you should see this interface. 
 
 On the left-hand side, you have `Console` which is the place where commands written in the R language can be typed and executed immediately by the computer. 
 
@@ -46,7 +48,9 @@ The window on the bottom right has a few different sessions including `Files`, `
 knitr::include_graphics("chapter1/chapter1-02/RStudio_Add_script.png")
 ```
 
-Note: You can run r code in the `Console` but once you close RStudio, you loss your code in `Console`. 
+Notes: 
+
+You can run r code in the `Console` but once you close RStudio, you loss your code in `Console`. 
 
 To make your work reproducible, you can write and store all your code in a `R Script`. 
 
@@ -59,7 +63,9 @@ To make your work reproducible, you can write and store all your code in a `R Sc
 knitr::include_graphics("chapter1/chapter1-02/RStudio_rscript_1.png")
 ```
 
-Note: In an `R Script` you can write code and add comments. You can run each line by pressing `ctrl + enter/return`. 
+Notes: 
+
+In an `R Script` you can write code and add comments. You can run each line by pressing `ctrl + enter/return`. 
 
 After you run each line of the code, you can see the messages in your `Console`. 
 
@@ -87,7 +93,9 @@ After you run each line of the code, you can see the messages in your `Console`.
 knitr::include_graphics("chapter1/chapter1-02/RStudio_package.png")
 ```
 
-Note: To check what packages you already have, go to the `Packages` window on the bottom right. 
+Notes: 
+
+To check what packages you already have, go to the `Packages` window on the bottom right. 
 
 If you are not sure whether you have the packages or not, you could also type in the package name in the search bar to see if you have already downloaded that package or not. 
 
@@ -104,7 +112,9 @@ knitr::include_graphics("chapter1/chapter1-02/RStudio_Install_pkg.png")
 ```
 
 
-Note: The first way is by clicking. Open the `Pacakges` window on the bottom right, click on `Install` `r icons::fontawesome("arrow-circle-down", style = "solid")`. 
+Notes: 
+
+The first way is by clicking. Open the `Pacakges` window on the bottom right, click on `Install` `r icons::fontawesome("arrow-circle-down", style = "solid")`. 
 
 You should see the pop-up below. You can type in the packages you want to install in and make sure that all the dependencies are also downloaded. 
 
@@ -122,7 +132,9 @@ Alternately, you can run `install.pakcages("")` with the package name inside `""
 knitr::include_graphics("chapter1/chapter1-02/RStudio_tools.png")
 ```
 
-Note: Customise your RStudio, go `Tools` `r icons::fontawesome("arrow-circle-right", style = "solid")` `Global Options..`
+Notes: 
+
+Customise your RStudio, go `Tools` `r icons::fontawesome("arrow-circle-right", style = "solid")` `Global Options..`
 
 ---
 
@@ -137,7 +149,9 @@ knitr::include_graphics("chapter1/chapter1-02/RStudio_mirror.png")
 * If you are not able to download package from this sources, go to `Global Options...` `r icons::fontawesome("arrow-circle-right", style = "solid")` `Packages` `r icons::fontawesome("arrow-circle-right", style = "solid")` `Primary CRAN repositor`. You can select the mirror that is physically close to you which might be easier for you to connect to. 
 
 
-Note: If you are having difficulty downloading packages in your country, you could change where you download your packages. The default downloading mirror is `Global-RStudio` which is downloading packages from the CRAN RStudio Cloud.
+Notes: 
+
+If you are having difficulty downloading packages in your country, you could change where you download your packages. The default downloading mirror is `Global-RStudio` which is downloading packages from the CRAN RStudio Cloud.
 
 
 
@@ -150,4 +164,6 @@ Note: If you are having difficulty downloading packages in your country, you cou
 knitr::include_graphics("chapter1/chapter1-02/RStudio_apprenve.png")
 ```
 
-Note: You can also change the appearance of your RStudio from the `Global Options...` `r icons::fontawesome("arrow-circle-right", style = "solid")` `Appearance`. 
+Notes: 
+
+You can also change the appearance of your RStudio from the `Global Options...` `r icons::fontawesome("arrow-circle-right", style = "solid")` `Appearance`. 
